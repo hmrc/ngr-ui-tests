@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,12 @@
 
 package uk.gov.hmrc.ui.pages
 
+import org.openqa.selenium.WebDriver
 import uk.gov.hmrc.selenium.component.PageObject
+import uk.gov.hmrc.selenium.webdriver.Driver
 
-trait BasePage extends PageObject {}
+trait BasePage extends PageObject {
+
+  val driver: WebDriver = Driver.instance
+  driver.get("https://www.example.com")
+}
