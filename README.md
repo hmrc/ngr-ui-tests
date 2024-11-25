@@ -1,12 +1,8 @@
-**This is the template README. Please update this with project specific content.**
-
 # ngr-ui-tests
 
-<SERVICE_NAME> UI journey tests.
+### Pre-requisites (for running tests on local)
 
-## Pre-requisites
-
-### Services
+### Services to run locally:
 
 Start Mongo Docker container as follows:
 
@@ -14,23 +10,20 @@ Start Mongo Docker container as follows:
 docker run --rm -d -p 27017:27017 --name mongo percona/percona-server-mongodb:5.0
 ```
 
-Start `<SERVICE_MANAGER_PROFILE>` services as follows:
+Start NGR services as follows:
 
 ```bash
-sm2 --start <SERVICE_MANAGER_PROFILE>
+sm2 --start NGR_ALL
 ```
-
-## Tests
-
-Run tests as follows:
-
+### To run the tests
+```bash
+./run_tests.sh `<browser>` `<environment>`
+```
 * Argument `<browser>` must be `chrome`, `edge`, or `firefox`.
 * Argument `<environment>` must be `local`, `dev`, `qa` or `staging`.
-
 ```bash
-sbt clean -Dbrowser="<browser>" -Denvironment="<environment>" test testReport
+./run_tests.sh chorme qa
 ```
-
 ## Scalafmt
 
 Check all project files are formatted as expected as follows:
