@@ -15,13 +15,26 @@
  */
 
 package uk.gov.hmrc.ui.pages
-
-import org.openqa.selenium.WebDriver
+import org.openqa.selenium.{By, WebElement}
+import org.openqa.selenium.support.ui.Select
 import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
 
 trait BasePage extends PageObject {
+  protected val continueButton: By              = By.id("continue-button")
+  def getElementByLink(text: String): By        = By.linkText(text)
+  def getElementByPartialLink(text: String): By = By.partialLinkText(text)
+  def geElementByTagName(text: String): By      = By.tagName(text)
 
-  val driver: WebDriver = Driver.instance
-  driver.get("https://www.example.com")
+  def getElementById(id: String): By = By.id(id)
+
+  def findElement(locator: String): WebElement =
+    Driver.instance.findElement(By.id(locator))
+
+  def findDropDownElement(name: String, text: String): Unit = {
+    val dropdownElement: WebElement = findElement(name)
+    val select                      = new Select(dropdownElement)
+    select.selectByVisibleText(text)
+  }
+
 }
