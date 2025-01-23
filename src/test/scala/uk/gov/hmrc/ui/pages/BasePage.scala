@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,26 @@
  */
 
 package uk.gov.hmrc.ui.pages
-
+import org.openqa.selenium.{By, WebElement}
+import org.openqa.selenium.support.ui.Select
 import uk.gov.hmrc.selenium.component.PageObject
+import uk.gov.hmrc.selenium.webdriver.Driver
 
-trait BasePage extends PageObject {}
+trait BasePage extends PageObject {
+  protected val continueButton: By              = By.id("continue-button")
+  def getElementByLink(text: String): By        = By.linkText(text)
+  def getElementByPartialLink(text: String): By = By.partialLinkText(text)
+  def geElementByTagName(text: String): By      = By.tagName(text)
+
+  def getElementById(id: String): By = By.id(id)
+
+  def findElement(locator: String): WebElement =
+    Driver.instance.findElement(By.id(locator))
+
+  def findDropDownElement(name: String, text: String): Unit = {
+    val dropdownElement: WebElement = findElement(name)
+    val select                      = new Select(dropdownElement)
+    select.selectByVisibleText(text)
+  }
+
+}
