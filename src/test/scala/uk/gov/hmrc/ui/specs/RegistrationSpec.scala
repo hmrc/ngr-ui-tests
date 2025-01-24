@@ -24,8 +24,7 @@ class RegistrationSpec extends BaseSpec {
 
   Feature("Load the voa site") {
     Scenario("test1") {
-      Given("Given load the site1")
-
+      Given("Given load the site")
       Registration.getUrl()
     }
 
