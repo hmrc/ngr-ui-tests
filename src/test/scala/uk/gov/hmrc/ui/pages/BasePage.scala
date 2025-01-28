@@ -21,12 +21,23 @@ import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
 
 trait BasePage extends PageObject {
-  protected val continueButton: By              = By.id("continue-button")
+  val continueButton: By                        = By.id("continue")
   def getElementByLink(text: String): By        = By.linkText(text)
   def getElementByPartialLink(text: String): By = By.partialLinkText(text)
-  def geElementByTagName(text: String): By      = By.tagName(text)
+
+  def geElementByTagName(tagName: String): String = {
+    val element = Driver.instance.findElement(By.tagName(tagName))
+    element.getText
+  }
 
   def getElementById(id: String): By = By.id(id)
+
+  def getByCssSelector(cssSelector: String): By = By.cssSelector(cssSelector)
+
+  def getElementByCssSelector(cssSelector: String): String = {
+    val element = Driver.instance.findElement(getByCssSelector(cssSelector))
+    element.getText
+  }
 
   def findElement(locator: String): WebElement =
     Driver.instance.findElement(By.id(locator))
@@ -36,5 +47,6 @@ trait BasePage extends PageObject {
     val select                      = new Select(dropdownElement)
     select.selectByVisibleText(text)
   }
-
+  def getUrl(url: String): Unit                             =
+    get(url)
 }
