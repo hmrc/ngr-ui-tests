@@ -29,18 +29,29 @@ class RegistrationSpec extends BaseSpec {
       Given("Given load the auth stub")
       AuthStub.getStubUrl()
 
-      When("Enter the details in auth stub")
-      AuthStub.enterAuthLoginPageDetails()
+      When("Enter the details in auth stub for One Login")
+      AuthStub.enterAuthLoginPageDetails("One login")
 
       And("I select One login on selector page")
       Registration.SignInSelector("One login")
       AuthStub.loginStub()
       AuthStub.IvStub()
 
-      Then("I successfully authenticate Ratepayer")
+      Then("Ratepayer successfully authenticated")
       Registration.AuthenticationSuccess()
     }
 
+    Scenario("Authenticate a user using Government Gateway") {
+
+      Given("Given load the auth stub")
+      AuthStub.getStubUrl()
+
+      When("Enter the details in auth stub for One Login")
+      AuthStub.enterAuthLoginPageDetails("Government Gateway")
+
+      Then("Ratepayer successfully authenticated")
+      Registration.AuthenticationSuccess()
+    }
   }
 
 }

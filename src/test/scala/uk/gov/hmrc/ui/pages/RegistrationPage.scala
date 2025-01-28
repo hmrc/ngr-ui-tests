@@ -27,7 +27,8 @@ object RegistrationPage extends BasePage {
     }
     click(continueButton)
   }
-  def AuthenticationSuccess() = {
+  def AuthenticationSuccess()              = {
+    getTitle.contentEquals("ngr-login-register-frontend")
     geElementByTagName("h1").contentEquals("Auth Details")
     getElementByCssSelector("p.govuk-body").contains("ER787993A")
   }

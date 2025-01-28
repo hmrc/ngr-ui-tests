@@ -25,19 +25,24 @@ object AuthStubPage extends BasePage {
   val authStub_url: String = TestEnvironment.url("service-name-frontend") + "/gg-sign-in"
 
   private val redirectUrl     = By.id("redirectionUrl")
+  private val gnap            = By.id("excludeGnapToken")
   private val confidenceLevel = By.id("confidenceLevel")
   private val nino            = By.id("nino")
   private val submitAuthStub  = By.id("submit")
   private val submit          = By.xpath("//button[@value='submit']")
 
-  def getStubUrl()                =
+  def getStubUrl()                                    =
     getUrl(authStub_url)
-  def enterAuthLoginPageDetails() = {
+  def enterAuthLoginPageDetails(signIn: String): Unit = {
+    signIn match {
+      case "One login"          => selectByVisibleText(gnap, "Yes")
+      case "Government Gateway" => selectByVisibleText(gnap, "No")
+      case _                    => print("did not match any of the expected value")
+    }
     sendKeys(redirectUrl, redirect_url)
     selectByValue(confidenceLevel, "250")
     sendKeys(nino, "ER787993A")
     click(submitAuthStub)
-    geElementByTagName("h1").contentEquals("Sign in to HMRC")
   }
 
   def loginStub() = {
