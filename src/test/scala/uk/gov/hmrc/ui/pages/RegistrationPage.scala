@@ -16,12 +16,20 @@
 
 package uk.gov.hmrc.ui.pages
 
-import uk.gov.hmrc.configuration.TestEnvironment
-
 object RegistrationPage extends BasePage {
 
-  val url: String = TestEnvironment.url("service-name-frontend") + "/gg-sign-in"
-
-  def getUrl(): Unit =
-    get(url)
+  def SignInSelector(signIn: String): Unit = {
+    geElementByTagName("h1").contentEquals("Sign in to HMRC")
+    signIn match {
+      case "One login"          => click(getElementById("signInType"))
+      case "Government Gateway" => click(getElementById("signInType"))
+      case _                    => print("did not match any of the expected value")
+    }
+    click(continueButton)
+  }
+  def AuthenticationSuccess()              = {
+    getTitle.contentEquals("ngr-login-register-frontend")
+    geElementByTagName("h1").contentEquals("Auth Details")
+    getElementByCssSelector("p.govuk-body").contains("ER787993A")
+  }
 }

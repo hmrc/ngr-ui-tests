@@ -15,19 +15,43 @@
  */
 
 package uk.gov.hmrc.ui.specs
-import uk.gov.hmrc.ui.pages.RegistrationPage
+
+import uk.gov.hmrc.ui.pages.{AuthStubPage, RegistrationPage}
 
 class RegistrationSpec extends BaseSpec {
 
+  private val AuthStub     = AuthStubPage
   private val Registration = RegistrationPage
-//  private val PropertyLinking = PropertyLinkingPage
 
-  Feature("Load the voa site") {
-    Scenario("test1") {
-      Given("Given load the site")
-      Registration.getUrl()
+  Feature("Authenticate a VOA user") {
+    Scenario("Authenticate a user using OneLogin") {
+
+      Given("Given load the auth stub")
+      AuthStub.getStubUrl()
+
+      When("Enter the details in auth stub for One Login")
+      AuthStub.enterAuthLoginPageDetails("One login")
+
+      And("I select One login on selector page")
+      Registration.SignInSelector("One login")
+      AuthStub.loginStub()
+      AuthStub.IvStub()
+
+      Then("Ratepayer successfully authenticated")
+      Registration.AuthenticationSuccess()
     }
 
+    Scenario("Authenticate a user using Government Gateway") {
+
+      Given("Given load the auth stub")
+      AuthStub.getStubUrl()
+
+      When("Enter the details in auth stub for One Login")
+      AuthStub.enterAuthLoginPageDetails("Government Gateway")
+
+      Then("Ratepayer successfully authenticated")
+      Registration.AuthenticationSuccess()
+    }
   }
 
 }
