@@ -18,39 +18,19 @@ package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages.{GGPage, OneLoginPage, RegistrationPage, StubPage}
 
-class GGRegistrationSpec extends BaseSpec {
+class GGRegistrationSpec extends BaseSpec with StubPage {
 
-  private val Stub         = StubPage
   private val Registration = RegistrationPage
-  private val OneLogin = OneLoginPage
-  private val GG = GGPage
+  private val GG           = GGPage
+  private val env          = System.getProperty("enviornment")
 
-
- /* Feature("Authenticate a VOA user") {
-    Scenario("Authenticate a user using OneLogin") {
-
-      Given("Given load the auth stub")
-      Stub.getStubUrl()
-
-      When("Enter the details in auth stub for One Login")
-      Stub.enterAuthLoginPageDetails("One login")
-
-      And("I select One login on selector page")
-      OneLogin.SignInSelector("One login")
-      Stub.loginStub()
-      Stub.IvStub()
-
-      Then("Ratepayer successfully authenticated using one login")
-      Registration.AuthenticationSuccess()
-    }
+  /*Feature("Authenticate user using stub, test for /start endpoint ") {
 
     Scenario("Authenticate a user using Government Gateway") {
 
-      Given("Given load the auth stub")
-      Stub.getStubUrl()
-
-      When("Enter the details in auth stub for One Login")
-      Stub.enterAuthLoginPageDetails("Government Gateway")
+      Given("Load the auth stub and the details in auth stub for One Login")
+      getStubUrl()
+      enterAuthLoginPageDetails("Government Gateway")
 
       Then("Ratepayer successfully authenticated using Government Gateway")
       Registration.AuthenticationSuccess()
@@ -58,18 +38,18 @@ class GGRegistrationSpec extends BaseSpec {
   }*/
 
   Feature("Test for the page: Register for the business rates valuation service") {
-    Scenario("Authenticate a user using OneLogin") {
+    Scenario("Authenticate a user using Government Gateway") {
 
       Given("I'm on the Register for the business rates valuation service page")
       Registration.StartNow()
 
-      And("I select One login on selector page")
+      And("I select Government Gateway on selector page")
       GG.SignInSelectorGG()
 
-
       Then("Ratepayer successfully authenticated")
-      Registration.AuthenticationSuccess()
+      if (env == "qa") {
+        GG.GGSignIn()
+      }
     }
-
   }
 }

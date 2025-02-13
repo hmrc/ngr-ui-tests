@@ -23,14 +23,14 @@ object RegistrationPage extends BasePage {
 
   val startPage_url: String = TestEnvironment.url("ngr-login-register-frontend") + "/register"
   val startNow              = By.id("continue")
-  def StartNow()
-  = {
+
+  def StartNow() = {
 
     getUrl(startPage_url)
     click(startNow)
   }
 
-  def AuthenticationSuccess()              = {
+  def AuthenticationSuccess() = {
     val elementText  = geElementByTagName("h1")
     val expectedText = "Auth Details"
     assert(elementText == expectedText)
