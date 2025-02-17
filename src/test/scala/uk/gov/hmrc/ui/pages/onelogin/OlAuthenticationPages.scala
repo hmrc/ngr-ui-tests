@@ -15,13 +15,15 @@
  */
 
 package uk.gov.hmrc.ui.pages.onelogin
-
+import uk.gov.hmrc.ui.utils.TotpGenerator.getTotpCode
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
 object OlAuthenticationPages extends BasePage {
 
-  private val continue = By.xpath("//button[@type='Submit']")
+  private val continue           = By.xpath("//button[@type='Submit']")
+  val cookiesAcceptButton        = By.name("cookiesAccept")
+  val continueTotheServiceButton = By.id("submitButton")
 
   def signInClick(): Unit = {
     val header = "Create your GOV.UK One Login or sign in"
@@ -30,6 +32,7 @@ object OlAuthenticationPages extends BasePage {
   }
 
   def enterEmail(email: String) = {
+    click(cookiesAcceptButton)
     val header = "Enter your email address to sign in to your GOV.UK One Login"
     headerCheck(header)
     sendKeys(By.id("email"), email)
@@ -39,6 +42,19 @@ object OlAuthenticationPages extends BasePage {
   def enterPassword(password: String) = {
     sendKeys(By.id("password"), password)
     click(continue)
+  }
+
+  def enterMfaCode(): Unit = {
+    val secret = "LIL54VSU56D5FNTM7PU373B3QC6HPWZ3"
+    sendKeys(By.id("code"), getTotpCode(secret))
+    click(continue)
+  }
+
+  def approvedIdentity(): Unit = {
+    val header = "You have already proved your identity"
+    headerCheck(header)
+    Thread.sleep(2000)
+    click(continueTotheServiceButton)
   }
 
 }

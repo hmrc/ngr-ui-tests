@@ -40,12 +40,12 @@ class OLRegistrationSpec extends BaseSpec with StubPage {
     }
   }*/
   Feature("***Test for the page: Register for the business rates valuation service***") {
-    Scenario("Authenticate a user using OneLogin") {
+    Scenario("Authenticate a Ratepayer using OneLogin") {
 
-      Given("I'm on the Register for the business rates valuation service page")
+      Given("Ratepayer on the Register for the business rates valuation service page")
       Registration.startNow()
 
-      And("I select One login on selector page")
+      And("Ratepayer select One login on selector page")
       OlSignInSelector.signInSelectorOL()
 
       Then("Ratepayer signin on OneLogin")
@@ -53,8 +53,11 @@ class OLRegistrationSpec extends BaseSpec with StubPage {
         Registration.authenticationSuccess()
       } else {
         OlAuthentication.signInClick()
-        OlAuthentication.enterEmail("kruti@mailinator.com")
+        OlAuthentication.enterEmail("krutika.patil+11@digital.hmrc.gov.uk")
         OlAuthentication.enterPassword("p2ssword1234")
+        OlAuthentication.enterMfaCode()
+        OlAuthentication.approvedIdentity()
+        Registration.authenticationSuccess()
 //        IntergrationPopUp.integrationEnvLogin("integration-user", "winter2021")
       }
     }

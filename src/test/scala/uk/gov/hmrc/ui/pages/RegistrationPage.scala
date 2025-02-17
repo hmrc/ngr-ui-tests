@@ -35,9 +35,10 @@ object RegistrationPage extends BasePage {
   }
 
   def authenticationSuccess() = {
-    val elementText  = geElementByTagName("h1")
-    val expectedText = "Auth Details"
-    assert(elementText == expectedText)
-    getElementByCssSelector("p.govuk-body").contains("ER787993A")
+    Thread.sleep(5000)
+    waitForInvisibilityOfElementWithText(By.tagName("h1"), "Returning you to the 'HMRC' service")
+    val header = "Auth Details"
+    headerCheck(header)
+    getElementByCssSelector("p.govuk-body").contains("MY504956B")
   }
 }

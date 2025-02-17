@@ -20,8 +20,6 @@ import uk.gov.hmrc.ui.pages.{BasePage, StubPage}
 
 object OlSignInSelectorPage extends BasePage with StubPage {
 
-  // override val TOTPurl: String = "https://signin.integration.account.gov.uk/enter-authenticator-app-code"
-
   /** ********** SignInSelector page ******************
     */
   def signInSelectorOL(): Unit = {
