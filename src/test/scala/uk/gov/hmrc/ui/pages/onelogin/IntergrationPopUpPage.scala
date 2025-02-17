@@ -14,22 +14,17 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.onelogin
+import uk.gov.hmrc.selenium.webdriver.Driver
+import uk.gov.hmrc.ui.pages.BasePage
+import org.openqa.selenium.Alert
 
-object OneLoginPage extends BasePage with StubPage {
+object IntergrationPopUpPage extends BasePage {
 
-  // override val TOTPurl: String = "https://signin.integration.account.gov.uk/enter-authenticator-app-code"
-
-  /** ********** SignInSelector page ******************
-    */
-  def SignInSelectorOL(): Unit = {
-    geElementByTagName("h1").contentEquals("Sign in to HMRC")
-    click(getElementById("signInType"))
-    click(continueButton)
-
-    if (System.getProperty("enviornment") == "local" || System.getProperty("enviornment") == "staging") {
-      loginStub()
-      IvStub()
-    }
+  def integrationEnvLogin(username: String, password: String) = {
+    val alert: Alert = Driver.instance.switchTo().alert()
+    alert.sendKeys(username + "\t" + password)
+    alert.accept()
   }
+
 }

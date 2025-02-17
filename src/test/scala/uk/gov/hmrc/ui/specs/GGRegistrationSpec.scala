@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.ui.specs
 
-import uk.gov.hmrc.ui.pages.{GGPage, OneLoginPage, RegistrationPage, StubPage}
+import uk.gov.hmrc.ui.pages.{GGPage, RegistrationPage, StubPage}
 
 class GGRegistrationSpec extends BaseSpec with StubPage {
 
@@ -41,14 +41,14 @@ class GGRegistrationSpec extends BaseSpec with StubPage {
     Scenario("Authenticate a user using Government Gateway") {
 
       Given("I'm on the Register for the business rates valuation service page")
-      Registration.StartNow()
+      Registration.startNow()
 
       And("I select Government Gateway on selector page")
-      GG.SignInSelectorGG()
+      GG.signInSelectorGG()
 
       Then("Ratepayer successfully authenticated")
       if (env == "qa") {
-        GG.GGSignIn()
+        GG.ggSignIn()
       }
     }
   }

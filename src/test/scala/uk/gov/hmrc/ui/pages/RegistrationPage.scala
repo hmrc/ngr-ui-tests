@@ -22,15 +22,19 @@ import uk.gov.hmrc.configuration.TestEnvironment
 object RegistrationPage extends BasePage {
 
   val startPage_url: String = TestEnvironment.url("ngr-login-register-frontend") + "/register"
-  val startNow              = By.id("continue")
+  val startNowButton        = By.id("continue")
+  val cookiesAcceptButton   = By.name("cookies")
 
-  def StartNow() = {
+//  waitForInvisibilityOfElementWithText(By.name("cookiesAccept"), "Accept analytics cookies")
+
+  def startNow() = {
 
     getUrl(startPage_url)
-    click(startNow)
+    click(cookiesAcceptButton)
+    click(startNowButton)
   }
 
-  def AuthenticationSuccess() = {
+  def authenticationSuccess() = {
     val elementText  = geElementByTagName("h1")
     val expectedText = "Auth Details"
     assert(elementText == expectedText)

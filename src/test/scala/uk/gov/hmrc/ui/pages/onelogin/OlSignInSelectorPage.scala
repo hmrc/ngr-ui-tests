@@ -14,26 +14,26 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.onelogin
 
-object GGPage extends BasePage {
+import uk.gov.hmrc.ui.pages.{BasePage, StubPage}
 
-  /** ********** SignIn Selector page ******************
+object OlSignInSelectorPage extends BasePage with StubPage {
+
+  // override val TOTPurl: String = "https://signin.integration.account.gov.uk/enter-authenticator-app-code"
+
+  /** ********** SignInSelector page ******************
     */
-
-  def signInSelectorGG(): Unit = {
+  def signInSelectorOL(): Unit = {
     geElementByTagName("h1").contentEquals("Sign in to HMRC")
-    click(getElementById("signInType-2"))
+    click(getElementById("signInType"))
     Thread.sleep(2000)
     click(continueButton)
+
+    if (System.getProperty("enviornment") == "local" || System.getProperty("enviornment") == "staging") {
+      loginStub()
+      IvStub()
+    }
   }
 
-  /** ********** GG login page ******************
-    */
-
-  def ggSignIn() = {
-    val elementText  = geElementByTagName("h1")
-    val expectedText = "Sign in using Government Gateway"
-    assert(elementText == expectedText)
-  }
 }

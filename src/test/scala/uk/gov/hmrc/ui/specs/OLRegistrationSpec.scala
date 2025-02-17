@@ -16,13 +16,16 @@
 
 package uk.gov.hmrc.ui.specs
 
-import uk.gov.hmrc.ui.pages.{OneLoginPage, RegistrationPage, StubPage}
+import uk.gov.hmrc.ui.pages.onelogin.{IntergrationPopUpPage, OlAuthenticationPages, OlSignInSelectorPage}
+import uk.gov.hmrc.ui.pages.{RegistrationPage, StubPage}
 
 class OLRegistrationSpec extends BaseSpec with StubPage {
 
-  private val Registration = RegistrationPage
-  private val OneLogin     = OneLoginPage
-  private val env          = System.getProperty("enviornment")
+  private val Registration      = RegistrationPage
+  private val OlSignInSelector  = OlSignInSelectorPage
+  private val IntergrationPopUp = IntergrationPopUpPage
+  private val OlAuthentication  = OlAuthenticationPages
+  private val env               = System.getProperty("enviornment")
 
   /*Feature("***Authenticate user using stub, test for /start endpoint***") {
 
@@ -40,15 +43,20 @@ class OLRegistrationSpec extends BaseSpec with StubPage {
     Scenario("Authenticate a user using OneLogin") {
 
       Given("I'm on the Register for the business rates valuation service page")
-      Registration.StartNow()
+      Registration.startNow()
 
       And("I select One login on selector page")
-      OneLogin.SignInSelectorOL()
+      OlSignInSelector.signInSelectorOL()
 
-      Then("Ratepayer successfully authenticated")
+      Then("Ratepayer signin on OneLogin")
       if (env == "local" || env == "staging") {
-        Registration.AuthenticationSuccess()
-      } else {}
+        Registration.authenticationSuccess()
+      } else {
+        OlAuthentication.signInClick()
+        OlAuthentication.enterEmail("kruti@mailinator.com")
+        OlAuthentication.enterPassword("p2ssword1234")
+//        IntergrationPopUp.integrationEnvLogin("integration-user", "winter2021")
+      }
     }
   }
 

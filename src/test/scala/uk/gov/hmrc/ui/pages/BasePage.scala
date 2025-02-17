@@ -30,6 +30,11 @@ trait BasePage extends PageObject {
     element.getText
   }
 
+  def headerCheck(headerText: String): Unit = {
+    val elementText = geElementByTagName("h1")
+    assert(elementText == headerText)
+  }
+
   def getElementById(id: String): By = By.id(id)
 
   def getByCssSelector(cssSelector: String): By = By.cssSelector(cssSelector)
