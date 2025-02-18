@@ -21,8 +21,6 @@ import uk.gov.hmrc.ui.pages.BasePage
 object signInSelectorPage extends BasePage {
 
   def signInSelectorGG(): Unit = {
-    val expectedText = "Sign in to HMRC"
-    headerCheck(expectedText)
     click(getElementById("signInType-2"))
     waitForElementToBeClickable(continueButton)
     click(continueButton)

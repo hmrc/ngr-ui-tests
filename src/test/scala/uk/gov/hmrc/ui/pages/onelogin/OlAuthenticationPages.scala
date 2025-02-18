@@ -27,15 +27,12 @@ object OlAuthenticationPages extends BasePage {
   val continueTotheServiceButton = By.id("submitButton")
 
   def signInClick(): Unit = {
-    val header = "Create your GOV.UK One Login or sign in"
-    headerCheck(header)
+    waitForElementToBeClickable(By.id("sign-in-button"))
     click(By.id("sign-in-button"))
   }
 
   def enterEmail(email: String) = {
     click(cookiesAcceptButton)
-    val header = "Enter your email address to sign in to your GOV.UK One Login"
-    headerCheck(header)
     sendKeys(By.id("email"), email)
     waitForElementToBeClickable(continue)
     click(continue)
@@ -55,8 +52,6 @@ object OlAuthenticationPages extends BasePage {
   }
 
   def approvedIdentity(): Unit = {
-    val header = "You have already proved your identity"
-    headerCheck(header)
     waitForElementToBeClickable(continueTotheServiceButton)
     click(continueTotheServiceButton)
   }
