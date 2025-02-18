@@ -18,6 +18,7 @@ package uk.gov.hmrc.ui.pages.onelogin
 import uk.gov.hmrc.ui.utils.TotpGenerator.getTotpCode
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.onelogin.OlSignInSelectorPage.{IvStub, loginStub}
 
 object OlAuthenticationPages extends BasePage {
 
@@ -36,25 +37,40 @@ object OlAuthenticationPages extends BasePage {
     val header = "Enter your email address to sign in to your GOV.UK One Login"
     headerCheck(header)
     sendKeys(By.id("email"), email)
+    waitForElementToBeClickable(continue)
     click(continue)
   }
 
   def enterPassword(password: String) = {
     sendKeys(By.id("password"), password)
+    waitForElementToBeClickable(continue)
     click(continue)
   }
 
   def enterMfaCode(): Unit = {
     val secret = "LIL54VSU56D5FNTM7PU373B3QC6HPWZ3"
     sendKeys(By.id("code"), getTotpCode(secret))
+    waitForElementToBeClickable(continue)
     click(continue)
   }
 
   def approvedIdentity(): Unit = {
     val header = "You have already proved your identity"
     headerCheck(header)
-    Thread.sleep(2000)
+    waitForElementToBeClickable(continueTotheServiceButton)
     click(continueTotheServiceButton)
   }
+
+  def olAuthentication(email: String, password: String): Unit =
+    if (System.getProperty("enviornment") == "local") {
+      loginStub()
+      IvStub()
+    } else {
+      signInClick()
+      enterEmail(email)
+      enterPassword(password)
+      enterMfaCode()
+      approvedIdentity()
+    }
 
 }

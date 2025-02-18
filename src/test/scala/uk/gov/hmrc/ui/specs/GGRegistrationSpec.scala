@@ -16,12 +16,14 @@
 
 package uk.gov.hmrc.ui.specs
 
-import uk.gov.hmrc.ui.pages.{GGPage, RegistrationPage, StubPage}
+import uk.gov.hmrc.ui.pages.GG.{GgSignInPage, signInSelectorPage}
+import uk.gov.hmrc.ui.pages.{RegistrationPage, StubPage}
 
 class GGRegistrationSpec extends BaseSpec with StubPage {
 
   private val Registration = RegistrationPage
-  private val GG           = GGPage
+  private val GgSelector   = signInSelectorPage
+  private val GgSignIn     = GgSignInPage
   private val env          = System.getProperty("enviornment")
 
   /*Feature("Authenticate user using stub, test for /start endpoint ") {
@@ -37,19 +39,18 @@ class GGRegistrationSpec extends BaseSpec with StubPage {
     }
   }*/
 
-  Feature("Test for the page: Register for the business rates valuation service") {
-    Scenario("Authenticate a user using Government Gateway") {
+  Feature("Authenticate a ratepayer using Government Gateway") {
+    Scenario("Authenticate a ratepayer using Government Gateway") {
 
-      Given("I'm on the Register for the business rates valuation service page")
+      Given("Ratepayer on the Register for the business rates valuation service page")
       Registration.startNow()
 
-      And("I select Government Gateway on selector page")
-      GG.signInSelectorGG()
+      And("Government Gateway option selected on selector page")
+      GgSelector.signInSelectorGG()
 
       Then("Ratepayer successfully authenticated")
-      if (env == "qa") {
-        GG.ggSignIn()
-      }
+      if (env == "qa") GgSignIn.ggSignIn()
+
     }
   }
 }

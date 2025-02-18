@@ -2,10 +2,9 @@
 
 BROWSER=$1
 ENVIRONMENT=$2
-SPEC_FILE=$3
 
 sbt clean -Dbrowser="${BROWSER:=chrome}" \
-          -Dbrowser.option.headless=false \
+          -Dbrowser.option.headless=true \
           -Denvironment="${ENVIRONMENT:=local}" \
           -Dsecurity.assessment=false \
-          "testOnly ${SPEC_FILE}" testReport
+          "testOnly" testReport

@@ -16,18 +16,17 @@
 
 package uk.gov.hmrc.ui.specs
 
-import uk.gov.hmrc.ui.pages.onelogin.{IntergrationPopUpPage, OlAuthenticationPages, OlSignInSelectorPage}
+import uk.gov.hmrc.ui.pages.onelogin.{OlAuthenticationPages, OlSignInSelectorPage}
 import uk.gov.hmrc.ui.pages.{RegistrationPage, StubPage}
 
 class OLRegistrationSpec extends BaseSpec with StubPage {
 
-  private val Registration      = RegistrationPage
-  private val OlSignInSelector  = OlSignInSelectorPage
-  private val IntergrationPopUp = IntergrationPopUpPage
-  private val OlAuthentication  = OlAuthenticationPages
-  private val env               = System.getProperty("enviornment")
+  private val Registration     = RegistrationPage
+  private val OlSignInSelector = OlSignInSelectorPage
+  private val OlAuthentication = OlAuthenticationPages
+  private val env              = System.getProperty("enviornment")
 
-  /*Feature("***Authenticate user using stub, test for /start endpoint***") {
+  Feature("Test for /start endpoint, using stub") {
 
     Scenario("Authenticate a user using OneLogin") {
 
@@ -36,31 +35,28 @@ class OLRegistrationSpec extends BaseSpec with StubPage {
       enterAuthLoginPageDetails("One login")
 
       Then("Ratepayer successfully authenticated using One Login")
-      Registration.AuthenticationSuccess()
+      Registration.authenticationSuccess()
     }
-  }*/
-  Feature("***Test for the page: Register for the business rates valuation service***") {
-    Scenario("Authenticate a Ratepayer using OneLogin") {
+  }
+
+  Feature("Authenticate a ratepayer using OneLogin") {
+    Scenario("Authenticate a ratepayer using OneLogin") {
 
       Given("Ratepayer on the Register for the business rates valuation service page")
       Registration.startNow()
 
-      And("Ratepayer select One login on selector page")
+      And("One login option selected on selector page")
       OlSignInSelector.signInSelectorOL()
 
-      Then("Ratepayer signin on OneLogin")
+      Then("Ratepayer successfully authenticated using One Login")
       if (env == "local" || env == "staging") {
         Registration.authenticationSuccess()
       } else {
-        OlAuthentication.signInClick()
-        OlAuthentication.enterEmail("krutika.patil+11@digital.hmrc.gov.uk")
-        OlAuthentication.enterPassword("p2ssword1234")
-        OlAuthentication.enterMfaCode()
-        OlAuthentication.approvedIdentity()
+        OlAuthentication.olAuthentication("krutika.patil+11@digital.hmrc.gov.uk", "p2ssword1234")
         Registration.authenticationSuccess()
-//        IntergrationPopUp.integrationEnvLogin("integration-user", "winter2021")
       }
     }
+
   }
 
 }

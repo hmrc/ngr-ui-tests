@@ -20,7 +20,6 @@ import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.{BeforeAndAfterEach, GivenWhenThen}
 import uk.gov.hmrc.selenium.webdriver.{Browser, Driver, ScreenshotOnFailure}
-import org.openqa.selenium.{By, Keys, WebDriver, WebElement}
 
 trait BaseSpec
     extends AnyFeatureSpec
@@ -34,7 +33,7 @@ trait BaseSpec
     startBrowser()
     Driver.instance.manage().deleteAllCookies()
   }
-//  override def afterEach(): Unit  =
-//    quitBrowser()
+  override def afterEach(): Unit  =
+    quitBrowser()
 
 }

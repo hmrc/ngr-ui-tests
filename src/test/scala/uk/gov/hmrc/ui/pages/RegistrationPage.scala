@@ -35,8 +35,8 @@ object RegistrationPage extends BasePage {
   }
 
   def authenticationSuccess() = {
-    Thread.sleep(5000)
-    waitForInvisibilityOfElementWithText(By.tagName("h1"), "Returning you to the 'HMRC' service")
+//    Thread.sleep(5000)
+    waitForElementInvisibility(By.tagName("h1"), "Returning you to the ‘HMRC’ service")
     val header = "Auth Details"
     headerCheck(header)
     getElementByCssSelector("p.govuk-body").contains("MY504956B")

@@ -21,6 +21,9 @@ import org.openqa.selenium.Alert
 
 object IntergrationPopUpPage extends BasePage {
 
+  val signInUrl: String                                       = "https://integration-user:winter2021@signin.integration.account.gov.uk/sign-in-or-create"
+  def signInToGDSIntegrationEnvironment(): Unit               =
+    get(signInUrl)
   def integrationEnvLogin(username: String, password: String) = {
     val alert: Alert = Driver.instance.switchTo().alert()
     alert.sendKeys(username + "\t" + password)

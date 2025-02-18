@@ -14,18 +14,17 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.onelogin
+package uk.gov.hmrc.ui.pages.GG
 
-import uk.gov.hmrc.ui.pages.{BasePage, StubPage}
+import uk.gov.hmrc.ui.pages.BasePage
 
-object OlSignInSelectorPage extends BasePage with StubPage {
+object signInSelectorPage extends BasePage {
 
-  /** ********** SignInSelector page ******************
-    */
-  def signInSelectorOL(): Unit = {
-    click(getElementById("signInType"))
+  def signInSelectorGG(): Unit = {
+    val expectedText = "Sign in to HMRC"
+    headerCheck(expectedText)
+    click(getElementById("signInType-2"))
     waitForElementToBeClickable(continueButton)
     click(continueButton)
   }
-
 }
