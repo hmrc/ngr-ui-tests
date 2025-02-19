@@ -16,20 +16,27 @@
 
 package uk.gov.hmrc.ui.pages
 
+import org.openqa.selenium.By
+import uk.gov.hmrc.configuration.TestEnvironment
+
 object RegistrationPage extends BasePage {
 
-  def SignInSelector(signIn: String): Unit = {
-    geElementByTagName("h1").contentEquals("Sign in to HMRC")
-    signIn match {
-      case "One login"          => click(getElementById("signInType"))
-      case "Government Gateway" => click(getElementById("signInType"))
-      case _                    => print("did not match any of the expected value")
-    }
-    click(continueButton)
+  val startPage_url: String = TestEnvironment.url("ngr-login-register-frontend") + "/register"
+  val startNowButton        = By.id("continue")
+  val cookiesAcceptButton   = By.name("cookies")
+
+//  waitForInvisibilityOfElementWithText(By.name("cookiesAccept"), "Accept analytics cookies")
+
+  def startNow() = {
+
+    getUrl(startPage_url)
+    click(cookiesAcceptButton)
+    click(startNowButton)
   }
-  def AuthenticationSuccess()              = {
-    getTitle.contentEquals("ngr-login-register-frontend")
-    geElementByTagName("h1").contentEquals("Auth Details")
-    getElementByCssSelector("p.govuk-body").contains("ER787993A")
+
+  def authenticationSuccess() = {
+    waitForElementInvisibility(By.tagName("h1"), "Returning you to the ‘HMRC’ service")
+    val header = "Auth Details"
+    headerCheck(header)
   }
 }

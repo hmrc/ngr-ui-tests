@@ -19,9 +19,9 @@ package uk.gov.hmrc.ui.pages
 import org.openqa.selenium.By
 import uk.gov.hmrc.configuration.TestEnvironment
 
-object AuthStubPage extends BasePage {
+trait StubPage extends BasePage {
 
-  val redirect_url: String = TestEnvironment.url("Auth-stub-redirect-url") + "/ngr-login-register-frontend/start"
+  val redirect_url: String = TestEnvironment.url("ngr-login-register-frontend") + "/start"
   val authStub_url: String = TestEnvironment.url("service-name-frontend") + "/gg-sign-in"
 
   private val redirectUrl     = By.id("redirectionUrl")

@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 HM Revenue & Customs
+ * Copyright 2025 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,10 +15,13 @@
  */
 
 package uk.gov.hmrc.ui.pages
-import org.openqa.selenium.{By, WebElement}
-import org.openqa.selenium.support.ui.Select
+import org.openqa.selenium.{By, WebDriver, WebElement}
+import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Wait}
+
 import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
+
+import java.time.Duration
 
 trait BasePage extends PageObject {
   val continueButton: By                        = By.id("continue")
@@ -28,6 +31,11 @@ trait BasePage extends PageObject {
   def geElementByTagName(tagName: String): String = {
     val element = Driver.instance.findElement(By.tagName(tagName))
     element.getText
+  }
+
+  def headerCheck(headerText: String): Unit = {
+    val elementText = geElementByTagName("h1")
+    assert(elementText == headerText)
   }
 
   def getElementById(id: String): By = By.id(id)
@@ -42,11 +50,17 @@ trait BasePage extends PageObject {
   def findElement(locator: String): WebElement =
     Driver.instance.findElement(By.id(locator))
 
-  def findDropDownElement(name: String, text: String): Unit = {
-    val dropdownElement: WebElement = findElement(name)
-    val select                      = new Select(dropdownElement)
-    select.selectByVisibleText(text)
-  }
-  def getUrl(url: String): Unit                             =
+  def getUrl(url: String): Unit =
     get(url)
+
+  def Wait: Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
+    .withTimeout(Duration.ofSeconds(10))
+    .pollingEvery(Duration.ofSeconds(1))
+
+  def waitForElementToBeClickable(locator: By): WebElement =
+    Wait.until(ExpectedConditions.elementToBeClickable(locator))
+
+  def waitForElementInvisibility(locator: By, text: String): Boolean =
+    Wait.until(ExpectedConditions.invisibilityOfElementWithText(locator, text))
+
 }
