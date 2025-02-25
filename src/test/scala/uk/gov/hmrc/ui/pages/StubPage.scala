@@ -31,8 +31,9 @@ trait StubPage extends BasePage {
   private val submitAuthStub  = By.id("submit")
   private val submit          = By.xpath("//button[@value='submit']")
 
-  def getStubUrl()                                    =
+  def getStubUrl(): Unit =
     getUrl(authStub_url)
+
   def enterAuthLoginPageDetails(signIn: String): Unit = {
     signIn match {
       case "One login"          => selectByVisibleText(gnap, "Yes")
@@ -45,14 +46,20 @@ trait StubPage extends BasePage {
     click(submitAuthStub)
   }
 
-  def loginStub() = {
-    geElementByTagName("h1").contentEquals("Gov UK One Login Sign In")
+  def loginStub(): Unit = {
+    val text = "Gov UK One Login Sign In"
+    headerCheck(text)
     click(submit)
   }
 
-  def IvStub() = {
+  def IvStub(): Unit = {
     geElementByTagName("h1").contentEquals("GDS IV Sign")
     click(submit)
+  }
+
+  def stubOlAuthentication(): Unit = {
+    loginStub()
+    IvStub()
   }
 
 }
