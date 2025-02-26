@@ -18,24 +18,18 @@ package uk.gov.hmrc.ui.pages
 
 import org.openqa.selenium.By
 
-object ConfirmContactDetailsPage extends BasePage {
+object EmailPage extends BasePage {
 
-  val nameLink        = By.id("name-linkid")
-  val phoneNumberLink = By.id("number-linkid")
-  val emailLink       = By.id("email-linkid")
+  val emailInput = By.id("email-value")
 
-  def ConfirmContactDetails(): Unit = {
-    val text = "Confirm your contact details"
+  def EmailDetails(): Unit = {
+    val text = "Enter email address"
     headerCheck(text)
   }
 
-  def ClickNameLink(): Unit =
-    click(nameLink)
-
-  def ClickAddPhoneNumberLink(): Unit =
-    click(phoneNumberLink)
-
-  def ClickEmailLink(): Unit =
-    click(emailLink)
+  def InputEmail(): Unit = {
+    sendKeys(emailInput, "test@testUser.com")
+    click(continueButton)
+  }
 
 }

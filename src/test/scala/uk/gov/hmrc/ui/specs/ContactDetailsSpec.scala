@@ -46,12 +46,22 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       ContactNamePage.InputName()
       Then("The ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
-      Then("Clicks the name link add phone number link")
+      Then("Clicks the add phone number link")
       ConfirmContactDetailsPage.ClickAddPhoneNumberLink()
       Then("The ratepayer is taken to the Phone Number Page")
       PhoneNumberPage.PhoneNumberDetails()
       Then("The ratepayer adds their number and clicks continue")
       PhoneNumberPage.InputNumber()
+      Then("The ratepayer is taken to the Confirm Contact Details page")
+      ConfirmContactDetailsPage.ConfirmContactDetails()
+      Then("Clicks the change email link")
+      ConfirmContactDetailsPage.ClickEmailLink()
+      Then("The ratepayer is taken to the Email Page")
+      EmailPage.EmailDetails()
+      Then("The ratepayer adds their number and clicks continue")
+      EmailPage.InputEmail()
+      Then("The ratepayer is taken to the Confirm Contact Details page")
+      ConfirmContactDetailsPage.ConfirmContactDetails()
     }
 
   }
