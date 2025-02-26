@@ -42,7 +42,7 @@ trait StubPage extends BasePage {
     }
     sendKeys(redirectUrl, redirect_url)
     selectByValue(confidenceLevel, "250")
-    sendKeys(nino, "ER787993A")
+    sendKeys(nino, "AA000003D")
     click(submitAuthStub)
   }
 

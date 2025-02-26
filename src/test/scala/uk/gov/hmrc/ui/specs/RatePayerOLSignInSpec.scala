@@ -17,7 +17,7 @@
 package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages.onelogin.{OlAuthenticationPages, OlSignInSelectorPage}
-import uk.gov.hmrc.ui.pages.{StartNowPage, StubPage}
+import uk.gov.hmrc.ui.pages.{ConfirmContactDetailsPage, ContactNamePage, PhoneNumberPage, StartNowPage, StubPage}
 class RatePayerOLSignInSpec extends BaseSpec with StubPage {
 
   private val StartNow         = StartNowPage
@@ -40,6 +40,23 @@ class RatePayerOLSignInSpec extends BaseSpec with StubPage {
       } else {
         OlAuthentication.olAuthentication("krutika.patil+11@digital.hmrc.gov.uk", "p2ssword1234")
       }
+      Then("Ratepayer is on the Confirm Contact Details page")
+      ConfirmContactDetailsPage.ConfirmContactDetails()
+      Then("Clicks the name link")
+      ConfirmContactDetailsPage.ClickNameLink()
+      Then("Name the page is shown")
+      ContactNamePage.ContactNameDetails()
+      Then("The ratepayer enters their name and clicks continue")
+      ContactNamePage.InputName()
+      Then("The ratepayer is taken to the Confirm Contact Details page")
+      ConfirmContactDetailsPage.ConfirmContactDetails()
+
+      Then("Clicks the name link add phone number link")
+      ConfirmContactDetailsPage.ClickAddPhoneNumberLink()
+      Then("The ratepayer is taken to the Phone Number Page")
+      PhoneNumberPage.PhoneNumberDetails()
+      Then("The ratepayer adds their number and clicks continue")
+      PhoneNumberPage.InputNumber()
     }
 
   }
