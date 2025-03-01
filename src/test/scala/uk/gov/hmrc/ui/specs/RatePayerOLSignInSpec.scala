@@ -16,8 +16,9 @@
 
 package uk.gov.hmrc.ui.specs
 
+import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage.ConfirmContactDetails
 import uk.gov.hmrc.ui.pages.onelogin.{OlAuthenticationPages, OlSignInSelectorPage}
-import uk.gov.hmrc.ui.pages.{ConfirmContactDetailsPage, ContactNamePage, PhoneNumberPage, StartNowPage, StubPage}
+import uk.gov.hmrc.ui.pages.{StartNowPage, StubPage}
 class RatePayerOLSignInSpec extends BaseSpec with StubPage {
 
   private val StartNow         = StartNowPage
@@ -31,16 +32,18 @@ class RatePayerOLSignInSpec extends BaseSpec with StubPage {
       Given("Ratepayer on the Register for the business rates valuation service page")
       StartNow.startNow()
 
-      And("One login option selected on selector page")
+      When("One login option selected on selector page")
       OlSignInSelector.signInSelectorOL()
 
-      Then("Ratepayer successfully authenticated using One Login")
+      And("Ratepayer authenticate using One Login")
       if (env == "local" || env == "staging") {
         stubOlAuthentication()
       } else {
         OlAuthentication.olAuthentication("krutika.patil+11@digital.hmrc.gov.uk", "p2ssword1234")
       }
 
+      Then("Ratepayer successfully authenticated navigated to contact details page ")
+      ConfirmContactDetails()
     }
 
   }

@@ -16,28 +16,34 @@
 
 package uk.gov.hmrc.ui.specs
 
-import uk.gov.hmrc.ui.pages.onelogin.{OlAuthenticationPages, OlSignInSelectorPage}
 import uk.gov.hmrc.ui.pages._
+import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, ContactNamePage, EmailPage, PhoneNumberPage}
+import uk.gov.hmrc.ui.utils.login.loginOl
 
 class ContactDetailsSpec extends BaseSpec with StubPage {
 
-  private val StartNow         = StartNowPage
-  private val OlSignInSelector = OlSignInSelectorPage
-  private val OlAuthentication = OlAuthenticationPages
-  private val env              = System.getProperty("environment")
+  Feature("Tests for the Changes Contact Details page, OL route") {
 
-  Feature("Authenticated ratepayer using OneLogin Changes Contact Details") {
-    Scenario("Authenticate a ratepayer using OneLogin and change contact details") {
+    Scenario("Verify contact details after Authentication") {
       Given("Ratepayer logins through one login")
-      StartNow.startNow()
-      OlSignInSelector.signInSelectorOL()
-      if (env == "local" || env == "staging") {
-        stubOlAuthentication()
-      } else {
-        OlAuthentication.olAuthentication("krutika.patil+11@digital.hmrc.gov.uk", "p2ssword1234")
-      }
+      loginOl()
+
       Then("Ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
+
+      Then("All the rate payers details are present on the contact details page")
+      ConfirmContactDetailsPage.nameDisplay("BOB JONES")
+      ConfirmContactDetailsPage.emailDisplay("66666666email@email.com")
+      ConfirmContactDetailsPage.addressDisplay("11 Test Street\nTesttown\nFX97 4TU\nGREAT BRITAIN")
+    }
+
+    Scenario("Authenticate a ratepayer using OneLogin and change contact details") {
+      Given("Ratepayer logins through one login")
+      loginOl()
+
+      Then("Ratepayer is taken to the Confirm Contact Details page")
+      ConfirmContactDetailsPage.ConfirmContactDetails()
+
       Then("Clicks the name link")
       ConfirmContactDetailsPage.ClickNameLink()
       Then("Name the page is shown")
@@ -46,6 +52,7 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       ContactNamePage.InputName()
       Then("The ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
+
       Then("Clicks the add phone number link")
       ConfirmContactDetailsPage.ClickAddPhoneNumberLink()
       Then("The ratepayer is taken to the Phone Number Page")
@@ -54,6 +61,7 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       PhoneNumberPage.InputNumber()
       Then("The ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
+
       Then("Clicks the change email link")
       ConfirmContactDetailsPage.ClickEmailLink()
       Then("The ratepayer is taken to the Email Page")

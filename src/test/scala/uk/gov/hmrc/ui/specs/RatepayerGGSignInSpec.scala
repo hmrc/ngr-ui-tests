@@ -17,6 +17,7 @@
 package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages.GG.{GgSignInPage, signInSelectorPage}
+import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage.ConfirmContactDetails
 import uk.gov.hmrc.ui.pages.{StartNowPage, StubPage}
 
 class RatepayerGGSignInSpec extends BaseSpec with StubPage {
@@ -35,9 +36,15 @@ class RatepayerGGSignInSpec extends BaseSpec with StubPage {
       And("Government Gateway option selected on selector page")
       GgSelector.signInSelectorGG()
 
-      Then("Ratepayer successfully authenticated")
-      if (env == "qa") GgSignIn.ggSignIn()
+      Then("Ratepayer authenticate using GG")
+      if (env == "local" || env == "staging") {
+        stubGgAuthentication()
+      } else {
+        GgSignIn.ggSignIn()
+      }
 
+      Then("Ratepayer successfully authenticated navigated to contact details page ")
+      ConfirmContactDetails()
     }
   }
 }

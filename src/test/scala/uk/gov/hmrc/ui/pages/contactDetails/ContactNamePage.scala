@@ -14,28 +14,23 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.contactDetails
 
 import org.openqa.selenium.By
+import uk.gov.hmrc.ui.pages.BasePage
 
-object ConfirmContactDetailsPage extends BasePage {
+object ContactNamePage extends BasePage {
 
-  val nameLink        = By.id("name-linkid")
-  val phoneNumberLink = By.id("number-linkid")
-  val emailLink       = By.id("email-linkid")
+  val nameInput = By.id("name-value")
 
-  def ConfirmContactDetails(): Unit = {
-    val text = "Confirm your contact details"
+  def ContactNameDetails(): Unit = {
+    val text = "Contact name"
     headerCheck(text)
   }
 
-  def ClickNameLink(): Unit =
-    click(nameLink)
-
-  def ClickAddPhoneNumberLink(): Unit =
-    click(phoneNumberLink)
-
-  def ClickEmailLink(): Unit =
-    click(emailLink)
+  def InputName(): Unit = {
+    sendKeys(nameInput, "Funny Jake")
+    click(continueButton)
+  }
 
 }

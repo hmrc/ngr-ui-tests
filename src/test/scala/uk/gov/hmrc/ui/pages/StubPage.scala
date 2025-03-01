@@ -62,4 +62,11 @@ trait StubPage extends BasePage {
     IvStub()
   }
 
+  def stubGgAuthentication(): Unit = {
+    selectByVisibleText(gnap, "No")
+    selectByValue(confidenceLevel, "250")
+    sendKeys(nino, "AA000003D")
+    click(submitAuthStub)
+  }
+
 }

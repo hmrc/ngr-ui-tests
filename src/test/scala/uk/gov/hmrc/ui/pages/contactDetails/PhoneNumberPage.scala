@@ -14,21 +14,22 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.contactDetails
 
 import org.openqa.selenium.By
+import uk.gov.hmrc.ui.pages.BasePage
 
-object ContactNamePage extends BasePage {
+object PhoneNumberPage extends BasePage {
 
-  val nameInput = By.id("name-value")
+  val numberInput = By.id("phoneNumber-value")
 
-  def ContactNameDetails(): Unit = {
-    val text = "Contact name"
+  def PhoneNumberDetails(): Unit = {
+    val text = "Enter phone number"
     headerCheck(text)
   }
 
-  def InputName(): Unit = {
-    sendKeys(nameInput, "Jake")
+  def InputNumber(): Unit = {
+    sendKeys(numberInput, "0794500506")
     click(continueButton)
   }
 

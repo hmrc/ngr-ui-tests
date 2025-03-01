@@ -14,22 +14,22 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.utils
 
-import org.openqa.selenium.By
+import uk.gov.hmrc.ui.pages.StartNowPage.startNow
+import uk.gov.hmrc.ui.pages.onelogin.OlAuthenticationPages.olAuthentication
+import uk.gov.hmrc.ui.pages.onelogin.OlSignInSelectorPage.{signInSelectorOL, stubOlAuthentication}
 
-object PhoneNumberPage extends BasePage {
+object login {
 
-  val numberInput = By.id("phoneNumber-value")
-
-  def PhoneNumberDetails(): Unit = {
-    val text = "Enter phone number"
-    headerCheck(text)
+  private val env     = System.getProperty("environment")
+  def loginOl(): Unit = {
+    startNow()
+    signInSelectorOL()
+    if (env == "local" || env == "staging") {
+      stubOlAuthentication()
+    } else {
+      olAuthentication("krutika.patil+11@digital.hmrc.gov.uk", "p2ssword1234")
+    }
   }
-
-  def InputNumber(): Unit = {
-    sendKeys(numberInput, "0794500506")
-    click(continueButton)
-  }
-
 }
