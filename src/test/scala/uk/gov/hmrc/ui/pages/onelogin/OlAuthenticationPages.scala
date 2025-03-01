@@ -23,7 +23,6 @@ object OlAuthenticationPages extends BasePage {
 
   private val continue                   = By.xpath("//button[@type='Submit']")
   private val continueTotheServiceButton = By.id("submitButton")
-  private val env                        = System.getProperty("enviornment")
 
   def signInClick(): Unit = {
     waitForElementToBeClickable(By.id("sign-in-button"))
