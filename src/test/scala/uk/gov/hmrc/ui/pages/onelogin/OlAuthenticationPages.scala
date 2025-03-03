@@ -18,27 +18,24 @@ package uk.gov.hmrc.ui.pages.onelogin
 import uk.gov.hmrc.ui.utils.TotpGenerator.getTotpCode
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
-import uk.gov.hmrc.ui.pages.onelogin.OlSignInSelectorPage.{IvStub, loginStub}
 
 object OlAuthenticationPages extends BasePage {
 
-  private val continue           = By.xpath("//button[@type='Submit']")
-  val cookiesAcceptButton        = By.name("cookiesAccept")
-  val continueTotheServiceButton = By.id("submitButton")
+  private val continue                   = By.xpath("//button[@type='Submit']")
+  private val continueTotheServiceButton = By.id("submitButton")
 
   def signInClick(): Unit = {
     waitForElementToBeClickable(By.id("sign-in-button"))
     click(By.id("sign-in-button"))
   }
 
-  def enterEmail(email: String) = {
-    click(cookiesAcceptButton)
+  def enterEmail(email: String): Unit = {
     sendKeys(By.id("email"), email)
     waitForElementToBeClickable(continue)
     click(continue)
   }
 
-  def enterPassword(password: String) = {
+  def enterPassword(password: String): Unit = {
     sendKeys(By.id("password"), password)
     waitForElementToBeClickable(continue)
     click(continue)
@@ -56,16 +53,16 @@ object OlAuthenticationPages extends BasePage {
     click(continueTotheServiceButton)
   }
 
-  def olAuthentication(email: String, password: String): Unit =
-    if (System.getProperty("enviornment") == "local") {
-      loginStub()
-      IvStub()
-    } else {
-      signInClick()
-      enterEmail(email)
-      enterPassword(password)
-      enterMfaCode()
-      approvedIdentity()
-    }
+  def returningToService(): Unit =
+    waitForElementInvisibility(By.tagName("h1"), "Returning you to the ‘HMRC’ service")
 
+  def olAuthentication(email: String, password: String): Unit = {
+    signInClick()
+    enterEmail(email)
+    enterPassword(password)
+    enterMfaCode()
+    approvedIdentity()
+    returningToService()
+
+  }
 }

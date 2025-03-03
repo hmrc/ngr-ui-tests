@@ -17,40 +17,34 @@
 package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages.GG.{GgSignInPage, signInSelectorPage}
-import uk.gov.hmrc.ui.pages.{RegistrationPage, StubPage}
+import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage.ConfirmContactDetails
+import uk.gov.hmrc.ui.pages.{StartNowPage, StubPage}
 
-class GGRegistrationSpec extends BaseSpec with StubPage {
+class RatepayerGGSignInSpec extends BaseSpec with StubPage {
 
-  private val Registration = RegistrationPage
-  private val GgSelector   = signInSelectorPage
-  private val GgSignIn     = GgSignInPage
-  private val env          = System.getProperty("enviornment")
-
-  /*Feature("Authenticate user using stub, test for /start endpoint ") {
-
-    Scenario("Authenticate a user using Government Gateway") {
-
-      Given("Load the auth stub and the details in auth stub for One Login")
-      getStubUrl()
-      enterAuthLoginPageDetails("Government Gateway")
-
-      Then("Ratepayer successfully authenticated using Government Gateway")
-      Registration.AuthenticationSuccess()
-    }
-  }*/
+  private val StartNow   = StartNowPage
+  private val GgSelector = signInSelectorPage
+  private val GgSignIn   = GgSignInPage
+  private val env        = System.getProperty("environment")
 
   Feature("Authenticate a ratepayer using Government Gateway") {
     Scenario("Authenticate a ratepayer using Government Gateway") {
 
       Given("Ratepayer on the Register for the business rates valuation service page")
-      Registration.startNow()
+      StartNow.startNow()
 
       And("Government Gateway option selected on selector page")
       GgSelector.signInSelectorGG()
 
-      Then("Ratepayer successfully authenticated")
-      if (env == "qa") GgSignIn.ggSignIn()
+      Then("Ratepayer authenticate using GG")
+      if (env == "local" || env == "staging") {
+        stubGgAuthentication()
+      } else {
+        GgSignIn.ggSignIn()
+      }
 
+      Then("Ratepayer successfully authenticated navigated to contact details page ")
+      ConfirmContactDetails()
     }
   }
 }

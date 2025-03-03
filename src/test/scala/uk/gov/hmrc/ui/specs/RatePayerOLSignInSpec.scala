@@ -16,45 +16,34 @@
 
 package uk.gov.hmrc.ui.specs
 
+import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage.ConfirmContactDetails
 import uk.gov.hmrc.ui.pages.onelogin.{OlAuthenticationPages, OlSignInSelectorPage}
-import uk.gov.hmrc.ui.pages.{RegistrationPage, StubPage}
+import uk.gov.hmrc.ui.pages.{StartNowPage, StubPage}
+class RatePayerOLSignInSpec extends BaseSpec with StubPage {
 
-class OLRegistrationSpec extends BaseSpec with StubPage {
-
-  private val Registration     = RegistrationPage
+  private val StartNow         = StartNowPage
   private val OlSignInSelector = OlSignInSelectorPage
   private val OlAuthentication = OlAuthenticationPages
-  private val env              = System.getProperty("enviornment")
-
-  Feature("Test for /start endpoint, using stub") {
-
-    Scenario("Authenticate a user using OneLogin") {
-
-      Given("Load the auth stub and the details in auth stub for One Login")
-      getStubUrl()
-      enterAuthLoginPageDetails("One login")
-
-      Then("Ratepayer successfully authenticated using One Login")
-      Registration.authenticationSuccess()
-    }
-  }
+  private val env              = System.getProperty("environment")
 
   Feature("Authenticate a ratepayer using OneLogin") {
     Scenario("Authenticate a ratepayer using OneLogin") {
 
       Given("Ratepayer on the Register for the business rates valuation service page")
-      Registration.startNow()
+      StartNow.startNow()
 
-      And("One login option selected on selector page")
+      When("One login option selected on selector page")
       OlSignInSelector.signInSelectorOL()
 
-      Then("Ratepayer successfully authenticated using One Login")
+      And("Ratepayer authenticate using One Login")
       if (env == "local" || env == "staging") {
-        Registration.authenticationSuccess()
+        stubOlAuthentication()
       } else {
         OlAuthentication.olAuthentication("krutika.patil+11@digital.hmrc.gov.uk", "p2ssword1234")
-        Registration.authenticationSuccess()
       }
+
+      Then("Ratepayer successfully authenticated navigated to contact details page ")
+      ConfirmContactDetails()
     }
 
   }
