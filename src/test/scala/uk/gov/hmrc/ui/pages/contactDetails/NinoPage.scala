@@ -13,7 +13,7 @@ object NinoPage extends BasePage {
   }
 
   def InputNino(): Unit = {
-    sendKeys(ninoInput, "")
+    sendKeys(ninoInput, "AA000003D")
     click(continueButton)
   }
 
