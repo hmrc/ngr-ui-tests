@@ -17,7 +17,7 @@
 package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages._
-import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, ContactNamePage, EmailPage, FindContactAddressPage, PhoneNumberPage, SearchResultPage}
+import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, ContactNamePage, DoyouWantToUSeAddressPage, EmailPage, FindContactAddressPage, PhoneNumberPage, SearchResultPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
 
 class ContactDetailsSpec extends BaseSpec with StubPage {
@@ -76,9 +76,12 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       Then("The ratepayer enters postcode and clicks continue on Find the contact address page")
       FindContactAddressPage.findAddress()
       FindContactAddressPage.InputPostcode()
-      Then("The ratepayer selects property on search result page")
+      And("The ratepayer selects property on search result page")
       SearchResultPage.selectProperty()
-
+      And("The ratepayer selects Yes on use this address page")
+      DoyouWantToUSeAddressPage.SelectYesAddress()
+      Then("The ratepayer is taken to the Confirm Contact Details page")
+      ConfirmContactDetailsPage.ConfirmContactDetails()
     }
 
   }
