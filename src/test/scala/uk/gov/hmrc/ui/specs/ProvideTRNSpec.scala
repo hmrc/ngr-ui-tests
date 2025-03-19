@@ -39,6 +39,43 @@ class ProvideTRNSpec extends BaseSpec with StubPage {
       Then("Ratepayer is taken to ConfirmUTR Page")
       ConfirmUTRPage.confirmElements()
       ConfirmUTRPage.confirmUTR("*******333")
+
+      Then("Select Yes and submit")
+      ConfirmUTRPage.selectYes()
+      click(By.id("continue"))
+      Then("The ratepayer is taken to the Confirm Contact Details page")
+      ConfirmContactDetailsPage.ConfirmContactDetails()
+      click(By.id("continue"))
+      Then("Ratepayer is taken to Provide TRN Page")
+      ProvideTRNPage.confirmElements()
+      click(By.id("continue"))
+      Then("Ratepayer is taken to ConfirmUTR Page")
+      ConfirmUTRPage.confirmElements()
+
+      Then("Select No I will provide NI and submit")
+      ConfirmUTRPage.selectNoProvideNI()
+      click(By.id("continue"))
+      Then("The ratepayer is taken to the Confirm Contact Details page")
+      ConfirmContactDetailsPage.ConfirmContactDetails()
+      click(By.id("continue"))
+      Then("Ratepayer is taken to Provide TRN Page")
+      ProvideTRNPage.confirmElements()
+      click(By.id("continue"))
+      Then("Ratepayer is taken to ConfirmUTR Page")
+      ConfirmUTRPage.confirmElements()
+
+      Then("Select No I will provide UTR Later")
+      ConfirmUTRPage.selectNoLater()
+      click(By.id("continue"))
+      Then("The ratepayer is taken to the Confirm Contact Details page")
+      ConfirmContactDetailsPage.ConfirmContactDetails()
+      click(By.id("continue"))
+      Then("Ratepayer is taken to Provide TRN Page")
+      ProvideTRNPage.confirmElements()
+      click(By.id("continue"))
+      Then("Ratepayer is taken to ConfirmUTR Page")
+      ConfirmUTRPage.confirmElements()
+
     }
   }
 }
