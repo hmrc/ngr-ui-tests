@@ -21,9 +21,10 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 object ConfirmContactDetailsPage extends BasePage {
 
-  val nameLink        = By.id("name-linkid")
-  val phoneNumberLink = By.id("number-linkid")
-  val emailLink       = By.id("email-linkid")
+  val changeNameLink        = By.id("name-linkid")
+  val changePhoneNumberLink = By.id("number-linkid")
+  val changeEmailLink       = By.id("email-linkid")
+  val changeAddressLink     = By.id("address-linkid")
 
   def ConfirmContactDetails(): Unit = {
     val text = "Confirm your contact details"
@@ -50,13 +51,12 @@ object ConfirmContactDetailsPage extends BasePage {
     assert(actualAddress == expectedAddress, "Address doesn't match")
   }
 
-  def ClickNameLink(): Unit =
-    click(nameLink)
-
-  def ClickAddPhoneNumberLink(): Unit =
-    click(phoneNumberLink)
-
-  def ClickEmailLink(): Unit =
-    click(emailLink)
-
+  def ClickChangeNameLink(): Unit        =
+    click(changeNameLink)
+  def ClickChangePhoneNumberLink(): Unit =
+    click(changePhoneNumberLink)
+  def ClickChangeEmailLink(): Unit       =
+    click(changeEmailLink)
+  def ClickChangeAddressLink(): Unit     =
+    click(changeAddressLink)
 }

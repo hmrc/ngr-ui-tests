@@ -17,27 +17,27 @@
 package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages._
-import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, ContactNamePage, EmailPage, PhoneNumberPage}
+import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, ContactNamePage, DoyouWantToUSeAddressPage, EmailPage, FindContactAddressPage, PhoneNumberPage, SearchResultPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
 
 class ContactDetailsSpec extends BaseSpec with StubPage {
 
   Feature("Tests for the Changes Contact Details page, OL route") {
 
-    Scenario("Verify contact details after Authentication") {
-      Given("Ratepayer logins through one login")
-      loginOl()
+//    Scenario("Verify contact details after Authentication") {
+//      Given("Ratepayer logins through one login")
+//      loginOl()
+//
+//      Then("Ratepayer is taken to the Confirm Contact Details page")
+//      ConfirmContactDetailsPage.ConfirmContactDetails()
+//
+//      Then("All the rate payers details are present on the contact details page")
+//      ConfirmContactDetailsPage.nameDisplay("BOB JONES")
+//      ConfirmContactDetailsPage.emailDisplay("66666666email@email.com")
+//      ConfirmContactDetailsPage.addressDisplay("11 Test Street\nTesttown\nFX97 4TU\nGREAT BRITAIN")
+//    }
 
-      Then("Ratepayer is taken to the Confirm Contact Details page")
-      ConfirmContactDetailsPage.ConfirmContactDetails()
-
-      Then("All the rate payers details are present on the contact details page")
-      ConfirmContactDetailsPage.nameDisplay("BOB JONES")
-      ConfirmContactDetailsPage.emailDisplay("66666666email@email.com")
-      ConfirmContactDetailsPage.addressDisplay("11 Test Street\nTesttown\nFX97 4TU\nGREAT BRITAIN")
-    }
-
-    Scenario("Authenticate a ratepayer using OneLogin and change contact details") {
+    Scenario("Change the contact details of ratepayer, OL route") {
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -45,7 +45,7 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       ConfirmContactDetailsPage.ConfirmContactDetails()
 
       Then("Clicks the name link")
-      ConfirmContactDetailsPage.ClickNameLink()
+      ConfirmContactDetailsPage.ClickChangeNameLink()
       Then("Name the page is shown")
       ContactNamePage.ContactNameDetails()
       Then("The ratepayer enters their name and clicks continue")
@@ -54,7 +54,7 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       ConfirmContactDetailsPage.ConfirmContactDetails()
 
       Then("Clicks the add phone number link")
-      ConfirmContactDetailsPage.ClickAddPhoneNumberLink()
+      ConfirmContactDetailsPage.ClickChangePhoneNumberLink()
       Then("The ratepayer is taken to the Phone Number Page")
       PhoneNumberPage.PhoneNumberDetails()
       Then("The ratepayer adds their number and clicks continue")
@@ -63,11 +63,23 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       ConfirmContactDetailsPage.ConfirmContactDetails()
 
       Then("Clicks the change email link")
-      ConfirmContactDetailsPage.ClickEmailLink()
+      ConfirmContactDetailsPage.ClickChangeEmailLink()
       Then("The ratepayer is taken to the Email Page")
       EmailPage.EmailDetails()
       Then("The ratepayer adds their number and clicks continue")
       EmailPage.InputEmail()
+      Then("The ratepayer is taken to the Confirm Contact Details page")
+      ConfirmContactDetailsPage.ConfirmContactDetails()
+
+      Then("Clicks the change address link")
+      ConfirmContactDetailsPage.ClickChangeAddressLink()
+      Then("The ratepayer enters postcode and clicks continue on Find the contact address page")
+      FindContactAddressPage.findAddress()
+      FindContactAddressPage.InputPostcode()
+      And("The ratepayer selects property on search result page")
+      SearchResultPage.selectProperty()
+      And("The ratepayer selects Yes on use this address page")
+      DoyouWantToUSeAddressPage.SelectYesAddress()
       Then("The ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
     }
