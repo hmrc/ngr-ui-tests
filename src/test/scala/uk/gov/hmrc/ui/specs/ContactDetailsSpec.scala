@@ -17,7 +17,7 @@
 package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages._
-import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, ContactNamePage, DoyouWantToUSeAddressPage, EmailPage, FindContactAddressPage, PhoneNumberPage, SearchResultPage}
+import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, ContactNamePage, DoyouWantToUseAddressPage, EmailPage, FindContactAddressPage, PhoneNumberPage, SearchResultPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
 
 class ContactDetailsSpec extends BaseSpec with StubPage {
@@ -44,6 +44,7 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       Then("Ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
 
+      /*Change name*/
       Then("Clicks the name link")
       ConfirmContactDetailsPage.ClickChangeNameLink()
       Then("Name the page is shown")
@@ -53,7 +54,8 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       Then("The ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
 
-      Then("Clicks the add phone number link")
+      /*Change phone number*/
+      Then("Clicks the change phone number link")
       ConfirmContactDetailsPage.ClickChangePhoneNumberLink()
       Then("The ratepayer is taken to the Phone Number Page")
       PhoneNumberPage.PhoneNumberDetails()
@@ -62,6 +64,7 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       Then("The ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
 
+      /*Change email*/
       Then("Clicks the change email link")
       ConfirmContactDetailsPage.ClickChangeEmailLink()
       Then("The ratepayer is taken to the Email Page")
@@ -71,6 +74,7 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       Then("The ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
 
+      /*Change Address*/
       Then("Clicks the change address link")
       ConfirmContactDetailsPage.ClickChangeAddressLink()
       Then("The ratepayer enters postcode and clicks continue on Find the contact address page")
@@ -78,10 +82,59 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       FindContactAddressPage.InputPostcode()
       And("The ratepayer selects property on search result page")
       SearchResultPage.selectProperty()
+
+      /** Selecting Yes radio button* */
       And("The ratepayer selects Yes on use this address page")
-      DoyouWantToUSeAddressPage.SelectYesAddress()
+      DoyouWantToUseAddressPage.SelectYesAddress()
+      Then("I verifify the contact details on Confirm Contact Details page")
+      ConfirmContactDetailsPage.ConfirmContactDetails()
+      ConfirmContactDetailsPage.addressDisplay("Unit 1\n7 Wibble Rd\nWorthing\nHA49EY\nGREAT BRITAIN")
+    }
+
+    Scenario("Testing of different flow for change address, OL route") {
+      Given("Ratepayer logins through one login")
+      loginOl()
+
+      Then("Clicks the change address link on the Confirm Contact Details page")
+      ConfirmContactDetailsPage.ConfirmContactDetails()
+      ConfirmContactDetailsPage.ClickChangeAddressLink()
+      Then("The ratepayer enters postcode and clicks continue on Find the contact address page")
+      FindContactAddressPage.InputPostcode()
+
+      /** Search again link* */
+      And("Clicking on 'Search again' link on search result page taken back to Find the contact address page")
+      SearchResultPage.searchResult()
+      SearchResultPage.searchAgain()
+      FindContactAddressPage.findAddress()
+      Then("The ratepayer enters postcode and clicks continue")
+      FindContactAddressPage.InputPostcode()
+
+      /** Selecting property from 2nd page* */
+      And("The user selects first property from the 2nd page of the 'search result'")
+      SearchResultPage.paginationLink("2")
+      SearchResultPage.selectProperty()
+      And("The ratepayer selects Yes on use this address page")
+      DoyouWantToUseAddressPage.addressdisplay("Unit 6, 7 Wibble Rd, Worthing HA49EY")
+      DoyouWantToUseAddressPage.SelectYesAddress()
+      Then("I verifify the contact details on Confirm Contact Details page")
+      ConfirmContactDetailsPage.ConfirmContactDetails()
+      ConfirmContactDetailsPage.addressDisplay("Unit 6\n7 Wibble Rd\nWorthing\nHA49EY\nGREAT BRITAIN")
+
+      /** Selecting No radio button on use this address page * */
+      Then("Clicks the change address link on the Confirm Contact Details page")
+      ConfirmContactDetailsPage.ClickChangeAddressLink()
+      Then("The ratepayer enters postcode and clicks continue on Find the contact address page")
+      FindContactAddressPage.InputPostcode()
+      And("The ratepayer selects property on search result page")
+      SearchResultPage.paginationLink("2")
+      SearchResultPage.paginationLink("1")
+      SearchResultPage.selectProperty()
+      And("The ratepayer selects No on use this address page")
+      DoyouWantToUseAddressPage.addressdisplay("Unit 1, 7 Wibble Rd, Worthing HA49EY")
+      DoyouWantToUseAddressPage.SelectNoAddress()
       Then("The ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
+      ConfirmContactDetailsPage.addressDisplay("Unit 6\n7 Wibble Rd\nWorthing\nHA49EY\nGREAT BRITAIN")
     }
 
   }

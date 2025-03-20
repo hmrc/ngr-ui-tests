@@ -47,7 +47,7 @@ object ConfirmContactDetailsPage extends BasePage {
   }
 
   def addressDisplay(expectedAddress: String): Unit = {
-    val actualAddress = getElementByCssSelector("#content > dl > div:nth-child(4) > dd.govuk-summary-list__value")
+    val actualAddress = getElementByXpath("//*[@id=\"main-content\"]/div/div/form/dl/div[4]/dd[1]")
     assert(actualAddress == expectedAddress, "Address doesn't match")
   }
 

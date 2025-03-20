@@ -47,6 +47,10 @@ trait BasePage extends PageObject {
     element.getText
   }
 
+  def getElementByXpath(xpath: String): String = {
+    val element = Driver.instance.findElement(By.xpath(xpath))
+    element.getText
+  }
   def findElement(locator: String): WebElement =
     Driver.instance.findElement(By.id(locator))
 
