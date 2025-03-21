@@ -22,8 +22,10 @@ object SearchResultPage extends BasePage {
 
   def searchResult(): Unit   =
     headerCheck("Search results for TF4 3ED")
+  
   def selectProperty(): Unit =
     click(getElementByLink("Select Property"))
+  
   def searchAgain(): Unit    =
     click(getElementByLink("Search again"))
 
