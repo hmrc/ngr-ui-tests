@@ -20,12 +20,12 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 object SearchResultPage extends BasePage {
 
-  def searchResult(): Unit   = {
-    val text = "Search results for HA49EY"
-    headerCheck(text)
-  }
+  def searchResult(): Unit   =
+    headerCheck("Search results for TF4 3ED")
+  
   def selectProperty(): Unit =
     click(getElementByLink("Select Property"))
+  
   def searchAgain(): Unit    =
     click(getElementByLink("Search again"))
 

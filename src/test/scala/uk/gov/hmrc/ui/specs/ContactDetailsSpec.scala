@@ -88,7 +88,7 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       DoyouWantToUseAddressPage.SelectYesAddress()
       Then("I verifify the contact details on Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
-      ConfirmContactDetailsPage.addressDisplay("Unit 1\n7 Wibble Rd\nWorthing\nHA49EY\nGREAT BRITAIN")
+      ConfirmContactDetailsPage.addressDisplay("34 Manor Road\nDawley\nTelford\nTF4 3ED\nGREAT BRITAIN")
     }
 
     Scenario("Testing of different flow for change address, OL route") {
@@ -114,11 +114,11 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       SearchResultPage.paginationLink("2")
       SearchResultPage.selectProperty()
       And("The ratepayer selects Yes on use this address page")
-      DoyouWantToUseAddressPage.addressdisplay("Unit 6, 7 Wibble Rd, Worthing HA49EY")
+      DoyouWantToUseAddressPage.addressdisplay("44 Manor Road, Dawley, Telford TF4 3ED")
       DoyouWantToUseAddressPage.SelectYesAddress()
       Then("I verifify the contact details on Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
-      ConfirmContactDetailsPage.addressDisplay("Unit 6\n7 Wibble Rd\nWorthing\nHA49EY\nGREAT BRITAIN")
+      ConfirmContactDetailsPage.addressDisplay("44 Manor Road\nDawley\nTelford\nTF4 3ED\nGREAT BRITAIN")
 
       /** Selecting No radio button on use this address page * */
       Then("Clicks the change address link on the Confirm Contact Details page")
@@ -130,11 +130,11 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       SearchResultPage.paginationLink("1")
       SearchResultPage.selectProperty()
       And("The ratepayer selects No on use this address page")
-      DoyouWantToUseAddressPage.addressdisplay("Unit 1, 7 Wibble Rd, Worthing HA49EY")
+      DoyouWantToUseAddressPage.addressdisplay("34 Manor Road, Dawley, Telford TF4 3ED")
       DoyouWantToUseAddressPage.SelectNoAddress()
       Then("The ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
-      ConfirmContactDetailsPage.addressDisplay("Unit 6\n7 Wibble Rd\nWorthing\nHA49EY\nGREAT BRITAIN")
+      ConfirmContactDetailsPage.addressDisplay("44 Manor Road\nDawley\nTelford\nTF4 3ED\nGREAT BRITAIN")
     }
 
   }

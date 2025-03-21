@@ -14,21 +14,30 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.contactDetails
+package uk.gov.hmrc.ui.pages.provideTRN
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
-object PhoneNumberPage extends BasePage {
+object ConfirmUTRPage extends BasePage {
 
-  val numberInput = By.id("phoneNumber-value")
+  val yes: By     = By.id("confirmUTR")
+  val noNI: By    = By.id("confirmUTR-2")
+  val noLater: By = By.id("confirmUTR-3")
 
-  def PhoneNumberDetails(): Unit =
-    headerCheck("Enter phone number")
+  def confirmYourSAUTR(): Unit =
+    headerCheck("Confirm your Self Assessment Unique Taxpayer Reference")
 
-  def InputNumber(): Unit = {
-    sendKeys(numberInput, "0794500506")
-    click(continueButton)
-  }
+  def confirmUTR(utr: String): Unit =
+    getElementByCssSelector("#main-content > div > div > form > dl > div > dd").contentEquals(utr)
+
+  def selectYes(): Unit =
+    click(yes)
+
+  def selectNoProvideNI(): Unit =
+    click(noNI)
+
+  def selectNoLater(): Unit =
+    click(noLater)
 
 }

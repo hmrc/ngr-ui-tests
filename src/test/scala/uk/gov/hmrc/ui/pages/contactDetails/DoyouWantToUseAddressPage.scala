@@ -25,8 +25,7 @@ object DoyouWantToUseAddressPage extends BasePage {
   val NoRadioButton  = By.id("confirm-address-radio-2")
 
   def SelectYesAddress(): Unit = {
-    val text = "Do you want to use this address?"
-    headerCheck(text)
+    headerCheck("Do you want to use this address?")
     click(YesRadioButton)
     click(continueButton)
   }
