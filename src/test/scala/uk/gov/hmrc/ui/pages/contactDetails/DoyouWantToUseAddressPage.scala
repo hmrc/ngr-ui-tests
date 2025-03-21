@@ -19,20 +19,25 @@ package uk.gov.hmrc.ui.pages.contactDetails
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
-object DoyouWantToUSeAddressPage extends BasePage {
+object DoyouWantToUseAddressPage extends BasePage {
 
   val YesRadioButton = By.id("confirm-address-radio")
   val NoRadioButton  = By.id("confirm-address-radio-2")
 
-  def SelectYesAddress() = {
+  def SelectYesAddress(): Unit = {
     val text = "Do you want to use this address?"
     headerCheck(text)
     click(YesRadioButton)
     click(continueButton)
   }
 
-  def SelectNoAddress() = {
+  def SelectNoAddress(): Unit = {
     click(NoRadioButton)
     click(continueButton)
+  }
+
+  def addressdisplay(expectedAddress: String): Unit = {
+    val actualAddress = getElementByXpath("//*[@id=\"main-content\"]/div/div/form/p[1]")
+    assert(actualAddress == expectedAddress, "Address doesn't match")
   }
 }
