@@ -23,10 +23,8 @@ object EmailPage extends BasePage {
 
   val emailInput = By.id("email-value")
 
-  def EmailDetails(): Unit = {
-    val text = "Enter email address"
-    headerCheck(text)
-  }
+  def EmailDetails(): Unit =
+    headerCheck("Enter email address")
 
   def InputEmail(): Unit = {
     sendKeys(emailInput, "test@testUser.com")

@@ -15,8 +15,6 @@
  */
 
 package uk.gov.hmrc.ui.specs
-
-import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
@@ -30,51 +28,44 @@ class ProvideTRNSpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
-      click(By.id("continue"))
-
+      click(continueButton)
       Then("Ratepayer is taken to Provide TRN Page")
-      ProvideTRNPage.confirmElements()
-      click(By.id("continue"))
+      ProvideTRNPage.provideYourTRN()
+      click(continueButton)
 
-      Then("Ratepayer is taken to ConfirmUTR Page")
-      ConfirmUTRPage.confirmElements()
+      /** Testing for masked UTR* */
+      Then("Ratepayer is taken to ConfirmSAUTR Page where SAUTR is masked ")
+      ConfirmUTRPage.confirmYourSAUTR()
       ConfirmUTRPage.confirmUTR("*******333")
 
-      Then("Select Yes and submit")
+      /** Selecting 'Yes, I want to provide this UTR' UTR* */
+      Then("User selects 'Yes, I want to provide this UTR' and submit")
       ConfirmUTRPage.selectYes()
-      click(By.id("continue"))
+      click(continueButton)
       Then("The ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
-      click(By.id("continue"))
-      Then("Ratepayer is taken to Provide TRN Page")
-      ProvideTRNPage.confirmElements()
-      click(By.id("continue"))
-      Then("Ratepayer is taken to ConfirmUTR Page")
-      ConfirmUTRPage.confirmElements()
+      click(continueButton)
+      Then("Ratepayer is navigating to Provide TRN Page then ConfirmUTR Page ")
+      ProvideTRNPage.provideYourTRN()
+      click(continueButton)
+      ConfirmUTRPage.confirmYourSAUTR()
 
-      Then("Select No I will provide NI and submit")
-      ConfirmUTRPage.selectNoProvideNI()
-      click(By.id("continue"))
-      Then("The ratepayer is taken to the Confirm Contact Details page")
-      ConfirmContactDetailsPage.ConfirmContactDetails()
-      click(By.id("continue"))
-      Then("Ratepayer is taken to Provide TRN Page")
-      ProvideTRNPage.confirmElements()
-      click(By.id("continue"))
-      Then("Ratepayer is taken to ConfirmUTR Page")
-      ConfirmUTRPage.confirmElements()
-
-      Then("Select No I will provide UTR Later")
+      /** Selecting 'No, I will provide a tax reference number later'* */
+      Then("User selects 'No, I will provide UTR Later' and continue")
       ConfirmUTRPage.selectNoLater()
-      click(By.id("continue"))
+      click(continueButton)
       Then("The ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
-      click(By.id("continue"))
-      Then("Ratepayer is taken to Provide TRN Page")
-      ProvideTRNPage.confirmElements()
-      click(By.id("continue"))
-      Then("Ratepayer is taken to ConfirmUTR Page")
-      ConfirmUTRPage.confirmElements()
+      click(continueButton)
+      Then("Ratepayer is navigating to Provide TRN Page then ConfirmUTR Page ")
+      ProvideTRNPage.provideYourTRN()
+      click(continueButton)
+      ConfirmUTRPage.confirmYourSAUTR()
+
+      /** Selecting 'No, I will provide NI'* */
+      Then("User selects 'No, I will provide NI' and submit")
+      ConfirmUTRPage.selectNoProvideNI()
+      click(continueButton)
 
     }
   }

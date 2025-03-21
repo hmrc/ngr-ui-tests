@@ -23,10 +23,8 @@ object NinoPage extends BasePage {
 
   val ninoInput: By = By.id("nino-value")
 
-  def NinoDetails(): Unit = {
-    val text = "Provide your National Insurance number"
-    headerCheck(text)
-  }
+  def NinoDetails(): Unit =
+    headerCheck("Provide your National Insurance number")
 
   def InputNino(): Unit = {
     sendKeys(ninoInput, "AA000003D")

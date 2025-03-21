@@ -23,10 +23,8 @@ object PhoneNumberPage extends BasePage {
 
   val numberInput = By.id("phoneNumber-value")
 
-  def PhoneNumberDetails(): Unit = {
-    val text = "Enter phone number"
-    headerCheck(text)
-  }
+  def PhoneNumberDetails(): Unit =
+    headerCheck("Enter phone number")
 
   def InputNumber(): Unit = {
     sendKeys(numberInput, "0794500506")

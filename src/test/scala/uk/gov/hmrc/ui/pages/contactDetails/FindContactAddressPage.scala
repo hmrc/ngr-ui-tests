@@ -25,13 +25,11 @@ object FindContactAddressPage extends BasePage {
   val propertyName      = By.id("property-name-value")
   val findAddressButton = By.id("continue")
 
-  def findAddress(): Unit = {
-    val text = "Find the contact address"
-    headerCheck(text)
-  }
+  def findAddress(): Unit =
+    headerCheck("Find the contact address")
 
   def InputPostcode(): Unit = {
-    sendKeys(postCode, "HA49EY")
+    sendKeys(postCode, "TF4 3ED")
     click(findAddressButton)
   }
 }

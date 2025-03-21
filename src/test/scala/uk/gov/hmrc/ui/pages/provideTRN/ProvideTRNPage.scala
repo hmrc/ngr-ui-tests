@@ -19,6 +19,6 @@ package uk.gov.hmrc.ui.pages.provideTRN
 import uk.gov.hmrc.ui.pages.BasePage
 
 object ProvideTRNPage extends BasePage {
-  def confirmElements(): Unit =
+  def provideYourTRN(): Unit =
     headerCheck("Provide your Tax Reference Number")
 }
