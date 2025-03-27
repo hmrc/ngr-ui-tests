@@ -37,7 +37,7 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
 //      ConfirmContactDetailsPage.addressDisplay("11 Test Street\nTesttown\nFX97 4TU\nGREAT BRITAIN")
 //    }
 
-    Scenario("Change the contact details of ratepayer, OL route") {
+    Scenario("Change the contact name, OL route") {
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -54,7 +54,14 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       Then("The ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
 
-      /*Change phone number*/
+    }
+
+    Scenario("Change the contact phone number, OL route") {
+      Given("Ratepayer logins through one login")
+      loginOl()
+
+      Then("Ratepayer is taken to the Confirm Contact Details page")
+      ConfirmContactDetailsPage.ConfirmContactDetails()
       Then("Clicks the change phone number link")
       ConfirmContactDetailsPage.ClickChangePhoneNumberLink()
       Then("The ratepayer is taken to the Phone Number Page")
@@ -63,7 +70,14 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       PhoneNumberPage.InputNumber()
       Then("The ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
+    }
 
+    Scenario("Change the contact email, OL route") {
+      Given("Ratepayer logins through one login")
+      loginOl()
+
+      Then("Ratepayer is taken to the Confirm Contact Details page")
+      ConfirmContactDetailsPage.ConfirmContactDetails()
       /*Change email*/
       Then("Clicks the change email link")
       ConfirmContactDetailsPage.ClickChangeEmailLink()
@@ -73,13 +87,19 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       EmailPage.InputEmail()
       Then("The ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
+    }
 
+    Scenario("Change the contact address, OL route") {
+      Given("Ratepayer logins through one login")
+      loginOl()
+
+      Then("Ratepayer is taken to the Confirm Contact Details page")
+      ConfirmContactDetailsPage.ConfirmContactDetails()
       /*Change Address*/
       Then("Clicks the change address link")
       ConfirmContactDetailsPage.ClickChangeAddressLink()
       Then("The ratepayer enters postcode and clicks continue on Find the contact address page")
       FindContactAddressPage.findAddress()
-      FindContactAddressPage.InputPostcode()
       And("The ratepayer selects property on search result page")
       SearchResultPage.selectProperty()
 
@@ -99,7 +119,7 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       ConfirmContactDetailsPage.ConfirmContactDetails()
       ConfirmContactDetailsPage.ClickChangeAddressLink()
       Then("The ratepayer enters postcode and clicks continue on Find the contact address page")
-      FindContactAddressPage.InputPostcode()
+      FindContactAddressPage.inputPostCode()
 
       /** Search again link* */
       And("Clicking on 'Search again' link on search result page taken back to Find the contact address page")
@@ -107,7 +127,7 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       SearchResultPage.searchAgain()
       FindContactAddressPage.findAddress()
       Then("The ratepayer enters postcode and clicks continue")
-      FindContactAddressPage.InputPostcode()
+      FindContactAddressPage.inputPostCode()
 
       /** Selecting property from 2nd page* */
       And("The user selects first property from the 2nd page of the 'search result'")
@@ -124,7 +144,7 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       Then("Clicks the change address link on the Confirm Contact Details page")
       ConfirmContactDetailsPage.ClickChangeAddressLink()
       Then("The ratepayer enters postcode and clicks continue on Find the contact address page")
-      FindContactAddressPage.InputPostcode()
+      FindContactAddressPage.inputPostCode()
       And("The ratepayer selects property on search result page")
       SearchResultPage.paginationLink("2")
       SearchResultPage.paginationLink("1")
@@ -136,6 +156,8 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       ConfirmContactDetailsPage.ConfirmContactDetails()
       ConfirmContactDetailsPage.addressDisplay("44 Manor Road\nDawley\nTelford\nTF4 3ED\nGREAT BRITAIN")
     }
+
+//    Scenario("Testing search using property number/name") {}
 
   }
 

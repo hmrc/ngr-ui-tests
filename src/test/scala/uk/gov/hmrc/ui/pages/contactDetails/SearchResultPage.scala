@@ -20,13 +20,17 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 object SearchResultPage extends BasePage {
 
-  def searchResult(): Unit   =
+  def searchResult(): Unit =
     headerCheck("Search results for TF4 3ED")
-  
+
+  def searchResultAddress(): Unit = {
+    getElementByXpath("//*[@id=\"main-content\"]/div/div/table/tbody/tr[1]/td[1]")
+  }
+
   def selectProperty(): Unit =
     click(getElementByLink("Select Property"))
-  
-  def searchAgain(): Unit    =
+
+  def searchAgain(): Unit =
     click(getElementByLink("Search again"))
 
   def paginationLink(link: String): Unit =
