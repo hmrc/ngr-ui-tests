@@ -67,4 +67,7 @@ trait BasePage extends PageObject {
   def waitForElementInvisibility(locator: By, text: String): Boolean =
     Wait.until(ExpectedConditions.invisibilityOfElementWithText(locator, text))
 
+  def reloadPage(): Unit =
+    Driver.instance.navigate().refresh()
+
 }

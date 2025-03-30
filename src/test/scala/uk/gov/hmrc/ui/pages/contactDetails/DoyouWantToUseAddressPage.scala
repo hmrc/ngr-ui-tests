@@ -31,11 +31,12 @@ object DoyouWantToUseAddressPage extends BasePage {
   }
 
   def SelectNoAddress(): Unit = {
+    headerCheck("Do you want to use this address?")
     click(NoRadioButton)
     click(continueButton)
   }
 
-  def addressdisplay(expectedAddress: String): Unit = {
+  def confirmAddress(expectedAddress: String): Unit = {
     val actualAddress = getElementByXpath("//*[@id=\"main-content\"]/div/div/form/p[1]")
     assert(actualAddress == expectedAddress, "Address doesn't match")
   }

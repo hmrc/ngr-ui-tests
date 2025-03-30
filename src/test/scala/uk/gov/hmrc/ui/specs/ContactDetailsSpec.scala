@@ -100,7 +100,9 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       ConfirmContactDetailsPage.ClickChangeAddressLink()
       Then("The ratepayer enters postcode and clicks continue on Find the contact address page")
       FindContactAddressPage.findAddress()
+      FindContactAddressPage.inputPostCode("TF4 3ED")
       And("The ratepayer selects property on search result page")
+      SearchResultPage.searchResult()
       SearchResultPage.selectProperty()
 
       /** Selecting Yes radio button* */
@@ -108,10 +110,11 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       DoyouWantToUseAddressPage.SelectYesAddress()
       Then("I verifify the contact details on Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
-      ConfirmContactDetailsPage.addressDisplay("34 Manor Road\nDawley\nTelford\nTF4 3ED\nGREAT BRITAIN")
+      reloadPage()
+      ConfirmContactDetailsPage.verifyAddress("34 Manor Road\nDawley\nTelford\nTF4 3ED")
     }
 
-    Scenario("Testing of different flow for change address, OL route") {
+    Scenario("Testing 'search again' link for change address, OL route") {
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -119,7 +122,7 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       ConfirmContactDetailsPage.ConfirmContactDetails()
       ConfirmContactDetailsPage.ClickChangeAddressLink()
       Then("The ratepayer enters postcode and clicks continue on Find the contact address page")
-      FindContactAddressPage.inputPostCode()
+      FindContactAddressPage.inputPostCode("TF4 3ED")
 
       /** Search again link* */
       And("Clicking on 'Search again' link on search result page taken back to Find the contact address page")
@@ -127,37 +130,43 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       SearchResultPage.searchAgain()
       FindContactAddressPage.findAddress()
       Then("The ratepayer enters postcode and clicks continue")
-      FindContactAddressPage.inputPostCode()
-
-      /** Selecting property from 2nd page* */
-      And("The user selects first property from the 2nd page of the 'search result'")
-      SearchResultPage.paginationLink("2")
+      FindContactAddressPage.inputPostCode("SL3 0AX")
       SearchResultPage.selectProperty()
       And("The ratepayer selects Yes on use this address page")
-      DoyouWantToUseAddressPage.addressdisplay("44 Manor Road, Dawley, Telford TF4 3ED")
+      DoyouWantToUseAddressPage.confirmAddress(
+        "Unit 13, Trident Industrial Estate Blackthor, Colnbrook, Slough SL3 0AX"
+      )
       DoyouWantToUseAddressPage.SelectYesAddress()
       Then("I verifify the contact details on Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
-      ConfirmContactDetailsPage.addressDisplay("44 Manor Road\nDawley\nTelford\nTF4 3ED\nGREAT BRITAIN")
+      reloadPage()
+      ConfirmContactDetailsPage.verifyAddress(
+        "Unit 13\nTrident Industrial Estate Blackthor, Colnbrook\nSlough\nSL3 0AX"
+      )
+    }
 
-      /** Selecting No radio button on use this address page * */
+    Scenario("Testing search using property number/name") {
+      Given("Ratepayer logins through one login")
+      loginOl()
+
       Then("Clicks the change address link on the Confirm Contact Details page")
       ConfirmContactDetailsPage.ClickChangeAddressLink()
-      Then("The ratepayer enters postcode and clicks continue on Find the contact address page")
-      FindContactAddressPage.inputPostCode()
+      Then("The ratepayer enters postcode and property number")
+      FindContactAddressPage.inputPostCodePropertyNumber("TF4 3ED", "40")
       And("The ratepayer selects property on search result page")
-      SearchResultPage.paginationLink("2")
-      SearchResultPage.paginationLink("1")
       SearchResultPage.selectProperty()
+
+      /** Selecting No radio button on use this address page * */
       And("The ratepayer selects No on use this address page")
-      DoyouWantToUseAddressPage.addressdisplay("34 Manor Road, Dawley, Telford TF4 3ED")
+      DoyouWantToUseAddressPage.confirmAddress("40 Manor Road, Dawley, Telford TF4 3ED")
       DoyouWantToUseAddressPage.SelectNoAddress()
       Then("The ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
-      ConfirmContactDetailsPage.addressDisplay("44 Manor Road\nDawley\nTelford\nTF4 3ED\nGREAT BRITAIN")
+      reloadPage()
+      ConfirmContactDetailsPage.verifyAddress(
+        "Unit 13\nTrident Industrial Estate Blackthor, Colnbrook\nSlough\nSL3 0AX"
+      )
     }
-
-//    Scenario("Testing search using property number/name") {}
 
   }
 

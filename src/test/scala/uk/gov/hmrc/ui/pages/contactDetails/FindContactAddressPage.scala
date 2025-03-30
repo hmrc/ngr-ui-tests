@@ -29,13 +29,16 @@ object FindContactAddressPage extends BasePage {
   def findAddress(): Unit =
     headerCheck("Find the contact address")
 
-  def inputPostCode(): Unit = {
-    sendKeys(postCode, "TF4 3ED")
+  def inputPostCode(code: String): Unit = {
+    sendKeys(postCode, code)
+    Thread.sleep(3000)
     click(findAddressButton)
   }
 
-  def inputPropertyNumber(): Unit = {
-    sendKeys(propertyNumber, "48")
+  def inputPostCodePropertyNumber(code: String, number: String): Unit = {
+    sendKeys(postCode, code)
+    sendKeys(propertyNumber, number)
+    Thread.sleep(3000)
     click(findAddressButton)
   }
 }

@@ -14,25 +14,11 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.contactDetails
+package uk.gov.hmrc.ui.pages
 
-import uk.gov.hmrc.ui.pages.BasePage
+object CheckYourAnswer extends BasePage {
 
-object SearchResultPage extends BasePage {
-
-  def searchResult(): Unit =
-    headerCheck("Search results for TF4 3ED")
-
-  def searchResultAddress(): Unit =
-    getElementByXpath("//*[@id=\"main-content\"]/div/div/table/tbody/tr[1]/td[1]")
-
-  def selectProperty(): Unit =
-    click(getElementByLink("Select Property"))
-
-  def searchAgain(): Unit =
-    click(getElementByLink("Search again"))
-
-  def paginationLink(link: String): Unit =
-    click(getElementByLink(link))
+  def checkYourAnswer(): Unit =
+    headerCheck("Check your answers")
 
 }

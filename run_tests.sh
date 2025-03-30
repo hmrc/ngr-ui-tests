@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 
-BROWSER=$1
-ENVIRONMENT=$2
+ENVIRONMENT=$1
 
 sbt scalafmtAll
 sbt clean -Dbrowser="${BROWSER:=chrome}" \
-          -Dbrowser.option.headless=false \
+          -Dbrowser.option.headless=true \
           -Denvironment="${ENVIRONMENT:=local}" \
           -Dsecurity.assessment=false \
            "testOnly" testReport

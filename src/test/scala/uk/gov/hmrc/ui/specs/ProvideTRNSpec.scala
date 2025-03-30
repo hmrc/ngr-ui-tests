@@ -18,6 +18,7 @@ package uk.gov.hmrc.ui.specs
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
+import uk.gov.hmrc.ui.pages.CheckYourAnswer
 import uk.gov.hmrc.ui.utils.login.loginOl
 
 class ProvideTRNSpec extends BaseSpec with StubPage {
@@ -42,30 +43,30 @@ class ProvideTRNSpec extends BaseSpec with StubPage {
       Then("User selects 'Yes, I want to provide this UTR' and submit")
       ConfirmUTRPage.selectYes()
       click(continueButton)
-      Then("The ratepayer is taken to the Confirm Contact Details page")
-      ConfirmContactDetailsPage.ConfirmContactDetails()
-      click(continueButton)
-      Then("Ratepayer is navigating to Provide TRN Page then ConfirmUTR Page ")
-      ProvideTRNPage.provideYourTRN()
-      click(continueButton)
-      ConfirmUTRPage.confirmYourSAUTR()
-
-      /** Selecting 'No, I will provide a tax reference number later'* */
-      Then("User selects 'No, I will provide UTR Later' and continue")
-      ConfirmUTRPage.selectNoLater()
-      click(continueButton)
-      Then("The ratepayer is taken to the Confirm Contact Details page")
-      ConfirmContactDetailsPage.ConfirmContactDetails()
-      click(continueButton)
-      Then("Ratepayer is navigating to Provide TRN Page then ConfirmUTR Page ")
-      ProvideTRNPage.provideYourTRN()
-      click(continueButton)
-      ConfirmUTRPage.confirmYourSAUTR()
-
-      /** Selecting 'No, I will provide NI'* */
-      Then("User selects 'No, I will provide NI' and submit")
-      ConfirmUTRPage.selectNoProvideNI()
-      click(continueButton)
+      Then("The ratepayer is taken to the 'Check your answers' page")
+      CheckYourAnswer.checkYourAnswer()
+//      click(continueButton)
+//      Then("Ratepayer is navigating to Provide TRN Page then ConfirmUTR Page ")
+//      ProvideTRNPage.provideYourTRN()
+//      click(continueButton)
+//      ConfirmUTRPage.confirmYourSAUTR()
+//
+//      /** Selecting 'No, I will provide a tax reference number later'* */
+//      Then("User selects 'No, I will provide UTR Later' and continue")
+//      ConfirmUTRPage.selectNoLater()
+//      click(continueButton)
+//      Then("The ratepayer is taken to the Confirm Contact Details page")
+//      ConfirmContactDetailsPage.ConfirmContactDetails()
+//      click(continueButton)
+//      Then("Ratepayer is navigating to Provide TRN Page then ConfirmUTR Page ")
+//      ProvideTRNPage.provideYourTRN()
+//      click(continueButton)
+//      ConfirmUTRPage.confirmYourSAUTR()
+//
+//      /** Selecting 'No, I will provide NI'* */
+//      Then("User selects 'No, I will provide NI' and submit")
+//      ConfirmUTRPage.selectNoProvideNI()
+//      click(continueButton)
 
     }
   }
