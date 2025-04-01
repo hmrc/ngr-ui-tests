@@ -21,4 +21,9 @@ object CheckYourAnswer extends BasePage {
   def checkYourAnswer(): Unit =
     headerCheck("Check your answers")
 
+  def confirmMAskedTRN(TRN: String): Unit =
+    assert(
+      getElementByXpath("//*[@id=\"main-content\"]/div/div/dl[2]/div/dd[1]") == TRN,
+      "Masked TRN verification failed"
+    )
 }

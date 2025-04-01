@@ -31,14 +31,12 @@ object FindContactAddressPage extends BasePage {
 
   def inputPostCode(code: String): Unit = {
     sendKeys(postCode, code)
-    Thread.sleep(3000)
     click(findAddressButton)
   }
 
   def inputPostCodePropertyNumber(code: String, number: String): Unit = {
     sendKeys(postCode, code)
     sendKeys(propertyNumber, number)
-    Thread.sleep(3000)
     click(findAddressButton)
   }
 }

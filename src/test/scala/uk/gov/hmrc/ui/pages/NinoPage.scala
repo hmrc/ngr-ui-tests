@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.contactDetails
+package uk.gov.hmrc.ui.pages
 
 import org.openqa.selenium.By
-import uk.gov.hmrc.ui.pages.BasePage
 
 object NinoPage extends BasePage {
 
@@ -26,8 +25,8 @@ object NinoPage extends BasePage {
   def NinoDetails(): Unit =
     headerCheck("Provide your National Insurance number")
 
-  def InputNino(): Unit = {
-    sendKeys(ninoInput, "AA000003D")
+  def InputNino(NINO: String): Unit = {
+    sendKeys(ninoInput, NINO)
     click(continueButton)
   }
 
