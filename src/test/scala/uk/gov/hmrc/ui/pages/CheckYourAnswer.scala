@@ -14,21 +14,16 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.contactDetails
+package uk.gov.hmrc.ui.pages
 
-import org.openqa.selenium.By
-import uk.gov.hmrc.ui.pages.BasePage
+object CheckYourAnswer extends BasePage {
 
-object NinoPage extends BasePage {
+  def checkYourAnswer(): Unit =
+    headerCheck("Check your answers")
 
-  val ninoInput: By = By.id("nino-value")
-
-  def NinoDetails(): Unit =
-    headerCheck("Provide your National Insurance number")
-
-  def InputNino(): Unit = {
-    sendKeys(ninoInput, "AA000003D")
-    click(continueButton)
-  }
-
+  def confirmMAskedTRN(TRN: String): Unit =
+    assert(
+      getElementByXpath("//*[@id=\"main-content\"]/div/div/dl[2]/div/dd[1]") == TRN,
+      "Masked TRN verification failed"
+    )
 }

@@ -17,12 +17,11 @@ sm2 --start NGR_ALL
 ```
 ### To run the tests
 ```bash
-./run_tests.sh `<browser>` `<environment>`
+./run_tests.sh `<environment>`
 ```
-* Argument `<browser>` must be `chrome`, `edge`, or `firefox`.
 * Argument `<environment>` must be `local`, `dev`, `qa` or `staging`.
 ```bash
-./run_tests.sh chorme qa
+./run_tests.sh staging
 ```
 ## Scalafmt
 
