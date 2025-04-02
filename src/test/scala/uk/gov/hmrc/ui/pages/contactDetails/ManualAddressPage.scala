@@ -16,20 +16,25 @@
 
 package uk.gov.hmrc.ui.pages.contactDetails
 
+import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
-object SearchResultPage extends BasePage {
+object ManualAddressPage extends BasePage {
 
-  def searchResult(): Unit =
-    headerCheck("Search results for TF4 3ED")
+  val AddressLine1Input: By = By.id("AddressLine1")
+  val AddressLine2Input: By = By.id("AddressLine2")
+  val CityInput: By         = By.id("City")
+  val CountyInput: By       = By.id("County")
+  val PostalCodeInput: By   = By.id("PostalCode")
 
-  def selectProperty(): Unit =
-    click(getElementByLink("Select Property"))
+  def ManualAddressDetails(): Unit =
+    headerCheck("What is the address?")
 
-  def searchAgain(): Unit =
-    click(getElementByLink("Search again"))
-
-  def paginationLink(link: String): Unit =
-    click(getElementByLink(link))
+  def InputManualAddress(): Unit = {
+    sendKeys(AddressLine1Input, "11a Madeup Street")
+    sendKeys(CityInput, "Testtown-upon-Test")
+    sendKeys(PostalCodeInput, "FX1 7RR")
+    click(continueButton)
+  }
 
 }
