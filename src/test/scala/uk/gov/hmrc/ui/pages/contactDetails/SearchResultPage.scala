@@ -23,9 +23,6 @@ object SearchResultPage extends BasePage {
   def searchResult(): Unit =
     headerCheck("Search results for TF4 3ED")
 
-  def searchResultAddress(): Unit =
-    getElementByXpath("//*[@id=\"main-content\"]/div/div/table/tbody/tr[1]/td[1]")
-
   def selectProperty(): Unit =
     click(getElementByLink("Select Property"))
 
