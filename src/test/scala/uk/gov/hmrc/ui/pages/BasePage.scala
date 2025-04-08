@@ -70,4 +70,7 @@ trait BasePage extends PageObject {
   def reloadPage(): Unit =
     Driver.instance.navigate().refresh()
 
+  def clickLink(link: String): Unit =
+    click(getElementByLink(link))
+
 }

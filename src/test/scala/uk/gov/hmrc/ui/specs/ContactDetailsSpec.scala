@@ -17,7 +17,8 @@
 package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages._
-import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, ContactNamePage, DoyouWantToUseAddressPage, EmailPage, FindContactAddressPage, PhoneNumberPage, SearchResultPage}
+import uk.gov.hmrc.ui.pages.contactDetails.changeAddressPages.{DoyouWantToUseAddressPage, FindContactAddressPage, SearchResultPage}
+import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, ContactNamePage, EmailPage, PhoneNumberPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
 
 class ContactDetailsSpec extends BaseSpec with StubPage {
@@ -110,7 +111,6 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       DoyouWantToUseAddressPage.SelectYesAddress()
       Then("I verifify the contact details on Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
-      reloadPage()
       ConfirmContactDetailsPage.verifyAddress("34 Manor Road\nDawley\nTelford\nTF4 3ED")
     }
 
@@ -139,7 +139,6 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       DoyouWantToUseAddressPage.SelectYesAddress()
       Then("I verifify the contact details on Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
-      reloadPage()
       ConfirmContactDetailsPage.verifyAddress(
         "Unit 13\nTrident Industrial Estate Blackthor, Colnbrook\nSlough\nSL3 0AX"
       )
@@ -162,10 +161,21 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       DoyouWantToUseAddressPage.SelectNoAddress()
       Then("The ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
-      reloadPage()
       ConfirmContactDetailsPage.verifyAddress(
         "Unit 13\nTrident Industrial Estate Blackthor, Colnbrook\nSlough\nSL3 0AX"
       )
+    }
+
+    Scenario("Testing manual search") {
+      Given("Ratepayer logins through one login")
+      loginOl()
+
+      Then("Clicks the change address link on the Confirm Contact Details page")
+      ConfirmContactDetailsPage.ClickChangeAddressLink()
+
+      And("The user click on the link 'Enter the address manually'")
+      clickLink("Enter the address manually")
+
     }
 
   }

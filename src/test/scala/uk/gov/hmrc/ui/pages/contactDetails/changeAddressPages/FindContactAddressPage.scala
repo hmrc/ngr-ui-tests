@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.contactDetails
+package uk.gov.hmrc.ui.pages.contactDetails.changeAddressPages
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
@@ -39,4 +39,5 @@ object FindContactAddressPage extends BasePage {
     sendKeys(propertyNumber, number)
     click(findAddressButton)
   }
+
 }

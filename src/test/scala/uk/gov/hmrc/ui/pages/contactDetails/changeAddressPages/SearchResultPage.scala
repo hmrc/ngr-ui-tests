@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.contactDetails
+package uk.gov.hmrc.ui.pages.contactDetails.changeAddressPages
 
 import uk.gov.hmrc.ui.pages.BasePage
 
