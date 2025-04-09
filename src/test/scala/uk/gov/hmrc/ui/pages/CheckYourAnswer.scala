@@ -29,6 +29,6 @@ object CheckYourAnswer extends BasePage {
 
   def sautrNoDisplay(sautr: String): Unit = {
     val display = getElementByCssSelector("#sautr-linkid")
-    assert(sautr == display, "Provide your UTR")
+    assert(sautr == display, "Provide your UTR link is not present")
   }
 }

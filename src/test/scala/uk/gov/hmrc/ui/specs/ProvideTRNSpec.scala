@@ -15,6 +15,7 @@
  */
 
 package uk.gov.hmrc.ui.specs
+
 import uk.gov.hmrc.ui.pages.{CheckYourAnswer, NinoPage, StubPage}
 import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
@@ -46,6 +47,9 @@ class ProvideTRNSpec extends BaseSpec with StubPage {
       Then("The ratepayer is taken to the 'Check your answers' where NINO is masked")
       CheckYourAnswer.checkYourAnswer()
       CheckYourAnswer.confirmMAskedTRN("******03D")
+    }
+
+    Scenario("Navigate to ProvideTRN page through journey, and provide the SAUTR") {
 
       /** Selecting 'Yes, I want to provide this UTR' UTR* */
       Given("Ratepayer logins through one login")
@@ -58,10 +62,6 @@ class ProvideTRNSpec extends BaseSpec with StubPage {
       ProvideTRNPage.provideYourTRN()
       click(continueButton)
 
-      Then("Ratepayer is taken to ConfirmSAUTR Page where SAUTR is masked ")
-      ConfirmUTRPage.confirmYourSAUTR()
-      ConfirmUTRPage.confirmUTR("*******333")
-
       Then("User selects 'Yes, I want to provide this UTR' and submit")
       ConfirmUTRPage.selectYes()
       click(continueButton)
@@ -69,13 +69,10 @@ class ProvideTRNSpec extends BaseSpec with StubPage {
       Then("The ratepayer is taken to the 'Check your answers' where SAUTR is masked")
       CheckYourAnswer.checkYourAnswer()
       CheckYourAnswer.confirmMAskedTRN("*******333")
+    }
 
-//      click(continueButton)
-//      Then("Ratepayer is navigating to Provide TRN Page then ConfirmUTR Page ")
-//      ProvideTRNPage.provideYourTRN()
-//      click(continueButton)
-//      ConfirmUTRPage.confirmYourSAUTR()
-//
+    Scenario("Navigate to ProvideTRN page through journey, and do not provide the SAUTR") {
+
       /** Selecting 'No, I will provide a tax reference number later'* */
       Given("Ratepayer logins through one login")
       loginOl()
@@ -88,31 +85,18 @@ class ProvideTRNSpec extends BaseSpec with StubPage {
       ProvideTRNPage.provideYourTRN()
       click(continueButton)
 
-      Then("Ratepayer is taken to ConfirmSAUTR Page where SAUTR is masked ")
-      ConfirmUTRPage.confirmYourSAUTR()
-      ConfirmUTRPage.confirmUTR("*******333")
-
       Then("User selects 'No, I will provide UTR Later' and continue")
       ConfirmUTRPage.selectNoLater()
       click(continueButton)
 
-      Then("The ratepayer is taken to the 'Check your answers' where SAUTR is not present")
+      Then("The ratepayer is taken to the 'Check your answers' where SAUTR is not present, and clicks the link")
       CheckYourAnswer.checkYourAnswer()
-      CheckYourAnswer.sautrNoDisplay("*******333")
+      CheckYourAnswer.sautrNoDisplay("Provide your UTR")
+      clickLink("Provide your UTR")
 
-      Then("The ratepayer is taken to the Confirm Contact Details page")
-//      ConfirmContactDetailsPage.ConfirmContactDetails()
-//      click(continueButton)
-//      Then("Ratepayer is navigating to Provide TRN Page then ConfirmUTR Page ")
-//      ProvideTRNPage.provideYourTRN()
-//      click(continueButton)
-//      ConfirmUTRPage.confirmYourSAUTR()
-//
-//      /** Selecting 'No, I will provide NI'* */
-//      Then("User selects 'No, I will provide NI' and submit")
-//      ConfirmUTRPage.selectNoProvideNI()
-//      click(continueButton)
-
+      Then("Ratepayer is taken back to the Confirm SAUTR Page, where the SAUTR is masked")
+      ConfirmUTRPage.confirmYourSAUTR()
+      ConfirmUTRPage.confirmUTR("*******333")
     }
   }
 }
