@@ -26,4 +26,9 @@ object CheckYourAnswer extends BasePage {
       getElementByXpath("//*[@id=\"main-content\"]/div/div/dl[2]/div/dd[1]") == TRN,
       "Masked TRN verification failed"
     )
+
+  def sautrNoDisplay(sautr: String): Unit = {
+    val display = getElementByCssSelector("#sautr-linkid")
+    assert(sautr == display, "Provide your UTR link is not present")
+  }
 }
