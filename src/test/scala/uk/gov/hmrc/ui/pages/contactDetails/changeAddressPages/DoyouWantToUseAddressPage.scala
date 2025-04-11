@@ -38,6 +38,6 @@ object DoyouWantToUseAddressPage extends BasePage {
 
   def confirmAddress(expectedAddress: String): Unit = {
     val actualAddress = getElementByXpath("//*[@id=\"main-content\"]/div/div/form/p[1]")
-    assert(actualAddress == expectedAddress, "Address doesn't match")
+    assert(actualAddress == expectedAddress, "Address doesn't match on confirmAddress page ")
   }
 }

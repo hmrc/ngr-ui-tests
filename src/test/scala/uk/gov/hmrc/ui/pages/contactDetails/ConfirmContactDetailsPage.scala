@@ -45,7 +45,7 @@ object ConfirmContactDetailsPage extends BasePage {
 
   def verifyAddress(expectedAddress: String): Unit = {
     val actualAddress = getElementByXpath("//*[@id=\"main-content\"]/div/div/form/dl/div[4]/dd[1]")
-    assert(actualAddress == expectedAddress, "Address doesn't match")
+    assert(actualAddress == expectedAddress, "Address doesn't match on ")
   }
 
   def ClickChangeNameLink(): Unit        =

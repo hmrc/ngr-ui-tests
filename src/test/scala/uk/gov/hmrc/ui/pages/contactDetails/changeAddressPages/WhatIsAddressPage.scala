@@ -14,21 +14,24 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.contactDetails.changeAddressPages
 
-object CheckYourAnswer extends BasePage {
+import uk.gov.hmrc.ui.pages.BasePage
 
-  def checkYourAnswer(): Unit =
-    headerCheck("Check your answers")
+object WhatIsAddressPage extends BasePage {
 
-  def confirmMAskedTRN(TRN: String): Unit =
-    assert(
-      getElementByXpath("//*[@id=\"main-content\"]/div/div/form/dl[2]/div/dd[1]") == TRN,
-      "Masked TRN verification failed"
-    )
+  def whatIsTheAddress(): Unit =
+    headerCheck("What is the address?")
 
-  def sautrNoDisplay(sautr: String): Unit = {
-    val display = getElementByCssSelector("#sautr-linkid")
-    assert(sautr == display, "Provide your UTR link is not present")
+  def clearAllTheField(): Unit = {
+    findElementById("AddressLine1").clear()
+    findElementById("AddressLine2").clear()
+    findElementById("City").clear()
+    findElementById("County").clear()
+  }
+
+  def inputAddressLine1(address: String): Unit = {
+    findElementById("AddressLine1").clear()
+    sendKeys(getElementById("AddressLine1"), address)
   }
 }
