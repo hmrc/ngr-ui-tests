@@ -26,8 +26,9 @@ object ConfirmContactDetailsPage extends BasePage {
   val changeEmailLink       = By.id("email-linkid")
   val changeAddressLink     = By.id("address-linkid")
 
-  def ConfirmContactDetails(): Unit           =
+  def ConfirmContactDetails(): Unit =
     headerCheck("Confirm your contact details")
+
   def nameDisplay(expectedName: String): Unit = {
     val actualName = getElementByCssSelector("#content > dl > div:nth-child(1) > dd.govuk-summary-list__value")
     assert(actualName == expectedName, "Name doesn't match")
