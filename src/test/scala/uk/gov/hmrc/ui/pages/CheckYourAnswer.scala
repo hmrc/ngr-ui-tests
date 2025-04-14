@@ -49,6 +49,27 @@ object CheckYourAnswer extends BasePage {
     assert(sautr == display, "Provide your UTR link is not present")
   }
 
+  def nameChangedCheck(name: String): Unit = {
+    val display = getElementByCssSelector(
+      "#main-content > div > div > form > dl:nth-child(6) > div:nth-child(1) > dd.govuk-summary-list__value"
+    )
+    assert(name == display, "the contact name was not changed")
+  }
+
+  def phoneChangedCheck(phoneNumber: String): Unit = {
+    val display = getElementByCssSelector(
+      "#main-content > div > div > form > dl:nth-child(6) > div:nth-child(3) > dd.govuk-summary-list__value"
+    )
+    assert(phoneNumber == display, "the contact phone number was not changed")
+  }
+
+  def emailChangedCheck(email: String): Unit = {
+    val display = getElementByCssSelector(
+      "#main-content > div > div > form > dl:nth-child(6) > div:nth-child(2) > dd.govuk-summary-list__value"
+    )
+    assert(email == display, "the email was not changed")
+  }
+
   def verifyAddress(expectedAddress: String): Unit = {
     val actualAddress = getElementByXpath("//*[@id=\"main-content\"]/div/div/form/dl/div[4]/dd[1]")
     assert(actualAddress == expectedAddress, "Address doesn't match")

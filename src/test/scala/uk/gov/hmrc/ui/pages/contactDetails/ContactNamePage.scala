@@ -26,8 +26,8 @@ object ContactNamePage extends BasePage {
   def ContactNameDetails(): Unit =
     headerCheck("Contact name")
 
-  def InputName(): Unit = {
-    sendKeys(nameInput, "Funny Jake")
+  def InputName(newName: String): Unit = {
+    sendKeys(nameInput, newName)
     click(continueButton)
   }
 

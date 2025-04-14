@@ -16,6 +16,7 @@
 
 package uk.gov.hmrc.ui.specs
 
+import uk.gov.hmrc.ui.pages.CheckYourAnswer.{emailChangedCheck, phoneChangedCheck}
 import uk.gov.hmrc.ui.pages.contactDetails.changeAddressPages.{DoyouWantToUseAddressPage, FindContactAddressPage, SearchResultPage}
 import uk.gov.hmrc.ui.pages.{CheckYourAnswer, StubPage}
 import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, ContactNamePage, EmailPage, PhoneNumberPage}
@@ -42,10 +43,9 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
       Then("User is taken to the confirm UTR page, selects 'Yes, I want to provide this UTR'")
       ConfirmUTRPage.confirmYourSAUTR()
       ConfirmUTRPage.selectYes()
-      click(continueButton)
 
-//      Then("Ratepayer is taken to the Check Your Answers page")
-//      CheckYourAnswer.checkYourAnswer()
+      Then("Ratepayer is taken to the Check Your Answers page")
+      CheckYourAnswer.checkYourAnswer()
 
       Then("Clicks the name link")
       CheckYourAnswer.ClickChangeNameLink()
@@ -54,10 +54,11 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
       ContactNamePage.ContactNameDetails()
 
       Then("The ratepayer enters their name and clicks continue")
-      ContactNamePage.InputName()
+      ContactNamePage.InputName("Unfunny Jake")
 
-      Then("The Ratepayer is taken back to the Check Your Answers page")
+      Then("The Ratepayer is taken back to the Check Your Answers page, with the name changed")
       CheckYourAnswer.checkYourAnswer()
+      CheckYourAnswer.nameChangedCheck("Unfunny Jake")
 
     }
 
@@ -78,10 +79,9 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
       Then("User selects 'Yes, I want to provide this UTR' and submit")
       ConfirmUTRPage.confirmYourSAUTR()
       ConfirmUTRPage.selectYes()
-      click(continueButton)
 
-//      Then("Ratepayer is taken to the Check Your Answers page")
-//      CheckYourAnswer.checkYourAnswer()
+      Then("Ratepayer is taken to the Check Your Answers page")
+      CheckYourAnswer.checkYourAnswer()
 
       Then("Clicks the change phone number link")
       CheckYourAnswer.ClickChangePhoneNumberLink()
@@ -90,10 +90,11 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
       PhoneNumberPage.PhoneNumberDetails()
 
       Then("The ratepayer adds their number and clicks continue")
-      PhoneNumberPage.InputNumber()
+      PhoneNumberPage.InputNumber("07501623458")
 
       Then("The ratepayer is taken to the Check Your Answers page")
       CheckYourAnswer.checkYourAnswer()
+      phoneChangedCheck("07501623458")
     }
 
     /* Changing contact E-mail */
@@ -113,10 +114,9 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
       Then("User selects 'Yes, I want to provide this UTR' and submit")
       ConfirmUTRPage.confirmYourSAUTR()
       ConfirmUTRPage.selectYes()
-      click(continueButton)
-//
-//      Then("Ratepayer is taken to the Check Your Answers page")
-//      CheckYourAnswer.checkYourAnswer()
+
+      Then("Ratepayer is taken to the Check Your Answers page")
+      CheckYourAnswer.checkYourAnswer()
 
       Then("Clicks the change email link")
       CheckYourAnswer.ClickChangeEmailLink()
@@ -125,10 +125,11 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
       EmailPage.EmailDetails()
 
       Then("The ratepayer adds their number and clicks continue")
-      EmailPage.InputEmail()
+      EmailPage.InputEmail("newEmail@email.com")
 
       Then("The ratepayer is taken to the Check Your Answers page")
       CheckYourAnswer.checkYourAnswer()
+      emailChangedCheck("newEmail@email.com")
     }
 
     /* Changing contact address */
@@ -148,10 +149,9 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
       Then("User selects 'Yes, I want to provide this UTR' and submit")
       ConfirmUTRPage.confirmYourSAUTR()
       ConfirmUTRPage.selectYes()
-      click(continueButton)
 
-//      Then("Ratepayer is taken to the Check Your Answers page")
-//      CheckYourAnswer.checkYourAnswer()
+      Then("Ratepayer is taken to the Check Your Answers page")
+      CheckYourAnswer.checkYourAnswer()
 
       Then("Clicks the change address link")
       CheckYourAnswer.ClickChangeAddressLink()
@@ -168,7 +168,7 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
 
       And("The ratepayer selects Yes on use this address page")
       DoyouWantToUseAddressPage.SelectYesAddress()
-      Then("I verifify the contact details on Check Your Answers page")
+      Then("I verify the contact details on Check Your Answers page")
       CheckYourAnswer.checkYourAnswer()
       CheckYourAnswer.verifyAddress("34 Manor Road\nDawley\nTelford\nTF4 3ED")
     }
