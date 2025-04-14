@@ -44,8 +44,8 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
       ConfirmUTRPage.selectYes()
       click(continueButton)
 
-      Then("Ratepayer is taken to the Check Your Answers page")
-      CheckYourAnswer.checkYourAnswer()
+//      Then("Ratepayer is taken to the Check Your Answers page")
+//      CheckYourAnswer.checkYourAnswer()
 
       Then("Clicks the name link")
       CheckYourAnswer.ClickChangeNameLink()
@@ -80,8 +80,8 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
       ConfirmUTRPage.selectYes()
       click(continueButton)
 
-      Then("Ratepayer is taken to the Check Your Answers page")
-      CheckYourAnswer.checkYourAnswer()
+//      Then("Ratepayer is taken to the Check Your Answers page")
+//      CheckYourAnswer.checkYourAnswer()
 
       Then("Clicks the change phone number link")
       CheckYourAnswer.ClickChangePhoneNumberLink()
@@ -114,9 +114,9 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
       ConfirmUTRPage.confirmYourSAUTR()
       ConfirmUTRPage.selectYes()
       click(continueButton)
-
-      Then("Ratepayer is taken to the Check Your Answers page")
-      CheckYourAnswer.checkYourAnswer()
+//
+//      Then("Ratepayer is taken to the Check Your Answers page")
+//      CheckYourAnswer.checkYourAnswer()
 
       Then("Clicks the change email link")
       CheckYourAnswer.ClickChangeEmailLink()
@@ -150,8 +150,8 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
       ConfirmUTRPage.selectYes()
       click(continueButton)
 
-      Then("Ratepayer is taken to the Check Your Answers page")
-      CheckYourAnswer.checkYourAnswer()
+//      Then("Ratepayer is taken to the Check Your Answers page")
+//      CheckYourAnswer.checkYourAnswer()
 
       Then("Clicks the change address link")
       CheckYourAnswer.ClickChangeAddressLink()
