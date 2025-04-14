@@ -22,8 +22,8 @@ import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
 
 class ProvideTRNSpec extends BaseSpec with StubPage {
-  Feature("Test for Provide TRN and Confirm NINO") {
-    Scenario("Navigate to ProvideTRN page through journey") {
+  Feature("Test to Provide TRN") {
+    Scenario("Ratepayer choose to provide NINO") {
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -64,7 +64,6 @@ class ProvideTRNSpec extends BaseSpec with StubPage {
 
       Then("User selects 'Yes, I want to provide this UTR' and submit")
       ConfirmUTRPage.selectYes()
-      click(continueButton)
 
       Then("The ratepayer is taken to the 'Check your answers' where SAUTR is masked")
       CheckYourAnswer.checkYourAnswer()
@@ -87,7 +86,6 @@ class ProvideTRNSpec extends BaseSpec with StubPage {
 
       Then("User selects 'No, I will provide UTR Later' and continue")
       ConfirmUTRPage.selectNoLater()
-      click(continueButton)
 
       Then("The ratepayer is taken to the 'Check your answers' where SAUTR is not present, and clicks the link")
       CheckYourAnswer.checkYourAnswer()
