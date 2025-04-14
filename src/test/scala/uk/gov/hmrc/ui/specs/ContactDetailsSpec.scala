@@ -38,7 +38,7 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       Then("Name the page is shown")
       ContactNamePage.ContactNameDetails()
       Then("The ratepayer enters their name and clicks continue")
-      ContactNamePage.InputName()
+      ContactNamePage.InputName("Funny Jake")
       Then("The ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
 
@@ -55,7 +55,7 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       Then("The ratepayer is taken to the Phone Number Page")
       PhoneNumberPage.PhoneNumberDetails()
       Then("The ratepayer adds their number and clicks continue")
-      PhoneNumberPage.InputNumber()
+      PhoneNumberPage.InputNumber("0794500506")
       Then("The ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
     }
@@ -72,7 +72,7 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       Then("The ratepayer is taken to the Email Page")
       EmailPage.EmailDetails()
       Then("The ratepayer adds their number and clicks continue")
-      EmailPage.InputEmail()
+      EmailPage.InputEmail("test@testUser.com")
       Then("The ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
     }

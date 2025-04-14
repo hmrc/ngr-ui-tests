@@ -26,8 +26,8 @@ object PhoneNumberPage extends BasePage {
   def PhoneNumberDetails(): Unit =
     headerCheck("Enter phone number")
 
-  def InputNumber(): Unit = {
-    sendKeys(numberInput, "0794500506")
+  def InputNumber(phoneNumber: String): Unit = {
+    sendKeys(numberInput, phoneNumber)
     click(continueButton)
   }
 

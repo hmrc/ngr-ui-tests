@@ -26,8 +26,8 @@ object EmailPage extends BasePage {
   def EmailDetails(): Unit =
     headerCheck("Enter email address")
 
-  def InputEmail(): Unit = {
-    sendKeys(emailInput, "test@testUser.com")
+  def InputEmail(newEmail: String): Unit = {
+    sendKeys(emailInput, newEmail)
     click(continueButton)
   }
 
