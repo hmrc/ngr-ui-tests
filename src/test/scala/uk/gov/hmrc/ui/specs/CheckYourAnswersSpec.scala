@@ -132,7 +132,7 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
       emailChangedCheck("newEmail@email.com")
     }
 
-    Scenario("Change the contact address from Check Your Answers Page and Testing manual search") {
+    Scenario("Manual contact address search test initiated from the Check Your Answers page") {
       Given("Ratepayer logins through one login")
       loginOl()
 
