@@ -174,7 +174,7 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
 
       Then("the user input postcode and submit then navigate to search result page")
       WhatIsAddressPage.inputPostCode("TF4 3ED")
-
+      SearchResultPage.searchResult()
     }
 
   }

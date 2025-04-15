@@ -47,6 +47,7 @@ class ProvideTRNSpec extends BaseSpec with StubPage {
       Then("The ratepayer is taken to the 'Check your answers' where NINO is masked")
       CheckYourAnswer.checkYourAnswer()
       CheckYourAnswer.confirmMAskedTRN("******03D")
+
     }
 
     Scenario("Navigate to ProvideTRN page through journey, and provide the SAUTR") {
