@@ -17,7 +17,7 @@
 package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages.CheckYourAnswer.{emailChangedCheck, phoneChangedCheck}
-import uk.gov.hmrc.ui.pages.contactDetails.changeAddressPages.{DoyouWantToUseAddressPage, FindContactAddressPage, SearchResultPage}
+import uk.gov.hmrc.ui.pages.contactDetails.changeAddressPages.{DoyouWantToUseAddressPage, SearchResultPage, WhatIsAddressPage}
 import uk.gov.hmrc.ui.pages.{CheckYourAnswer, StubPage}
 import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, ContactNamePage, EmailPage, PhoneNumberPage}
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
@@ -132,9 +132,7 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
       emailChangedCheck("newEmail@email.com")
     }
 
-    /* Changing contact address */
-
-    Scenario("Change the contact address from Check Your Answers Page") {
+    Scenario("Manual contact address search test initiated from the Check Your Answers page") {
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -156,21 +154,24 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
       Then("Clicks the change address link")
       CheckYourAnswer.ClickChangeAddressLink()
 
-      Then("The ratepayer enters postcode and clicks continue on Find the contact address page")
-      FindContactAddressPage.findAddress()
-      FindContactAddressPage.inputPostCode("TF4 3ED")
+      And("The user click on the link manual address link on 'find contact address' page")
+      clickLink("Enter the address manually")
+
+      Then("The user navigate on 'What is the address?' page then clicks on the 'Find address' button")
+      WhatIsAddressPage.whatIsTheAddress()
+      WhatIsAddressPage.inputAddressLine1("Unit 13 Trident Industrial Estate Blackthorne")
+      click(continueButton)
 
       And("The ratepayer selects property on search result page")
-      SearchResultPage.searchResult()
       SearchResultPage.selectProperty()
-
-      /* Changing selecting Yes on the radio button */
 
       And("The ratepayer selects Yes on use this address page")
       DoyouWantToUseAddressPage.SelectYesAddress()
-      Then("I verify the contact details on Check Your Answers page")
+      Then("I verify the contact details on Confirm Contact Details page")
       CheckYourAnswer.checkYourAnswer()
-      CheckYourAnswer.verifyAddress("34 Manor Road\nDawley\nTelford\nTF4 3ED")
+      CheckYourAnswer.verifyAddress(
+        "Unit 13 Trident Industrial Estate Blackthor\nColnbrook\nSlough\nSL3 0AX"
+      )
     }
   }
 

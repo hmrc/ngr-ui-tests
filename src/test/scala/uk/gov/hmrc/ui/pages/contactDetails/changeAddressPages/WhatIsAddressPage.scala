@@ -28,10 +28,23 @@ object WhatIsAddressPage extends BasePage {
     findElementById("AddressLine2").clear()
     findElementById("City").clear()
     findElementById("County").clear()
+    findElementById("PostalCode").clear()
+
+  }
+
+  def postCodeError(text: String): Unit = {
+    val error = findElementById("PostalCode-error").getText
+    assert(error == text, "Post code error doesn't match")
   }
 
   def inputAddressLine1(address: String): Unit = {
     findElementById("AddressLine1").clear()
     sendKeys(getElementById("AddressLine1"), address)
+  }
+
+  def inputPostCode(postcode: String): Unit = {
+    findElementById("PostalCode").clear()
+    sendKeys(getElementById("PostalCode"), postcode)
+    click(continueButton)
   }
 }

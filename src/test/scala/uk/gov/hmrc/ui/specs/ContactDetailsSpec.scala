@@ -154,7 +154,7 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       )
     }
 
-    Scenario("Testing manual search") {
+    Scenario("Testing postcode is mandatory on manual search") {
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -164,45 +164,18 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       And("The user click on the link manual address link on 'find contact address' page")
       clickLink("Enter the address manually")
 
-      Then("The user navigate on 'What is the address?' page then clicks on the 'Find address' button")
-      WhatIsAddressPage.whatIsTheAddress()
-      WhatIsAddressPage.inputAddressLine1("Unit 13 Trident Industrial Estate Blackthorne")
-      click(continueButton)
-
-      And("The ratepayer selects property on search result page")
-      SearchResultPage.selectProperty()
-
-      And("The ratepayer selects Yes on use this address page")
-      DoyouWantToUseAddressPage.SelectYesAddress()
-      Then("I verify the contact details on Confirm Contact Details page")
-      ConfirmContactDetailsPage.ConfirmContactDetails()
-      ConfirmContactDetailsPage.verifyAddress(
-        "Unit 13 Trident Industrial Estate Blackthor\nColnbrook\nSlough\nSL3 0AX"
-      )
-    }
-
-    /*This scenario is commented out, as we have a ticket in the backlog
-where the postcode is the only mandatory field and the rest of the fields will be optional.*/
-
-    /*   Scenario("Testing postcode is mandatory on manual search") {
-      Given("Ratepayer logins through one login")
-      loginOl()
-
-      Then("Clicks the change address link on the Confirm Contact Details page")
-      ConfirmContactDetailsPage.ClickChangeAddressLink()
-
-      And("The user click on the link manual address link on 'find contact address' page")
-      clickLink("Enter the address manually")
-
-      Then("User clear all the fields expect postcode on 'What is the address?' page and submit")
+      Then("User clear all the fields on 'What is the address?' page and submit")
       WhatIsAddressPage.whatIsTheAddress()
       WhatIsAddressPage.clearAllTheField()
       click(continueButton)
 
-      Then("User should stay on 'What is the address?' page")
-      WhatIsAddressPage.whatIsTheAddress()
+      Then("Application gives post code error")
+      WhatIsAddressPage.postCodeError("Error:\nEnter postcode")
 
-    }*/
+      Then("the user input postcode and submit then navigate to search result page")
+      WhatIsAddressPage.inputPostCode("TF4 3ED")
+      SearchResultPage.searchResult()
+    }
 
   }
 }
