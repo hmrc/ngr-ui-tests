@@ -121,7 +121,7 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       SearchResultPage.selectProperty()
       And("The ratepayer selects Yes on use this address page")
       DoyouWantToUseAddressPage.confirmAddress(
-        "Unit 13 Trident Industrial Estate Blackthor, Colnbrook, Slough SL3 0AX"
+        "Unit 13, Trident Industrial Estate Blackthor, Colnbrook, Slough, SL3 0AX"
       )
       DoyouWantToUseAddressPage.SelectYesAddress()
 
@@ -145,7 +145,7 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
 
       /** Selecting No radio button on use this address page * */
       And("The ratepayer selects No on use this address page")
-      DoyouWantToUseAddressPage.confirmAddress("40 Manor Road, Dawley, Telford TF4 3ED")
+      DoyouWantToUseAddressPage.confirmAddress("40 Manor Road, Dawley, Telford, TF4 3ED")
       DoyouWantToUseAddressPage.SelectNoAddress()
       Then("The ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
