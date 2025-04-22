@@ -49,28 +49,22 @@ object CheckYourAnswer extends BasePage {
   }
 
   def nameChangedCheck(name: String): Unit = {
-    val display = getElementByCssSelector(
-      "#main-content > div > div > form > dl:nth-child(6) > div:nth-child(1) > dd.govuk-summary-list__value"
-    )
+    val display = getElementByCssSelector("#contact-name-id")
     assert(name == display, "the contact name was not changed")
   }
 
   def phoneChangedCheck(phoneNumber: String): Unit = {
-    val display = getElementByCssSelector(
-      "#main-content > div > div > form > dl:nth-child(6) > div:nth-child(3) > dd.govuk-summary-list__value"
-    )
+    val display = getElementByCssSelector("#phone-number-id")
     assert(phoneNumber == display, "the contact phone number was not changed")
   }
 
   def emailChangedCheck(email: String): Unit = {
-    val display = getElementByCssSelector(
-      "#main-content > div > div > form > dl:nth-child(6) > div:nth-child(2) > dd.govuk-summary-list__value"
-    )
+    val display = getElementByCssSelector("#email-address-id")
     assert(email == display, "the email was not changed")
   }
 
   def verifyAddress(expectedAddress: String): Unit = {
-    val actualAddress = getElementByXpath("//*[@id=\"main-content\"]/div/div/form/dl/div[4]/dd[1]")
+    val actualAddress = getElementByCssSelector("#address-id")
     assert(actualAddress == expectedAddress, "Address doesn't match")
   }
 }
