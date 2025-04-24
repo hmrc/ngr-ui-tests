@@ -43,6 +43,26 @@ Format all project files as follows:
 sbt scalafmtAll
 ```
 
+## Setting up test data
+### Pre-requisites
+
+Run the following command to get the stub running:
+
+`sm2 --start NGR_STUB`
+### Populating the stub
+To populate the stubs with data, run the following:
+`./populate_stub.sh`
+It accepts the following parameter:
+
+`$1` the Environment to run against. Valid Options: `local` & `staging` Default: `local`
+#### Test Data Available
+CredId     | Code | Description      
+:-------   |:-----|:-----------------
+1237891256 | 200  | RatePayerWithAllData
+12378912   | 200  | EmailNotSupplied
+12378912678| 200  | No Phone Number 
+1237891267812  | 200  | RatePayer with no data
+
 ## License
 
 This code is open source software licensed under the [Apache 2.0 License]("http://www.apache.org/licenses/LICENSE-2.0.html").
