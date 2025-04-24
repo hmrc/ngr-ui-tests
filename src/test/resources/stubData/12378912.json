@@ -1,6 +1,5 @@
 {
   "_id": "/ngr-stub/get-ratepayer/credId/12378912",
-  "schemaId": "getRatePayer",
   "method": "GET",
   "status": 200,
   "response": {
