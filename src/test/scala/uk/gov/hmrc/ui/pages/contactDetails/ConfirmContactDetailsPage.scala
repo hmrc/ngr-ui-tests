@@ -29,22 +29,22 @@ object ConfirmContactDetailsPage extends BasePage {
   def ConfirmContactDetails(): Unit =
     headerCheck("Confirm your contact details")
 
-  def nameDisplay(expectedName: String): Unit = {
+  def verifyUpdatedName(expectedName: String): Unit = {
     val actualName = getElementByCssSelector("#contact-name-id")
     assert(actualName == expectedName, "Name doesn't match")
   }
 
-  def emailDisplay(expectedEmail: String): Unit = {
+  def verifyUpdatedEmail(expectedEmail: String): Unit = {
     val actualEmail = getElementByCssSelector("#email-address-id")
     assert(actualEmail == expectedEmail, "Email doesn't match")
   }
 
-  def contactNoDisplay(expectedNumber: String): Unit = {
+  def verifyUpdatedContactNo(expectedNumber: String): Unit = {
     val actualNumber = getElementByCssSelector("#phone-number-id")
     assert(expectedNumber == actualNumber, "Contact number doesn't match")
   }
 
-  def verifyAddress(expectedAddress: String): Unit = {
+  def verifyUpdatedAddress(expectedAddress: String): Unit = {
     val actualAddress = getElementByCssSelector("#address-id")
     assert(actualAddress == expectedAddress, "Address doesn't match on confirm contact details")
   }
