@@ -30,22 +30,22 @@ object ConfirmContactDetailsPage extends BasePage {
     headerCheck("Confirm your contact details")
 
   def nameDisplay(expectedName: String): Unit = {
-    val actualName = getElementByCssSelector("#content > dl > div:nth-child(1) > dd.govuk-summary-list__value")
+    val actualName = getElementByCssSelector("#contact-name-id")
     assert(actualName == expectedName, "Name doesn't match")
   }
 
   def emailDisplay(expectedEmail: String): Unit = {
-    val actualEmail = getElementByCssSelector("#content > dl > div:nth-child(2) > dd.govuk-summary-list__value")
+    val actualEmail = getElementByCssSelector("#email-address-id")
     assert(actualEmail == expectedEmail, "Email doesn't match")
   }
 
   def contactNoDisplay(expectedNumber: String): Unit = {
-    val actualNumber = getElementByCssSelector("#content > dl > div:nth-child(3) > dd.govuk-summary-list__value")
+    val actualNumber = getElementByCssSelector("#phone-number-id")
     assert(expectedNumber == actualNumber, "Contact number doesn't match")
   }
 
   def verifyAddress(expectedAddress: String): Unit = {
-    val actualAddress = getElementByXpath("//*[@id=\"main-content\"]/div/div/form/dl/div[4]/dd[1]")
+    val actualAddress = getElementByCssSelector("#address-id")
     assert(actualAddress == expectedAddress, "Address doesn't match on confirm contact details")
   }
 
