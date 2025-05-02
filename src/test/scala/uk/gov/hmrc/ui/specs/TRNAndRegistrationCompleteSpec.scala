@@ -16,13 +16,14 @@
 
 package uk.gov.hmrc.ui.specs
 
-import uk.gov.hmrc.ui.pages.{CheckYourAnswer, NinoPage, StubPage}
+import uk.gov.hmrc.ui.pages.RegisterComplete.printLinkDisplay
+import uk.gov.hmrc.ui.pages.{CheckYourAnswer, NinoPage, RegisterComplete, StubPage}
 import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
 
-class ProvideTRNSpec extends BaseSpec with StubPage {
-  Feature("Test to Provide TRN") {
+class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
+  Feature("The user goes through the entire flow to the Registration Complete Page providing a NINO") {
     Scenario("Ratepayer choose to provide NINO") {
       Given("Ratepayer logins through one login")
       loginOl()
@@ -47,10 +48,15 @@ class ProvideTRNSpec extends BaseSpec with StubPage {
       Then("The ratepayer is taken to the 'Check your answers' where NINO is masked")
       CheckYourAnswer.checkYourAnswer()
       CheckYourAnswer.confirmMAskedTRN("******03D")
+      click(continueButton)
+
+      Then("Ratepayer is taken to the Registration complete page")
+      RegisterComplete.RegisterComplete()
+      printLinkDisplay("Print or save this page")
 
     }
 
-    Scenario("Navigate to ProvideTRN page through journey, and provide the SAUTR") {
+    Scenario("The user completes the entire flow to the Registration Complete page by providing a SAUTR") {
 
       /** Selecting 'Yes, I want to provide this UTR' UTR* */
       Given("Ratepayer logins through one login")
@@ -69,6 +75,10 @@ class ProvideTRNSpec extends BaseSpec with StubPage {
       Then("The ratepayer is taken to the 'Check your answers' where SAUTR is masked")
       CheckYourAnswer.checkYourAnswer()
       CheckYourAnswer.confirmMAskedTRN("*******333")
+      click(continueButton)
+
+      Then("Ratepayer is taken to the Registration complete page")
+      RegisterComplete.RegisterComplete()
     }
 
     Scenario("Navigate to ProvideTRN page through journey, and do not provide the SAUTR") {
@@ -96,6 +106,16 @@ class ProvideTRNSpec extends BaseSpec with StubPage {
       Then("Ratepayer is taken back to the Confirm SAUTR Page, where the SAUTR is masked")
       ConfirmUTRPage.confirmYourSAUTR()
       ConfirmUTRPage.confirmUTR("*******333")
+
+      Then("User selects 'Yes, I want to provide this UTR' and submit")
+      ConfirmUTRPage.selectYes()
+
+      Then("The ratepayer is taken to the 'Check your answers' page")
+      CheckYourAnswer.checkYourAnswer()
+      click(continueButton)
+
+      Then("Ratepayer is taken to the Registration complete page")
+      RegisterComplete.RegisterComplete()
     }
   }
 }
