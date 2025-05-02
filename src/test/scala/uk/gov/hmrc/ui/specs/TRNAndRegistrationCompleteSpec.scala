@@ -23,7 +23,7 @@ import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
 
 class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
-  Feature("The user goes through the entire flow to the Registration Complete Page providing a NINO") {
+  Feature("The user completes the registration process providing a NINO") {
     Scenario("Ratepayer choose to provide NINO") {
       Given("Ratepayer logins through one login")
       loginOl()
@@ -56,7 +56,7 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
 
     }
 
-    Scenario("The user completes the entire flow to the Registration Complete page by providing a SAUTR") {
+    Scenario("The user completes registration by providing a SAUTR") {
 
       /** Selecting 'Yes, I want to provide this UTR' UTR* */
       Given("Ratepayer logins through one login")
@@ -81,7 +81,7 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
       RegisterComplete.RegisterComplete()
     }
 
-    Scenario("Navigate to ProvideTRN page through journey, and do not provide the SAUTR") {
+    Scenario("The user completes registration but do not provide the SAUTR") {
 
       /** Selecting 'No, I will provide a tax reference number later'* */
       Given("Ratepayer logins through one login")
