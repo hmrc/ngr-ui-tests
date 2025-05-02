@@ -101,21 +101,35 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
       Then("The ratepayer is taken to the 'Check your answers' where SAUTR is not present, and clicks the link")
       CheckYourAnswer.checkYourAnswer()
       CheckYourAnswer.sautrNoDisplay("Provide your UTR")
+      click(continueButton)
+
+      Then("Ratepayer is taken to the Registration complete page")
+      RegisterComplete.RegisterComplete()
+    }
+
+    Scenario("Tests to verify the functionality of the 'Provide your UTR' link.") {
+      Given("Ratepayer logins through one login")
+      loginOl()
+
+      Then("Ratepayer is taken to the Confirm Contact Details page")
+      ConfirmContactDetailsPage.ConfirmContactDetails()
+      click(continueButton)
+
+      Then("Ratepayer is taken to Provide TRN Page")
+      ProvideTRNPage.provideYourTRN()
+      click(continueButton)
+
+      Then("User selects 'No, I will provide UTR Later' and continue")
+      ConfirmUTRPage.selectNoLater()
+
+      Then("The ratepayer is taken to the 'Check your answers' where SAUTR is not present, and clicks the link")
+      CheckYourAnswer.checkYourAnswer()
+      CheckYourAnswer.sautrNoDisplay("Provide your UTR")
       clickLink("Provide your UTR")
 
       Then("Ratepayer is taken back to the Confirm SAUTR Page, where the SAUTR is masked")
       ConfirmUTRPage.confirmYourSAUTR()
       ConfirmUTRPage.confirmUTR("*******333")
-
-      Then("User selects 'Yes, I want to provide this UTR' and submit")
-      ConfirmUTRPage.selectYes()
-
-      Then("The ratepayer is taken to the 'Check your answers' page")
-      CheckYourAnswer.checkYourAnswer()
-      click(continueButton)
-
-      Then("Ratepayer is taken to the Registration complete page")
-      RegisterComplete.RegisterComplete()
     }
   }
 }
