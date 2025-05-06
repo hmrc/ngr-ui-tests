@@ -135,7 +135,7 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
 
     /* Scenario tests for email check */
 
-    Scenario("The user changes their email at the CYA page then goes to the Registration Complete Page") {
+    Scenario("The user goes through the flow to the Registration Complete Page and checks the email") {
       Given("Ratepayer logins through one login")
       loginOl()
 
