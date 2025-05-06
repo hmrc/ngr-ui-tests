@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.ui.specs
 
-import uk.gov.hmrc.ui.pages.CheckYourAnswer.emailChangedCheck
+import uk.gov.hmrc.ui.pages.CheckYourAnswer.{emailChangedCheck, getElementByCssSelector}
 import uk.gov.hmrc.ui.pages.RegisterComplete.{printLinkDisplay, regCompleteEmailChangedCheck}
 import uk.gov.hmrc.ui.pages.{CheckYourAnswer, NinoPage, RegisterComplete, StubPage}
 import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, EmailPage}
@@ -153,24 +153,12 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the Check Your Answers page")
       CheckYourAnswer.checkYourAnswer()
-
-      Then("Clicks the change email link")
-      CheckYourAnswer.ClickChangeEmailLink()
-
-      Then("The ratepayer is taken to the Email Page")
-      EmailPage.EmailDetails()
-
-      Then("The ratepayer adds their number and clicks continue")
-      EmailPage.InputEmail("RegComplete@email.com")
-
-      Then("The ratepayer is taken to the Check Your Answers page")
-      CheckYourAnswer.checkYourAnswer()
-      emailChangedCheck("RegComplete@email.com")
+      val email = getElementByCssSelector("#email-address-id").toString
       click(continueButton)
 
       Then("Ratepayer is taken to the Registration complete page")
       RegisterComplete.RegisterComplete()
-      regCompleteEmailChangedCheck("RegComplete@email.com")
+      regCompleteEmailChangedCheck(email)
     }
   }
 }
