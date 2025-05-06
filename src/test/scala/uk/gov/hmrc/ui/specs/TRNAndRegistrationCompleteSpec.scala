@@ -16,13 +16,14 @@
 
 package uk.gov.hmrc.ui.specs
 
-import uk.gov.hmrc.ui.pages.{CheckYourAnswer, NinoPage, StubPage}
+import uk.gov.hmrc.ui.pages.RegisterComplete.printLinkDisplay
+import uk.gov.hmrc.ui.pages.{CheckYourAnswer, NinoPage, RegisterComplete, StubPage}
 import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
 
-class ProvideTRNSpec extends BaseSpec with StubPage {
-  Feature("Test to Provide TRN") {
+class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
+  Feature("The user completes the registration process providing a NINO") {
     Scenario("Ratepayer choose to provide NINO") {
       Given("Ratepayer logins through one login")
       loginOl()
@@ -47,10 +48,15 @@ class ProvideTRNSpec extends BaseSpec with StubPage {
       Then("The ratepayer is taken to the 'Check your answers' where NINO is masked")
       CheckYourAnswer.checkYourAnswer()
       CheckYourAnswer.confirmMAskedTRN("******03D")
+      click(continueButton)
+
+      Then("Ratepayer is taken to the Registration complete page")
+      RegisterComplete.RegisterComplete()
+      printLinkDisplay("Print or save this page")
 
     }
 
-    Scenario("Navigate to ProvideTRN page through journey, and provide the SAUTR") {
+    Scenario("The user completes registration by providing a SAUTR") {
 
       /** Selecting 'Yes, I want to provide this UTR' UTR* */
       Given("Ratepayer logins through one login")
@@ -69,11 +75,39 @@ class ProvideTRNSpec extends BaseSpec with StubPage {
       Then("The ratepayer is taken to the 'Check your answers' where SAUTR is masked")
       CheckYourAnswer.checkYourAnswer()
       CheckYourAnswer.confirmMAskedTRN("*******333")
+      click(continueButton)
+
+      Then("Ratepayer is taken to the Registration complete page")
+      RegisterComplete.RegisterComplete()
     }
 
-    Scenario("Navigate to ProvideTRN page through journey, and do not provide the SAUTR") {
+    Scenario("The user completes registration but do not provide the SAUTR") {
 
       /** Selecting 'No, I will provide a tax reference number later'* */
+      Given("Ratepayer logins through one login")
+      loginOl()
+
+      Then("Ratepayer is taken to the Confirm Contact Details page")
+      ConfirmContactDetailsPage.ConfirmContactDetails()
+      click(continueButton)
+
+      Then("Ratepayer is taken to Provide TRN Page")
+      ProvideTRNPage.provideYourTRN()
+      click(continueButton)
+
+      Then("User selects 'No, I will provide UTR Later' and continue")
+      ConfirmUTRPage.selectNoLater()
+
+      Then("The ratepayer is taken to the 'Check your answers' where SAUTR is not present, and clicks the link")
+      CheckYourAnswer.checkYourAnswer()
+      CheckYourAnswer.sautrNoDisplay("Provide your UTR")
+      click(continueButton)
+
+      Then("Ratepayer is taken to the Registration complete page")
+      RegisterComplete.RegisterComplete()
+    }
+
+    Scenario("Tests to verify the functionality of the 'Provide your UTR' link.") {
       Given("Ratepayer logins through one login")
       loginOl()
 

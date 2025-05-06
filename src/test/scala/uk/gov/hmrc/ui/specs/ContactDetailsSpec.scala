@@ -39,8 +39,9 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       ContactNamePage.ContactNameDetails()
       Then("The ratepayer enters their name and clicks continue")
       ContactNamePage.InputName("Funny Jake")
-      Then("The ratepayer is taken to the Confirm Contact Details page")
+      Then("The Ratepayer returns to the Check Your Answers page with the updated name.")
       ConfirmContactDetailsPage.ConfirmContactDetails()
+      ConfirmContactDetailsPage.verifyUpdatedName("Funny Jake")
 
     }
 
@@ -56,8 +57,9 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       PhoneNumberPage.PhoneNumberDetails()
       Then("The ratepayer adds their number and clicks continue")
       PhoneNumberPage.InputNumber("0794500506")
-      Then("The ratepayer is taken to the Confirm Contact Details page")
+      Then("The Ratepayer returns to the Check Your Answers page with the updated phone number.")
       ConfirmContactDetailsPage.ConfirmContactDetails()
+      ConfirmContactDetailsPage.verifyUpdatedContactNo("0794500506")
     }
 
     Scenario("Change the contact email, OL route") {
@@ -73,8 +75,9 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       EmailPage.EmailDetails()
       Then("The ratepayer adds their number and clicks continue")
       EmailPage.InputEmail("test@testUser.com")
-      Then("The ratepayer is taken to the Confirm Contact Details page")
+      Then("The Ratepayer returns to the Check Your Answers page with the updated email.")
       ConfirmContactDetailsPage.ConfirmContactDetails()
+      ConfirmContactDetailsPage.verifyUpdatedEmail("test@testUser.com")
     }
 
     Scenario("Change the contact address, OL route") {
@@ -96,9 +99,9 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       /** Selecting Yes radio button* */
       And("The ratepayer selects Yes on use this address page")
       DoyouWantToUseAddressPage.SelectYesAddress()
-      Then("I verifify the contact details on Confirm Contact Details page")
+      Then("The Ratepayer returns to the Check Your Answers page with the updated contact address.")
       ConfirmContactDetailsPage.ConfirmContactDetails()
-      ConfirmContactDetailsPage.verifyAddress("34 Manor Road\nDawley\nTelford\nTF4 3ED")
+      ConfirmContactDetailsPage.verifyUpdatedAddress("34 Manor Road\nDawley\nTelford\nTF4 3ED")
     }
 
     Scenario("Testing 'search again' link for change address, OL route") {
@@ -127,7 +130,7 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
 
       Then("I verify the contact details on Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
-      ConfirmContactDetailsPage.verifyAddress(
+      ConfirmContactDetailsPage.verifyUpdatedAddress(
         "Unit 13 Trident Industrial Estate Blackthor\nColnbrook\nSlough\nSL3 0AX"
       )
     }
@@ -149,7 +152,7 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       DoyouWantToUseAddressPage.SelectNoAddress()
       Then("The ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
-      ConfirmContactDetailsPage.verifyAddress(
+      ConfirmContactDetailsPage.verifyUpdatedAddress(
         "Unit 13 Trident Industrial Estate Blackthor\nColnbrook\nSlough\nSL3 0AX"
       )
     }
