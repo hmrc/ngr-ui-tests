@@ -16,9 +16,10 @@
 
 package uk.gov.hmrc.ui.specs
 
-import uk.gov.hmrc.ui.pages.RegisterComplete.printLinkDisplay
+import uk.gov.hmrc.ui.pages.CheckYourAnswer.emailChangedCheck
+import uk.gov.hmrc.ui.pages.RegisterComplete.{printLinkDisplay, regCompleteEmailChangedCheck}
 import uk.gov.hmrc.ui.pages.{CheckYourAnswer, NinoPage, RegisterComplete, StubPage}
-import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage
+import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, EmailPage}
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
 
@@ -130,6 +131,46 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
       Then("Ratepayer is taken back to the Confirm SAUTR Page, where the SAUTR is masked")
       ConfirmUTRPage.confirmYourSAUTR()
       ConfirmUTRPage.confirmUTR("*******333")
+    }
+
+    /* Scenario tests for email check */
+
+    Scenario("The user changes their email at the CYA page then goes to the Registration Complete Page") {
+      Given("Ratepayer logins through one login")
+      loginOl()
+
+      Then("Ratepayer is taken to the Confirm Contact Details page")
+      ConfirmContactDetailsPage.ConfirmContactDetails()
+      click(continueButton)
+
+      Then("Ratepayer is taken to Provide TRN Page")
+      ProvideTRNPage.provideYourTRN()
+      click(continueButton)
+
+      Then("User selects 'Yes, I want to provide this UTR' and submit")
+      ConfirmUTRPage.confirmYourSAUTR()
+      ConfirmUTRPage.selectYes()
+
+      Then("Ratepayer is taken to the Check Your Answers page")
+      CheckYourAnswer.checkYourAnswer()
+
+      Then("Clicks the change email link")
+      CheckYourAnswer.ClickChangeEmailLink()
+
+      Then("The ratepayer is taken to the Email Page")
+      EmailPage.EmailDetails()
+
+      Then("The ratepayer adds their number and clicks continue")
+      EmailPage.InputEmail("RegComplete@email.com")
+
+      Then("The ratepayer is taken to the Check Your Answers page")
+      CheckYourAnswer.checkYourAnswer()
+      emailChangedCheck("RegComplete@email.com")
+      click(continueButton)
+
+      Then("Ratepayer is taken to the Registration complete page")
+      RegisterComplete.RegisterComplete()
+      regCompleteEmailChangedCheck("RegComplete@email.com")
     }
   }
 }
