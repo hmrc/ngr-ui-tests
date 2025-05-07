@@ -26,4 +26,12 @@ object RegisterComplete extends BasePage {
     assert(link == display, "Print link is not present")
   }
 
+  def regCompleteEmailChangedCheck(email: String): Unit = {
+    val resultElement: String = s"We’ve sent details about this registration to $email"
+    val display               = getElementByCssSelector(
+      "#main-content > div > div > form > p:nth-child(4)"
+    )
+    assert(resultElement == display, "the email was not changed")
+  }
+
 }
