@@ -13,6 +13,7 @@ object Dependencies {
     "org.scalaj"             %% "scalaj-http"        % "2.4.2",
     "ch.qos.logback"          % "logback-classic"    % "1.5.8",
     "com.typesafe"            % "config"             % "1.4.3"    % Test,
-    "org.scalatestplus"      %% "selenium-4-21"      % "3.2.19.0" % Test
+    "org.scalatestplus"      %% "selenium-4-21"      % "3.2.19.0" % Test,
+    "org.mongodb.scala"      %% "mongo-scala-driver" % "5.3.1"    % Test
   )
 }
