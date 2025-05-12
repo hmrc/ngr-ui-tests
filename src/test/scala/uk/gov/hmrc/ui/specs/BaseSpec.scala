@@ -35,6 +35,5 @@ trait BaseSpec
     Driver.instance.manage().deleteAllCookies()
   }
   override def afterEach(): Unit  =
-    Mongo.cleanup()
-  quitBrowser()
+    quitBrowser()
 }

@@ -23,9 +23,6 @@ import MongoHelper.GenericObservable
 
 object Mongo {
 
-  // To directly connect to the default server localhost on port 27017,
-  // if want to specify a port, instantiate the class with a port number as an argument
-  // e.g. MongoClient("mongodb://localhost")
   val mongoClient: MongoClient = MongoClient()
 
   def database(db: String = "next-generation-rates"): MongoDatabase = mongoClient.getDatabase(db)

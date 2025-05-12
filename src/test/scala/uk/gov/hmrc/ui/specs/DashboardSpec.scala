@@ -16,23 +16,31 @@
 
 package uk.gov.hmrc.ui.specs
 
+import org.scalatest.{BeforeAndAfterEach, GivenWhenThen}
+import org.scalatest.featurespec.AnyFeatureSpec
+import org.scalatest.matchers.should.Matchers
+import uk.gov.hmrc.selenium.webdriver.{Browser, Driver, ScreenshotOnFailure}
 import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
+import uk.gov.hmrc.ui.utils.mongo.Mongo
 
 class DashboardSpec extends BaseSpec with StubPage {
   Feature("The user is using the dashboard after the registration journey") {
 
-    Scenario("Ratepayer lands on the dashboard after completing the registration journey") {
-
+    Scenario(
+      "The user is not registered, so the user must go through the registration flow in order to hit the dashboard"
+    ) {
+      Mongo.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
       Then("Ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
       click(continueButton)
+
       Then("Ratepayer is taken to Provide TRN Page")
       ProvideTRNPage.provideYourTRN()
       click(continueButton)
@@ -51,6 +59,7 @@ class DashboardSpec extends BaseSpec with StubPage {
       Then("Ratepayer is now fully registered and is taken to the dashboard")
       DashboardHome.DashboardHome()
     }
+
     Scenario("Ratepayer is already registered and lands on the dashboard after login") {
 
       Given("Ratepayer logins through one login")
