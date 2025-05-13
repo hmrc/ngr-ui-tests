@@ -20,6 +20,7 @@ import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.{BeforeAndAfterEach, GivenWhenThen}
 import uk.gov.hmrc.selenium.webdriver.{Browser, Driver, ScreenshotOnFailure}
+import uk.gov.hmrc.ui.utils.mongo.Mongo
 
 trait BaseSpec
     extends AnyFeatureSpec
@@ -35,5 +36,4 @@ trait BaseSpec
   }
   override def afterEach(): Unit  =
     quitBrowser()
-
 }
