@@ -9,9 +9,10 @@ Start Mongo Docker container as follows:
 ```bash
 docker run --rm -d -p 27017:27017 --name mongo percona/percona-server-mongodb:5.0
 ```
+Update the service manager config as follows:
+```bash
 
 Start NGR services as follows:
-
 ```bash
 sm2 --start NGR_ALL
 ```

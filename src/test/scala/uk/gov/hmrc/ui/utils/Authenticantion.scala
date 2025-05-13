@@ -17,8 +17,8 @@
 package uk.gov.hmrc.ui.utils
 
 import uk.gov.hmrc.ui.pages.StartNowPage.startNow
-import uk.gov.hmrc.ui.pages.onelogin.OlAuthenticationPages.olAuthentication
-import uk.gov.hmrc.ui.pages.onelogin.OlSignInSelectorPage.{signInSelectorOL, stubOlAuthentication}
+import uk.gov.hmrc.ui.pages.SignIn.OLAuthenticationPages.olAuthentication
+import uk.gov.hmrc.ui.pages.SignIn.SignInSelectorPage.{signInSelectorOL, stubOlAuthentication}
 
 object login {
 

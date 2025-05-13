@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.onelogin
-import uk.gov.hmrc.ui.utils.TotpGenerator.getTotpCode
+package uk.gov.hmrc.ui.pages.SignIn
+
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.utils.TotpGenerator.getTotpCode
 
-object OlAuthenticationPages extends BasePage {
+object OLAuthenticationPages extends BasePage {
 
   private val continue                   = By.xpath("//button[@type='Submit']")
   private val continueTotheServiceButton = By.id("submitButton")

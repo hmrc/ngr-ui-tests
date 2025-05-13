@@ -14,16 +14,25 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.GG
+package uk.gov.hmrc.ui.pages.SignIn
 
-import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.{BasePage, StubPage}
 
-object GgSignInPage extends BasePage {
+object SignInSelectorPage extends BasePage with StubPage {
 
-  /** ********** GG login page **************
+  /** ********** SignInSelector page ******************
     */
-  def ggSignIn() = {
-    val expectedText = "Sign in using Government Gateway"
-    headerCheck(expectedText)
+  def signInSelector(): Unit = {
+     headerCheck("Sign in to HMRC")
+  }
+  def signInSelectorOL(): Unit = {
+    click(getElementById("signInType-2"))
+    waitForElementToBeClickable(continueButton)
+    click(continueButton)
+  }
+  def signInSelectorGG(): Unit = {
+    click(getElementById("signInType"))
+    waitForElementToBeClickable(continueButton)
+    click(continueButton)
   }
 }

@@ -14,15 +14,21 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.GG
+package uk.gov.hmrc.ui.pages.SignIn
 
+import org.openqa.selenium.Alert
+import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.ui.pages.BasePage
 
-object signInSelectorPage extends BasePage {
+object IntergrationPopUpPage extends BasePage {
 
-  def signInSelectorGG(): Unit = {
-    click(getElementById("signInType-2"))
-    waitForElementToBeClickable(continueButton)
-    click(continueButton)
+  val signInUrl: String                                       = "https://integration-user:winter2021@signin.integration.account.gov.uk/sign-in-or-create"
+  def signInToGDSIntegrationEnvironment(): Unit               =
+    get(signInUrl)
+  def integrationEnvLogin(username: String, password: String) = {
+    val alert: Alert = Driver.instance.switchTo().alert()
+    alert.sendKeys(username + "\t" + password)
+    alert.accept()
   }
+
 }

@@ -14,20 +14,15 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.SignIn
 
-import org.openqa.selenium.By
+import uk.gov.hmrc.ui.pages.BasePage
 
-object NinoPage extends BasePage {
+object GGSignInPage extends BasePage {
 
-  val ninoInput: By = By.id("nino-value")
-
-  def NinoDetails(): Unit =
-    headerCheck("Provide your National Insurance number")
-
-  def InputNino(NINO: String): Unit = {
-    sendKeys(ninoInput, NINO)
-    click(continueButton)
+  /** ********** SignIn login page **************
+    */
+  def ggSignIn() = {
+    headerCheck("Sign in using Government Gateway")
   }
-
 }

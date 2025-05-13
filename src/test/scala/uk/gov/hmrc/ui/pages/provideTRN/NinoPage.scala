@@ -14,17 +14,20 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.onelogin
+package uk.gov.hmrc.ui.pages.provideTRN
 
-import uk.gov.hmrc.ui.pages.{BasePage, StubPage}
+import org.openqa.selenium.By
+import uk.gov.hmrc.ui.pages.BasePage
 
-object OlSignInSelectorPage extends BasePage with StubPage {
+object NinoPage extends BasePage {
 
-  /** ********** SignInSelector page ******************
-    */
-  def signInSelectorOL(): Unit = {
-    click(getElementById("signInType"))
-    waitForElementToBeClickable(continueButton)
+  val ninoInput: By = By.id("nino-value")
+
+  def NinoDetails(): Unit =
+    headerCheck("Provide your National Insurance number")
+
+  def InputNino(NINO: String): Unit = {
+    sendKeys(ninoInput, NINO)
     click(continueButton)
   }
 
