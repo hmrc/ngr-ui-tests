@@ -22,7 +22,13 @@ object DashboardHome extends BasePage {
 
   /* The h1 on the dashboard page is hard-coded to be John Smith */
 
-  def DashboardHome(): Unit =
-    headerCheck("BOB JONES")
+
+  def DashboardHome(name: String): Unit =
+    headerCheck(name)
+
+  def feedbackLinkDisplay(link: String = "feedback"): Unit = {
+    val display = getElementByXpath("/html/body/header/div[2]/div/p/span/a")
+    assert(link == display, "Provide your UTR link is not present")
+  }
 
 }
