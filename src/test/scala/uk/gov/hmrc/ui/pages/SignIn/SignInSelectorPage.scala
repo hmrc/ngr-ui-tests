@@ -22,9 +22,8 @@ object SignInSelectorPage extends BasePage with StubPage {
 
   /** ********** SignInSelector page ******************
     */
-  def signInSelector(): Unit = {
-     headerCheck("Sign in to HMRC")
-  }
+  def signInSelector(): Unit   =
+    headerCheck("Sign in to HMRC")
   def signInSelectorOL(): Unit = {
     click(getElementById("signInType-2"))
     waitForElementToBeClickable(continueButton)

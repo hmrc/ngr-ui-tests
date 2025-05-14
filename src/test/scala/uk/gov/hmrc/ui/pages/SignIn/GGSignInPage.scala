@@ -22,7 +22,6 @@ object GGSignInPage extends BasePage {
 
   /** ********** SignIn login page **************
     */
-  def ggSignIn() = {
+  def ggSignIn() =
     headerCheck("Sign in using Government Gateway")
-  }
 }

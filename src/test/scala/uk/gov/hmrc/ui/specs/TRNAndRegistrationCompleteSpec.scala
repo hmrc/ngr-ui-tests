@@ -16,10 +16,9 @@
 
 package uk.gov.hmrc.ui.specs
 
-import uk.gov.hmrc.ui.pages.CheckYourAnswer.{emailChangedCheck, getElementByCssSelector}
 import uk.gov.hmrc.ui.pages.RegisterComplete.{printLinkDisplay, regCompleteEmailChangedCheck}
 import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
-import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, EmailPage}
+import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, NinoPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.Mongo

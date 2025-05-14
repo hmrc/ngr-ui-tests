@@ -16,10 +16,6 @@
 
 package uk.gov.hmrc.ui.specs
 
-import org.scalatest.{BeforeAndAfterEach, GivenWhenThen}
-import org.scalatest.featurespec.AnyFeatureSpec
-import org.scalatest.matchers.should.Matchers
-import uk.gov.hmrc.selenium.webdriver.{Browser, Driver, ScreenshotOnFailure}
 import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
@@ -28,11 +24,9 @@ import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.Mongo
 
 class DashboardSpec extends BaseSpec with StubPage {
-  Feature("The user is using the dashboard after the registration journey") {
+  Feature("Testing the dashboard functionality") {
 
-    Scenario(
-      "The user is not registered, so the user must go through the registration flow in order to hit the dashboard"
-    ) {
+    Scenario("The user isn't registered and must complete registration before accessing the dashboard") {
       Mongo.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()

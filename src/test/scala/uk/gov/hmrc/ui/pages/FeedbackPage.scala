@@ -14,15 +14,11 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.dashboard
+package uk.gov.hmrc.ui.pages
 
-import uk.gov.hmrc.ui.pages.BasePage
+object FeedbackPage extends BasePage {
 
-object DashboardHome extends BasePage {
-
-  /* The h1 on the dashboard page is hard-coded to be John Smith */
-
-  def DashboardHome(): Unit =
-    headerCheck("BOB JONES")
+  def giveFeedbackPage(): Unit =
+    headerCheck("Give feedback")
 
 }
