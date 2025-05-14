@@ -20,7 +20,7 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 object GGSignInPage extends BasePage {
 
-  /** ********** SignIn login page **************
+  /** ********** GG login page **************
     */
   def ggSignIn() =
     headerCheck("Sign in using Government Gateway")

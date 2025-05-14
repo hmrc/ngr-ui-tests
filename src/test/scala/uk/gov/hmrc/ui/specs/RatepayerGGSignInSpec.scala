@@ -38,7 +38,7 @@ class RatepayerGGSignInSpec extends BaseSpec with StubPage {
       And("Government Gateway option selected on selector page")
       GgSelector.signInSelectorGG()
 
-      Then("Ratepayer authenticate using SignIn")
+      Then("Ratepayer authenticate using GG")
       if (env == "local" || env == "staging") {
         stubGgAuthentication()
       } else {
