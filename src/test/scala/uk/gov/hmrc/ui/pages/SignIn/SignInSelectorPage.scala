@@ -14,22 +14,24 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.utils
+package uk.gov.hmrc.ui.pages.SignIn
 
-import uk.gov.hmrc.ui.pages.StartNowPage.startNow
-import uk.gov.hmrc.ui.pages.SignIn.OLAuthenticationPages.olAuthentication
-import uk.gov.hmrc.ui.pages.SignIn.SignInSelectorPage.{signInSelectorOL, stubOlAuthentication}
+import uk.gov.hmrc.ui.pages.{BasePage, StubPage}
 
-object login {
+object SignInSelectorPage extends BasePage with StubPage {
 
-  private val env     = System.getProperty("environment")
-  def loginOl(): Unit = {
-    startNow()
-    signInSelectorOL()
-    if (env == "local" || env == "staging") {
-      stubOlAuthentication()
-    } else {
-      olAuthentication("krutika.patil+11@digital.hmrc.gov.uk", "p2ssword1234")
-    }
+  /** ********** SignInSelector page ******************
+    */
+  def signInSelector(): Unit   =
+    headerCheck("Sign in to HMRC")
+  def signInSelectorOL(): Unit = {
+    click(getElementById("signInType-2"))
+    waitForElementToBeClickable(continueButton)
+    click(continueButton)
+  }
+  def signInSelectorGG(): Unit = {
+    click(getElementById("signInType"))
+    waitForElementToBeClickable(continueButton)
+    click(continueButton)
   }
 }

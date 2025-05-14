@@ -14,15 +14,11 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.GG
+package uk.gov.hmrc.ui.pages
 
-import uk.gov.hmrc.ui.pages.BasePage
+object FeedbackPage extends BasePage {
 
-object signInSelectorPage extends BasePage {
+  def giveFeedbackPage(): Unit =
+    headerCheck("Give feedback")
 
-  def signInSelectorGG(): Unit = {
-    click(getElementById("signInType-2"))
-    waitForElementToBeClickable(continueButton)
-    click(continueButton)
-  }
 }

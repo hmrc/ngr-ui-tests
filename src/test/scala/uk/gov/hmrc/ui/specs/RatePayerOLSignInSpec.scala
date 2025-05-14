@@ -16,15 +16,15 @@
 
 package uk.gov.hmrc.ui.specs
 
+import uk.gov.hmrc.ui.pages.SignIn.{OLAuthenticationPages, SignInSelectorPage}
 import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage.ConfirmContactDetails
-import uk.gov.hmrc.ui.pages.onelogin.{OlAuthenticationPages, OlSignInSelectorPage}
 import uk.gov.hmrc.ui.pages.{StartNowPage, StubPage}
 import uk.gov.hmrc.ui.utils.mongo.Mongo
 class RatePayerOLSignInSpec extends BaseSpec with StubPage {
 
   private val StartNow         = StartNowPage
-  private val OlSignInSelector = OlSignInSelectorPage
-  private val OlAuthentication = OlAuthenticationPages
+  private val OlSignInSelector = SignInSelectorPage
+  private val OlAuthentication = OLAuthenticationPages
   private val env              = System.getProperty("environment")
 
   Feature("Authenticate a ratepayer using OneLogin") {

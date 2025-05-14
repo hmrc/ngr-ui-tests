@@ -17,13 +17,12 @@
 package uk.gov.hmrc.ui.pages.dashboard
 
 import uk.gov.hmrc.ui.pages.BasePage
-import org.openqa.selenium.By
 
 object DashboardHome extends BasePage {
 
   /* The h1 on the dashboard page is hard-coded to be John Smith */
 
   def DashboardHome(): Unit =
-    headerCheck("John Smith")
+    headerCheck("BOB JONES")
 
 }

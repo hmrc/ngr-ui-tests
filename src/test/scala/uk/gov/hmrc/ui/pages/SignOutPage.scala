@@ -16,18 +16,9 @@
 
 package uk.gov.hmrc.ui.pages
 
-import org.openqa.selenium.By
+object SignOutPage extends BasePage {
 
-object NinoPage extends BasePage {
-
-  val ninoInput: By = By.id("nino-value")
-
-  def NinoDetails(): Unit =
-    headerCheck("Provide your National Insurance number")
-
-  def InputNino(NINO: String): Unit = {
-    sendKeys(ninoInput, NINO)
-    click(continueButton)
-  }
+  def signOut(): Unit =
+    headerCheck("You have signed out")
 
 }

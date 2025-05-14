@@ -35,7 +35,7 @@ trait BasePage extends PageObject {
 
   def headerCheck(headerText: String): Unit = {
     val elementText = geElementByTagName("h1")
-    assert(elementText == headerText, "Page header check failed")
+    assert(elementText == headerText, s"Page header is not matching with $headerText")
   }
 
   def getElementById(id: String): By = By.id(id)

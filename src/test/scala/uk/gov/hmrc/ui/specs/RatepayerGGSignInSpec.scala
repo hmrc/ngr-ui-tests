@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.ui.specs
 
-import uk.gov.hmrc.ui.pages.GG.{GgSignInPage, signInSelectorPage}
+import uk.gov.hmrc.ui.pages.SignIn.{GGSignInPage, SignInSelectorPage}
 import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage.ConfirmContactDetails
 import uk.gov.hmrc.ui.pages.{StartNowPage, StubPage}
 import uk.gov.hmrc.ui.utils.mongo.Mongo
@@ -24,8 +24,8 @@ import uk.gov.hmrc.ui.utils.mongo.Mongo
 class RatepayerGGSignInSpec extends BaseSpec with StubPage {
 
   private val StartNow   = StartNowPage
-  private val GgSelector = signInSelectorPage
-  private val GgSignIn   = GgSignInPage
+  private val GgSelector = SignInSelectorPage
+  private val GgSignIn   = GGSignInPage
   private val env        = System.getProperty("environment")
 
   Feature("Authenticate a ratepayer using Government Gateway") {
