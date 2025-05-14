@@ -16,9 +16,10 @@
 
 package uk.gov.hmrc.ui.utils
 
-import uk.gov.hmrc.ui.pages.StartNowPage.startNow
 import uk.gov.hmrc.ui.pages.SignIn.OLAuthenticationPages.olAuthentication
-import uk.gov.hmrc.ui.pages.SignIn.SignInSelectorPage.{signInSelectorOL, stubOlAuthentication}
+import uk.gov.hmrc.ui.pages.SignIn.SignInSelectorPage.{signInSelectorOL, stubGgAuthentication, stubOlAuthentication}
+import uk.gov.hmrc.ui.pages.StartNowPage.startNow
+
 
 object login {
 
@@ -28,6 +29,16 @@ object login {
     signInSelectorOL()
     if (env == "local" || env == "staging") {
       stubOlAuthentication()
+    } else {
+      olAuthentication("krutika.patil+11@digital.hmrc.gov.uk", "p2ssword1234")
+    }
+  }
+
+  def loginGg(): Unit = {
+    startNow()
+    signInSelectorOL()
+    if (env == "local" || env == "staging") {
+      stubGgAuthentication()
     } else {
       olAuthentication("krutika.patil+11@digital.hmrc.gov.uk", "p2ssword1234")
     }
