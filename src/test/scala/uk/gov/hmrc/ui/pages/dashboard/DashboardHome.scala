@@ -28,7 +28,7 @@ object DashboardHome extends BasePage {
 
   def feedbackLinkDisplay(link: String = "feedback"): Unit = {
     val display = getElementByXpath("/html/body/header/div[2]/div/p/span/a")
-    assert(link == display, "Provide your UTR link is not present")
+    assert(link == display, "feedback link is not present")
   }
 
 }
