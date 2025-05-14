@@ -32,6 +32,5 @@ object Mongo {
   def indexOptions(name: String, unique: Boolean): IndexOptions = new IndexOptions().name(name).unique(unique)
 
   def cleanup(): Unit =
-//    if (System.getProperty("environment") == "local")
     collection("next-generation-rates", "ratepayerRegistration").deleteMany(expr("1 == 1")).results()
 }
