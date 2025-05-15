@@ -25,9 +25,10 @@ import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.Mongo
 
 class DashboardSpec extends BaseSpec with StubPage {
-  Feature("Testing the dashboard functionality") {
 
-    var contactName: String = _
+  var contactName: String = _
+
+  Feature("Testing the dashboard functionality") {
 
     Scenario("The user isn't registered and must complete registration before accessing the dashboard") {
       Mongo.cleanup()
