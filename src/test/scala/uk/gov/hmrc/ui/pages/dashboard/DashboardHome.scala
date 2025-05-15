@@ -22,7 +22,6 @@ object DashboardHome extends BasePage {
 
   /* The h1 on the dashboard page is hard-coded to be John Smith */
 
-
   def DashboardHome(name: String): Unit =
     headerCheck(name)
 
