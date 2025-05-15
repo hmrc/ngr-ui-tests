@@ -19,6 +19,6 @@ package uk.gov.hmrc.ui.pages
 object FeedbackPage extends BasePage {
 
   def giveFeedbackPage(): Unit =
-    headerCheck("Give feedback")
+    headerCheck("Send your feedback")
 
 }

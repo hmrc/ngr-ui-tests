@@ -20,7 +20,7 @@ import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome.feedbackLinkDisplay
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
-import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
+import uk.gov.hmrc.ui.pages.{CheckYourAnswer, FeedbackPage, RegisterComplete, StubPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.Mongo
 
@@ -77,6 +77,7 @@ class DashboardSpec extends BaseSpec with StubPage {
       Then("Ratepayer clicks the feedback link and is taken to the feedback page")
       feedbackLinkDisplay()
       clickLink("feedback")
+      FeedbackPage.giveFeedbackPage()
 
     }
   }
