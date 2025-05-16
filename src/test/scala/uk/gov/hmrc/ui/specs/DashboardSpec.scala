@@ -77,7 +77,7 @@ class DashboardSpec extends BaseSpec with StubPage {
       Then("Ratepayer clicks the feedback link and is taken to the feedback page")
       feedbackLinkDisplay()
       clickLink("feedback")
-      FeedbackPage.giveFeedbackPage()
+      FeedbackPage.sendFeedbackPage()
 
     }
   }
