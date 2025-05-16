@@ -18,19 +18,14 @@ package uk.gov.hmrc.ui.pages.dashboard
 
 import uk.gov.hmrc.ui.pages.BasePage
 
-object DashboardHome extends BasePage {
+object AddAProperty extends BasePage {
 
-  def DashboardHome(name: String): Unit =
-    headerCheck(name)
+  def addAProperty(): Unit =
+    headerCheck("Add a property to your account")
 
-  def feedbackLinkDisplay(link: String = "feedback"): Unit = {
-    val display = getElementByXpath("/html/body/header/div[2]/div/p/span/a")
-    assert(link == display, "feedback link is not present")
-  }
-
-  def addPropertyLinkDisplay(link: String = "Add a property"): Unit = {
-    val display = getElementByCssSelector("#main-content > div > div > div > div > div.card-action > div > p > a")
-    assert(link == display, "Add property link is not present")
+  def accountHomeLinkDisplay(link: String = "Account home"): Unit = {
+    val display = getElementByXpath("#secondary-nav > a")
+    assert(link == display, "Account Home is not present")
   }
 
 }
