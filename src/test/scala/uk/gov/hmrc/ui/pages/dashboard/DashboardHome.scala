@@ -28,9 +28,4 @@ object DashboardHome extends BasePage {
     assert(link == display, "feedback link is not present")
   }
 
-  def addPropertyLinkDisplay(link: String = "Add a property"): Unit = {
-    val display = getElementByCssSelector("#main-content > div > div > div > div > div.card-action > div > p > a")
-    assert(link == display, "Add property link is not present")
-  }
-
 }

@@ -17,8 +17,6 @@
 package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage
-import uk.gov.hmrc.ui.pages.dashboard.AddAProperty.accountHomeLinkDisplay
-import uk.gov.hmrc.ui.pages.dashboard.DashboardHome.addPropertyLinkDisplay
 import uk.gov.hmrc.ui.pages.dashboard.{AddAProperty, DashboardHome}
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
@@ -60,7 +58,6 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       DashboardHome.DashboardHome(contactName)
 
       Then("Ratepayer clicks the Add a Property link and is taken to the Add a Property page")
-      addPropertyLinkDisplay()
       clickLink("Add a property")
       AddAProperty.addAProperty()
     }
@@ -78,7 +75,6 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       AddAProperty.addAProperty()
 
       Then("Ratepayer clicks the account home link and is taken to the dashboard")
-      accountHomeLinkDisplay()
       clickLink("Account home")
       DashboardHome.DashboardHome(contactName)
 
