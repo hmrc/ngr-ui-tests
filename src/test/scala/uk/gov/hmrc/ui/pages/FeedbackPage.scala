@@ -21,4 +21,7 @@ object FeedbackPage extends BasePage {
   def giveFeedbackPage(): Unit =
     headerCheck("Give feedback")
 
+  def sendFeedbackPage(): Unit =
+    headerCheck("Send your feedback")
+
 }

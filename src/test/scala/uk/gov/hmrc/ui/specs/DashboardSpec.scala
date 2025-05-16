@@ -18,12 +18,16 @@ package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
+import uk.gov.hmrc.ui.pages.dashboard.DashboardHome.feedbackLinkDisplay
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
-import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
+import uk.gov.hmrc.ui.pages.{CheckYourAnswer, FeedbackPage, RegisterComplete, StubPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.Mongo
 
 class DashboardSpec extends BaseSpec with StubPage {
+
+  var contactName: String = _
+
   Feature("Testing the dashboard functionality") {
 
     Scenario("The user isn't registered and must complete registration before accessing the dashboard") {
@@ -44,6 +48,7 @@ class DashboardSpec extends BaseSpec with StubPage {
 
       Then("The ratepayer is taken to the 'Check your answers' page")
       CheckYourAnswer.checkYourAnswer()
+      contactName = getElementByCssSelector("#contact-name-id").toString
       click(continueButton)
 
       Then("Ratepayer is taken to the Registration complete page")
@@ -51,7 +56,7 @@ class DashboardSpec extends BaseSpec with StubPage {
       click(continueButton)
 
       Then("Ratepayer is now fully registered and is taken to the dashboard")
-      DashboardHome.DashboardHome()
+      DashboardHome.DashboardHome(contactName)
     }
 
     Scenario("Ratepayer is already registered and lands on the dashboard after login") {
@@ -59,7 +64,20 @@ class DashboardSpec extends BaseSpec with StubPage {
       Given("Ratepayer logins through one login")
       loginOl()
       Then("Ratepayer is taken to the dashboard")
-      DashboardHome.DashboardHome()
+      DashboardHome.DashboardHome(contactName)
+
+    }
+
+    Scenario("Ratepayer lands on the dashboard and clicks the feedback link") {
+
+      Given("Ratepayer logins through one login")
+      loginOl()
+      Then("Ratepayer is taken to the dashboard")
+      DashboardHome.DashboardHome(contactName)
+      Then("Ratepayer clicks the feedback link and is taken to the feedback page")
+      feedbackLinkDisplay()
+      clickLink("feedback")
+      FeedbackPage.sendFeedbackPage()
 
     }
   }
