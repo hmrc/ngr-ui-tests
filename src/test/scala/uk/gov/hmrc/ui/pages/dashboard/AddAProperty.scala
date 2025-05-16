@@ -24,7 +24,7 @@ object AddAProperty extends BasePage {
     headerCheck("Add a property to your account")
 
   def accountHomeLinkDisplay(link: String = "Account home"): Unit = {
-    val display = getElementByXpath("#secondary-nav > a")
+    val display = getElementByCssSelector("#secondary-nav > a")
     assert(link == display, "Account Home is not present")
   }
 
