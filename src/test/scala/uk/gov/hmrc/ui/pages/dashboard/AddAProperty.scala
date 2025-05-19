@@ -18,14 +18,9 @@ package uk.gov.hmrc.ui.pages.dashboard
 
 import uk.gov.hmrc.ui.pages.BasePage
 
-object DashboardHome extends BasePage {
+object AddAProperty extends BasePage {
 
-  def DashboardHome(name: String): Unit =
-    headerCheck(name)
-
-  def feedbackLinkDisplay(link: String = "feedback"): Unit = {
-    val display = getElementByXpath("/html/body/header/div[2]/div/p/span/a")
-    assert(link == display, "feedback link is not present")
-  }
+  def addAProperty(): Unit =
+    headerCheck("Add a property to your account")
 
 }
