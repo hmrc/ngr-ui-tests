@@ -42,7 +42,7 @@ class RatepayerGGSignInSpec extends BaseSpec with StubPage {
       if (env == "local" || env == "staging") {
         stubGgAuthentication()
       } else {
-        GgSignIn.ggSignIn()
+        GgSignIn.ggSignIn("15 83 51 32 56 07", "p2ssword1234", "123456")
       }
 
       Then("Ratepayer successfully authenticated navigated to contact details page ")

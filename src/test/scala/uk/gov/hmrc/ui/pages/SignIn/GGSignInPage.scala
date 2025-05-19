@@ -16,12 +16,33 @@
 
 package uk.gov.hmrc.ui.pages.SignIn
 
+import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
 object GGSignInPage extends BasePage {
 
   /** ********** GG login page **************
     */
-  def ggSignIn() =
-    headerCheck("Sign in using Government Gateway")
+  def ggSignIn(userId: String, password: String, accessCode: String): Unit = {
+    enterUserId(userId)
+    enterPassword(password)
+    signInClick()
+    enterAccessCode(accessCode)
+    signInClick()
+  }
+
+  def signInClick(): Unit = {
+    waitForElementToBeClickable(By.id("continue"))
+    click(By.id("continue"))
+  }
+
+  def enterUserId(userId: String): Unit =
+    sendKeys(By.id("user_id"), userId)
+
+  def enterPassword(password: String): Unit =
+    sendKeys(By.id("password"), password)
+
+  def enterAccessCode(accessCode: String): Unit =
+    sendKeys(By.id("oneTimePassword"), accessCode)
+
 }
