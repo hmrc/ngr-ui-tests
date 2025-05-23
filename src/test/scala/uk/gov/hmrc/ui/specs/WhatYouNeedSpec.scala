@@ -24,7 +24,27 @@ import uk.gov.hmrc.ui.utils.login.loginOl
 
 class WhatYouNeedSpec extends BaseSpec with StubPage {
 
-  Scenario("Ratepayer navigates to the What You Need page and clicks the account home link") {
+  Scenario("Ratepayer navigates to the What You Need page and clicks the contact link") {
+
+    Given("Ratepayer logins through one login")
+    loginOl()
+
+    Then("Ratepayer is taken to the dashboard")
+    DashboardHome.DashboardHome("Bob Jones")
+
+    Then("Ratepayer clicks the add a property link")
+    clickLink("Add a property")
+    AddAProperty.addAProperty()
+    click(continueButton)
+
+    Then("Ratepayer is taken to the What You Need page and clicks the link")
+    WhatYouNeed.whatYouNeed()
+    contactLinkDisplay()
+    clickLink("contact your local council (opens in a new tab)")
+
+  }
+
+  Scenario("Ratepayer navigates to the What You Need page and clicks the back link") {
 
     Given("Ratepayer logins through one login")
     loginOl()
@@ -40,11 +60,11 @@ class WhatYouNeedSpec extends BaseSpec with StubPage {
     Then("Ratepayer is taken to the What You Need page")
     WhatYouNeed.whatYouNeed()
     contactLinkDisplay()
+    clickLink("contact your local council (opens in a new tab)")
 
-    Then("Ratepayer clicks the account home link and is taken to the dashboard")
-    clickLink("Account home")
-    DashboardHome.DashboardHome("Bob Jones")
-
+    Then("Ratepayer clicks the back link and is taken to the Add a property page")
+    clickLink("Back")
+    AddAProperty.addAProperty()
   }
 
 }
