@@ -18,7 +18,8 @@ package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
-import uk.gov.hmrc.ui.pages.propertyLinking.AddAProperty
+import uk.gov.hmrc.ui.pages.propertyLinking.WhatYouNeed.contactLinkDisplay
+import uk.gov.hmrc.ui.pages.propertyLinking.{AddAProperty, WhatYouNeed}
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
@@ -30,7 +31,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
   Feature("Testing the functionality Add a Property page") {
 
-    Scenario("The user completes registration and navigates to the add a property page") {
+    Scenario("The user completes registration and navigates to the Add a property page") {
       Mongo.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
@@ -61,6 +62,15 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       Then("Ratepayer clicks the Add a Property link and is taken to the Add a Property page")
       clickLink("Add a property")
       AddAProperty.addAProperty()
+      click(continueButton)
+
+      Then("Ratepayer is taken to the What You Need page")
+      WhatYouNeed.whatYouNeed()
+      contactLinkDisplay()
+
+      Then("Ratepayer clicks the back link and is taken to the Add a property page")
+      clickLink("Back")
+      AddAProperty.addAProperty()
     }
 
     Scenario("Ratepayer navigates to the add a property page and clicks the account home link") {
@@ -79,6 +89,28 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       clickLink("Account home")
       DashboardHome.DashboardHome(contactName)
 
+    }
+
+    Scenario("The user completes registration and navigates to the What you need page") {
+      Mongo.cleanup()
+      Given("Ratepayer logins through one login")
+      loginOl()
+
+      Then("Ratepayer is now fully registered and is taken to the dashboard")
+      DashboardHome.DashboardHome(contactName)
+
+      Then("Ratepayer clicks the Add a Property link and is taken to the Add a Property page")
+      clickLink("Add a property")
+      AddAProperty.addAProperty()
+      click(continueButton)
+
+      Then("Ratepayer is taken to the What You Need page")
+      WhatYouNeed.whatYouNeed()
+      contactLinkDisplay()
+
+      Then("Ratepayer clicks the back link and is taken to the Add a property page")
+      clickLink("Back")
+      AddAProperty.addAProperty()
     }
 
   }
