@@ -17,7 +17,8 @@
 package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage
-import uk.gov.hmrc.ui.pages.dashboard.{AddAProperty, DashboardHome}
+import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
+import uk.gov.hmrc.ui.pages.propertyLinking.AddAProperty
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
