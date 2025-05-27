@@ -21,7 +21,7 @@ import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
 import uk.gov.hmrc.ui.pages.propertyLinking.WhatYouNeed.contactLinkDisplay
 import uk.gov.hmrc.ui.pages.propertyLinking.{AddAProperty, WhatYouNeed}
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
-import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
+import uk.gov.hmrc.ui.pages.{CheckYourAnswer, FindAProperty, RegisterComplete, StubPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.Mongo
 
@@ -89,6 +89,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
     Scenario("The user completes registration and navigates to the What you need page") {
       Mongo.cleanup()
+
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -105,6 +106,31 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       contactLinkDisplay()
     }
 
+    Scenario("The user completes registration and navigates to the find a property page") {
+      Mongo.cleanup()
+
+      Given("Ratepayer logins through one login")
+      loginOl()
+
+      Then("Ratepayer is now fully registered and is taken to the dashboard")
+      DashboardHome.DashboardHome(contactName)
+
+      Then("Ratepayer clicks the Add a Property link and is taken to the Add a Property page")
+      clickLink("Add a property")
+      AddAProperty.addAProperty()
+      click(continueButton)
+
+      Then("Ratepayer is taken to the What You Need page")
+      WhatYouNeed.whatYouNeed()
+      contactLinkDisplay()
+      click(continueButton)
+
+      Then("Ratepayer is taken to the search a property page and searches for a property that does not exist")
+      FindAProperty.findProperty()
+      FindAProperty.inputPostCode("LS1 9LB")
+      FindAProperty.noResultsFound()
+
+    }
   }
 
 }
