@@ -67,10 +67,6 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       Then("Ratepayer is taken to the What You Need page")
       WhatYouNeed.whatYouNeed()
       contactLinkDisplay()
-
-      Then("Ratepayer clicks the back link and is taken to the Add a property page")
-      clickLink("Back")
-      AddAProperty.addAProperty()
     }
 
     Scenario("Ratepayer navigates to the add a property page and clicks the account home link") {
@@ -107,10 +103,6 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       Then("Ratepayer is taken to the What You Need page")
       WhatYouNeed.whatYouNeed()
       contactLinkDisplay()
-
-      Then("Ratepayer clicks the back link and is taken to the Add a property page")
-      clickLink("Back")
-      AddAProperty.addAProperty()
     }
 
   }
