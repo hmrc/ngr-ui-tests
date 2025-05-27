@@ -25,7 +25,7 @@ object WhatYouNeed extends BasePage {
     headerCheck("What you need")
 
   def contactLinkDisplay(link: String = "contact your local council (opens in a new tab)"): Unit = {
-    val display = getElementByXpath("//*[@id=\"main-content\"]/div/div/form/div/div/p[2]/a")
+    val display = getElementByLink(link)
     assert(link == display, "contact council link is not present")
   }
 
