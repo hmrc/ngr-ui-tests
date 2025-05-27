@@ -16,17 +16,23 @@
 
 package uk.gov.hmrc.ui.pages.propertyLinking
 
+import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
-import uk.gov.hmrc.ui.pages.dashboard.DashboardHome.getElementByXpath
 
-object WhatYouNeed extends BasePage {
+object FindAProperty extends BasePage {
 
-  def whatYouNeed(): Unit =
-    headerCheck("What you need")
+  val postCode          = By.id("postcode-value")
+  val findAddressButton = By.id("continue")
 
-  def contactLinkDisplay(link: String = "contact your local council (opens in a new tab)"): Unit = {
-    val display = getElementByXpath("//*[@id=\"main-content\"]/div/div/form/div/div/p[2]/a")
-    assert(link == display, "contact council link is not present")
+  def findProperty(): Unit =
+    headerCheck("Find a property")
+
+  def noResultsFound(): Unit =
+    headerCheck("No results found")
+
+  def inputPostCode(code: String): Unit = {
+    sendKeys(postCode, code)
+    click(findAddressButton)
   }
 
 }

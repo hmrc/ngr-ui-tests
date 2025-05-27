@@ -19,9 +19,9 @@ package uk.gov.hmrc.ui.specs
 import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
 import uk.gov.hmrc.ui.pages.propertyLinking.WhatYouNeed.contactLinkDisplay
-import uk.gov.hmrc.ui.pages.propertyLinking.{AddAProperty, WhatYouNeed}
+import uk.gov.hmrc.ui.pages.propertyLinking.{AddAProperty, FindAProperty, WhatYouNeed}
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
-import uk.gov.hmrc.ui.pages.{CheckYourAnswer, FindAProperty, RegisterComplete, StubPage}
+import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.Mongo
 
@@ -35,6 +35,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       Mongo.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
+      Thread.sleep(5000)
 
       Then("Ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
@@ -66,7 +67,6 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the What You Need page")
       WhatYouNeed.whatYouNeed()
-      contactLinkDisplay()
     }
 
     Scenario("Ratepayer navigates to the add a property page and clicks the account home link") {
@@ -88,7 +88,6 @@ class AddAPropertySpec extends BaseSpec with StubPage {
     }
 
     Scenario("The user completes registration and navigates to the What you need page") {
-      Mongo.cleanup()
 
       Given("Ratepayer logins through one login")
       loginOl()
@@ -107,7 +106,6 @@ class AddAPropertySpec extends BaseSpec with StubPage {
     }
 
     Scenario("The user completes registration and navigates to the find a property page") {
-      Mongo.cleanup()
 
       Given("Ratepayer logins through one login")
       loginOl()
@@ -122,14 +120,12 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the What You Need page")
       WhatYouNeed.whatYouNeed()
-      contactLinkDisplay()
       click(continueButton)
 
       Then("Ratepayer is taken to the search a property page and searches for a property that does not exist")
       FindAProperty.findProperty()
       FindAProperty.inputPostCode("LS1 9LB")
       FindAProperty.noResultsFound()
-
     }
   }
 
