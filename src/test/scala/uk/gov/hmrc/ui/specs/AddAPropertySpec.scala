@@ -35,7 +35,6 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       Mongo.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
-      Thread.sleep(5000)
 
       Then("Ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
@@ -102,7 +101,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the What You Need page")
       WhatYouNeed.whatYouNeed()
-      contactLinkDisplay()
+      contactLinkDisplay("contact your local council (opens in a new tab)")
     }
 
     Scenario("The user completes registration and navigates to the find a property page") {

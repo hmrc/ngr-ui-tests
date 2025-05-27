@@ -24,8 +24,9 @@ object WhatYouNeed extends BasePage {
   def whatYouNeed(): Unit =
     headerCheck("What you need")
 
-  def contactLinkDisplay(link: String = "contact your local council (opens in a new tab)"): Unit = {
-    val display = getElementByLink(link)
+  def contactLinkDisplay(link: String): Unit = {
+    val display = getElementByLink(link).toString
+    print("*************", display)
     assert(link == display, "contact council link is not present")
   }
 
