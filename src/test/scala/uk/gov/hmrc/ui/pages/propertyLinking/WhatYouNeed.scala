@@ -26,7 +26,6 @@ object WhatYouNeed extends BasePage {
 
   def contactLinkDisplay(link: String): Unit = {
     val display = getElementByLink(link).toString
-    print("*************", display)
     assert(link == display, "contact council link is not present")
   }
 
