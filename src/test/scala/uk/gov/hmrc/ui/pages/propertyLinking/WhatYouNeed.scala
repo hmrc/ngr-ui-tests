@@ -14,13 +14,19 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.dashboard
+package uk.gov.hmrc.ui.pages.propertyLinking
 
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.dashboard.DashboardHome.getElementByXpath
 
-object AddAProperty extends BasePage {
+object WhatYouNeed extends BasePage {
 
-  def addAProperty(): Unit =
-    headerCheck("Add a property to your account")
+  def whatYouNeed(): Unit =
+    headerCheck("What you need")
+
+  def contactLinkDisplay(link: String = "contact your local council (opens in a new tab)"): Unit = {
+    val display = getElementByXpath("//*[@id=\"main-content\"]/div/div/form/p[2]/a")
+    assert(link == display, "contact council link is not present")
+  }
 
 }
