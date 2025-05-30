@@ -22,10 +22,13 @@ import uk.gov.hmrc.configuration.TestEnvironment
 object StartNowPage extends BasePage {
 
   val startPage_url: String = TestEnvironment.url("ngr-login-register-frontend") + "/register"
+  val betaPage_url: String  = TestEnvironment.url("centralised-authorisation-server") + "/join-private-beta"
   val startNowButton        = By.id("continue")
 
   def startNow() = {
 
+    getUrl(betaPage_url)
+    click(startNowButton)
     getUrl(startPage_url)
     click(startNowButton)
   }
