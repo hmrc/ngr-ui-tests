@@ -31,6 +31,9 @@ class RatePayerOLSignInSpec extends BaseSpec with StubPage {
     Mongo.cleanup()
     Scenario("Authenticate a ratepayer using OneLogin") {
 
+      Given("Ratepayer obtains the centralised-auth private beta cookies")
+      OLAuthenticationPages.betaPageStep()
+
       Given("Ratepayer on the Register for the business rates valuation service page")
       StartNow.startNow()
 

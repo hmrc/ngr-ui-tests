@@ -17,7 +17,7 @@
 package uk.gov.hmrc.ui.utils
 
 import uk.gov.hmrc.ui.pages.SignIn.GGSignInPage.ggSignIn
-import uk.gov.hmrc.ui.pages.SignIn.OLAuthenticationPages.olAuthentication
+import uk.gov.hmrc.ui.pages.SignIn.OLAuthenticationPages.{betaPageStep, olAuthentication}
 import uk.gov.hmrc.ui.pages.SignIn.SignInSelectorPage.{signInSelectorGG, signInSelectorOL, stubGgAuthentication, stubOlAuthentication}
 import uk.gov.hmrc.ui.pages.StartNowPage.startNow
 
@@ -25,6 +25,7 @@ object login {
 
   private val env     = System.getProperty("environment")
   def loginOl(): Unit = {
+    betaPageStep()
     startNow()
     signInSelectorOL()
     if (env == "local" || env == "staging") {

@@ -25,7 +25,6 @@ object StartNowPage extends BasePage {
   val startNowButton        = By.id("continue")
 
   def startNow() = {
-
     getUrl(startPage_url)
     click(startNowButton)
   }
