@@ -23,8 +23,8 @@ import uk.gov.hmrc.ui.utils.TotpGenerator.getTotpCode
 
 object OLAuthenticationPages extends BasePage {
 
-  val betaPage_url: String  = TestEnvironment.url("centralised-authorisation-server") + "/join-private-beta"
-  val accept                = By.id("continue")
+  private val betaPage_url: String  = TestEnvironment.url("centralised-authorisation-server") + "/join-private-beta"
+  private val accept                = By.id("continue")
   private val continue                   = By.xpath("//button[@type='Submit']")
   private val continueTotheServiceButton = By.id("submitButton")
 
