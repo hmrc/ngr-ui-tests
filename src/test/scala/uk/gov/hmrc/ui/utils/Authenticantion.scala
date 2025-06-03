@@ -36,7 +36,6 @@ object login {
   }
 
   def loginGg(): Unit = {
-    betaPageStep()
     startNow()
     signInSelectorGG()
     if (env == "local" || env == "staging") {
