@@ -23,7 +23,7 @@ import uk.gov.hmrc.ui.pages.propertyLinking.{AddAProperty, FindAProperty, WhatYo
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
-import uk.gov.hmrc.ui.utils.mongo.Mongo
+import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
 
 class AddAPropertySpec extends BaseSpec with StubPage {
 
@@ -32,9 +32,11 @@ class AddAPropertySpec extends BaseSpec with StubPage {
   Feature("Testing the functionality Add a Property page") {
 
     Scenario("The user completes registration and navigates to the Add a property page") {
-      Mongo.cleanup()
+      RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
+
+      Then("If application ask for ")
 
       Then("Ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()

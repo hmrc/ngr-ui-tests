@@ -21,11 +21,11 @@ import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
 import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, NinoPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
-import uk.gov.hmrc.ui.utils.mongo.Mongo
+import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
 
 class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
   Feature("The user completes the registration process providing a NINO") {
-    Mongo.cleanup()
+    RegistrationDB.cleanup()
     Scenario("Ratepayer choose to provide NINO") {
       Given("Ratepayer logins through one login")
       loginOl()
@@ -59,7 +59,7 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
     }
 
     Scenario("The user completes registration by providing a SAUTR") {
-      Mongo.cleanup()
+      RegistrationDB.cleanup()
 
       /** Selecting 'Yes, I want to provide this UTR' UTR* */
       Given("Ratepayer logins through one login")
@@ -85,7 +85,7 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
     }
 
     Scenario("The user completes registration but do not provide the SAUTR") {
-      Mongo.cleanup()
+      RegistrationDB.cleanup()
 
       /** Selecting 'No, I will provide a tax reference number later'* */
       Given("Ratepayer logins through one login")
@@ -112,7 +112,7 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
     }
 
     Scenario("Tests to verify the functionality of the 'Provide your UTR' link.") {
-      Mongo.cleanup()
+      RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -140,7 +140,7 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
     /* Scenario tests for email check */
 
     Scenario("The user goes through the flow to the Registration Complete Page and checks the email") {
-      Mongo.cleanup()
+      RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 

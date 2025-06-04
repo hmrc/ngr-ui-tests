@@ -22,7 +22,7 @@ import uk.gov.hmrc.ui.pages.{CheckYourAnswer, StubPage}
 import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, ContactNamePage, EmailPage, PhoneNumberPage}
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
-import uk.gov.hmrc.ui.utils.mongo.Mongo
+import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
 
 class CheckYourAnswersSpec extends BaseSpec with StubPage {
   Feature("Tests for the change details feature of the Check Your Answers page") {
@@ -30,7 +30,7 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
     /* Changing contact name */
 
     Scenario("Change the contact name from Check Your Answers Page") {
-      Mongo.cleanup()
+      RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -67,7 +67,7 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
     /* Changing contact phone number */
 
     Scenario("Change the contact phone number from Check Your Answers Page") {
-      Mongo.cleanup()
+      RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -103,7 +103,7 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
     /* Changing contact E-mail */
 
     Scenario("Change the contact email from Check Your Answers Page") {
-      Mongo.cleanup()
+      RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
