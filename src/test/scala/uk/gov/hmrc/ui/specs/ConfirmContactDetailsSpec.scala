@@ -22,7 +22,7 @@ import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, ContactNa
 import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
 
-class ContactDetailsSpec extends BaseSpec with StubPage {
+class ConfirmContactDetailsSpec extends BaseSpec with StubPage {
 
   Feature("Tests for the Changes Contact Details page, OL route") {
 
@@ -30,6 +30,9 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
       RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
+
+      Then("User provide phone number")
+      PhoneNumberPage.userProvidesPhoneNumber()
 
       Then("Ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
@@ -48,7 +51,6 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
     }
 
     Scenario("Change the contact phone number, OL route") {
-      RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -66,7 +68,6 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
     }
 
     Scenario("Change the contact email, OL route") {
-      RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 

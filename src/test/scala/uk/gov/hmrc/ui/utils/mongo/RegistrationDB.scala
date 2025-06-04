@@ -21,18 +21,21 @@ import org.mongodb.scala._
 import org.mongodb.scala.model.Filters._
 import MongoHelper.GenericObservable
 
+import java.lang.System.console
+
 object RegistrationDB {
 
-  val mongoClient: MongoClient = MongoClient()
+  private val env                         = System.getProperty("environment")
+  val mongoClient: MongoClient            = MongoClient()
+  def database(db: String): MongoDatabase = mongoClient.getDatabase(db)
 
-  def backendDatabase(db: String = "next-generation-rates"): MongoDatabase = mongoClient.getDatabase(db)
-  def frontendDatabase(db: String = "ngr-login-register-frontend"): MongoDatabase = mongoClient.getDatabase(db)
+  def collection(db: String, collection: String): MongoCollection[Document] = database(db).getCollection(collection)
 
-  def backendCollection(db: String, collection: String): MongoCollection[Document] = backendDatabase(db).getCollection(collection)
-  def frontendCollection(db: String, collection: String): MongoCollection[Document] = backendDatabase(db).getCollection(collection)
   def indexOptions(name: String, unique: Boolean): IndexOptions = new IndexOptions().name(name).unique(unique)
 
   def cleanup(): Unit =
-    backendCollection("next-generation-rates", "ratepayerRegistration").deleteMany(expr("1 == 1")).results()
-  frontendCollection("ngr-login-register-frontend", "ratepayerRegistration").deleteMany(expr("1 == 1")).results()
+    if (env == "local") {
+      collection("next-generation-rates", "ratepayerRegistration").deleteMany(expr("1 == 1")).results()
+      collection("next-generation-rates-frontend", "ratepayerRegistration").deleteMany(expr("1 == 1")).results()
+    }
 }

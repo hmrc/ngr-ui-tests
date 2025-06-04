@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.ui.specs
 
-import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage
+import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome.feedbackLinkDisplay
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
@@ -34,6 +34,9 @@ class DashboardSpec extends BaseSpec with StubPage {
       RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
+
+      Then("User provide phone number")
+      PhoneNumberPage.userProvidesPhoneNumber()
 
       Then("Ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()

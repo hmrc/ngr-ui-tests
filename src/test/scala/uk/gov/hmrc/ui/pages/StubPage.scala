@@ -53,7 +53,7 @@ trait StubPage extends BasePage {
   }
 
   def IvStub(): Unit = {
-    geElementByTagName("h1").contentEquals("GDS IV Sign")
+    headerCheck("GDS IV Sign")
     click(submit)
   }
 

@@ -28,13 +28,13 @@ trait BasePage extends PageObject {
   def getElementByLink(text: String): By        = By.linkText(text)
   def getElementByPartialLink(text: String): By = By.partialLinkText(text)
 
-  def geElementByTagName(tagName: String): String = {
+  def getElementByTagName(tagName: String): String = {
     val element = Driver.instance.findElement(By.tagName(tagName))
     element.getText
   }
 
   def headerCheck(headerText: String): Unit = {
-    val elementText = geElementByTagName("h1")
+    val elementText = getElementByTagName("h1")
     assert(elementText == headerText, s"Page header is not matching with $headerText")
   }
 

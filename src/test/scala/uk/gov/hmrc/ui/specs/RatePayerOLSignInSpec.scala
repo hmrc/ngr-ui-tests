@@ -18,6 +18,7 @@ package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages.SignIn.{OLAuthenticationPages, SignInSelectorPage}
 import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage.ConfirmContactDetails
+import uk.gov.hmrc.ui.pages.contactDetails.PhoneNumberPage
 import uk.gov.hmrc.ui.pages.{StartNowPage, StubPage}
 import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
 class RatePayerOLSignInSpec extends BaseSpec with StubPage {
@@ -46,6 +47,9 @@ class RatePayerOLSignInSpec extends BaseSpec with StubPage {
       } else {
         OlAuthentication.olAuthentication("krutika.patil+11@digital.hmrc.gov.uk", "p2ssword1234")
       }
+
+      Then("User provide phone number")
+      PhoneNumberPage.userProvidesPhoneNumber()
 
       Then("Ratepayer successfully authenticated navigated to contact details page ")
       ConfirmContactDetails()

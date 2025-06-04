@@ -18,7 +18,7 @@ package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages.RegisterComplete.{printLinkDisplay, regCompleteEmailChangedCheck}
 import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
-import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage
+import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, NinoPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
@@ -29,6 +29,9 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
     Scenario("Ratepayer choose to provide NINO") {
       Given("Ratepayer logins through one login")
       loginOl()
+
+      Then("User provide phone number")
+      PhoneNumberPage.userProvidesPhoneNumber()
 
       Then("Ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
@@ -65,6 +68,9 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
       Given("Ratepayer logins through one login")
       loginOl()
 
+      Then("User provide phone number")
+      PhoneNumberPage.userProvidesPhoneNumber()
+
       Then("Ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
       click(continueButton)
@@ -91,6 +97,9 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
       Given("Ratepayer logins through one login")
       loginOl()
 
+      Then("User provide phone number")
+      PhoneNumberPage.userProvidesPhoneNumber()
+
       Then("Ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
       click(continueButton)
@@ -115,6 +124,9 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
       RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
+
+      Then("User provide phone number")
+      PhoneNumberPage.userProvidesPhoneNumber()
 
       Then("Ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
@@ -143,6 +155,9 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
       RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
+
+      Then("User provide phone number")
+      PhoneNumberPage.userProvidesPhoneNumber()
 
       Then("Ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()

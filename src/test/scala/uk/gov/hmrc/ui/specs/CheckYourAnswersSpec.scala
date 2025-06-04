@@ -34,6 +34,9 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
       Given("Ratepayer logins through one login")
       loginOl()
 
+      Then("User provide phone number")
+      PhoneNumberPage.userProvidesPhoneNumber()
+
       Then("Ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
       click(continueButton)
@@ -67,7 +70,6 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
     /* Changing contact phone number */
 
     Scenario("Change the contact phone number from Check Your Answers Page") {
-      RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -103,7 +105,6 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
     /* Changing contact E-mail */
 
     Scenario("Change the contact email from Check Your Answers Page") {
-      RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
