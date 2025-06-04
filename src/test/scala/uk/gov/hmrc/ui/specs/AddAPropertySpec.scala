@@ -19,6 +19,7 @@ package uk.gov.hmrc.ui.specs
 import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
 import uk.gov.hmrc.ui.pages.propertyLinking.{AddAProperty, FindAProperty, WhatYouNeed}
+import uk.gov.hmrc.ui.pages.propertyLinking.PropertySearchResultPage
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
@@ -107,7 +108,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 //      contactLinkDisplay("contact your local council (opens in a new tab)")
     }
 
-    Scenario("The user completes registration and navigates to the find a property page") {
+    Scenario("The user completes registration and navigates to the find a property page and searches for a property that does not exist") {
 
       Given("Ratepayer logins through one login")
       loginOl()
@@ -128,6 +129,35 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       FindAProperty.findProperty()
       FindAProperty.inputPostCode("LS1 9LB")
       FindAProperty.noResultsFound()
+    }
+
+    Scenario("The user completes registration and navigates to the find a property page and searches for a property") {
+
+      Given("Ratepayer logins through one login")
+      loginOl()
+
+      Then("Ratepayer is now fully registered and is taken to the dashboard")
+      DashboardHome.DashboardHome(contactName)
+
+      Then("Ratepayer clicks the Add a Property link and is taken to the Add a Property page")
+      clickLink("Add a property")
+      AddAProperty.addAProperty()
+      click(continueButton)
+
+      Then("Ratepayer is taken to the What You Need page")
+      WhatYouNeed.whatYouNeed()
+      click(continueButton)
+
+      Then("Ratepayer is taken to the search a property page and searches for a property that does not exist")
+      FindAProperty.findProperty()
+      FindAProperty.inputPostCode("BH1 7EY")
+
+      Then("Ratepayer is taken to the search results page")
+      PropertySearchResultPage.searchResult()
+
+      Then("Ratepayer clicks the search again link and is take back to the Add a property page")
+      clickLink("Search again")
+      AddAProperty.addAProperty()
     }
   }
 
