@@ -71,6 +71,6 @@ trait BasePage extends PageObject {
     Driver.instance.navigate().refresh()
 
   def clickLink(link: String): Unit =
-    click(getElementByLink(link))
+    waitForElementToBeClickable(By.linkText(link)).click()
 
 }

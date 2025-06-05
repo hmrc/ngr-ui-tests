@@ -26,7 +26,7 @@ import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
 
 class AddAPropertySpec extends BaseSpec with StubPage {
 
-  var contactName: String = _
+  var contactName: String = "BOB JONES"
 
   Feature("Testing the functionality Add a Property page") {
 
@@ -127,7 +127,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       Then("Ratepayer is taken to the search a property page and searches for a property that does not exist")
       FindAProperty.findProperty()
       FindAProperty.inputPostCode("LS1 9LB")
-//      FindAProperty.noResultsFound()
+      FindAProperty.noResultsFound()
     }
   }
 
