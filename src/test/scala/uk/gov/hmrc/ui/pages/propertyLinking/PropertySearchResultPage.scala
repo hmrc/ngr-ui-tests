@@ -27,5 +27,8 @@ object PropertySearchResultPage extends BasePage {
     click(getElementByLink("Select Property"))
 
   def searchAgain(): Unit =
-    click(getElementByLink("Search again"))
+    click(getByCssSelector("#help-if-you-cannot-find-your-property > div > p:nth-child(3) > a"))
+
+  def clickHelpSpan(): Unit =
+    click(getByCssSelector("#help-if-you-cannot-find-your-property > summary > span"))
 }
