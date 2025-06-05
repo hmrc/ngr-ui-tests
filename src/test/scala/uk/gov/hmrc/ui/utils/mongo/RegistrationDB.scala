@@ -21,8 +21,6 @@ import org.mongodb.scala._
 import org.mongodb.scala.model.Filters._
 import MongoHelper.GenericObservable
 
-import java.lang.System.console
-
 object RegistrationDB {
 
   private val env                         = System.getProperty("environment")

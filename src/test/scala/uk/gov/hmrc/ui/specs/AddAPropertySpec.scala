@@ -18,7 +18,6 @@ package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
-import uk.gov.hmrc.ui.pages.propertyLinking.WhatYouNeed.contactLinkDisplay
 import uk.gov.hmrc.ui.pages.propertyLinking.{AddAProperty, FindAProperty, WhatYouNeed}
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
