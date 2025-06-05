@@ -108,7 +108,9 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 //      contactLinkDisplay("contact your local council (opens in a new tab)")
     }
 
-    Scenario("The user completes registration and navigates to the find a property page and searches for a property that does not exist") {
+    Scenario(
+      "The user completes registration and navigates to the find a property page and searches for a property that does not exist"
+    ) {
 
       Given("Ratepayer logins through one login")
       loginOl()
