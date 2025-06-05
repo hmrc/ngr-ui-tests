@@ -90,27 +90,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
     }
 
-    Scenario("The user completes registration and navigates to the What you need page") {
-
-      Given("Ratepayer logins through one login")
-      loginOl()
-
-      Then("Ratepayer is now fully registered and is taken to the dashboard")
-      DashboardHome.DashboardHome(contactName)
-
-      Then("Ratepayer clicks the Add a Property link and is taken to the Add a Property page")
-      clickLink("Add a property")
-      AddAProperty.addAProperty()
-      click(continueButton)
-
-      Then("Ratepayer is taken to the What You Need page")
-      WhatYouNeed.whatYouNeed()
-//      contactLinkDisplay("contact your local council (opens in a new tab)")
-    }
-
-    Scenario(
-      "The user completes registration and navigates to the find a property page and searches for a property that does not exist"
-    ) {
+    Scenario("Testing for no Results Found for property search") {
 
       Given("Ratepayer logins through one login")
       loginOl()
@@ -148,6 +128,8 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the What You Need page")
       WhatYouNeed.whatYouNeed()
+      /** ToDo Add tests for council naviagation   */
+//     contactLinkDisplay("contact your local council (opens in a new tab)")
       click(continueButton)
 
       Then("Ratepayer is taken to the search a property page and searches for a property that does not exist")
