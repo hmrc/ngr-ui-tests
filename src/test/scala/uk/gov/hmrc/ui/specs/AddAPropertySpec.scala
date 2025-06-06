@@ -18,7 +18,6 @@ package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
-import uk.gov.hmrc.ui.pages.propertyLinking.PropertySearchResultPage.{clickHelpSpan, searchAgain}
 import uk.gov.hmrc.ui.pages.propertyLinking.{AddAProperty, FindAProperty, PropertySearchResultPage, WhatYouNeed}
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
@@ -151,10 +150,10 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       PropertySearchResultPage.searchResult()
 
       Then("Ratepayer opens the help-if-you-cannot-find-your-property span")
-      clickHelpSpan("//*[@id=\"help-if-you-cannot-find-your-property\"]/summary/span")
+      PropertySearchResultPage.clickHelpSpan()
 
       Then("Ratepayer clicks the search again link within the span and is take back to the Find a property page")
-      searchAgain("//*[@id=\"help-if-you-cannot-find-your-property\"]/div/p[3]/a")
+      PropertySearchResultPage.searchAgainUnderHelpLink()
       FindAProperty.findProperty()
     }
   }

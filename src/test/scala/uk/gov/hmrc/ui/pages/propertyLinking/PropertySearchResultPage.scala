@@ -27,11 +27,10 @@ object PropertySearchResultPage extends BasePage {
   def selectProperty(): Unit =
     click(getElementByLink("Select Property"))
 
-  def searchAgain(xPath: String): Unit =
-    click(By.xpath(xPath))
+  def searchAgainUnderHelpLink(): Unit =
+    click(By.xpath("//*[@id=\"help-if-you-cannot-find-your-property\"]/div/p[3]/a"))
 
-  def clickHelpSpan(xPath: String): Unit = {
-    toString
-    click(By.xpath(xPath))
-  }
+  def clickHelpSpan(): Unit =
+    click(By.xpath("//*[@id=\"help-if-you-cannot-find-your-property\"]/summary/span"))
+
 }
