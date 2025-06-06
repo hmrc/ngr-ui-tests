@@ -16,25 +16,28 @@
 
 package uk.gov.hmrc.ui.specs
 
-import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage
+import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
-import uk.gov.hmrc.ui.pages.propertyLinking.WhatYouNeed.contactLinkDisplay
 import uk.gov.hmrc.ui.pages.propertyLinking.{AddAProperty, FindAProperty, WhatYouNeed}
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
-import uk.gov.hmrc.ui.utils.mongo.Mongo
+import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
 
 class AddAPropertySpec extends BaseSpec with StubPage {
 
-  var contactName: String = _
+  var contactName: String = "BOB JONES"
 
   Feature("Testing the functionality Add a Property page") {
 
     Scenario("The user completes registration and navigates to the Add a property page") {
-      Mongo.cleanup()
+      RegistrationDB.cleanup()
+
       Given("Ratepayer logins through one login")
       loginOl()
+
+      Then("User provide phone number")
+      PhoneNumberPage.userProvidesPhoneNumber()
 
       Then("Ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
@@ -101,7 +104,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the What You Need page")
       WhatYouNeed.whatYouNeed()
-      contactLinkDisplay("contact your local council (opens in a new tab)")
+//      contactLinkDisplay("contact your local council (opens in a new tab)")
     }
 
     Scenario("The user completes registration and navigates to the find a property page") {

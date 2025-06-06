@@ -18,8 +18,9 @@ package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages.SignIn.{OLAuthenticationPages, SignInSelectorPage}
 import uk.gov.hmrc.ui.pages.contactDetails.ConfirmContactDetailsPage.ConfirmContactDetails
+import uk.gov.hmrc.ui.pages.contactDetails.PhoneNumberPage
 import uk.gov.hmrc.ui.pages.{StartNowPage, StubPage}
-import uk.gov.hmrc.ui.utils.mongo.Mongo
+import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
 class RatePayerOLSignInSpec extends BaseSpec with StubPage {
 
   private val StartNow         = StartNowPage
@@ -28,7 +29,7 @@ class RatePayerOLSignInSpec extends BaseSpec with StubPage {
   private val env              = System.getProperty("environment")
 
   Feature("Authenticate a ratepayer using OneLogin") {
-    Mongo.cleanup()
+    RegistrationDB.cleanup()
     Scenario("Authenticate a ratepayer using OneLogin") {
 
       Given("Ratepayer obtains the centralised-auth private beta cookies")
@@ -46,6 +47,9 @@ class RatePayerOLSignInSpec extends BaseSpec with StubPage {
       } else {
         OlAuthentication.olAuthentication("krutika.patil+11@digital.hmrc.gov.uk", "p2ssword1234")
       }
+
+      Then("User provide phone number")
+      PhoneNumberPage.userProvidesPhoneNumber()
 
       Then("Ratepayer successfully authenticated navigated to contact details page ")
       ConfirmContactDetails()

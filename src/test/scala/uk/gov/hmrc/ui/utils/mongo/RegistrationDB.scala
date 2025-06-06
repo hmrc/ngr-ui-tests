@@ -21,16 +21,19 @@ import org.mongodb.scala._
 import org.mongodb.scala.model.Filters._
 import MongoHelper.GenericObservable
 
-object Mongo {
+object RegistrationDB {
 
-  val mongoClient: MongoClient = MongoClient()
-
-  def database(db: String = "next-generation-rates"): MongoDatabase = mongoClient.getDatabase(db)
+  private val env                         = System.getProperty("environment")
+  val mongoClient: MongoClient            = MongoClient()
+  def database(db: String): MongoDatabase = mongoClient.getDatabase(db)
 
   def collection(db: String, collection: String): MongoCollection[Document] = database(db).getCollection(collection)
 
   def indexOptions(name: String, unique: Boolean): IndexOptions = new IndexOptions().name(name).unique(unique)
 
   def cleanup(): Unit =
-    collection("next-generation-rates", "ratepayerRegistration").deleteMany(expr("1 == 1")).results()
+    if (env == "local") {
+      collection("next-generation-rates", "ratepayerRegistration").deleteMany(expr("1 == 1")).results()
+      collection("next-generation-rates-frontend", "ratepayerRegistration").deleteMany(expr("1 == 1")).results()
+    }
 }

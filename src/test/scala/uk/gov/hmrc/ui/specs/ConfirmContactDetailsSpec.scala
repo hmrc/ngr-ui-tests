@@ -20,16 +20,19 @@ import uk.gov.hmrc.ui.pages._
 import uk.gov.hmrc.ui.pages.contactDetails.changeAddressPages.{DoyouWantToUseAddressPage, FindContactAddressPage, SearchResultPage, WhatIsAddressPage}
 import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, ContactNamePage, EmailPage, PhoneNumberPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
-import uk.gov.hmrc.ui.utils.mongo.Mongo
+import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
 
-class ContactDetailsSpec extends BaseSpec with StubPage {
+class ConfirmContactDetailsSpec extends BaseSpec with StubPage {
 
   Feature("Tests for the Changes Contact Details page, OL route") {
 
     Scenario("Change the contact name, OL route") {
-      Mongo.cleanup()
+      RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
+
+      Then("User provide phone number")
+      PhoneNumberPage.userProvidesPhoneNumber()
 
       Then("Ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
@@ -48,7 +51,6 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
     }
 
     Scenario("Change the contact phone number, OL route") {
-      Mongo.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -66,7 +68,6 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
     }
 
     Scenario("Change the contact email, OL route") {
-      Mongo.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -140,7 +141,7 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
     }
 
     Scenario("Testing search using property number/name") {
-      Mongo.cleanup()
+      RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -163,7 +164,7 @@ class ContactDetailsSpec extends BaseSpec with StubPage {
     }
 
     Scenario("Testing postcode is mandatory on manual search") {
-      Mongo.cleanup()
+      RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
