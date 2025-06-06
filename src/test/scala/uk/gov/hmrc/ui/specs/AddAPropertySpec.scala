@@ -18,8 +18,8 @@ package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
+import uk.gov.hmrc.ui.pages.propertyLinking.PropertySearchResultPage.{clickHelpSpan, searchAgain}
 import uk.gov.hmrc.ui.pages.propertyLinking.{AddAProperty, FindAProperty, PropertySearchResultPage, WhatYouNeed}
-import uk.gov.hmrc.ui.pages.propertyLinking.PropertySearchResultPage.clickHelpSpan
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
@@ -128,11 +128,22 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the What You Need page")
       WhatYouNeed.whatYouNeed()
-      /** ToDo Add tests for council naviagation   */
+
+      /** ToDo Add tests for council naviagation */
 //     contactLinkDisplay("contact your local council (opens in a new tab)")
       click(continueButton)
 
-      Then("Ratepayer is taken to the search a property page and searches for a property that does not exist")
+      Then("Ratepayer is taken to the find a property page and searches for a property")
+      FindAProperty.findProperty()
+      FindAProperty.inputPostCode("BH1 7EY")
+
+      Then("Ratepayer is taken to the search results page")
+      PropertySearchResultPage.searchResult()
+
+      Then("Ratepayer clicks the search again link and is take back to the Find a property page")
+      clickLink("Search again")
+
+      Then("Ratepayer searches for a property")
       FindAProperty.findProperty()
       FindAProperty.inputPostCode("BH1 7EY")
 
@@ -140,11 +151,11 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       PropertySearchResultPage.searchResult()
 
       Then("Ratepayer opens the help-if-you-cannot-find-your-property span")
-      clickHelpSpan()
+      clickHelpSpan("//*[@id=\"help-if-you-cannot-find-your-property\"]/summary/span")
 
-      Then("Ratepayer clicks the search again link and is take back to the Add a property page")
-      clickLink("Search again")
-      AddAProperty.addAProperty()
+      Then("Ratepayer clicks the search again link within the span and is take back to the Find a property page")
+      searchAgain("//*[@id=\"help-if-you-cannot-find-your-property\"]/div/p[3]/a")
+      FindAProperty.findProperty()
     }
   }
 

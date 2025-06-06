@@ -16,19 +16,22 @@
 
 package uk.gov.hmrc.ui.pages.propertyLinking
 
+import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
 object PropertySearchResultPage extends BasePage {
 
   def searchResult(): Unit =
-    headerCheck("Search results for BH1 7EY")
+    headerCheck("Search results for BH1 7ST")
 
   def selectProperty(): Unit =
     click(getElementByLink("Select Property"))
 
-  def searchAgain(): Unit =
-    click(getByCssSelector("#help-if-you-cannot-find-your-property > div > p:nth-child(3) > a"))
+  def searchAgain(xPath: String): Unit =
+    click(By.xpath(xPath))
 
-  def clickHelpSpan(): Unit =
-    click(getByCssSelector("#help-if-you-cannot-find-your-property > summary > span"))
+  def clickHelpSpan(xPath: String): Unit = {
+    toString
+    click(By.xpath(xPath))
+  }
 }
