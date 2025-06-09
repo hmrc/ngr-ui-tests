@@ -160,7 +160,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       Then("Ratepayer searches for a property")
       FindAProperty.inputPostCode(postCode)
 
-      Then("Ratepayer is taken to the search results page and clicks the 'Select property' link")
+      Then("Ratepayer click 'Select property' on the search results page")
       PropertySearchResultPage.searchResult(postCode)
       clickLink("Select property")
 
