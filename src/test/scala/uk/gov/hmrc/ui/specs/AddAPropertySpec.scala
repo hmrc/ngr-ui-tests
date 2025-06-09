@@ -38,28 +38,28 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       Given("Ratepayer logins through one login")
       loginOl()
 
-//      Then("User provide phone number")
-//      PhoneNumberPage.userProvidesPhoneNumber()
-//
-//      Then("Ratepayer is taken to the Confirm Contact Details page")
-//      ConfirmContactDetailsPage.ConfirmContactDetails()
-//      click(continueButton)
-//
-//      Then("Ratepayer is taken to Provide TRN Page")
-//      ProvideTRNPage.provideYourTRN()
-//      click(continueButton)
-//
-//      Then("User selects 'Yes, I want to provide this UTR' and submit")
-//      ConfirmUTRPage.selectYes()
-//
-//      Then("The ratepayer is taken to the 'Check your answers' page")
-//      CheckYourAnswer.checkYourAnswer()
-//      contactName = getElementByCssSelector("#contact-name-id").toString
-//      click(continueButton)
-//
-//      Then("Ratepayer is taken to the Registration complete page")
-//      RegisterComplete.RegisterComplete()
-//      click(continueButton)
+      Then("User provide phone number")
+      PhoneNumberPage.userProvidesPhoneNumber()
+
+      Then("Ratepayer is taken to the Confirm Contact Details page")
+      ConfirmContactDetailsPage.ConfirmContactDetails()
+      click(continueButton)
+
+      Then("Ratepayer is taken to Provide TRN Page")
+      ProvideTRNPage.provideYourTRN()
+      click(continueButton)
+
+      Then("User selects 'Yes, I want to provide this UTR' and submit")
+      ConfirmUTRPage.selectYes()
+
+      Then("The ratepayer is taken to the 'Check your answers' page")
+      CheckYourAnswer.checkYourAnswer()
+      contactName = getElementByCssSelector("#contact-name-id").toString
+      click(continueButton)
+
+      Then("Ratepayer is taken to the Registration complete page")
+      RegisterComplete.RegisterComplete()
+      click(continueButton)
 
       Then("Ratepayer is now fully registered and is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
