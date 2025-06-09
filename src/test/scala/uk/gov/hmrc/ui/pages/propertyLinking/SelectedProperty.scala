@@ -26,4 +26,6 @@ object SelectedProperty extends BasePage {
   def yesRadio(): Unit =
     click(getElementById("confirm-property-radio"))
 
+  def noRadio(): Unit =
+    click(getElementById("confirm-property-radio-2"))
 }
