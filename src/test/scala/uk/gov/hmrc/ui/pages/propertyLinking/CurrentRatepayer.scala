@@ -19,18 +19,18 @@ package uk.gov.hmrc.ui.pages.propertyLinking
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
-object PropertySearchResultPage extends BasePage {
+object CurrentRatepayer extends BasePage {
 
-  def searchResult(string: String): Unit =
-    headerCheck("Search results for " + string)
+  def currentRatepayer(): Unit =
+    headerCheck("When did you become the current ratepayer?")
 
-  def selectProperty(): Unit =
-    click(getElementByLink("Select Property"))
+  def clickHelpSpan(xPath: String = "//*[@id=\"how-to-tell-if-you-are-the-current-rate-payer\"]/summary/span"): Unit =
+    click(By.xpath(xPath))
 
-  def searchAgainUnderHelpLink(): Unit =
-    click(By.xpath("//*[@id=\"help-if-you-cannot-find-your-property\"]/div/p[4]/a"))
+  def beforeDateRadio(): Unit =
+    click(getElementById("confirm-address-radio"))
 
-  def clickHelpSpan(): Unit =
-    click(By.xpath("//*[@id=\"help-if-you-cannot-find-your-property\"]/summary/span"))
+  def afterDateRadio(): Unit =
+    click(getElementById("confirm-address-radio-2"))
 
 }

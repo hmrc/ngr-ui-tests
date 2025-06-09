@@ -16,21 +16,14 @@
 
 package uk.gov.hmrc.ui.pages.propertyLinking
 
-import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
-object PropertySearchResultPage extends BasePage {
+object SelectedProperty extends BasePage {
 
-  def searchResult(string: String): Unit =
-    headerCheck("Search results for " + string)
+  def selectedProperty(): Unit =
+    headerCheck("Property selected")
 
-  def selectProperty(): Unit =
-    click(getElementByLink("Select Property"))
-
-  def searchAgainUnderHelpLink(): Unit =
-    click(By.xpath("//*[@id=\"help-if-you-cannot-find-your-property\"]/div/p[4]/a"))
-
-  def clickHelpSpan(): Unit =
-    click(By.xpath("//*[@id=\"help-if-you-cannot-find-your-property\"]/summary/span"))
+  def yesRadio(): Unit =
+    click(getElementById("confirm-property-radio"))
 
 }

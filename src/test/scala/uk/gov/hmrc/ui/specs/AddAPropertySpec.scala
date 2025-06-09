@@ -18,7 +18,9 @@ package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
-import uk.gov.hmrc.ui.pages.propertyLinking.{AddAProperty, FindAProperty, PropertySearchResultPage, WhatYouNeed}
+import uk.gov.hmrc.ui.pages.propertyLinking.CurrentRatepayer.{afterDateRadio, beforeDateRadio, clickHelpSpan}
+import uk.gov.hmrc.ui.pages.propertyLinking.SelectedProperty.{headerCheck, yesRadio}
+import uk.gov.hmrc.ui.pages.propertyLinking.{AddAProperty, CurrentRatepayer, FindAProperty, PropertySearchResultPage, SelectedProperty, WhatYouNeed}
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
@@ -133,28 +135,45 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       click(continueButton)
 
       Then("Ratepayer is taken to the find a property page and searches for a property")
+      val postCode = "BH1 1HU"
       FindAProperty.findProperty()
-      FindAProperty.inputPostCode("BH1 7EY")
+      FindAProperty.inputPostCode(postCode)
 
       Then("Ratepayer is taken to the search results page")
-      PropertySearchResultPage.searchResult()
+      PropertySearchResultPage.searchResult(postCode)
 
       Then("Ratepayer clicks the search again link and is take back to the Find a property page")
       clickLink("Search again")
 
       Then("Ratepayer searches for a property")
       FindAProperty.findProperty()
-      FindAProperty.inputPostCode("BH1 7EY")
+      FindAProperty.inputPostCode(postCode)
 
-      Then("Ratepayer is taken to the search results page")
-      PropertySearchResultPage.searchResult()
-
-      Then("Ratepayer opens the help-if-you-cannot-find-your-property span")
+      Then("Ratepayer is taken to the search results page and opens the help-if-you-cannot-find-your-property span")
+      PropertySearchResultPage.searchResult(postCode)
       PropertySearchResultPage.clickHelpSpan()
 
       Then("Ratepayer clicks the search again link within the span and is take back to the Find a property page")
       PropertySearchResultPage.searchAgainUnderHelpLink()
       FindAProperty.findProperty()
+
+      Then("Ratepayer searches for a property")
+      FindAProperty.inputPostCode(postCode)
+
+      Then("Ratepayer click 'Select property' on the search results page")
+      PropertySearchResultPage.searchResult(postCode)
+      clickLink("Select property")
+
+      Then("Ratepayer is taken to the selected property page, clicks the 'yes' radio and continues")
+      SelectedProperty.selectedProperty()
+      yesRadio()
+      click(continueButton)
+
+      Then("Ratepayer arrives at the 'When did you become the current ratepayer?' page")
+      CurrentRatepayer.currentRatepayer()
+      clickHelpSpan()
+      beforeDateRadio()
+      afterDateRadio()
     }
   }
 
