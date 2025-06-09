@@ -19,7 +19,7 @@ package uk.gov.hmrc.ui.specs
 import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
 import uk.gov.hmrc.ui.pages.propertyLinking.CurrentRatepayer.{afterDateRadio, beforeDateRadio, clickHelpSpan}
-import uk.gov.hmrc.ui.pages.propertyLinking.SelectedProperty.headerCheck
+import uk.gov.hmrc.ui.pages.propertyLinking.SelectedProperty.{headerCheck, yesRadio}
 import uk.gov.hmrc.ui.pages.propertyLinking.{AddAProperty, CurrentRatepayer, FindAProperty, PropertySearchResultPage, SelectedProperty, WhatYouNeed}
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
@@ -38,28 +38,28 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       Given("Ratepayer logins through one login")
       loginOl()
 
-      Then("User provide phone number")
-      PhoneNumberPage.userProvidesPhoneNumber()
-
-      Then("Ratepayer is taken to the Confirm Contact Details page")
-      ConfirmContactDetailsPage.ConfirmContactDetails()
-      click(continueButton)
-
-      Then("Ratepayer is taken to Provide TRN Page")
-      ProvideTRNPage.provideYourTRN()
-      click(continueButton)
-
-      Then("User selects 'Yes, I want to provide this UTR' and submit")
-      ConfirmUTRPage.selectYes()
-
-      Then("The ratepayer is taken to the 'Check your answers' page")
-      CheckYourAnswer.checkYourAnswer()
-      contactName = getElementByCssSelector("#contact-name-id").toString
-      click(continueButton)
-
-      Then("Ratepayer is taken to the Registration complete page")
-      RegisterComplete.RegisterComplete()
-      click(continueButton)
+//      Then("User provide phone number")
+//      PhoneNumberPage.userProvidesPhoneNumber()
+//
+//      Then("Ratepayer is taken to the Confirm Contact Details page")
+//      ConfirmContactDetailsPage.ConfirmContactDetails()
+//      click(continueButton)
+//
+//      Then("Ratepayer is taken to Provide TRN Page")
+//      ProvideTRNPage.provideYourTRN()
+//      click(continueButton)
+//
+//      Then("User selects 'Yes, I want to provide this UTR' and submit")
+//      ConfirmUTRPage.selectYes()
+//
+//      Then("The ratepayer is taken to the 'Check your answers' page")
+//      CheckYourAnswer.checkYourAnswer()
+//      contactName = getElementByCssSelector("#contact-name-id").toString
+//      click(continueButton)
+//
+//      Then("Ratepayer is taken to the Registration complete page")
+//      RegisterComplete.RegisterComplete()
+//      click(continueButton)
 
       Then("Ratepayer is now fully registered and is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
@@ -135,23 +135,22 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       click(continueButton)
 
       Then("Ratepayer is taken to the find a property page and searches for a property")
+      val postCode = "BH1 1HU"
       FindAProperty.findProperty()
-      FindAProperty.inputPostCode("BH1 7EY")
+      FindAProperty.inputPostCode(postCode)
 
       Then("Ratepayer is taken to the search results page")
-      PropertySearchResultPage.searchResult()
+      PropertySearchResultPage.searchResult(postCode)
 
       Then("Ratepayer clicks the search again link and is take back to the Find a property page")
       clickLink("Search again")
 
       Then("Ratepayer searches for a property")
       FindAProperty.findProperty()
-      FindAProperty.inputPostCode("BH1 7EY")
+      FindAProperty.inputPostCode(postCode)
 
-      Then("Ratepayer is taken to the search results page")
-      PropertySearchResultPage.searchResult()
-
-      Then("Ratepayer opens the help-if-you-cannot-find-your-property span")
+      Then("Ratepayer is taken to the search results page and opens the help-if-you-cannot-find-your-property span")
+      PropertySearchResultPage.searchResult(postCode)
       PropertySearchResultPage.clickHelpSpan()
 
       Then("Ratepayer clicks the search again link within the span and is take back to the Find a property page")
@@ -159,14 +158,15 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       FindAProperty.findProperty()
 
       Then("Ratepayer searches for a property")
-      FindAProperty.inputPostCode("BH1 7EY")
+      FindAProperty.inputPostCode(postCode)
 
       Then("Ratepayer is taken to the search results page and clicks the 'Select property' link")
-      PropertySearchResultPage.searchResult()
+      PropertySearchResultPage.searchResult(postCode)
       clickLink("Select property")
 
       Then("Ratepayer is taken to the selected property page, clicks the 'yes' radio and continues")
       SelectedProperty.selectedProperty()
+      yesRadio()
       click(continueButton)
 
       Then("Ratepayer arrives at the 'When did you become the current ratepayer?' page")

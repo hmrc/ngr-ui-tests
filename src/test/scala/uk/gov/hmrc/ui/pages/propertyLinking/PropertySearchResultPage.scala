@@ -21,14 +21,14 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 object PropertySearchResultPage extends BasePage {
 
-  def searchResult(): Unit =
-    headerCheck("Search results for BH1 7ST")
+  def searchResult(string: String): Unit =
+    headerCheck("Search results for " + string)
 
   def selectProperty(): Unit =
     click(getElementByLink("Select Property"))
 
   def searchAgainUnderHelpLink(): Unit =
-    click(By.xpath("//*[@id=\"help-if-you-cannot-find-your-property\"]/div/p[3]/a"))
+    click(By.xpath("//*[@id=\"help-if-you-cannot-find-your-property\"]/div/p[4]/a"))
 
   def clickHelpSpan(): Unit =
     click(By.xpath("//*[@id=\"help-if-you-cannot-find-your-property\"]/summary/span"))
