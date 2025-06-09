@@ -158,8 +158,14 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       PropertySearchResultPage.searchAgainUnderHelpLink()
       FindAProperty.findProperty()
 
-      Then("Ratepayer is taken to the selected property page, clicks the 'yes' radio and continues")
+      Then("Ratepayer searches for a property")
+      FindAProperty.inputPostCode("BH1 7EY")
+
+      Then("Ratepayer is taken to the search results page and clicks the 'Select property' link")
+      PropertySearchResultPage.searchResult()
       clickLink("Select property")
+
+      Then("Ratepayer is taken to the selected property page, clicks the 'yes' radio and continues")
       SelectedProperty.selectedProperty()
       click(continueButton)
 
