@@ -6,7 +6,7 @@ import uk.gov.hmrc.ui.pages.BasePage
 object CurrentRatepayer  extends BasePage {
 
   def currentRatepayer(): Unit =
-    headerCheck("When did you become the current ratepayer")
+    headerCheck("When did you become the current ratepayer?")
 
   def clickHelpSpan(xPath: String = "//*[@id=\"how-to-tell-if-you-are-the-current-rate-payer\"]/summary/span"): Unit = {
     click(By.xpath(xPath))
