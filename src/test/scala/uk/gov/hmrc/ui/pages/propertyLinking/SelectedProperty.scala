@@ -23,9 +23,13 @@ object SelectedProperty extends BasePage {
   def selectedProperty(): Unit =
     headerCheck("Property selected")
 
-  def yesRadio(): Unit =
+  def yesRadio(): Unit = {
     click(getElementById("confirm-property-radio"))
+    click(continueButton)
+  }
 
-  def noRadio(): Unit =
+  def noRadio(): Unit = {
     click(getElementById("confirm-property-radio-2"))
+    click(continueButton)
+  }
 }

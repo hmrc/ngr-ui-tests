@@ -18,14 +18,19 @@ package uk.gov.hmrc.ui.pages.propertyLinking
 
 import uk.gov.hmrc.ui.pages.BasePage
 
-object WhatYouNeed extends BasePage {
+object BusinessRateBillPage extends BasePage {
 
-  def whatYouNeed(): Unit =
-    headerCheck("What you need")
+  def BusinessRateBill(): Unit =
+    headerCheck("Do you have a business rates bill for the property?")
 
-  def contactLinkDisplay(link: String): Unit = {
-    val display = getElementByLink(link).toString
-//    assert(link == display, "contact council link is not present")
+  def selectYes(): Unit = {
+    click(getElementById("business-rates-bill-radio"))
+    click(continueButton)
+  }
+
+  def selectNo(): Unit = {
+    click(getElementById("business-rates-bill-radio-2"))
+    click(continueButton)
   }
 
 }

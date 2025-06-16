@@ -16,10 +16,8 @@
 
 package uk.gov.hmrc.ui.specs
 
-import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
+import uk.gov.hmrc.ui.pages.contactDetails._
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
-import uk.gov.hmrc.ui.pages.propertyLinking.CurrentRatepayer.{afterDateRadio, beforeDateRadio, clickHelpSpan}
-import uk.gov.hmrc.ui.pages.propertyLinking.SelectedProperty.{noRadio, yesRadio}
 import uk.gov.hmrc.ui.pages.propertyLinking._
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
@@ -29,8 +27,9 @@ import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
 class AddAPropertySpec extends BaseSpec with StubPage {
 
   var contactName: String = "BOB JONES"
+  val postCode            = "BH1 1HU"
 
-  Feature("Testing the functionality Add a Property page") {
+  Feature("Testing the 'Add Property' functionality") {
 
     Scenario("The user completes registration and navigates to the Add a property page") {
       RegistrationDB.cleanup()
@@ -114,7 +113,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       FindAProperty.noResultsFound()
     }
 
-    Scenario("The user completes registration and navigates to the find a property page and searches for a property") {
+    Scenario("Registered ratepayer add the property ") {
 
       Given("Ratepayer logins through one login")
       loginOl()
@@ -130,12 +129,11 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       Then("Ratepayer is taken to the What You Need page")
       WhatYouNeed.whatYouNeed()
 
-      /** ToDo Add tests for council naviagation */
+      /** ToDo Add tests for council navigation */
 //     contactLinkDisplay("contact your local council (opens in a new tab)")
       click(continueButton)
 
       Then("Ratepayer is taken to the find a property page and searches for a property")
-      val postCode = "BH1 1HU"
       FindAProperty.findProperty()
       FindAProperty.inputPostCode(postCode)
 
@@ -166,8 +164,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the selected property page, clicks the 'no' radio and continues")
       SelectedProperty.selectedProperty()
-      noRadio()
-      click(continueButton)
+      SelectedProperty.noRadio()
 
       Then("Ratepayer is taken back to the Search Result page and clicks the 'Select property' link")
       PropertySearchResultPage.searchResult(postCode)
@@ -175,14 +172,18 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the selected property page, clicks the 'yes' radio and continues")
       SelectedProperty.selectedProperty()
-      yesRadio()
-      click(continueButton)
+      SelectedProperty.yesRadio()
 
-      Then("Ratepayer arrives at the 'When did you become the current ratepayer?' page")
+      Then("Ratepayer selects 'Before 1 April 2026' on 'When did you become the current ratepayer?' page")
       CurrentRatepayer.currentRatepayer()
-      clickHelpSpan()
-      beforeDateRadio()
-      afterDateRadio()
+      CurrentRatepayer.clickHelpSpan()
+      CurrentRatepayer.beforeDateRadio()
+
+      And("The ratepayers selects 'yes' on 'business rates bill for the property' page")
+      BusinessRateBillPage.BusinessRateBill()
+      BusinessRateBillPage.selectYes()
+
+      /** ToDo Add tests for NO radio button selection */
     }
   }
 }

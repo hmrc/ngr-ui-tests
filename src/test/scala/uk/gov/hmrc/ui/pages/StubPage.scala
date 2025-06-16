@@ -25,7 +25,6 @@ trait StubPage extends BasePage {
   val authStub_url: String = TestEnvironment.url("service-name-frontend") + "/gg-sign-in"
 
   private val redirectUrl     = By.id("redirectionUrl")
-  private val gnap            = By.id("excludeGnapToken")
   private val confidenceLevel = By.id("confidenceLevel")
   private val nino            = By.id("nino")
   private val submitAuthStub  = By.id("submit")
@@ -33,18 +32,6 @@ trait StubPage extends BasePage {
 
   def getStubUrl(): Unit =
     getUrl(authStub_url)
-
-  def enterAuthLoginPageDetails(signIn: String): Unit = {
-    signIn match {
-      case "One login"          => selectByVisibleText(gnap, "Yes")
-      case "Government Gateway" => selectByVisibleText(gnap, "No")
-      case _                    => print("did not match any of the expected value")
-    }
-    sendKeys(redirectUrl, redirect_url)
-    selectByValue(confidenceLevel, "250")
-    sendKeys(nino, "AA000003D")
-    click(submitAuthStub)
-  }
 
   def loginStub(): Unit = {
     val text = "Gov UK One Login Sign In"
@@ -63,7 +50,6 @@ trait StubPage extends BasePage {
   }
 
   def stubGgAuthentication(): Unit = {
-    selectByVisibleText(gnap, "No")
     selectByValue(confidenceLevel, "250")
     sendKeys(nino, "AA000003D")
     click(submitAuthStub)
