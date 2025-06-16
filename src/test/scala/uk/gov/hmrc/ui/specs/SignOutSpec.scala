@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.ui.specs
 
-import uk.gov.hmrc.ui.pages.FeedbackPage.giveFeedbackPage
+import uk.gov.hmrc.ui.pages.FeedbackPage
 import uk.gov.hmrc.ui.pages.SignIn.SignInSelectorPage
 import uk.gov.hmrc.ui.pages.{SignOutPage, StubPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
@@ -61,7 +61,7 @@ class SignOutSpec extends BaseSpec with StubPage {
       clickLink("Take a short survey")
 
       Then("The ratepayer navigated to give feedback page")
-      giveFeedbackPage()
+      FeedbackPage.giveFeedbackPage()
     }
   }
 }
