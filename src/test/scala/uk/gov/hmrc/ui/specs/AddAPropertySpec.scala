@@ -90,7 +90,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
     }
 
-    Scenario("Testing for no Results Found for property search") {
+    Scenario("Testing 'no Results Found' feature for property search") {
 
       Given("Ratepayer logins through one login")
       loginOl()
@@ -113,7 +113,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       FindAProperty.noResultsFound()
     }
 
-    Scenario("Registered ratepayer add the property ") {
+    Scenario("Registered ratepayer adds the property ") {
 
       Given("Ratepayer logins through one login")
       loginOl()
