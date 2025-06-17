@@ -18,7 +18,6 @@ package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
-import uk.gov.hmrc.ui.pages.dashboard.DashboardHome.feedbackLinkDisplay
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.pages.{CheckYourAnswer, FeedbackPage, RegisterComplete, StubPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
@@ -78,7 +77,7 @@ class DashboardSpec extends BaseSpec with StubPage {
       Then("Ratepayer is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
       Then("Ratepayer clicks the feedback link and is taken to the feedback page")
-      feedbackLinkDisplay()
+      DashboardHome.feedbackLinkDisplay()
       clickLink("feedback")
       FeedbackPage.sendFeedbackPage()
 

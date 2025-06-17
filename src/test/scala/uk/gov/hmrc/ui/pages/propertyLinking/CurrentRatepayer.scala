@@ -27,10 +27,12 @@ object CurrentRatepayer extends BasePage {
   def clickHelpSpan(xPath: String = "//*[@id=\"how-to-tell-if-you-are-the-current-rate-payer\"]/summary/span"): Unit =
     click(By.xpath(xPath))
 
-  def beforeDateRadio(): Unit =
-    click(getElementById("confirm-address-radio"))
+  def beforeDateRadio(): Unit = {
+    click(getElementById("current-ratepayer-radio"))
+    click(continueButton)
+  }
 
   def afterDateRadio(): Unit =
-    click(getElementById("confirm-address-radio-2"))
-
+    click(getElementById("current-ratepayer-radio-2"))
+  click(continueButton)
 }
