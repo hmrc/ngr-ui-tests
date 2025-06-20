@@ -70,6 +70,33 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the What You Need page")
       WhatYouNeed.whatYouNeed()
+
+      /** ToDo Add tests for council navigation */
+      // contactLinkDisplay("contact your local council (opens in a new tab)")
+      click(continueButton)
+
+      Then("Ratepayer is taken to the find a property page and searches for a property")
+      FindAProperty.findProperty()
+      FindAProperty.inputPostCode(postCode)
+
+      Then("Ratepayer is taken to the search results page")
+      PropertySearchResultPage.searchResult(postCode)
+      clickLink("Select property")
+
+      Then("Ratepayer is taken to the selected property page, clicks the 'yes' radio and continues")
+      SelectedProperty.selectedProperty()
+      SelectedProperty.yesRadio()
+
+      Then("Ratepayer selects 'Before 1 April 2026' on 'When did you become the current ratepayer?' page")
+      CurrentRatepayer.currentRatepayer()
+      CurrentRatepayer.beforeDateRadio()
+
+      And("The ratepayers selects 'yes' on 'business rates bill for the property' page")
+      BusinessRateBillPage.BusinessRateBill()
+      BusinessRateBillPage.selectNo()
+
+      /** ToDo Add tests for NO radio button selection */
+
     }
 
     Scenario("Ratepayer navigates to the add a property page and clicks the account home link") {
@@ -128,9 +155,6 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the What You Need page")
       WhatYouNeed.whatYouNeed()
-
-      /** ToDo Add tests for council navigation */
-//     contactLinkDisplay("contact your local council (opens in a new tab)")
       click(continueButton)
 
       Then("Ratepayer is taken to the find a property page and searches for a property")
@@ -183,7 +207,12 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       BusinessRateBillPage.BusinessRateBill()
       BusinessRateBillPage.selectYes()
 
-      /** ToDo Add tests for NO radio button selection */
+      //      And("The ratepayers selects 'Owner' on 'connection to the property' page")
+      //      ConnectionToPropertyPage.ConnectionToProperty()
+      //      ConnectionToPropertyPage.ConnectionType("Owner")
+      //
+      //      And("The ratepayers navigate to confirm your details page")
+
     }
   }
 }
