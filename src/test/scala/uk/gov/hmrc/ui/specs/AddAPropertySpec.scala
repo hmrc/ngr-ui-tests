@@ -70,8 +70,9 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the What You Need page")
       WhatYouNeed.whatYouNeed()
+
       /** ToDo Add tests for council navigation */
-      //contactLinkDisplay("contact your local council (opens in a new tab)")
+      // contactLinkDisplay("contact your local council (opens in a new tab)")
       click(continueButton)
 
       Then("Ratepayer is taken to the find a property page and searches for a property")
@@ -80,7 +81,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the search results page")
       PropertySearchResultPage.searchResult(postCode)
-       clickLink("Select property")
+      clickLink("Select property")
 
       Then("Ratepayer is taken to the selected property page, clicks the 'yes' radio and continues")
       SelectedProperty.selectedProperty()
@@ -93,9 +94,8 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       And("The ratepayers selects 'yes' on 'business rates bill for the property' page")
       BusinessRateBillPage.BusinessRateBill()
       BusinessRateBillPage.selectNo()
+
       /** ToDo Add tests for NO radio button selection */
-
-
 
     }
 
@@ -212,7 +212,6 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       //      ConnectionToPropertyPage.ConnectionType("Owner")
       //
       //      And("The ratepayers navigate to confirm your details page")
-
 
     }
   }
