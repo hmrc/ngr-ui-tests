@@ -45,17 +45,17 @@ object PropertyLinkingCYA extends BasePage {
     getUrl(cya_url)
 
   def dateChangedCheck(date: String = "On or after 1 April 2026"): Unit = {
-    val display = getElementByCssSelector("#when-did-you-become-the-current-ratepayer?-id")
+    val display = getElementByXpath("//*[@id=\"when-did-you-become-the-current-ratepayer?-id\"]")
     assert(date == display, "the date was not changed")
   }
 
   def billChangedCheck(yesNo: String): Unit = {
-    val display = getElementByCssSelector("#do-you-have-a-business-rates-bill-for-this-property?-id")
+    val display = getElementByXpath("//*[@id=\"do-you-have-a-business-rates-bill-for-this-property?-id\"]")
     assert(yesNo == display, "the business rates bool was not changed")
   }
 
   def addressChangedCheck(address: String = "Bug me not pvt ltd, rodley lane, rodley, leeds, BH1 1HU"): Unit = {
-    val display = getElementByCssSelector("#property-to-add-to-account-id")
+    val display = getElementByXpath("//*[@id=\"property-to-add-to-account-id\"]")
     assert(address == display, "the address was not changed")
   }
 
