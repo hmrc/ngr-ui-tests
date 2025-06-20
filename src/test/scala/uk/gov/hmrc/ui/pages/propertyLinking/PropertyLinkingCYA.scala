@@ -44,8 +44,8 @@ object PropertyLinkingCYA extends BasePage {
   def hitCYAStep() =
     getUrl(cya_url)
 
-  def dateChangedCheck(date: String = "On or after 1 April 2026"): Unit = {
-    val display = getElementByXpath("//*[@id=\"when-did-you-become-the-current-ratepayer?-id\"]")
+  def dateChangedCheck(date: String): Unit = {
+    val display = getElementByXpath("/html/body/div/main/div/div/form/dl/div[3]/dd[1]/span")
     assert(date == display, "the date was not changed")
   }
 
@@ -54,8 +54,8 @@ object PropertyLinkingCYA extends BasePage {
     assert(yesNo == display, "the business rates bool was not changed")
   }
 
-  def addressChangedCheck(address: String = "Bug me not pvt ltd, rodley lane, rodley, leeds, BH1 1HU"): Unit = {
-    val display = getElementByXpath("//*[@id=\"property-to-add-to-account-id\"]")
+  def addressChangedCheck(address: String): Unit = {
+    val display = getElementByXpath("/html/body/div/main/div/div/form/dl/div[1]/dd[1]/span")
     assert(address == display, "the address was not changed")
   }
 

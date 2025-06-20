@@ -112,7 +112,7 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
 
       Then("The Ratepayer is taken back to the Check Your Answers page, with the ratepayer date changed")
       // PropertyLinkingCYA.checkYourAnswer()
-      PropertyLinkingCYA.dateChangedCheck()
+      PropertyLinkingCYA.dateChangedCheck("On or after 1 April 2026")
     }
 
     Scenario("Registered ratepayer goes through the flow to establish a property, and changes the rates bill bool") {
@@ -253,7 +253,7 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       Then("The Ratepayer is taken back to the Check Your Answers page, with the address changed")
       hitCYAStep()
       PropertyLinkingCYA.checkYourAnswer()
-      PropertyLinkingCYA.addressChangedCheck()
+      PropertyLinkingCYA.addressChangedCheck("Bug me not pvt ltd, rodley lane, rodley, leeds, BH1 1HU")
     }
 
   }
