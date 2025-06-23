@@ -42,9 +42,9 @@ object PropertyLinkingCYA extends BasePage {
   def clickChangeBusinessRatesBill(): Unit =
     click(changeBusinessRatesBill)
 
-  def clickChangeEvidenceDocument(): Unit =
+  def clickChangeEvidenceDocument(): Unit   =
     click(changeEvidenceDocument)
-  def clickChangePropertyConnection(): Unit  =
+  def clickChangePropertyConnection(): Unit =
     click(changePropertyConnection)
 
   def checkYourAnswer(): Unit =

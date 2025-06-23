@@ -211,7 +211,7 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
 
       Then("The Ratepayer clicks the change property connection link, and is taken to the property connection page")
       PropertyLinkingCYA.clickChangePropertyConnection()
-      ConnectionToPropertyPage.propertyConnection()
+      ConnectionToPropertyPage.ConnectionToProperty()
 
       Then("Ratepayer clicks on the 'occupier' radio button")
       ConnectionToPropertyPage.ConnectionType("Occupier")
