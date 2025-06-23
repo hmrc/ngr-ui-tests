@@ -21,6 +21,7 @@ import uk.gov.hmrc.configuration.TestEnvironment
 import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
 import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
+import uk.gov.hmrc.ui.pages.propertyLinking.ConnectionToPropertyPage.ConnectionToProperty
 import uk.gov.hmrc.ui.pages.propertyLinking.PropertyLinkingCYA.{connectionChangedCheck, hitCYAStep}
 import uk.gov.hmrc.ui.pages.propertyLinking._
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
@@ -95,8 +96,9 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       BusinessRateBillPage.selectYes()
 
       Then("ratepayer hits the property-connection page, selects 'owner' and continues")
-      PropertyConnectionPage.hitConnectionStep()
-      PropertyConnectionPage.ownerRadio()
+      ConnectionToPropertyPage.hitConnectionStep()
+      ConnectionToPropertyPage.ConnectionToProperty()
+      ConnectionToPropertyPage.ownerRadio()
 
       Then("The ratepayer hits the CYA page")
       hitCYAStep()
@@ -209,10 +211,10 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
 
       Then("The Ratepayer clicks the change property connection link, and is taken to the property connection page")
       PropertyLinkingCYA.clickChangePropertyConnection()
-      PropertyConnectionPage.propertyConnection()
+      ConnectionToPropertyPage.propertyConnection()
 
       Then("Ratepayer clicks on the 'occupier' radio button")
-      PropertyConnectionPage.occupierRadio()
+      ConnectionToPropertyPage.occupierRadio()
 
       And("Ratepayer is taken back to the CYA page with the connection to the property changed")
       PropertyLinkingCYA.checkYourAnswer()
