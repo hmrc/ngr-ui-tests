@@ -31,8 +31,8 @@ object ConnectionToPropertyPage extends BasePage {
       case "OwnerAndOccupier" => "connection-to-property-radio-3"
     }
     click(getElementById(radioId))
+    click(continueButton)
   }
-  click(continueButton)
 
   private val connection_url: String = TestEnvironment.url("ngr-property-linking-frontend") + "/connection-to-property"
 
