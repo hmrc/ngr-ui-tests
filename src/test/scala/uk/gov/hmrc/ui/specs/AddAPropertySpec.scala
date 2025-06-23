@@ -218,9 +218,9 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       PropertyLinkingCYA.hitCYAStep()
       PropertyLinkingCYA.checkYourAnswer()
       val propertyAddress = getElementByCssSelector("#property-to-add-to-account-id").toString
+      click(continueButton)
 
       Then("The ratepayer hits the declaration page, and clicks accept")
-      DeclarationPage.hitDeclarationPage()
       DeclarationPage.declaration()
       click(continueButton)
 
