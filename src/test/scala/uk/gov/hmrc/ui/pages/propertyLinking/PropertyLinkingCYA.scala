@@ -28,6 +28,7 @@ object PropertyLinkingCYA extends BasePage {
   val changeRatepayerDate       = By.id("current-ratepayer")
   val changeBusinessRatesBill   = By.id("business-rates-bill")
   val changeEvidenceDocument    = By.id("evidence-document")
+  val changePropertyConnection  = By.id("property-connection")
 
   def clickChangePropertyAddressLink(): Unit =
     click(changePropertyAddressLink)
@@ -37,6 +38,8 @@ object PropertyLinkingCYA extends BasePage {
     click(changeBusinessRatesBill)
   def clickChangeEvidenceDocument(): Unit    =
     click(changeEvidenceDocument)
+  def clickChangePropertyConnection(): Unit  =
+    click(changePropertyConnection)
 
   def checkYourAnswer(): Unit =
     headerCheck("Check and confirm your details")
@@ -45,7 +48,7 @@ object PropertyLinkingCYA extends BasePage {
     getUrl(cya_url)
 
   def dateChangedCheck(date: String): Unit = {
-    val display = getElementByCssSelector("#when-did-you-become-the-current-ratepayer?-id").toString
+    val display = getElementByXpath("//*[@id=\"when-did-you-become-the-current-ratepayer?-id\"]")
     println("=====================================================")
     println(display)
     println("=====================================================")
@@ -60,6 +63,11 @@ object PropertyLinkingCYA extends BasePage {
   def addressChangedCheck(address: String): Unit = {
     val display = getElementByCssSelector("#property-to-add-to-account-id")
     assert(address == display, "the address was not changed")
+  }
+
+  def connectionChangedCheck(connection: String): Unit = {
+    val display = getElementByCssSelector("#what-is-your-connection-to-the-property-id")
+    assert(connection == display, "the property connection was not changed")
   }
 
 }

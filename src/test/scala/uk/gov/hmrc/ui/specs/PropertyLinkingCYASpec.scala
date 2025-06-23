@@ -21,7 +21,7 @@ import uk.gov.hmrc.configuration.TestEnvironment
 import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
 import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
-import uk.gov.hmrc.ui.pages.propertyLinking.PropertyLinkingCYA.hitCYAStep
+import uk.gov.hmrc.ui.pages.propertyLinking.PropertyLinkingCYA.{connectionChangedCheck, hitCYAStep}
 import uk.gov.hmrc.ui.pages.propertyLinking._
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
@@ -108,9 +108,8 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       CurrentRatepayer.afterDateRadio()
 
       Then("The Ratepayer is taken back to the Check Your Answers page, with the ratepayer date changed")
-      // PropertyLinkingCYA.checkYourAnswer()
+      PropertyLinkingCYA.checkYourAnswer()
       PropertyLinkingCYA.dateChangedCheck("On or after 1 April 2026")
-      Thread.sleep(15000)
     }
 
     Scenario("Registered ratepayer goes through the flow to establish a property, and changes the rates bill bool") {
@@ -166,7 +165,7 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       BusinessRateBillPage.selectNo()
 
       Then("The Ratepayer is taken back to the Check Your Answers page, with the ratepayer bill bool changed")
-      // PropertyLinkingCYA.checkYourAnswer()
+      PropertyLinkingCYA.checkYourAnswer()
       PropertyLinkingCYA.billChangedCheck("No")
     }
 
@@ -250,6 +249,63 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       hitCYAStep()
       PropertyLinkingCYA.checkYourAnswer()
       PropertyLinkingCYA.addressChangedCheck("Bug Me Not PVT LTD, RODLEY LANE, RODLEY, LEEDS, BH1 1HU")
+    }
+
+    Scenario(
+      "Registered ratepayer goes through the flow to establish a property, and changes the property connection"
+    ) {
+
+      Given("Ratepayer logins through one login")
+      loginOl()
+
+      Then("Ratepayer is now fully registered and is taken to the dashboard")
+      DashboardHome.DashboardHome(contactName)
+
+      Then("Ratepayer clicks the Add a Property link and is taken to the Add a Property page")
+      clickLink("Add a property")
+      AddAProperty.addAProperty()
+      click(continueButton)
+
+      Then("Ratepayer is taken to the What You Need page")
+      WhatYouNeed.whatYouNeed()
+      click(continueButton)
+
+      Then("Ratepayer is taken to the find a property page and searches for a property")
+      FindAProperty.findProperty()
+      FindAProperty.inputPostCode(postCode)
+
+      Then("Ratepayer is taken to the search results page")
+      PropertySearchResultPage.searchResult(postCode)
+
+      Then("Ratepayer click 'Select property' on the search results page")
+      clickLink("Select property")
+
+      Then("Ratepayer is taken to the selected property page, clicks the 'yes' radio and continues")
+      SelectedProperty.selectedProperty()
+      SelectedProperty.yesRadio()
+
+      Then("Ratepayer selects 'Before 1 April 2026' on 'When did you become the current ratepayer?' page")
+      CurrentRatepayer.currentRatepayer()
+      CurrentRatepayer.beforeDateRadio()
+
+      Then("The ratepayers selects 'yes' on 'business rates bill for the property' page")
+      BusinessRateBillPage.BusinessRateBill()
+      BusinessRateBillPage.selectYes()
+
+      Then("The ratepayer hits the CYA page")
+      hitCYAStep()
+      PropertyLinkingCYA.checkYourAnswer()
+
+      Then("The Ratepayer clicks the change property connection link, and is taken to the property connection page")
+      PropertyLinkingCYA.clickChangePropertyConnection()
+      PropertyConnectionPage.propertyConnection()
+
+      Then("Ratepayer clicks on the 'owner' radio button")
+      PropertyConnectionPage.ownerRadio()
+
+      And("Ratepayer is taken back to the CYA page with the connection to the property changed")
+      PropertyLinkingCYA.checkYourAnswer()
+      PropertyLinkingCYA.connectionChangedCheck("Owner")
     }
 
   }
