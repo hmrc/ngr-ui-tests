@@ -45,7 +45,7 @@ object PropertyLinkingCYA extends BasePage {
     getUrl(cya_url)
 
   def dateChangedCheck(date: String): Unit = {
-    val display = getElementByXpath("/html/body/div/main/div/div/form/dl/div[3]/dd[1]/span")
+    val display = getElementById("when-did-you-become-the-current-ratepayer?-id")
     assert(date == display, "the date was not changed")
   }
 
@@ -55,7 +55,7 @@ object PropertyLinkingCYA extends BasePage {
   }
 
   def addressChangedCheck(address: String): Unit = {
-    val display = getElementByXpath("/html/body/div/main/div/div/form/dl/div[1]/dd[1]/span")
+    val display = getElementById("property-to-add-to-account-id")
     assert(address == display, "the address was not changed")
   }
 

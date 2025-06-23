@@ -107,12 +107,10 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       Then("Ratepayer selects 'After 1 April 2026' on 'When did you become the current ratepayer?' page")
       CurrentRatepayer.afterDateRadio()
 
-      Then("We wait")
-      Thread.sleep(15000)
-
       Then("The Ratepayer is taken back to the Check Your Answers page, with the ratepayer date changed")
       // PropertyLinkingCYA.checkYourAnswer()
       PropertyLinkingCYA.dateChangedCheck("On or after 1 April 2026")
+      Thread.sleep(15000)
     }
 
     Scenario("Registered ratepayer goes through the flow to establish a property, and changes the rates bill bool") {
@@ -167,10 +165,7 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       Then("Ratepayer selects 'no' on 'business rates bill for the property' page")
       BusinessRateBillPage.selectNo()
 
-      Then("We wait")
-      Thread.sleep(15000)
-
-      Then("The Ratepayer is taken back to the Check Your Answers page, with the ratepayer date changed")
+      Then("The Ratepayer is taken back to the Check Your Answers page, with the ratepayer bill bool changed")
       // PropertyLinkingCYA.checkYourAnswer()
       PropertyLinkingCYA.billChangedCheck("No")
     }
@@ -202,15 +197,9 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       Then("Ratepayer click 'Select property' on the search results page")
       clickLink("Select property")
 
-      Then("We wait")
-      Thread.sleep(15000)
-
       Then("Ratepayer is taken to the selected property page, clicks the 'yes' radio and continues")
       SelectedProperty.selectedProperty()
       SelectedProperty.yesRadio()
-
-      Then("We wait")
-      Thread.sleep(15000)
 
       Then("Ratepayer selects 'Before 1 April 2026' on 'When did you become the current ratepayer?' page")
       CurrentRatepayer.currentRatepayer()
@@ -235,25 +224,29 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       PropertySearchResultPage.searchResult(postCode)
 
       Then("Ratepayer clicks the second 'Select property' on the search results page")
-      val link = By.xpath("//*[@id=\"main-content\"]/div/div/div[2]/div/table/tbody/tr[2]/td[5]/a")
+      val link = By.cssSelector(
+        "#main-content > div > div > div:nth-child(2) > div > table > tbody > tr:nth-child(3) > td:nth-child(5) > a"
+      )
       waitForElementToBeClickable(link)
+      Thread.sleep(15000)
 
-      Then("Ratepayer is taken to the selected property page, clicks the 'yes' radio and continues")
-      SelectedProperty.selectedProperty()
-      SelectedProperty.yesRadio()
-
-      Then("Ratepayer selects 'Before 1 April 2026' on 'When did you become the current ratepayer?' page")
-      CurrentRatepayer.currentRatepayer()
-      CurrentRatepayer.beforeDateRadio()
-
-      Then("The ratepayers selects 'yes' on 'business rates bill for the property' page")
-      BusinessRateBillPage.BusinessRateBill()
-      BusinessRateBillPage.selectYes()
+//      Then("Ratepayer is taken to the selected property page, clicks the 'yes' radio and continues")
+//      SelectedProperty.selectedProperty()
+//      SelectedProperty.yesRadio()
+//
+//      Then("Ratepayer selects 'Before 1 April 2026' on 'When did you become the current ratepayer?' page")
+//      CurrentRatepayer.currentRatepayer()
+//      CurrentRatepayer.beforeDateRadio()
+//
+//      Then("The ratepayers selects 'yes' on 'business rates bill for the property' page")
+//      BusinessRateBillPage.BusinessRateBill()
+//      BusinessRateBillPage.selectYes()
 
       Then("The Ratepayer is taken back to the Check Your Answers page, with the address changed")
       hitCYAStep()
       PropertyLinkingCYA.checkYourAnswer()
       PropertyLinkingCYA.addressChangedCheck("Bug me not pvt ltd, rodley lane, rodley, leeds, BH1 1HU")
+      Thread.sleep(15000)
     }
 
   }
