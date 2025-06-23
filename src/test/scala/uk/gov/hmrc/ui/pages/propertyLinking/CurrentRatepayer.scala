@@ -32,7 +32,8 @@ object CurrentRatepayer extends BasePage {
     click(continueButton)
   }
 
-  def afterDateRadio(): Unit =
+  def afterDateRadio(): Unit = {
     click(getElementById("current-ratepayer-radio-2"))
-  click(continueButton)
+    click(continueButton)
+  }
 }

@@ -94,6 +94,10 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       BusinessRateBillPage.BusinessRateBill()
       BusinessRateBillPage.selectYes()
 
+      Then("ratepayer hits the property-connection page, selects 'owner' and continues")
+      PropertyConnectionPage.hitConnectionStep()
+      PropertyConnectionPage.ownerRadio()
+
       Then("The ratepayer hits the CYA page")
       hitCYAStep()
       PropertyLinkingCYA.checkYourAnswer()
@@ -120,37 +124,6 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       Then("Ratepayer is now fully registered and is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
 
-      Then("Ratepayer clicks the Add a Property link and is taken to the Add a Property page")
-      clickLink("Add a property")
-      AddAProperty.addAProperty()
-      click(continueButton)
-
-      Then("Ratepayer is taken to the What You Need page")
-      WhatYouNeed.whatYouNeed()
-      click(continueButton)
-
-      Then("Ratepayer is taken to the find a property page and searches for a property")
-      FindAProperty.findProperty()
-      FindAProperty.inputPostCode(postCode)
-
-      Then("Ratepayer is taken to the search results page")
-      PropertySearchResultPage.searchResult(postCode)
-
-      Then("Ratepayer click 'Select property' on the search results page")
-      clickLink("Select property")
-
-      Then("Ratepayer is taken to the selected property page, clicks the 'yes' radio and continues")
-      SelectedProperty.selectedProperty()
-      SelectedProperty.yesRadio()
-
-      Then("Ratepayer selects 'Before 1 April 2026' on 'When did you become the current ratepayer?' page")
-      CurrentRatepayer.currentRatepayer()
-      CurrentRatepayer.beforeDateRadio()
-
-      Then("The ratepayers selects 'yes' on 'business rates bill for the property' page")
-      BusinessRateBillPage.BusinessRateBill()
-      BusinessRateBillPage.selectYes()
-
       Then("The ratepayer hits the CYA page")
       hitCYAStep()
       PropertyLinkingCYA.checkYourAnswer()
@@ -176,37 +149,6 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is now fully registered and is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
-
-      Then("Ratepayer clicks the Add a Property link and is taken to the Add a Property page")
-      clickLink("Add a property")
-      AddAProperty.addAProperty()
-      click(continueButton)
-
-      Then("Ratepayer is taken to the What You Need page")
-      WhatYouNeed.whatYouNeed()
-      click(continueButton)
-
-      Then("Ratepayer is taken to the find a property page and searches for a property")
-      FindAProperty.findProperty()
-      FindAProperty.inputPostCode(postCode)
-
-      Then("Ratepayer is taken to the search results page")
-      PropertySearchResultPage.searchResult(postCode)
-
-      Then("Ratepayer click 'Select property' on the search results page")
-      clickLink("Select property")
-
-      Then("Ratepayer is taken to the selected property page, clicks the 'yes' radio and continues")
-      SelectedProperty.selectedProperty()
-      SelectedProperty.yesRadio()
-
-      Then("Ratepayer selects 'Before 1 April 2026' on 'When did you become the current ratepayer?' page")
-      CurrentRatepayer.currentRatepayer()
-      CurrentRatepayer.beforeDateRadio()
-
-      Then("The ratepayers selects 'yes' on 'business rates bill for the property' page")
-      BusinessRateBillPage.BusinessRateBill()
-      BusinessRateBillPage.selectYes()
 
       Then("The ratepayer hits the CYA page")
       hitCYAStep()
@@ -261,37 +203,6 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       Then("Ratepayer is now fully registered and is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
 
-      Then("Ratepayer clicks the Add a Property link and is taken to the Add a Property page")
-      clickLink("Add a property")
-      AddAProperty.addAProperty()
-      click(continueButton)
-
-      Then("Ratepayer is taken to the What You Need page")
-      WhatYouNeed.whatYouNeed()
-      click(continueButton)
-
-      Then("Ratepayer is taken to the find a property page and searches for a property")
-      FindAProperty.findProperty()
-      FindAProperty.inputPostCode(postCode)
-
-      Then("Ratepayer is taken to the search results page")
-      PropertySearchResultPage.searchResult(postCode)
-
-      Then("Ratepayer click 'Select property' on the search results page")
-      clickLink("Select property")
-
-      Then("Ratepayer is taken to the selected property page, clicks the 'yes' radio and continues")
-      SelectedProperty.selectedProperty()
-      SelectedProperty.yesRadio()
-
-      Then("Ratepayer selects 'Before 1 April 2026' on 'When did you become the current ratepayer?' page")
-      CurrentRatepayer.currentRatepayer()
-      CurrentRatepayer.beforeDateRadio()
-
-      Then("The ratepayers selects 'yes' on 'business rates bill for the property' page")
-      BusinessRateBillPage.BusinessRateBill()
-      BusinessRateBillPage.selectYes()
-
       Then("The ratepayer hits the CYA page")
       hitCYAStep()
       PropertyLinkingCYA.checkYourAnswer()
@@ -300,12 +211,12 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       PropertyLinkingCYA.clickChangePropertyConnection()
       PropertyConnectionPage.propertyConnection()
 
-      Then("Ratepayer clicks on the 'owner' radio button")
-      PropertyConnectionPage.ownerRadio()
+      Then("Ratepayer clicks on the 'occupier' radio button")
+      PropertyConnectionPage.occupierRadio()
 
       And("Ratepayer is taken back to the CYA page with the connection to the property changed")
       PropertyLinkingCYA.checkYourAnswer()
-      PropertyLinkingCYA.connectionChangedCheck("Owner")
+      PropertyLinkingCYA.connectionChangedCheck("Occupier")
     }
 
   }

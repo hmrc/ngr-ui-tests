@@ -16,15 +16,26 @@
 
 package uk.gov.hmrc.ui.pages.propertyLinking
 
+import uk.gov.hmrc.configuration.TestEnvironment
 import uk.gov.hmrc.ui.pages.BasePage
 
 object PropertyConnectionPage extends BasePage {
+
+  private val connection_url: String = TestEnvironment.url("ngr-property-linking-frontend") + "/connection-to-property"
+
+  def hitConnectionStep() =
+    getUrl(connection_url)
 
   def propertyConnection(): Unit =
     headerCheck("What is your connection to the property?")
 
   def ownerRadio(): Unit = {
     click(getElementById("connection-to-property-radio"))
+    click(continueButton)
+  }
+
+  def occupierRadio(): Unit = {
+    click(getElementById("connection-to-property-radio-2"))
     click(continueButton)
   }
 

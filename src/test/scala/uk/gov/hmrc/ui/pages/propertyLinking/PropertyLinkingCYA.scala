@@ -49,9 +49,6 @@ object PropertyLinkingCYA extends BasePage {
 
   def dateChangedCheck(date: String): Unit = {
     val display = getElementByXpath("//*[@id=\"when-did-you-become-the-current-ratepayer?-id\"]")
-    println("=====================================================")
-    println(display)
-    println("=====================================================")
     assert(date == display, "the date was not changed")
   }
 
