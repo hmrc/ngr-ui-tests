@@ -225,28 +225,31 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
 
       Then("Ratepayer clicks the second 'Select property' on the search results page")
       val link = By.cssSelector(
-        "#main-content > div > div > div:nth-child(2) > div > table > tbody > tr:nth-child(3) > td:nth-child(5) > a"
+        "#main-content > div > div > div:nth-child(2) > div > table > tbody > tr:nth-child(2) > td:nth-child(5) > a"
       )
       waitForElementToBeClickable(link)
-      Thread.sleep(15000)
+      click(
+        By.cssSelector(
+          "#main-content > div > div > div:nth-child(2) > div > table > tbody > tr:nth-child(2) > td:nth-child(5) > a"
+        )
+      )
 
-//      Then("Ratepayer is taken to the selected property page, clicks the 'yes' radio and continues")
-//      SelectedProperty.selectedProperty()
-//      SelectedProperty.yesRadio()
-//
-//      Then("Ratepayer selects 'Before 1 April 2026' on 'When did you become the current ratepayer?' page")
-//      CurrentRatepayer.currentRatepayer()
-//      CurrentRatepayer.beforeDateRadio()
-//
-//      Then("The ratepayers selects 'yes' on 'business rates bill for the property' page")
-//      BusinessRateBillPage.BusinessRateBill()
-//      BusinessRateBillPage.selectYes()
+      Then("Ratepayer is taken to the selected property page, clicks the 'yes' radio and continues")
+      SelectedProperty.selectedProperty()
+      SelectedProperty.yesRadio()
+
+      Then("Ratepayer selects 'Before 1 April 2026' on 'When did you become the current ratepayer?' page")
+      CurrentRatepayer.currentRatepayer()
+      CurrentRatepayer.beforeDateRadio()
+
+      Then("The ratepayers selects 'yes' on 'business rates bill for the property' page")
+      BusinessRateBillPage.BusinessRateBill()
+      BusinessRateBillPage.selectYes()
 
       Then("The Ratepayer is taken back to the Check Your Answers page, with the address changed")
       hitCYAStep()
       PropertyLinkingCYA.checkYourAnswer()
-      PropertyLinkingCYA.addressChangedCheck("Bug me not pvt ltd, rodley lane, rodley, leeds, BH1 1HU")
-      Thread.sleep(15000)
+      PropertyLinkingCYA.addressChangedCheck("Bug Me Not PVT LTD, RODLEY LANE, RODLEY, LEEDS, BH1 1HU")
     }
 
   }
