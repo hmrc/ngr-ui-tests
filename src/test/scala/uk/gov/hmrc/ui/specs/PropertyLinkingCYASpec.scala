@@ -98,7 +98,7 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       Then("ratepayer hits the property-connection page, selects 'owner' and continues")
       ConnectionToPropertyPage.hitConnectionStep()
       ConnectionToPropertyPage.ConnectionToProperty()
-      ConnectionToPropertyPage.ownerRadio()
+      ConnectionToPropertyPage.ConnectionType("Owner")
 
       Then("The ratepayer hits the CYA page")
       hitCYAStep()
@@ -214,7 +214,7 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       ConnectionToPropertyPage.propertyConnection()
 
       Then("Ratepayer clicks on the 'occupier' radio button")
-      ConnectionToPropertyPage.occupierRadio()
+      ConnectionToPropertyPage.ConnectionType("Occupier")
 
       And("Ratepayer is taken back to the CYA page with the connection to the property changed")
       PropertyLinkingCYA.checkYourAnswer()

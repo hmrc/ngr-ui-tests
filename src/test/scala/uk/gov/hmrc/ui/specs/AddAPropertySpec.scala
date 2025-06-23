@@ -208,11 +208,11 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       BusinessRateBillPage.BusinessRateBill()
       BusinessRateBillPage.selectYes()
 
-      //      And("The ratepayers selects 'Owner' on 'connection to the property' page")
-      //      ConnectionToPropertyPage.ConnectionToProperty()
-      //      ConnectionToPropertyPage.ConnectionType("Owner")
-      //
-      //      And("The ratepayers navigate to confirm your details page")
+//      And("The ratepayers selects 'Owner' on 'connection to the property' page")
+//      ConnectionToPropertyPage.ConnectionToProperty()
+//      ConnectionToPropertyPage.ConnectionType("Owner")
+//
+//      And("The ratepayers navigate to confirm your details page")
 
       Then("The ratepayer hits the CYA page")
       PropertyLinkingCYA.hitCYAStep()

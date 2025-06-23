@@ -38,18 +38,4 @@ object ConnectionToPropertyPage extends BasePage {
 
   def hitConnectionStep() =
     getUrl(connection_url)
-
-  def propertyConnection(): Unit =
-    headerCheck("What is your connection to the property?")
-
-  def ownerRadio(): Unit = {
-    click(getElementById("connection-to-property-radio"))
-    click(continueButton)
-  }
-
-  def occupierRadio(): Unit = {
-    click(getElementById("connection-to-property-radio-2"))
-    click(continueButton)
-  }
-
 }
