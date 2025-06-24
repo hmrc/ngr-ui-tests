@@ -18,6 +18,7 @@ package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages.contactDetails._
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
+import uk.gov.hmrc.ui.pages.propertyLinking.PropertyLinkingCYA.hitCYAStep
 import uk.gov.hmrc.ui.pages.propertyLinking._
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
@@ -203,16 +204,30 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       CurrentRatepayer.clickHelpSpan()
       CurrentRatepayer.beforeDateRadio()
 
-      And("The ratepayers selects 'yes' on 'business rates bill for the property' page")
+      Then("The ratepayers selects 'yes' on 'business rates bill for the property' page")
       BusinessRateBillPage.BusinessRateBill()
       BusinessRateBillPage.selectYes()
 
-      //      And("The ratepayers selects 'Owner' on 'connection to the property' page")
-      //      ConnectionToPropertyPage.ConnectionToProperty()
-      //      ConnectionToPropertyPage.ConnectionType("Owner")
-      //
-      //      And("The ratepayers navigate to confirm your details page")
+//      And("The ratepayers selects 'Owner' on 'connection to the property' page")
+//      ConnectionToPropertyPage.ConnectionToProperty()
+//      ConnectionToPropertyPage.ConnectionType("Owner")
+//
+//      And("The ratepayers navigate to confirm your details page")
 
+      Then("The ratepayer hits the CYA page")
+      PropertyLinkingCYA.hitCYAStep()
+      PropertyLinkingCYA.checkYourAnswer()
+      val propertyAddress = getElementByCssSelector("#property-to-add-to-account-id").toString
+      click(continueButton)
+
+      Then("The ratepayer hits the declaration page, and clicks accept")
+      DeclarationPage.declaration()
+      click(continueButton)
+
+      And("The ratepayer is taken to the Property Request sent page, displaying the correct property address")
+      RequestSentPage.requestSent()
+      RequestSentPage.reqPrintLinkDisplay("Print or save this page")
+      RequestSentPage.requestSentAddressCheck(propertyAddress)
     }
   }
 }

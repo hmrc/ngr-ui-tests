@@ -24,6 +24,9 @@ object PropertyLinkingCYA extends BasePage {
 
   private val cya_url: String = TestEnvironment.url("ngr-property-linking-frontend") + "/check-your-answers"
 
+  def hitCYAStep() =
+    getUrl(cya_url)
+
   val changePropertyAddressLink = By.id("property-address")
   val changeRatepayerDate       = By.id("current-ratepayer")
   val changeBusinessRatesBill   = By.id("business-rates-bill")
@@ -32,20 +35,20 @@ object PropertyLinkingCYA extends BasePage {
 
   def clickChangePropertyAddressLink(): Unit =
     click(changePropertyAddressLink)
-  def clickChangeRatepayerDate(): Unit       =
+
+  def clickChangeRatepayerDate(): Unit =
     click(changeRatepayerDate)
-  def clickChangeBusinessRatesBill(): Unit   =
+
+  def clickChangeBusinessRatesBill(): Unit =
     click(changeBusinessRatesBill)
-  def clickChangeEvidenceDocument(): Unit    =
+
+  def clickChangeEvidenceDocument(): Unit   =
     click(changeEvidenceDocument)
-  def clickChangePropertyConnection(): Unit  =
+  def clickChangePropertyConnection(): Unit =
     click(changePropertyConnection)
 
   def checkYourAnswer(): Unit =
     headerCheck("Check and confirm your details")
-
-  def hitCYAStep() =
-    getUrl(cya_url)
 
   def dateChangedCheck(date: String): Unit = {
     val display = getElementByXpath("//*[@id=\"when-did-you-become-the-current-ratepayer?-id\"]")
