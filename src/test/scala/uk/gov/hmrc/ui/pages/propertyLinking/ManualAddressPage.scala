@@ -24,44 +24,34 @@ object ManualAddressPage extends BasePage {
   def ManualAddress(): Unit =
     headerCheck("What is the address?")
 
-  val addressLine1Input: By = By.id("addressLine1")
-  val addressLine2Input: By = By.id("addressLine2")
-  val townInput: By = By.id("town")
-  val countyInput: By = By.id("county")
-  val postcodeInput: By = By.id("postcode")
+  val addressLine1Input: By       = By.id("addressLine1")
+  val addressLine2Input: By       = By.id("addressLine2")
+  val townInput: By               = By.id("town")
+  val countyInput: By             = By.id("county")
+  val postcodeInput: By           = By.id("postcode")
   val additionalSearchOptions: By = By.xpath("//*[@id=\"additional-search-options\"]/summary/span")
-  val propertyReferenceInput: By = By.id("propertyReference")
-  val minRateableValueInput: By = By.id("miniRateableValue")
-  val maxRateableValueInput: By = By.id("maxRateableValue")
+  val propertyReferenceInput: By  = By.id("propertyReference")
+  val minRateableValueInput: By   = By.id("miniRateableValue")
+  val maxRateableValueInput: By   = By.id("maxRateableValue")
 
-  def InputAddressLine1Input(newAddressLine1: String): Unit = {
+  def InputAddressLine1Input(newAddressLine1: String): Unit           =
     sendKeys(addressLine1Input, newAddressLine1)
-  }
-  def InputAddressLine2Input(newAddressLine2: String): Unit = {
+  def InputAddressLine2Input(newAddressLine2: String): Unit           =
     sendKeys(addressLine2Input, newAddressLine2)
-  }
-  def InputTownInput(newTown: String): Unit = {
+  def InputTownInput(newTown: String): Unit                           =
     sendKeys(townInput, newTown)
-  }
-  def InputCountyInput(newCounty: String): Unit = {
+  def InputCountyInput(newCounty: String): Unit                       =
     sendKeys(countyInput, newCounty)
-  }
-  def InputPostcodeInput(newPostcodeInput: String): Unit = {
+  def InputPostcodeInput(newPostcodeInput: String): Unit              =
     sendKeys(postcodeInput, newPostcodeInput)
-  }
-  def AdditionalSearchOption():Unit = {
-   click(additionalSearchOptions)
-  }
-  def PropertyReferenceInput(newPropertyReferenceInput:String):Unit = {
+  def AdditionalSearchOption(): Unit                                  =
+    click(additionalSearchOptions)
+  def PropertyReferenceInput(newPropertyReferenceInput: String): Unit =
     sendKeys(postcodeInput, newPropertyReferenceInput)
-  }
-  def MinRateableValueInput(newMinRateableValueInput:String):Unit = {
+  def MinRateableValueInput(newMinRateableValueInput: String): Unit   =
     sendKeys(minRateableValueInput, newMinRateableValueInput)
-  }
-  def MaxRateableValueInput(newMaxRateableValueInput:String):Unit = {
+  def MaxRateableValueInput(newMaxRateableValueInput: String): Unit   =
     sendKeys(maxRateableValueInput, newMaxRateableValueInput)
-  }
-  def findAddress():Unit = {
+  def findAddress(): Unit                                             =
     click(continueButton)
-  }
 }

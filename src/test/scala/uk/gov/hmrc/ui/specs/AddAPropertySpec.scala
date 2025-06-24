@@ -158,7 +158,6 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       WhatYouNeed.whatYouNeed()
       click(continueButton)
 
-
       Then("Ratepayer is taken to the search a property page and clicks the enter manual address link")
       FindAProperty.findProperty()
       FindAProperty.clickManualAddressLink
