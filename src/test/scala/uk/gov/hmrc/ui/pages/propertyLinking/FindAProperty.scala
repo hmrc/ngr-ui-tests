@@ -23,6 +23,7 @@ object FindAProperty extends BasePage {
 
   val postCode          = By.id("postcode-value")
   val findAddressButton = By.id("continue")
+  val manualAddressLink = By.xpath("/html/body/div/main/div/div/form/div/div/p/a")
 
   def findProperty(): Unit =
     headerCheck("Find a property")
@@ -33,6 +34,10 @@ object FindAProperty extends BasePage {
   def inputPostCode(code: String): Unit = {
     sendKeys(postCode, code)
     click(findAddressButton)
+  }
+
+  def clickManualAddressLink(): Unit = {
+    click(manualAddressLink)
   }
 
 }
