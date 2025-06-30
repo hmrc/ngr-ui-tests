@@ -36,8 +36,7 @@ object FindAProperty extends BasePage {
     click(findAddressButton)
   }
 
-  def clickManualAddressLink(): Unit = {
+  def clickManualAddressLink(): Unit =
     click(manualAddressLink)
-  }
 
 }
