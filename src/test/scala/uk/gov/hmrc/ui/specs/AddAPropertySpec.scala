@@ -141,6 +141,41 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       FindAProperty.noResultsFound()
     }
 
+    Scenario("Testing manual address search feature for property search") {
+
+      Given("Ratepayer logins through one login")
+      loginOl()
+
+      Then("Ratepayer is now fully registered and is taken to the dashboard")
+      DashboardHome.DashboardHome(contactName)
+
+      Then("Ratepayer clicks the Add a Property link and is taken to the Add a Property page")
+      clickLink("Add a property")
+      AddAProperty.addAProperty()
+      click(continueButton)
+
+      Then("Ratepayer is taken to the What You Need page")
+      WhatYouNeed.whatYouNeed()
+      click(continueButton)
+
+      Then("Ratepayer is taken to the search a property page and clicks the enter manual address link")
+      FindAProperty.findProperty()
+      FindAProperty.clickManualAddressLink
+
+      Then("Ratepayer is taken to the manual search address page and enters their property details")
+      ManualAddressPage.ManualAddress()
+      ManualAddressPage.InputAddressLine1Input("2a")
+      ManualAddressPage.InputAddressLine2Input("rodley lane")
+      ManualAddressPage.InputTownInput("rodley")
+      ManualAddressPage.InputCountyInput("Leeds")
+      ManualAddressPage.InputPostcodeInput("BH1 7ST")
+      ManualAddressPage.AdditionalSearchOption()
+      ManualAddressPage.PropertyReferenceInput("2191322564521")
+      ManualAddressPage.MinRateableValueInput("10000")
+      ManualAddressPage.MaxRateableValueInput("8000000")
+      ManualAddressPage.findAddress()
+    }
+
     Scenario("Registered ratepayer adds the property ") {
 
       Given("Ratepayer logins through one login")
