@@ -17,9 +17,22 @@
 package uk.gov.hmrc.ui.pages.propertyLinking
 
 import org.openqa.selenium.By
+
+import java.time.{Clock, Instant, LocalDateTime, ZoneId}
 import uk.gov.hmrc.ui.pages.BasePage
 
 object CurrentRatepayer extends BasePage {
+
+  val dayInput: By   = By.id("ratepayerDate.day")
+  val monthInput: By = By.id("ratepayerDate.month")
+  val yearInput: By  = By.id("ratepayerDate.year")
+
+  def enterDayInput(newDay: String): Unit     =
+    sendKeys(dayInput, newDay)
+  def enterMonthInput(newMonth: String): Unit =
+    sendKeys(monthInput, newMonth)
+  def enterYearInput(newYear: String): Unit   =
+    sendKeys(yearInput, newYear)
 
   def currentRatepayer(): Unit =
     headerCheck("When did you become the current ratepayer?")
@@ -32,8 +45,12 @@ object CurrentRatepayer extends BasePage {
     click(continueButton)
   }
 
-  def afterDateRadio(): Unit = {
+  def afterDateRadio(): Unit =
     click(getElementById("current-ratepayer-radio-2"))
-    click(continueButton)
+
+  def timeSkip(clock: Clock): Boolean = {
+    val now = LocalDateTime.now(clock)
+    now.isAfter(LocalDateTime.of(2026, 6, 5, 0, 0))
   }
+
 }
