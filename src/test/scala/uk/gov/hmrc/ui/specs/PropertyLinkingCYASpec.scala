@@ -98,7 +98,7 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the upload business rates document page and uploads a .pdf")
       UploadBusinessRatesBill.uploadBusinessRatesBill()
-      UploadBusinessRatesBill.uploadFile("testDummyPdf")
+      UploadBusinessRatesBill.uploadFile("testDummyPd.pdf")
       click(continueButton)
 
       Then("We reload the page")
@@ -106,7 +106,7 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the upload confirmation page")
       UploadBusinessRatesBill.uploadBusinessRatesBill()
-      UploadBusinessRatesBill.fileUploadedCheck("testDummyPdf")
+      UploadBusinessRatesBill.fileUploadedCheck("testDummyPdf.pdf")
       click(continueButton)
 
       Then("ratepayer hits the property-connection page, selects 'owner' and continues")

@@ -73,7 +73,6 @@ trait BasePage extends PageObject {
   def clickLink(link: String): Unit =
     waitForElementToBeClickable(By.linkText(link)).click()
 
-
   implicit def driver: WebDriver = Driver.instance
 
   def pageTitle = driver.getTitle
@@ -81,19 +80,17 @@ trait BasePage extends PageObject {
   object TestFailedException {
     import org.scalatest.exceptions.TestFailedException
 
-    def apply(message: String) = new TestFailedException(message, failedCodeStackDepth = 6)
+    def apply(message: String)                   = new TestFailedException(message, failedCodeStackDepth = 6)
     def apply(message: String, cause: Throwable) = new TestFailedException(message, cause, failedCodeStackDepth = 6)
   }
 
   def find(by: By): WebElement =
     Try[WebElement](driver.findElement(by)) match {
       case Success(webElement: WebElement) => webElement
-      case Failure(exception) =>
+      case Failure(exception)              =>
         throw TestFailedException(
           s"The following WebElement was not found on the page with title '$pageTitle'\n: ${exception.getMessage}"
         )
     }
-
-
 
 }
