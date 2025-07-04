@@ -23,6 +23,7 @@ import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
 import uk.gov.hmrc.ui.pages.propertyLinking.ConnectionToPropertyPage.ConnectionToProperty
 import uk.gov.hmrc.ui.pages.propertyLinking.PropertyLinkingCYA.{connectionChangedCheck, hitCYAStep}
+import uk.gov.hmrc.ui.pages.propertyLinking.UploadBusinessRatesBill.fileUploadButton
 import uk.gov.hmrc.ui.pages.propertyLinking._
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
@@ -94,6 +95,19 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       Then("The ratepayers selects 'yes' on 'business rates bill for the property' page")
       BusinessRateBillPage.BusinessRateBill()
       BusinessRateBillPage.selectYes()
+
+      Then("Ratepayer is taken to the upload business rates document page and uploads a .pdf")
+      UploadBusinessRatesBill.uploadBusinessRatesBill()
+      UploadBusinessRatesBill.uploadFile("testDummyPdf")
+      click(continueButton)
+
+      Then("We reload the page")
+      reloadPage()
+
+      Then("Ratepayer is taken to the upload confirmation page")
+      UploadBusinessRatesBill.uploadBusinessRatesBill()
+      UploadBusinessRatesBill.fileUploadedCheck("testDummyPdf")
+      click(continueButton)
 
       Then("ratepayer hits the property-connection page, selects 'owner' and continues")
       ConnectionToPropertyPage.hitConnectionStep()

@@ -15,13 +15,13 @@
  */
 
 package uk.gov.hmrc.ui.pages
-import org.openqa.selenium.{By, WebDriver, WebElement}
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Wait}
-
+import org.openqa.selenium.{By, WebDriver, WebElement}
 import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
 
 import java.time.Duration
+import scala.util.{Failure, Success, Try}
 
 trait BasePage extends PageObject {
   val continueButton: By                        = By.id("continue")
@@ -72,5 +72,28 @@ trait BasePage extends PageObject {
 
   def clickLink(link: String): Unit =
     waitForElementToBeClickable(By.linkText(link)).click()
+
+
+  implicit def driver: WebDriver = Driver.instance
+
+  def pageTitle = driver.getTitle
+
+  object TestFailedException {
+    import org.scalatest.exceptions.TestFailedException
+
+    def apply(message: String) = new TestFailedException(message, failedCodeStackDepth = 6)
+    def apply(message: String, cause: Throwable) = new TestFailedException(message, cause, failedCodeStackDepth = 6)
+  }
+
+  def find(by: By): WebElement =
+    Try[WebElement](driver.findElement(by)) match {
+      case Success(webElement: WebElement) => webElement
+      case Failure(exception) =>
+        throw TestFailedException(
+          s"The following WebElement was not found on the page with title '$pageTitle'\n: ${exception.getMessage}"
+        )
+    }
+
+
 
 }
