@@ -27,12 +27,11 @@ object CurrentRatepayer extends BasePage {
   val monthInput: By = By.id("ratepayerDate.month")
   val yearInput: By  = By.id("ratepayerDate.year")
 
-  def enterDayInput(newDay: String): Unit     =
-    sendKeys(dayInput, newDay)
-  def enterMonthInput(newMonth: String): Unit =
-    sendKeys(monthInput, newMonth)
-  def enterYearInput(newYear: String): Unit   =
-    sendKeys(yearInput, newYear)
+  def dateInput(day: String, month: String, year: String): Unit = {
+    sendKeys(dayInput, day)
+    sendKeys(monthInput, month)
+    sendKeys(yearInput, year)
+  }
 
   def currentRatepayer(): Unit =
     headerCheck("When did you become the current ratepayer?")
