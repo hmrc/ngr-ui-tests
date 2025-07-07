@@ -23,16 +23,13 @@ import java.net.URLDecoder
 
 object UploadBusinessRatesBill extends BasePage {
 
-  val fileUploadButton: By = By.id("file")
+  val fileUploadButton = By.id("file")
 
   def uploadBusinessRatesBill(): Unit =
     headerCheck("Upload your business rates bill")
 
-  def uploadFile(file: String): Unit = {
-    val directory   = getClass.getResource(s"/testfiles/$file").toURI.toString.split("file:")
-    val decodedPath = URLDecoder.decode(directory(1), "utf-8")
-    find(fileUploadButton).sendKeys(decodedPath)
-  }
+  def uploadFile(file: String): Unit =
+    findElementById("file").sendKeys(System.getProperty("user.dir") + "/src/test/resources/testFiles/" + file)
 
   def fileUploadedCheck(file: String): Unit = {
     val display = getElementByXpath("//*[@id=\"main-content\"]/div/div/form/div/dl/div/dt/a")

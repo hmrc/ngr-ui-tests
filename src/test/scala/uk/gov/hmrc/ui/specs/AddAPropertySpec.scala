@@ -243,6 +243,19 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       BusinessRateBillPage.BusinessRateBill()
       BusinessRateBillPage.selectYes()
 
+      Then("Ratepayer is taken to the upload business rates document page and uploads a .pdf")
+      UploadBusinessRatesBill.uploadBusinessRatesBill()
+      UploadBusinessRatesBill.uploadFile("testDummyPdf.pdf")
+      click(continueButton)
+
+      Then("We reload the page")
+      reloadPage()
+
+      Then("Ratepayer is taken to the upload confirmation page")
+      UploadBusinessRatesBill.uploadBusinessRatesBill()
+      UploadBusinessRatesBill.fileUploadedCheck("testDummyPdf.pdf")
+      click(continueButton)
+
 //      And("The ratepayers selects 'Owner' on 'connection to the property' page")
 //      ConnectionToPropertyPage.ConnectionToProperty()
 //      ConnectionToPropertyPage.ConnectionType("Owner")
