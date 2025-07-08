@@ -44,6 +44,7 @@ object PropertyLinkingCYA extends BasePage {
 
   def clickChangeEvidenceDocument(): Unit   =
     click(changeEvidenceDocument)
+
   def clickChangePropertyConnection(): Unit =
     click(changePropertyConnection)
 
@@ -58,6 +59,11 @@ object PropertyLinkingCYA extends BasePage {
   def billChangedCheck(yesNo: String): Unit = {
     val display = getElementByXpath("//*[@id=\"do-you-have-a-business-rates-bill-for-this-property?-id\"]")
     assert(yesNo == display, "the business rates bool was not changed")
+  }
+
+  def evidenceChangedCheck(file: String): Unit = {
+    val display = getElementByXpath("//*[@id=\"evidence-document-id\"]")
+    assert(file == display, "the evidence document was not changed")
   }
 
   def addressChangedCheck(address: String): Unit = {

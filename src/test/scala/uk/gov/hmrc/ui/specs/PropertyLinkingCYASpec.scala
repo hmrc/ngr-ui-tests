@@ -150,6 +150,43 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       PropertyLinkingCYA.billChangedCheck("No")
     }
 
+    Scenario("Registered ratepayer goes through the flow to establish a property, and changes the rates bill uploaded evidence") {
+
+      Given("Ratepayer logins through one login")
+      loginOl()
+
+      Then("Ratepayer is now fully registered and is taken to the dashboard")
+      DashboardHome.DashboardHome(contactName)
+
+      Then("The ratepayer hits the CYA page")
+      hitCYAStep()
+      PropertyLinkingCYA.checkYourAnswer()
+
+      Then("Clicks the change business rates bill link")
+      PropertyLinkingCYA.clickChangeBusinessRatesBill()
+
+      Then("The 'business rates bill for the property' page is shown")
+      BusinessRateBillPage.BusinessRateBill()
+
+      Then("The ratepayers selects 'yes' on 'business rates bill for the property' page")
+      BusinessRateBillPage.BusinessRateBill()
+      BusinessRateBillPage.selectYes()
+
+      Then("Ratepayer is taken to the upload business rates document page and uploads a .pdf")
+      UploadBusinessRatesBill.uploadBusinessRatesBill()
+      UploadBusinessRatesBill.uploadFile("testDummyPdfCopy.pdf")
+      click(continueButton)
+
+      Then("Ratepayer is taken to the upload confirmation page")
+      UploadBusinessRatesBill.uploadBusinessRatesBill()
+      UploadBusinessRatesBill.fileUploadedCheck("testDummyPdfCopy.pdf")
+      click(continueButton)
+
+      Then("The Ratepayer is taken back to the Check Your Answers page, with the Evidence document name changed")
+      PropertyLinkingCYA.checkYourAnswer()
+      PropertyLinkingCYA.evidenceChangedCheck("testDummyPdfCopy.pdf")
+    }
+
     Scenario("Registered ratepayer goes through the flow to establish a property, and changes the property address") {
 
       Given("Ratepayer logins through one login")
