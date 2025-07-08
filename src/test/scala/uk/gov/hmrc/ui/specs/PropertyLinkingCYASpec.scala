@@ -238,9 +238,7 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       PropertyLinkingCYA.addressChangedCheck("Bug Me Not PVT LTD, RODLEY LANE, RODLEY, LEEDS, BH1 1HU")
     }
 
-    Scenario(
-      "Registered ratepayer goes through the flow to establish a property, and changes the property connection"
-    ) {
+    Scenario("Registered ratepayer goes through the flow to establish a property, and changes the property connection") {
 
       Given("Ratepayer logins through one login")
       loginOl()
