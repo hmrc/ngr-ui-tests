@@ -150,9 +150,7 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       PropertyLinkingCYA.billChangedCheck("No")
     }
 
-    Scenario(
-      "Registered ratepayer goes through the flow to establish a property, and changes the rates bill uploaded evidence"
-    ) {
+    Scenario("Registered ratepayer goes through the flow to establish a property, and changes the rates bill uploaded evidence") {
 
       Given("Ratepayer logins through one login")
       loginOl()
@@ -265,6 +263,5 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       PropertyLinkingCYA.checkYourAnswer()
       PropertyLinkingCYA.connectionChangedCheck("Occupier")
     }
-
   }
 }
