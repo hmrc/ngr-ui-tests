@@ -17,15 +17,10 @@
 package uk.gov.hmrc.ui.specs
 
 import org.openqa.selenium.By
-import uk.gov.hmrc.configuration.TestEnvironment
-import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
-import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
+import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
-import uk.gov.hmrc.ui.pages.propertyLinking.ConnectionToPropertyPage.ConnectionToProperty
-import uk.gov.hmrc.ui.pages.propertyLinking.PropertyLinkingCYA.{connectionChangedCheck, hitCYAStep}
-import uk.gov.hmrc.ui.pages.propertyLinking.UploadBusinessRatesBill.fileUploadButton
+import uk.gov.hmrc.ui.pages.propertyLinking.PropertyLinkingCYA.hitCYAStep
 import uk.gov.hmrc.ui.pages.propertyLinking._
-import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
 
 class PropertyLinkingCYASpec extends BaseSpec with StubPage {
@@ -98,11 +93,8 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the upload business rates document page and uploads a .pdf")
       UploadBusinessRatesBill.uploadBusinessRatesBill()
-      UploadBusinessRatesBill.uploadFile("testDummyPd.pdf")
+      UploadBusinessRatesBill.uploadFile("testDummyPdf.pdf")
       click(continueButton)
-
-      Then("We reload the page")
-      reloadPage()
 
       Then("Ratepayer is taken to the upload confirmation page")
       UploadBusinessRatesBill.uploadBusinessRatesBill()

@@ -248,10 +248,6 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       UploadBusinessRatesBill.uploadFile("testDummyPdf.pdf")
       click(continueButton)
 
-      Then("We reload the page")
-      reloadPage()
-      Thread.sleep(15000)
-
       Then("Ratepayer is taken to the upload confirmation page")
       UploadBusinessRatesBill.uploadBusinessRatesBill()
       UploadBusinessRatesBill.fileUploadedCheck("testDummyPdf.pdf")
