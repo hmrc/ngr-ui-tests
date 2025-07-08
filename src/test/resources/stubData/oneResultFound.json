@@ -53,7 +53,7 @@
           {
             "assessmentStatus": "DONE",
             "assessmentRef": 29775650001,
-            "rateableValue": 9300,
+            "rateableValue": 509300,
             "scatCode": "109",
             "currentFromDate": "2026-04-01",
             "effectiveDate": "2026-04-01",
@@ -76,7 +76,7 @@
         "uarn": 11905603002,
         "addressFull": "Bug Me Not PVT LTD, RODLEY LANE, RODLEY, LEEDS, BH1 1HU",
         "localAuthorityCode": "4720",
-        "localAuthorityReference": "8191322564521",
+        "localAuthorityReference": "5191322564521",
         "valuations": [
           {
             "assessmentStatus": "CURRENT",
@@ -120,11 +120,11 @@
           {
             "assessmentStatus": "CURRENT",
             "assessmentRef": 29775650000,
-            "rateableValue": 9300,
-            "scatCode": "249",
+            "rateableValue": 109300,
+            "scatCode": "420",
             "currentFromDate": "2026-04-01",
             "effectiveDate": "2026-04-01",
-            "descriptionText": "SHOP AND PREMISES",
+            "descriptionText": "Lifeboat Station",
             "listYear": "2026",
             "primaryDescription": "CS",
             "allowedActions": [
@@ -187,11 +187,11 @@
           {
             "assessmentStatus": "DONE",
             "assessmentRef": 29775650001,
-            "rateableValue": 9300,
-            "scatCode": "109",
+            "rateableValue": 159300,
+            "scatCode": "409",
             "currentFromDate": "2026-04-01",
             "effectiveDate": "2026-04-01",
-            "descriptionText": "GOLF",
+            "descriptionText": "Cafe",
             "listYear": "2026",
             "primaryDescription": "CS",
             "allowedActions": [
@@ -208,9 +208,9 @@
       },
       {
         "uarn": 11905603002,
-        "addressFull": "Bugged & Proud, RODLEY LANE, RODLEY, LEEDS, BH1 1HU",
+        "addressFull": "Zing & Proud, RODLEY LANE, RODLEY, LEEDS, BH1 1HU",
         "localAuthorityCode": "4720",
-        "localAuthorityReference": "8991322564521",
+        "localAuthorityReference": "991322564521",
         "valuations": [
           {
             "assessmentStatus": "CURRENT",
@@ -254,11 +254,11 @@
           {
             "assessmentStatus": "CURRENT",
             "assessmentRef": 29775650000,
-            "rateableValue": 9300,
-            "scatCode": "249",
+            "rateableValue": 879300,
+            "scatCode": "403",
             "currentFromDate": "2026-04-01",
             "effectiveDate": "2026-04-01",
-            "descriptionText": "SHOP AND PREMISES",
+            "descriptionText": "Aquarium",
             "listYear": "2026",
             "primaryDescription": "CS",
             "allowedActions": [
@@ -277,7 +277,7 @@
         "uarn": 11905603001,
         "addressFull": "HMRC UK, Phoenix, Grange Central, Telford, BH1 1HU",
         "localAuthorityCode": "4720",
-        "localAuthorityReference": "1191322564521",
+        "localAuthorityReference": "191322564521",
         "valuations": [
           {
             "assessmentStatus": "CURRENT",
@@ -321,11 +321,11 @@
           {
             "assessmentStatus": "DONE",
             "assessmentRef": 29775650001,
-            "rateableValue": 9300,
-            "scatCode": "109",
+            "rateableValue": 1509300,
+            "scatCode": "401",
             "currentFromDate": "2026-04-01",
             "effectiveDate": "2026-04-01",
-            "descriptionText": "GOLF",
+            "descriptionText": "Abattoir or Slaughter House (Rental Valuation)",
             "listYear": "2026",
             "primaryDescription": "CS",
             "allowedActions": [
@@ -342,7 +342,7 @@
       },
       {
         "uarn": 11905603002,
-        "addressFull": "The Debug Life UK, RODLEY LANE, RODLEY, LEEDS, BH1 1HU",
+        "addressFull": "Safe Life UK, RODLEY LANE, RODLEY, LEEDS, BH1 1HU",
         "localAuthorityCode": "4720",
         "localAuthorityReference": "2291322564521",
         "valuations": [
@@ -388,11 +388,11 @@
           {
             "assessmentStatus": "CURRENT",
             "assessmentRef": 29775650000,
-            "rateableValue": 9300,
-            "scatCode": "249",
+            "rateableValue": 2069300,
+            "scatCode": "134",
             "currentFromDate": "2026-04-01",
             "effectiveDate": "2026-04-01",
-            "descriptionText": "SHOP AND PREMISES",
+            "descriptionText": "Hospitals & Clinic NHS",
             "listYear": "2026",
             "primaryDescription": "CS",
             "allowedActions": [
@@ -411,7 +411,7 @@
         "uarn": 11905603001,
         "addressFull": "Tesco UK, Phoenix, Grange Central, Telford, BH1 1HU",
         "localAuthorityCode": "4720",
-        "localAuthorityReference": "2191322564521",
+        "localAuthorityReference": "91322564521",
         "valuations": [
           {
             "assessmentStatus": "CURRENT",
@@ -455,11 +455,11 @@
           {
             "assessmentStatus": "DONE",
             "assessmentRef": 29775650001,
-            "rateableValue": 9300,
-            "scatCode": "109",
+            "rateableValue": 999300,
+            "scatCode": "209",
             "currentFromDate": "2026-04-01",
             "effectiveDate": "2026-04-01",
-            "descriptionText": "GOLF",
+            "descriptionText": "Petrol Filling Station",
             "listYear": "2026",
             "primaryDescription": "CS",
             "allowedActions": [
@@ -476,9 +476,9 @@
       },
       {
         "uarn": 11905603002,
-        "addressFull": "(INCL STORE R/O 2 & 2A) 2A, RODLEY LANE, RODLEY, LEEDS, BH1 1HU",
+        "addressFull": "2A, RODLEY LANE, RODLEY, LEEDS, BH1 1HU",
         "localAuthorityCode": "4720",
-        "localAuthorityReference": "2191322564521",
+        "localAuthorityReference": "2291322564521",
         "valuations": [
           {
             "assessmentStatus": "CURRENT",
@@ -522,11 +522,11 @@
           {
             "assessmentStatus": "CURRENT",
             "assessmentRef": 29775650000,
-            "rateableValue": 9300,
-            "scatCode": "249",
+            "rateableValue": 809300,
+            "scatCode": "220",
             "currentFromDate": "2026-04-01",
             "effectiveDate": "2026-04-01",
-            "descriptionText": "SHOP AND PREMISES",
+            "descriptionText": "Prison Service Hereditament",
             "listYear": "2026",
             "primaryDescription": "CS",
             "allowedActions": [
@@ -545,7 +545,7 @@
         "uarn": 11905603001,
         "addressFull": "Poundland UK, Phoenix, Grange Central, Telford, BH1 1HU",
         "localAuthorityCode": "4720",
-        "localAuthorityReference": "2191322564521",
+        "localAuthorityReference": "3091322564521",
         "valuations": [
           {
             "assessmentStatus": "CURRENT",
@@ -589,11 +589,11 @@
           {
             "assessmentStatus": "DONE",
             "assessmentRef": 29775650001,
-            "rateableValue": 9300,
-            "scatCode": "109",
+            "rateableValue": 1899300,
+            "scatCode": "235",
             "currentFromDate": "2026-04-01",
             "effectiveDate": "2026-04-01",
-            "descriptionText": "GOLF",
+            "descriptionText": "Retail Warehouses Or Foodstore",
             "listYear": "2026",
             "primaryDescription": "CS",
             "allowedActions": [
@@ -612,7 +612,7 @@
         "uarn": 11905603002,
         "addressFull": "(INCL STORE R/O 2 & 2A) 2A, RODLEY LANE, RODLEY, LEEDS, BH1 1HU",
         "localAuthorityCode": "4720",
-        "localAuthorityReference": "2191322564521",
+        "localAuthorityReference": "1322564521",
         "valuations": [
           {
             "assessmentStatus": "CURRENT",
@@ -656,7 +656,7 @@
           {
             "assessmentStatus": "CURRENT",
             "assessmentRef": 29775650000,
-            "rateableValue": 9300,
+            "rateableValue": 229300,
             "scatCode": "249",
             "currentFromDate": "2026-04-01",
             "effectiveDate": "2026-04-01",
@@ -679,7 +679,7 @@
         "uarn": 11905603001,
         "addressFull": "NGR UK, Phoenix, Grange Central, Telford, BH1 1HU",
         "localAuthorityCode": "4720",
-        "localAuthorityReference": "2191322564521",
+        "localAuthorityReference": "381322564521",
         "valuations": [
           {
             "assessmentStatus": "CURRENT",
@@ -723,11 +723,11 @@
           {
             "assessmentStatus": "DONE",
             "assessmentRef": 29775650001,
-            "rateableValue": 9300,
-            "scatCode": "109",
+            "rateableValue": 99009300,
+            "scatCode": "240",
             "currentFromDate": "2026-04-01",
             "effectiveDate": "2026-04-01",
-            "descriptionText": "GOLF",
+            "descriptionText": "Royal Palace",
             "listYear": "2026",
             "primaryDescription": "CS",
             "allowedActions": [
@@ -744,9 +744,9 @@
       },
       {
         "uarn": 11905603002,
-        "addressFull": "(INCL STORE R/O 2 & 2A) 2A, RODLEY LANE, RODLEY, LEEDS, BH1 1HU",
+        "addressFull": "Zoo LANE, RODLEY, LEEDS, BH1 1HU",
         "localAuthorityCode": "4720",
-        "localAuthorityReference": "2191322564521",
+        "localAuthorityReference": "2221322564521",
         "valuations": [
           {
             "assessmentStatus": "CURRENT",
@@ -790,11 +790,11 @@
           {
             "assessmentStatus": "CURRENT",
             "assessmentRef": 29775650000,
-            "rateableValue": 9300,
-            "scatCode": "249",
+            "rateableValue": 1549300,
+            "scatCode": "304",
             "currentFromDate": "2026-04-01",
             "effectiveDate": "2026-04-01",
-            "descriptionText": "SHOP AND PREMISES",
+            "descriptionText": "Zoos & Safari Park",
             "listYear": "2026",
             "primaryDescription": "CS",
             "allowedActions": [
@@ -811,9 +811,9 @@
       },
       {
         "uarn": 11905603001,
-        "addressFull": "Testing corp UK, Phoenix, Grange Central, Telford, BH1 1HU",
+        "addressFull": "Pests control UK, Phoenix, Grange Central, Telford, BH1 1HU",
         "localAuthorityCode": "4720",
-        "localAuthorityReference": "2191322564521",
+        "localAuthorityReference": "7091322564521",
         "valuations": [
           {
             "assessmentStatus": "CURRENT",
@@ -857,11 +857,11 @@
           {
             "assessmentStatus": "DONE",
             "assessmentRef": 29775650001,
-            "rateableValue": 9300,
-            "scatCode": "109",
+            "rateableValue": 209300,
+            "scatCode": "730",
             "currentFromDate": "2026-04-01",
             "effectiveDate": "2026-04-01",
-            "descriptionText": "GOLF",
+            "descriptionText": "Biomass Biological (Crop And Slurry Based Anaerobic Digesters, Including Gas To Grid)",
             "listYear": "2026",
             "primaryDescription": "CS",
             "allowedActions": [
@@ -878,9 +878,9 @@
       },
       {
         "uarn": 11905603002,
-        "addressFull": "(INCL STORE R/O 2 & 2A) 2A, RODLEY LANE, RODLEY, LEEDS, BH1 1HU",
+        "addressFull": "2A, RODLEY LANE, RODLEY, LEEDS, BH1 1HU",
         "localAuthorityCode": "4720",
-        "localAuthorityReference": "2191322564521",
+        "localAuthorityReference": "31322564521",
         "valuations": [
           {
             "assessmentStatus": "CURRENT",
@@ -924,11 +924,11 @@
           {
             "assessmentStatus": "CURRENT",
             "assessmentRef": 29775650000,
-            "rateableValue": 9300,
-            "scatCode": "249",
+            "rateableValue": 39300,
+            "scatCode": "721",
             "currentFromDate": "2026-04-01",
             "effectiveDate": "2026-04-01",
-            "descriptionText": "SHOP AND PREMISES",
+            "descriptionText": "Self Storage Facility",
             "listYear": "2026",
             "primaryDescription": "CS",
             "allowedActions": [
@@ -945,9 +945,9 @@
       },
       {
         "uarn": 11905603001,
-        "addressFull": "Bug finder UK, Phoenix, Grange Central, Telford, BH1 1HU",
+        "addressFull": "Window Cleaning UK, Phoenix, Grange Central, Telford, BH1 1HU",
         "localAuthorityCode": "4720",
-        "localAuthorityReference": "2191322564521",
+        "localAuthorityReference": "3225645212191",
         "valuations": [
           {
             "assessmentStatus": "CURRENT",
@@ -991,11 +991,11 @@
           {
             "assessmentStatus": "DONE",
             "assessmentRef": 29775650001,
-            "rateableValue": 9300,
-            "scatCode": "109",
+            "rateableValue": 359300,
+            "scatCode": "1006",
             "currentFromDate": "2026-04-01",
             "effectiveDate": "2026-04-01",
-            "descriptionText": "GOLF",
+            "descriptionText": "Industry - Other Sub-sector",
             "listYear": "2026",
             "primaryDescription": "CS",
             "allowedActions": [
@@ -1012,9 +1012,9 @@
       },
       {
         "uarn": 11905603002,
-        "addressFull": "(INCL STORE R/O 2 & 2A) 2A, RODLEY LANE, RODLEY, LEEDS, BH1 1HU",
+        "addressFull": "Police station, RODLEY LANE, RODLEY, LEEDS, BH1 1HU",
         "localAuthorityCode": "4720",
-        "localAuthorityReference": "2191322564521",
+        "localAuthorityReference": "4521219132256",
         "valuations": [
           {
             "assessmentStatus": "CURRENT",
@@ -1058,11 +1058,11 @@
           {
             "assessmentStatus": "CURRENT",
             "assessmentRef": 29775650000,
-            "rateableValue": 9300,
-            "scatCode": "249",
+            "rateableValue": 1349300,
+            "scatCode": "215",
             "currentFromDate": "2026-04-01",
             "effectiveDate": "2026-04-01",
-            "descriptionText": "SHOP AND PREMISES",
+            "descriptionText": "Police Station",
             "listYear": "2026",
             "primaryDescription": "CS",
             "allowedActions": [
@@ -1081,7 +1081,7 @@
         "uarn": 11905603001,
         "addressFull": "Defect resolved UK, Phoenix, Grange Central, Telford, BH1 1HU",
         "localAuthorityCode": "4720",
-        "localAuthorityReference": "2191322564521",
+        "localAuthorityReference": "6452121913225",
         "valuations": [
           {
             "assessmentStatus": "CURRENT",
@@ -1125,11 +1125,11 @@
           {
             "assessmentStatus": "DONE",
             "assessmentRef": 29775650001,
-            "rateableValue": 9300,
-            "scatCode": "109",
+            "rateableValue": 69300,
+            "scatCode": "246",
             "currentFromDate": "2026-04-01",
             "effectiveDate": "2026-04-01",
-            "descriptionText": "GOLF",
+            "descriptionText": "Sewage Works",
             "listYear": "2026",
             "primaryDescription": "CS",
             "allowedActions": [
@@ -1146,9 +1146,9 @@
       },
       {
         "uarn": 11905603002,
-        "addressFull": "(INCL STORE R/O 2 & 2A) 2A, RODLEY LANE, RODLEY, LEEDS, BH1 1HU",
+        "addressFull": "Sports UK, RODLEY, LEEDS, BH1 1HU",
         "localAuthorityCode": "4720",
-        "localAuthorityReference": "2191322564521",
+        "localAuthorityReference": "1322564521921",
         "valuations": [
           {
             "assessmentStatus": "CURRENT",
@@ -1193,10 +1193,10 @@
             "assessmentStatus": "CURRENT",
             "assessmentRef": 29775650000,
             "rateableValue": 9300,
-            "scatCode": "249",
+            "scatCode": "262",
             "currentFromDate": "2026-04-01",
             "effectiveDate": "2026-04-01",
-            "descriptionText": "SHOP AND PREMISES",
+            "descriptionText": "Sports Stadium",
             "listYear": "2026",
             "primaryDescription": "CS",
             "allowedActions": [
