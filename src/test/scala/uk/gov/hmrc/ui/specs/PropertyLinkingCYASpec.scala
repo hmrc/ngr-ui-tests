@@ -27,10 +27,13 @@ import uk.gov.hmrc.ui.pages.propertyLinking._
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
 
+import java.time.{Clock, Instant, ZoneId}
+
 class PropertyLinkingCYASpec extends BaseSpec with StubPage {
 
   var contactName: String = "BOB JONES"
   val postCode            = "BH1 1HU"
+  val fixedClock          = Clock.fixed(Instant.parse("2026-06-05T12:00:00Z"), ZoneId.of("UTC"))
 
   Feature("Tests for the change details feature of the Property Linking Check Your Answers page") {
 
@@ -111,7 +114,11 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       CurrentRatepayer.currentRatepayer()
 
       Then("Ratepayer selects 'After 1 April 2026' on 'When did you become the current ratepayer?' page")
+
+      CurrentRatepayer.timeSkip(fixedClock)
       CurrentRatepayer.afterDateRadio()
+      CurrentRatepayer.dateInput("23", "05", "2026")
+      click(continueButton)
 
       Then("The Ratepayer is taken back to the Check Your Answers page, with the ratepayer date changed")
       PropertyLinkingCYA.checkYourAnswer()
