@@ -117,7 +117,7 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
 
       CurrentRatepayer.timeSkip(fixedClock)
       CurrentRatepayer.afterDateRadio()
-      CurrentRatepayer.dateInput("23","05","2026")
+      CurrentRatepayer.dateInput("23", "05", "2026")
       click(continueButton)
 
       Then("The Ratepayer is taken back to the Check Your Answers page, with the ratepayer date changed")
