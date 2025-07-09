@@ -96,7 +96,7 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
 
       Then("The ratepayers selects 'yes' on 'business rates bill for the property' page")
       BusinessRateBillPage.BusinessRateBill()
-      BusinessRateBillPage.selectNo()
+      BusinessRateBillPage.selectYes()
 
       Then("ratepayer hits the property-connection page, selects 'owner' and continues")
       ConnectionToPropertyPage.hitConnectionStep()
