@@ -17,14 +17,10 @@
 package uk.gov.hmrc.ui.specs
 
 import org.openqa.selenium.By
-import uk.gov.hmrc.configuration.TestEnvironment
-import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
-import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
+import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
-import uk.gov.hmrc.ui.pages.propertyLinking.ConnectionToPropertyPage.ConnectionToProperty
-import uk.gov.hmrc.ui.pages.propertyLinking.PropertyLinkingCYA.{connectionChangedCheck, hitCYAStep}
+import uk.gov.hmrc.ui.pages.propertyLinking.PropertyLinkingCYA.hitCYAStep
 import uk.gov.hmrc.ui.pages.propertyLinking._
-import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
 
 import java.time.{Clock, Instant, ZoneId}
@@ -98,6 +94,16 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       BusinessRateBillPage.BusinessRateBill()
       BusinessRateBillPage.selectYes()
 
+      Then("Ratepayer is taken to the upload business rates document page and uploads a .pdf")
+      UploadBusinessRatesBill.uploadBusinessRatesBill()
+      UploadBusinessRatesBill.uploadFile("testDummyPdf.pdf")
+      click(continueButton)
+
+      Then("Ratepayer is taken to the upload confirmation page")
+      UploadBusinessRatesBill.uploadBusinessRatesBill()
+      UploadBusinessRatesBill.fileUploadedCheck("testDummyPdf.pdf")
+      click(continueButton)
+
       Then("ratepayer hits the property-connection page, selects 'owner' and continues")
       ConnectionToPropertyPage.hitConnectionStep()
       ConnectionToPropertyPage.ConnectionToProperty()
@@ -149,6 +155,45 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       Then("The Ratepayer is taken back to the Check Your Answers page, with the ratepayer bill bool changed")
       PropertyLinkingCYA.checkYourAnswer()
       PropertyLinkingCYA.billChangedCheck("No")
+    }
+
+    Scenario(
+      "Registered ratepayer goes through the flow to establish a property, and changes the rates bill uploaded evidence"
+    ) {
+
+      Given("Ratepayer logins through one login")
+      loginOl()
+
+      Then("Ratepayer is now fully registered and is taken to the dashboard")
+      DashboardHome.DashboardHome(contactName)
+
+      Then("The ratepayer hits the CYA page")
+      hitCYAStep()
+      PropertyLinkingCYA.checkYourAnswer()
+
+      Then("Clicks the change business rates bill link")
+      PropertyLinkingCYA.clickChangeBusinessRatesBill()
+
+      Then("The 'business rates bill for the property' page is shown")
+      BusinessRateBillPage.BusinessRateBill()
+
+      Then("The ratepayers selects 'yes' on 'business rates bill for the property' page")
+      BusinessRateBillPage.BusinessRateBill()
+      BusinessRateBillPage.selectYes()
+
+      Then("Ratepayer is taken to the upload business rates document page and uploads a .pdf")
+      UploadBusinessRatesBill.uploadBusinessRatesBill()
+      UploadBusinessRatesBill.uploadFile("testDummyPdfCopy.pdf")
+      click(continueButton)
+
+      Then("Ratepayer is taken to the upload confirmation page")
+      UploadBusinessRatesBill.uploadBusinessRatesBill()
+      UploadBusinessRatesBill.fileUploadedCheck("testDummyPdfCopy.pdf")
+      click(continueButton)
+
+      Then("The Ratepayer is taken back to the Check Your Answers page, with the Evidence document name changed")
+      PropertyLinkingCYA.checkYourAnswer()
+      PropertyLinkingCYA.evidenceChangedCheck("testDummyPdfCopy.pdf")
     }
 
     Scenario("Registered ratepayer goes through the flow to establish a property, and changes the property address") {
@@ -227,6 +272,5 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       PropertyLinkingCYA.checkYourAnswer()
       PropertyLinkingCYA.connectionChangedCheck("Occupier")
     }
-
   }
 }
