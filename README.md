@@ -18,14 +18,24 @@ Start NGR services as follows:
 ```bash
 sm2 --start NGR_ALL
 ```
-### To run the tests
+### To run the journey tests
 ```bash
-./run_tests.sh `<environment>`
+./run_journey_tests.sh `<Environment>` `<JourneyFolder>` 
 ```
 * Argument `<environment>` must be `local`, `dev`, `qa` or `staging`.
 ```bash
-./run_tests.sh staging
+./run_journey_tests.sh local RegisterJourney
 ```
+
+### To run an individual spec
+```bash
+./run_single_spec.sh `<Environment>` `<JourneyFolder>` `<Spec>`
+```
+* Argument `<environment>` must be `local`, `dev`, `qa` or `staging`.
+```bash
+./run_single_spec.sh local RegisterJourney ConfirmContactDetailsSpec
+```
+
 ## Scalafmt
 
 Check all project files are formatted as expected as follows:

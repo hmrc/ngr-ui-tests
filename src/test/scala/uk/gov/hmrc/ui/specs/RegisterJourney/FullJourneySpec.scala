@@ -14,21 +14,20 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.specs
+package uk.gov.hmrc.ui.specs.RegisterJourney
 
 import uk.gov.hmrc.ui.pages.CheckYourAnswer.{emailChangedCheck, phoneChangedCheck}
-import uk.gov.hmrc.ui.pages.contactDetails.changeAddressPages._
 import uk.gov.hmrc.ui.pages.{CheckYourAnswer, StubPage}
-import uk.gov.hmrc.ui.pages.contactDetails._
+import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, ContactNamePage, EmailPage, PhoneNumberPage}
+import uk.gov.hmrc.ui.pages.contactDetails.changeAddressPages.{DoyouWantToUseAddressPage, SearchResultPage, WhatIsAddressPage}
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
+import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
 
-class CheckYourAnswersSpec extends BaseSpec with StubPage {
+class FullJourneySpec extends BaseSpec with StubPage {
   Feature("Tests for the change details feature of the Check Your Answers page") {
-
     /* Changing contact name */
-
     Scenario("Change the contact name from Check Your Answers Page") {
       RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
@@ -59,11 +58,11 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
       ContactNamePage.ContactNameDetails()
 
       Then("The ratepayer enters their name and clicks continue")
-      ContactNamePage.InputName("Unfunny Jake")
+      ContactNamePage.InputName("Jake")
 
       Then("The Ratepayer is taken back to the Check Your Answers page, with the name changed")
       CheckYourAnswer.checkYourAnswer()
-      CheckYourAnswer.nameChangedCheck("Unfunny Jake")
+      CheckYourAnswer.nameChangedCheck("Jake")
 
     }
 
@@ -175,9 +174,8 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
       Then("I verify the contact details on Confirm Contact Details page")
       CheckYourAnswer.checkYourAnswer()
       CheckYourAnswer.verifyAddress(
-        "Unit 13 Trident Industrial Estate Blackthor\nColnbrook\nSlough\nSL3 0AX"
+        "Unit 13 Trident Industrial Estate Blackthorn\nColnbrook\nSL3 0AX"
       )
     }
   }
-
 }

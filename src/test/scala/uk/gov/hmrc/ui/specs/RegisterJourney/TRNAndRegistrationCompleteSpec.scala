@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.specs
+package uk.gov.hmrc.ui.specs.RegisterJourney
 
 import uk.gov.hmrc.ui.pages.RegisterComplete.{printLinkDisplay, regCompleteEmailChangedCheck}
-import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
 import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
 import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, NinoPage, ProvideTRNPage}
+import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
+import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
 
@@ -57,7 +58,7 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the Registration complete page")
       RegisterComplete.RegisterComplete()
-      printLinkDisplay("Print or save this page")
+      printLinkDisplay("Print this page")
 
     }
 
