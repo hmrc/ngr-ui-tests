@@ -33,7 +33,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
   Feature("Testing the 'Add Property' functionality") {
 
-    Scenario("The user completes Registration and navigates to the Add a property page") {
+    Scenario("The user completes registration and navigates to the Add a property page") {
       RegistrationDB.cleanup()
 
       Given("Ratepayer logins through one login")
@@ -63,7 +63,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       RegisterComplete.RegisterComplete()
       click(continueButton)
 
-      Then("Ratepayer is now fully registered and is taken to the Dashboard")
+      Then("Ratepayer is now fully registered and is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
 
       Then("Ratepayer clicks the Add a Property link and is taken to the Add a Property page")
@@ -107,14 +107,14 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       Given("Ratepayer logins through one login")
       loginOl()
 
-      Then("Ratepayer is taken to the Dashboard")
+      Then("Ratepayer is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
 
       Then("Ratepayer clicks the add a property link")
       clickLink("Add a property")
       AddAProperty.addAProperty()
 
-      Then("Ratepayer clicks the account home link and is taken to the Dashboard")
+      Then("Ratepayer clicks the account home link and is taken to the dashboard")
       clickLink("Account home")
       DashboardHome.DashboardHome(contactName)
 
@@ -125,7 +125,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       Given("Ratepayer logins through one login")
       loginOl()
 
-      Then("Ratepayer is now fully registered and is taken to the Dashboard")
+      Then("Ratepayer is now fully registered and is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
 
       Then("Ratepayer clicks the Add a Property link and is taken to the Add a Property page")
@@ -148,7 +148,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       Given("Ratepayer logins through one login")
       loginOl()
 
-      Then("Ratepayer is now fully registered and is taken to the Dashboard")
+      Then("Ratepayer is now fully registered and is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
 
       Then("Ratepayer clicks the Add a Property link and is taken to the Add a Property page")
@@ -183,7 +183,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       Given("Ratepayer logins through one login")
       loginOl()
 
-      Then("Ratepayer is now fully registered and is taken to the Dashboard")
+      Then("Ratepayer is now fully registered and is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
 
       Then("Ratepayer clicks the Add a Property link and is taken to the Add a Property page")

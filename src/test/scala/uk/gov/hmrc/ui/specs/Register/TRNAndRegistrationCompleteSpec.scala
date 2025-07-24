@@ -27,7 +27,7 @@ import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
 
 class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
-  Feature("The user completes the Registration process providing a NINO") {
+  Feature("The user completes the registration process providing a NINO") {
     RegistrationDB.cleanup()
     Scenario("Ratepayer choose to provide NINO") {
       Given("Ratepayer logins through one login")
@@ -64,7 +64,7 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
 
     }
 
-    Scenario("The user completes Registration by providing a SAUTR") {
+    Scenario("The user completes registration by providing a SAUTR") {
       RegistrationDB.cleanup()
 
       /** Selecting 'Yes, I want to provide this UTR' UTR* */
@@ -93,7 +93,7 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
       RegisterComplete.RegisterComplete()
     }
 
-    Scenario("The user completes Registration but do not provide the SAUTR") {
+    Scenario("The user completes registration but do not provide the SAUTR") {
       RegistrationDB.cleanup()
 
       /** Selecting 'No, I will provide a tax reference number later'* */

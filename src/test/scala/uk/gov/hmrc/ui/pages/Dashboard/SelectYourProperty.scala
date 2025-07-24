@@ -17,7 +17,6 @@
 package uk.gov.hmrc.ui.pages.Dashboard
 
 import uk.gov.hmrc.ui.pages.BasePage
-import uk.gov.hmrc.ui.pages.PropertyLinking.PropertySearchResultPage.{click, getElementByLink}
 
 object SelectYourProperty extends BasePage {
 

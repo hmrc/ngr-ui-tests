@@ -61,7 +61,7 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
 //      RegisterComplete.RegisterComplete()
 //      click(continueButton)
 
-      Then("Ratepayer is now fully registered and is taken to the Dashboard")
+      Then("Ratepayer is now fully registered and is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
 
       Then("Ratepayer clicks the Add a Property link and is taken to the Add a Property page")
@@ -127,7 +127,7 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       Given("Ratepayer logins through one login")
       loginOl()
 
-      Then("Ratepayer is now fully registered and is taken to the Dashboard")
+      Then("Ratepayer is now fully registered and is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
 
       Then("The ratepayer hits the CYA page")
@@ -153,7 +153,7 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       Given("Ratepayer logins through one login")
       loginOl()
 
-      Then("Ratepayer is now fully registered and is taken to the Dashboard")
+      Then("Ratepayer is now fully registered and is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
 
       Then("The ratepayer hits the CYA page")
@@ -206,7 +206,7 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       Given("Ratepayer logins through one login")
       loginOl()
 
-      Then("Ratepayer is now fully registered and is taken to the Dashboard")
+      Then("Ratepayer is now fully registered and is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
 
       Then("The ratepayer hits the CYA page")

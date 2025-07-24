@@ -29,9 +29,9 @@ class DashboardSpec extends BaseSpec with StubPage {
 
   var contactName: String = _
 
-  Feature("Testing the Dashboard functionality") {
+  Feature("Testing the dashboard functionality") {
 
-    Scenario("The user isn't registered and must complete Registration before accessing the Dashboard") {
+    Scenario("The user isn't registered and must complete registration before accessing the dashboard") {
       RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
@@ -59,24 +59,24 @@ class DashboardSpec extends BaseSpec with StubPage {
       RegisterComplete.RegisterComplete()
       click(continueButton)
 
-      Then("Ratepayer is now fully registered and is taken to the Dashboard")
+      Then("Ratepayer is now fully registered and is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
     }
 
-    Scenario("Ratepayer is already registered and lands on the Dashboard after login") {
+    Scenario("Ratepayer is already registered and lands on the dashboard after login") {
 
       Given("Ratepayer logins through one login")
       loginOl()
-      Then("Ratepayer is taken to the Dashboard")
+      Then("Ratepayer is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
 
     }
 
-    Scenario("Ratepayer lands on the Dashboard and clicks the feedback link") {
+    Scenario("Ratepayer lands on the dashboard and clicks the feedback link") {
 
       Given("Ratepayer logins through one login")
       loginOl()
-      Then("Ratepayer is taken to the Dashboard")
+      Then("Ratepayer is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
       Then("Ratepayer clicks the feedback link and is taken to the feedback page")
       DashboardHome.feedbackLinkDisplay()
