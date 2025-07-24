@@ -52,7 +52,6 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
       Then("User selects 'Yes, I want to provide this UTR' and submit")
       ConfirmUTRPage.selectYes()
-      Thread.sleep(1000)
 
       Then("The ratepayer is taken to the 'Check your answers' page")
       CheckYourAnswer.checkYourAnswer()
