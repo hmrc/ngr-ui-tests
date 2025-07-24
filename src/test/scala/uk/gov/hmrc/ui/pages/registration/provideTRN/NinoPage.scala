@@ -14,30 +14,21 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.contactDetails.changeAddressPages
+package uk.gov.hmrc.ui.pages.registration.provideTRN
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
-object FindContactAddressPage extends BasePage {
+object NinoPage extends BasePage {
 
-  val postCode          = By.id("postcode-value")
-  val propertyName      = By.id("property-name-value")
-  val findAddressButton = By.id("continue")
-  val propertyNumber    = By.id("property-name-value")
+  val ninoInput: By = By.id("nino-value")
 
-  def findAddress(): Unit =
-    headerCheck("Find the contact address")
+  def NinoDetails(): Unit =
+    headerCheck("Provide your National Insurance number")
 
-  def inputPostCode(code: String): Unit = {
-    sendKeys(postCode, code)
-    click(findAddressButton)
-  }
-
-  def inputPostCodePropertyNumber(code: String, number: String): Unit = {
-    sendKeys(postCode, code)
-    sendKeys(propertyNumber, number)
-    click(findAddressButton)
+  def InputNino(NINO: String): Unit = {
+    sendKeys(ninoInput, NINO)
+    click(continueButton)
   }
 
 }

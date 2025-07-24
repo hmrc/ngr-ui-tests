@@ -14,21 +14,11 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.provideTRN
+package uk.gov.hmrc.ui.pages.registration.provideTRN
 
-import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
-object NinoPage extends BasePage {
-
-  val ninoInput: By = By.id("nino-value")
-
-  def NinoDetails(): Unit =
-    headerCheck("Provide your National Insurance number")
-
-  def InputNino(NINO: String): Unit = {
-    sendKeys(ninoInput, NINO)
-    click(continueButton)
-  }
-
+object ProvideTRNPage extends BasePage {
+  def provideYourTRN(): Unit =
+    headerCheck("Provide your tax reference number")
 }

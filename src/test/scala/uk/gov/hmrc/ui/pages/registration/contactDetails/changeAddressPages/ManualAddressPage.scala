@@ -14,20 +14,26 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.contactDetails
+package uk.gov.hmrc.ui.pages.registration.contactDetails.changeAddressPages
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
-object ContactNamePage extends BasePage {
+object ManualAddressPage extends BasePage {
 
-  val nameInput = By.id("name-value")
+  val AddressLine1Input: By = By.id("AddressLine1")
+  val AddressLine2Input: By = By.id("AddressLine2")
+  val CityInput: By         = By.id("City")
+  val CountyInput: By       = By.id("County")
+  val PostalCodeInput: By   = By.id("PostalCode")
 
-  def ContactNameDetails(): Unit =
-    headerCheck("Contact name")
+  def ManualAddressDetails(): Unit =
+    headerCheck("What is the address?")
 
-  def InputName(newName: String): Unit = {
-    sendKeys(nameInput, newName)
+  def InputManualAddress(): Unit = {
+    sendKeys(AddressLine1Input, "11a Madeup Street")
+    sendKeys(CityInput, "Testtown-upon-Test")
+    sendKeys(PostalCodeInput, "FX1 7RR")
     click(continueButton)
   }
 

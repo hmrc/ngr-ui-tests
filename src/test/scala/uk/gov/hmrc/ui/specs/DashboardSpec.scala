@@ -16,10 +16,11 @@
 
 package uk.gov.hmrc.ui.specs
 
-import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
-import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
-import uk.gov.hmrc.ui.pages.{CheckYourAnswer, FeedbackPage, RegisterComplete, StubPage}
+import uk.gov.hmrc.ui.pages.registration.CheckYourAnswer
+import uk.gov.hmrc.ui.pages.registration.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
+import uk.gov.hmrc.ui.pages.registration.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
+import uk.gov.hmrc.ui.pages.{FeedbackPage, RegisterComplete, StubPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
 
