@@ -16,11 +16,12 @@
 
 package uk.gov.hmrc.ui.specs
 
-import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
-import uk.gov.hmrc.ui.pages.registration.CheckYourAnswer
-import uk.gov.hmrc.ui.pages.registration.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
-import uk.gov.hmrc.ui.pages.registration.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
-import uk.gov.hmrc.ui.pages.{FeedbackPage, RegisterComplete, StubPage}
+import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome
+import uk.gov.hmrc.ui.pages.PropertyLinking.RegisterComplete
+import uk.gov.hmrc.ui.pages.Registration.CheckYourAnswer
+import uk.gov.hmrc.ui.pages.Registration.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
+import uk.gov.hmrc.ui.pages.Registration.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
+import uk.gov.hmrc.ui.pages.{FeedbackPage, StubPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
 
@@ -28,9 +29,9 @@ class DashboardSpec extends BaseSpec with StubPage {
 
   var contactName: String = _
 
-  Feature("Testing the dashboard functionality") {
+  Feature("Testing the Dashboard functionality") {
 
-    Scenario("The user isn't registered and must complete registration before accessing the dashboard") {
+    Scenario("The user isn't registered and must complete Registration before accessing the Dashboard") {
       RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
@@ -58,24 +59,24 @@ class DashboardSpec extends BaseSpec with StubPage {
       RegisterComplete.RegisterComplete()
       click(continueButton)
 
-      Then("Ratepayer is now fully registered and is taken to the dashboard")
+      Then("Ratepayer is now fully registered and is taken to the Dashboard")
       DashboardHome.DashboardHome(contactName)
     }
 
-    Scenario("Ratepayer is already registered and lands on the dashboard after login") {
+    Scenario("Ratepayer is already registered and lands on the Dashboard after login") {
 
       Given("Ratepayer logins through one login")
       loginOl()
-      Then("Ratepayer is taken to the dashboard")
+      Then("Ratepayer is taken to the Dashboard")
       DashboardHome.DashboardHome(contactName)
 
     }
 
-    Scenario("Ratepayer lands on the dashboard and clicks the feedback link") {
+    Scenario("Ratepayer lands on the Dashboard and clicks the feedback link") {
 
       Given("Ratepayer logins through one login")
       loginOl()
-      Then("Ratepayer is taken to the dashboard")
+      Then("Ratepayer is taken to the Dashboard")
       DashboardHome.DashboardHome(contactName)
       Then("Ratepayer clicks the feedback link and is taken to the feedback page")
       DashboardHome.feedbackLinkDisplay()

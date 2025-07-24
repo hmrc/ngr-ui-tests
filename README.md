@@ -24,7 +24,7 @@ sm2 --start NGR_ALL
 ```
 * Argument `<environment>` must be `local`, `dev`, `qa` or `staging`.
 ```bash
-./run_journey_tests.sh RegisterJourney local
+./run_journey_tests.sh Register local
 ```
 
 ### To run an individual spec
@@ -33,7 +33,7 @@ sm2 --start NGR_ALL
 ```
 * Argument `<environment>` must be `local`, `dev`, `qa` or `staging`.
 ```bash
-./run_single_spec.sh RegisterJourney ConfirmContactDetailsSpec local
+./run_single_spec.sh Register ConfirmContactDetailsSpec local
 ```
 
 ## Scalafmt

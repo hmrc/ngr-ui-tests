@@ -17,8 +17,8 @@
 package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages.SignIn.{GGSignInPage, SignInSelectorPage}
-import uk.gov.hmrc.ui.pages.registration.contactDetails.ConfirmContactDetailsPage.ConfirmContactDetails
-import uk.gov.hmrc.ui.pages.registration.contactDetails.PhoneNumberPage
+import uk.gov.hmrc.ui.pages.Registration.contactDetails.ConfirmContactDetailsPage.ConfirmContactDetails
+import uk.gov.hmrc.ui.pages.Registration.contactDetails.PhoneNumberPage
 import uk.gov.hmrc.ui.pages.{StartNowPage, StubPage}
 import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
 
