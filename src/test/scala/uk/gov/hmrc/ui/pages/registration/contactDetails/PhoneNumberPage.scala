@@ -14,21 +14,27 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.contactDetails
+package uk.gov.hmrc.ui.pages.registration.contactDetails
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
-object EmailPage extends BasePage {
+object PhoneNumberPage extends BasePage {
 
-  val emailInput = By.id("email-value")
+  val numberInput = By.id("phoneNumber-value")
 
-  def EmailDetails(): Unit =
-    headerCheck("Enter email address")
+  def PhoneNumberDetails(): Unit =
+    headerCheck("Enter phone number")
 
-  def InputEmail(newEmail: String): Unit = {
-    sendKeys(emailInput, newEmail)
+  def InputNumber(phoneNumber: String): Unit = {
+    sendKeys(numberInput, phoneNumber)
     click(continueButton)
   }
+
+  def userProvidesPhoneNumber(): Unit =
+    if ("Enter phone number" == getElementByTagName("h1"))
+      PhoneNumberPage.InputNumber("8989898989")
+    else
+      println("Phone number prompt not found")
 
 }

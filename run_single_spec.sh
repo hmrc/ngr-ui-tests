@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-ENVIRONMENT=$1
-JOURNEYTYPE=$2
-SPEC=$3
+JOURNEYTYPE=$1
+SPEC=$2
+ENVIRONMENT=$3
 
 
 sbt scalafmtAll

@@ -16,16 +16,17 @@
 
 package uk.gov.hmrc.ui.specs.RegisterJourney
 
-import uk.gov.hmrc.ui.pages.CheckYourAnswer.{emailChangedCheck, phoneChangedCheck}
-import uk.gov.hmrc.ui.pages.{CheckYourAnswer, StubPage}
-import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, ContactNamePage, EmailPage, PhoneNumberPage}
-import uk.gov.hmrc.ui.pages.contactDetails.changeAddressPages.{DoyouWantToUseAddressPage, SearchResultPage, WhatIsAddressPage}
-import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
+import uk.gov.hmrc.ui.pages.registration.CheckYourAnswer.{emailChangedCheck, phoneChangedCheck}
+import uk.gov.hmrc.ui.pages.StubPage
+import uk.gov.hmrc.ui.pages.registration.CheckYourAnswer
+import uk.gov.hmrc.ui.pages.registration.contactDetails.{ConfirmContactDetailsPage, ContactNamePage, EmailPage, PhoneNumberPage}
+import uk.gov.hmrc.ui.pages.registration.contactDetails.changeAddressPages.{DoyouWantToUseAddressPage, SearchResultPage, WhatIsAddressPage}
+import uk.gov.hmrc.ui.pages.registration.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
 
-class FullJourneySpec extends BaseSpec with StubPage {
+class CheckYourAnswersSpec extends BaseSpec with StubPage {
   Feature("Tests for the change details feature of the Check Your Answers page") {
     /* Changing contact name */
     Scenario("Change the contact name from Check Your Answers Page") {

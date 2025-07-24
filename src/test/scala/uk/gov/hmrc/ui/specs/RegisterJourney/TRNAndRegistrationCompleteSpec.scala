@@ -17,9 +17,10 @@
 package uk.gov.hmrc.ui.specs.RegisterJourney
 
 import uk.gov.hmrc.ui.pages.RegisterComplete.{printLinkDisplay, regCompleteEmailChangedCheck}
-import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
-import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, NinoPage, ProvideTRNPage}
-import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
+import uk.gov.hmrc.ui.pages.registration.CheckYourAnswer
+import uk.gov.hmrc.ui.pages.registration.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
+import uk.gov.hmrc.ui.pages.registration.provideTRN.{ConfirmUTRPage, NinoPage, ProvideTRNPage}
+import uk.gov.hmrc.ui.pages.{RegisterComplete, StubPage}
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.RegistrationDB

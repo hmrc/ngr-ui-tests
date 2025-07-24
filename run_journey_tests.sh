@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-ENVIRONMENT=$1
-JOURNEYTYPE=$2
+JOURNEYTYPE=$1
+ENVIRONMENT=$2
 
 sbt scalafmtAll
 sbt clean -Dbrowser="${BROWSER:=chrome}" \

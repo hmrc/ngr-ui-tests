@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.contactDetails.changeAddressPages
+package uk.gov.hmrc.ui.pages.registration.contactDetails.changeAddressPages
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage

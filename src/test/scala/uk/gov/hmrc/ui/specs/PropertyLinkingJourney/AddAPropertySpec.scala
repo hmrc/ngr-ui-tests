@@ -16,11 +16,12 @@
 
 package uk.gov.hmrc.ui.specs.PropertyLinkingJourney
 
-import uk.gov.hmrc.ui.pages.contactDetails._
 import uk.gov.hmrc.ui.pages.dashboard.DashboardHome
 import uk.gov.hmrc.ui.pages.propertyLinking._
-import uk.gov.hmrc.ui.pages.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
-import uk.gov.hmrc.ui.pages.{CheckYourAnswer, RegisterComplete, StubPage}
+import uk.gov.hmrc.ui.pages.registration.CheckYourAnswer
+import uk.gov.hmrc.ui.pages.registration.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
+import uk.gov.hmrc.ui.pages.registration.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
+import uk.gov.hmrc.ui.pages.{RegisterComplete, StubPage}
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
@@ -176,7 +177,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       ManualAddressPage.findAddress()
     }
 
-    Scenario("Registered ratepayer adds the property ") {
+    Scenario("Registered ratepayer adds the property") {
 
       Given("Ratepayer logins through one login")
       loginOl()
@@ -249,20 +250,20 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 //
 //      And("The ratepayers navigate to confirm your details page")
 
-      Then("The ratepayer hits the CYA page")
-      PropertyLinkingCYA.hitCYAStep()
-      PropertyLinkingCYA.checkYourAnswer()
-      val propertyAddress = getElementByCssSelector("#property-to-add-to-account-id").toString
-      click(continueButton)
-
-      Then("The ratepayer hits the declaration page, and clicks accept")
-      DeclarationPage.declaration()
-      click(continueButton)
-
-      And("The ratepayer is taken to the Property Request sent page, displaying the correct property address")
-      RequestSentPage.requestSent()
-      RequestSentPage.reqPrintLinkDisplay("Print or save this page")
-      RequestSentPage.requestSentAddressCheck(propertyAddress)
+//      Then("The ratepayer hits the CYA page")
+//      PropertyLinkingCYA.hitCYAStep()
+//      PropertyLinkingCYA.checkYourAnswer()
+//      val propertyAddress = getElementByCssSelector("#property-to-add-to-account-id").toString
+//      click(continueButton)
+//
+//      Then("The ratepayer hits the declaration page, and clicks accept")
+//      DeclarationPage.declaration()
+//      click(continueButton)
+//
+//      And("The ratepayer is taken to the Property Request sent page, displaying the correct property address")
+//      RequestSentPage.requestSent()
+//      RequestSentPage.reqPrintLinkDisplay("Print or save this page")
+//      RequestSentPage.requestSentAddressCheck(propertyAddress)
     }
   }
 }

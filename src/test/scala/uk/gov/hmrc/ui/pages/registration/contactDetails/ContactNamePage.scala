@@ -14,11 +14,21 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.provideTRN
+package uk.gov.hmrc.ui.pages.registration.contactDetails
 
+import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
-object ProvideTRNPage extends BasePage {
-  def provideYourTRN(): Unit =
-    headerCheck("Provide your tax reference number")
+object ContactNamePage extends BasePage {
+
+  val nameInput = By.id("name-value")
+
+  def ContactNameDetails(): Unit =
+    headerCheck("Contact name")
+
+  def InputName(newName: String): Unit = {
+    sendKeys(nameInput, newName)
+    click(continueButton)
+  }
+
 }
