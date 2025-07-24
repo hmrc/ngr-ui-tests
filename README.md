@@ -20,7 +20,7 @@ sm2 --start NGR_ALL
 ```
 ### To run the journey tests
 ```bash
-./run_journey_tests.sh `<Environment>` `<JourneyFolder>` 
+./run_journey_tests.sh `<JourneyFolder>` `<Environment>` 
 ```
 * Argument `<environment>` must be `local`, `dev`, `qa` or `staging`.
 ```bash
@@ -29,7 +29,7 @@ sm2 --start NGR_ALL
 
 ### To run an individual spec
 ```bash
-./run_single_spec.sh `<Environment>` `<JourneyFolder>` `<Spec>` 
+./run_single_spec.sh  `<JourneyFolder>` `<Spec>` `<Environment>`
 ```
 * Argument `<environment>` must be `local`, `dev`, `qa` or `staging`.
 ```bash
