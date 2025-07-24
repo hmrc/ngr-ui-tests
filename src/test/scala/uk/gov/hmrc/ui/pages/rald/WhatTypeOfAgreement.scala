@@ -14,11 +14,27 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.provideTRN
+package uk.gov.hmrc.ui.pages.rald
 
 import uk.gov.hmrc.ui.pages.BasePage
 
-object ProvideTRNPage extends BasePage {
-  def provideYourTRN(): Unit =
-    headerCheck("Provide your tax reference number")
+object WhatTypeOfAgreement extends BasePage {
+
+  def tellUsAboutYourRent(): Unit =
+    headerCheck("Tell us about your rent review")
+
+  def leaseOrTenancyRadio(): Unit = {
+    click(getElementById("what-type-of-agreement-radio"))
+    click(continueButton)
+  }
+
+  def writtenRadio(): Unit = {
+    click(getElementById("what-type-of-agreement-radio-2"))
+    click(continueButton)
+  }
+
+  def verbalRadio(): Unit = {
+    click(getElementById("what-type-of-agreement-radio-3"))
+    click(continueButton)
+  }
 }

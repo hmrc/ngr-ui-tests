@@ -21,7 +21,7 @@ import uk.gov.hmrc.ui.pages.BasePage
 object SearchResultPage extends BasePage {
 
   def searchResult(): Unit =
-    headerCheck("Search results for TF4 3ED")
+    headerCheck("Search results for SL3 0AX")
 
   def selectProperty(): Unit =
     click(getElementByLink("Select Property"))

@@ -14,11 +14,13 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.provideTRN
+package uk.gov.hmrc.ui.pages.rald
 
 import uk.gov.hmrc.ui.pages.BasePage
 
-object ProvideTRNPage extends BasePage {
-  def provideYourTRN(): Unit =
-    headerCheck("Provide your tax reference number")
+object TellUsAboutYourRent extends BasePage {
+
+  def tellUsAboutYourRent(): Unit =
+    headerCheck("Tell us about your rent review")
+
 }

@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.specs
+package uk.gov.hmrc.ui.specs.RegisterJourney
 
 import uk.gov.hmrc.ui.pages._
 import uk.gov.hmrc.ui.pages.contactDetails.changeAddressPages._
 import uk.gov.hmrc.ui.pages.contactDetails.{ConfirmContactDetailsPage, ContactNamePage, EmailPage, PhoneNumberPage}
+import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
 
@@ -96,7 +97,7 @@ class ConfirmContactDetailsSpec extends BaseSpec with StubPage {
       ConfirmContactDetailsPage.ClickChangeAddressLink()
       Then("The ratepayer enters postcode and clicks continue on Find the contact address page")
       FindContactAddressPage.findAddress()
-      FindContactAddressPage.inputPostCode("TF4 3ED")
+      FindContactAddressPage.inputPostCode("SL3 0AX")
       And("The ratepayer selects property on search result page")
       SearchResultPage.searchResult()
       SearchResultPage.selectProperty()
@@ -106,7 +107,7 @@ class ConfirmContactDetailsSpec extends BaseSpec with StubPage {
       DoyouWantToUseAddressPage.SelectYesAddress()
       Then("The Ratepayer returns to the Check Your Answers page with the updated contact address.")
       ConfirmContactDetailsPage.ConfirmContactDetails()
-      ConfirmContactDetailsPage.verifyUpdatedAddress("34 Manor Road\nDawley\nTelford\nTF4 3ED")
+      ConfirmContactDetailsPage.verifyUpdatedAddress("Unit 13 Trident Industrial Estate Blackthorn\nColnbrook\nSL3 0AX")
     }
 
     Scenario("Testing 'search again' link for change address, OL route") {
@@ -117,7 +118,7 @@ class ConfirmContactDetailsSpec extends BaseSpec with StubPage {
       ConfirmContactDetailsPage.ConfirmContactDetails()
       ConfirmContactDetailsPage.ClickChangeAddressLink()
       Then("The ratepayer enters postcode and clicks continue on Find the contact address page")
-      FindContactAddressPage.inputPostCode("TF4 3ED")
+      FindContactAddressPage.inputPostCode("SL3 0AX")
 
       /** Search again link* */
       And("Clicking on 'Search again' link on search result page taken back to Find the contact address page")
@@ -129,14 +130,14 @@ class ConfirmContactDetailsSpec extends BaseSpec with StubPage {
       SearchResultPage.selectProperty()
       And("The ratepayer selects Yes on use this address page")
       DoyouWantToUseAddressPage.confirmAddress(
-        "Unit 13, Trident Industrial Estate Blackthor, Colnbrook, Slough, SL3 0AX"
+        "Unit 13 Trident Industrial Estate Blackthorn, Colnbrook, Slough, SL3 0AX"
       )
       DoyouWantToUseAddressPage.SelectYesAddress()
 
       Then("I verify the contact details on Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
       ConfirmContactDetailsPage.verifyUpdatedAddress(
-        "Unit 13 Trident Industrial Estate Blackthor\nColnbrook\nSlough\nSL3 0AX"
+        "Unit 13 Trident Industrial Estate Blackthorn\nColnbrook\nSL3 0AX"
       )
     }
 
@@ -154,12 +155,14 @@ class ConfirmContactDetailsSpec extends BaseSpec with StubPage {
 
       /** Selecting No radio button on use this address page * */
       And("The ratepayer selects No on use this address page")
-      DoyouWantToUseAddressPage.confirmAddress("40 Manor Road, Dawley, Telford, TF4 3ED")
+      DoyouWantToUseAddressPage.confirmAddress(
+        "Unit 13 Trident Industrial Estate Blackthorn, Colnbrook, Slough, SL3 0AX"
+      )
       DoyouWantToUseAddressPage.SelectNoAddress()
       Then("The ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
       ConfirmContactDetailsPage.verifyUpdatedAddress(
-        "Unit 13 Trident Industrial Estate Blackthor\nColnbrook\nSlough\nSL3 0AX"
+        "Unit 13 Trident Industrial Estate Blackthorn\nColnbrook\nSL3 0AX"
       )
     }
 
@@ -183,7 +186,7 @@ class ConfirmContactDetailsSpec extends BaseSpec with StubPage {
       WhatIsAddressPage.postCodeError("Error:\nEnter postcode")
 
       Then("the user input postcode and submit then navigate to search result page")
-      WhatIsAddressPage.inputPostCode("TF4 3ED")
+      WhatIsAddressPage.inputPostCode("SL3 0AX")
       SearchResultPage.searchResult()
     }
 
