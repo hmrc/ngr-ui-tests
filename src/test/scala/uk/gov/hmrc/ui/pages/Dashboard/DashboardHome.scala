@@ -24,7 +24,7 @@ object DashboardHome extends BasePage {
     headerCheck(name)
 
   def dashboard(Text: String = "Account home"): Unit = {
-    val expectedText= getElementByXpath("//span[@class='govuk-caption-m']")
+    val expectedText = getElementByXpath("//span[@class='govuk-caption-m']")
     assert(Text == expectedText, "Account home text from dashboard not displayed")
   }
 

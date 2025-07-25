@@ -28,8 +28,6 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       TellUsAboutYourNewAgreementPage.tellUsAboutYourNewAgreement()
       continueButton
 
-
-
     }
   }
 }
