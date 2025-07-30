@@ -25,8 +25,10 @@ object ConfirmUTRPage extends BasePage {
   val noNI: By    = By.id("confirmUTR-2")
   val noLater: By = By.id("confirmUTR-3")
 
-  def confirmYourSAUTR(): Unit =
+  def confirmYourSAUTR(): Unit = {
+    reloadPage()
     headerCheck("Confirm your Self Assessment Unique Taxpayer Reference")
+  }
 
   def confirmUTR(utr: String): Unit = {
 

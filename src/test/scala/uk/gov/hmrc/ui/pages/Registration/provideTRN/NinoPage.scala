@@ -23,10 +23,13 @@ object NinoPage extends BasePage {
 
   val ninoInput: By = By.id("nino-value")
 
-  def NinoDetails(): Unit =
+  def NinoDetails(): Unit = {
+    reloadPage()
     headerCheck("Provide your National Insurance number")
+  }
 
   def InputNino(NINO: String): Unit = {
+    reloadPage()
     sendKeys(ninoInput, NINO)
     waitForElementToBeClickable(continueButton).click()
   }

@@ -20,7 +20,8 @@ import uk.gov.hmrc.ui.pages.BasePage
 import uk.gov.hmrc.ui.pages.registration.contactDetails.ConfirmContactDetailsPage.reloadPage
 
 object ProvideTRNPage extends BasePage {
-  def provideYourTRN(): Unit =
+  def provideYourTRN(): Unit = {
     reloadPage()
-  headerCheck("Provide your tax reference number")
+    headerCheck("Provide your tax reference number")
+  }
 }

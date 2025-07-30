@@ -24,10 +24,13 @@ object PhoneNumberPage extends BasePage {
 
   val numberInput = By.id("phoneNumber-value")
 
-  def PhoneNumberDetails(): Unit =
+  def PhoneNumberDetails(): Unit = {
+    reloadPage()
     headerCheck("Enter phone number")
+  }
 
   def InputNumber(phoneNumber: String): Unit = {
+    reloadPage()
     headerCheck("Enter phone number")
     sendKeys(numberInput, phoneNumber)
     waitForElementToBeClickable(continueButton).click()

@@ -37,9 +37,10 @@ object CheckYourAnswer extends BasePage {
   def ClickChangeAddressLink(): Unit     =
     waitForElementToBeClickable(changeAddressLink).click()
 
-  def checkYourAnswer(): Unit =
+  def checkYourAnswer(): Unit = {
     reloadPage()
-  headerCheck("Check your answers")
+    headerCheck("Check your answers")
+  }
 
   def confirmMAskedTRN(TRN: String): Unit =
     assert(

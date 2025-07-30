@@ -143,7 +143,6 @@ class ConfirmContactDetailsSpec extends BaseSpec with StubPage {
     }
 
     Scenario("Testing search using property number/name") {
-      RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -168,7 +167,6 @@ class ConfirmContactDetailsSpec extends BaseSpec with StubPage {
     }
 
     Scenario("Testing postcode is mandatory on manual search") {
-      RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -190,6 +188,5 @@ class ConfirmContactDetailsSpec extends BaseSpec with StubPage {
       WhatIsAddressPage.inputPostCode("SL3 0AX")
       SearchResultPage.searchResult()
     }
-
   }
 }

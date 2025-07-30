@@ -46,7 +46,7 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
       click(continueButton)
 
       /** Testing for masked UTR* */
-      Then("Ratepayer is taken to ConfirmSAUTR Page where SAUTR is masked ")
+      Then("Ratepayer is taken to ConfirmSAUTR Page where SAUTR is masked")
       ConfirmUTRPage.confirmYourSAUTR()
       ConfirmUTRPage.confirmUTR("*******333")
 

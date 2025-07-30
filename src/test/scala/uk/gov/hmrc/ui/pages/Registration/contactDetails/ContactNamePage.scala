@@ -23,8 +23,10 @@ object ContactNamePage extends BasePage {
 
   val nameInput = By.id("name-value")
 
-  def ContactNameDetails(): Unit =
+  def ContactNameDetails(): Unit = {
+    reloadPage()
     headerCheck("Contact name")
+  }
 
   def InputName(newName: String): Unit = {
     headerCheck("Contact name")
