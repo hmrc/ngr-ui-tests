@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.dashboard
+package uk.gov.hmrc.ui.pages.Dashboard
 
 import uk.gov.hmrc.ui.pages.BasePage
-import uk.gov.hmrc.ui.pages.propertyLinking.PropertySearchResultPage.{click, getElementByLink}
 
 object SelectYourProperty extends BasePage {
 
