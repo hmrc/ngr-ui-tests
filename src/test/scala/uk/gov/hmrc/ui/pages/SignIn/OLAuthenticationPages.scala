@@ -19,6 +19,7 @@ package uk.gov.hmrc.ui.pages.SignIn
 import org.openqa.selenium.By
 import uk.gov.hmrc.configuration.TestEnvironment
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.StartNowPage.{getUrl, startPage_url}
 import uk.gov.hmrc.ui.utils.TotpGenerator.getTotpCode
 
 object OLAuthenticationPages extends BasePage {
@@ -30,7 +31,7 @@ object OLAuthenticationPages extends BasePage {
 
   def betaPageStep() = {
     getUrl(betaPage_url)
-    click(accept)
+    waitForElementToBeClickable(accept).click()
   }
 
   def signInClick(): Unit = {

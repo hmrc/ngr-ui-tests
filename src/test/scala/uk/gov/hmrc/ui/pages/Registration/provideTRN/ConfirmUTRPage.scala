@@ -25,8 +25,10 @@ object ConfirmUTRPage extends BasePage {
   val noNI: By    = By.id("confirmUTR-2")
   val noLater: By = By.id("confirmUTR-3")
 
-  def confirmYourSAUTR(): Unit =
+  def confirmYourSAUTR(): Unit = {
+    reloadPage()
     headerCheck("Confirm your Self Assessment Unique Taxpayer Reference")
+  }
 
   def confirmUTR(utr: String): Unit = {
 
@@ -37,17 +39,17 @@ object ConfirmUTRPage extends BasePage {
 
   def selectYes(): Unit = {
     click(yes)
-    click(continueButton)
+    waitForElementToBeClickable(continueButton).click()
   }
 
   def selectNoProvideNI(): Unit = {
     click(noNI)
-    click(continueButton)
+    waitForElementToBeClickable(continueButton).click()
   }
 
   def selectNoLater(): Unit = {
     click(noLater)
-    click(continueButton)
+    waitForElementToBeClickable(continueButton).click()
   }
 
 }
