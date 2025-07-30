@@ -18,8 +18,8 @@ package uk.gov.hmrc.ui.pages.Registration
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
-import uk.gov.hmrc.ui.pages.registration.contactDetails.PhoneNumberPage.reloadPage
-import uk.gov.hmrc.ui.pages.registration.contactDetails.changeAddressPages.DoyouWantToUseAddressPage.headerCheck
+import uk.gov.hmrc.ui.pages.Registration.contactDetails.PhoneNumberPage.reloadPage
+import uk.gov.hmrc.ui.pages.Registration.contactDetails.changeAddressPages.DoyouWantToUseAddressPage.headerCheck
 
 object CheckYourAnswer extends BasePage {
 

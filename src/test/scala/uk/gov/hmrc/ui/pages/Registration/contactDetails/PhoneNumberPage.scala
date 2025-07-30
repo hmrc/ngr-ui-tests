@@ -18,7 +18,6 @@ package uk.gov.hmrc.ui.pages.Registration.contactDetails
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
-import uk.gov.hmrc.ui.pages.registration.contactDetails.EmailPage.headerCheck
 
 object PhoneNumberPage extends BasePage {
 

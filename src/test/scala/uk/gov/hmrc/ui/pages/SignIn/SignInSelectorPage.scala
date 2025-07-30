@@ -20,7 +20,6 @@ import org.openqa.selenium.support.ui.WebDriverWait
 import org.openqa.selenium.{By, JavascriptExecutor, WebDriver}
 import uk.gov.hmrc.ui.pages.SignIn.OLAuthenticationPages.betaPageStep
 import uk.gov.hmrc.ui.pages.StartNowPage.{headerCheck, startNow}
-import uk.gov.hmrc.ui.pages.registration.contactDetails.PhoneNumberPage.headerCheck
 import uk.gov.hmrc.ui.pages.{BasePage, StubPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
 

@@ -17,7 +17,6 @@
 package uk.gov.hmrc.ui.pages.Registration.provideTRN
 
 import uk.gov.hmrc.ui.pages.BasePage
-import uk.gov.hmrc.ui.pages.registration.contactDetails.ConfirmContactDetailsPage.reloadPage
 
 object ProvideTRNPage extends BasePage {
   def provideYourTRN(): Unit = {

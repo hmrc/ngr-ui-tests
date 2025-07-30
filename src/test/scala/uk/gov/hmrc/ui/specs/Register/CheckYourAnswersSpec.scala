@@ -16,6 +16,7 @@
 
 package uk.gov.hmrc.ui.specs.Register
 
+import uk.gov.hmrc.ui.pages.PropertyLinking.RegisterComplete
 import uk.gov.hmrc.ui.pages.Registration.CheckYourAnswer.{emailChangedCheck, phoneChangedCheck}
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.pages.Registration.CheckYourAnswer

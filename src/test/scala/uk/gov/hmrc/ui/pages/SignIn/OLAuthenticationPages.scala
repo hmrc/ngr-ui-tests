@@ -20,7 +20,6 @@ import org.openqa.selenium.By
 import uk.gov.hmrc.configuration.TestEnvironment
 import uk.gov.hmrc.ui.pages.BasePage
 import uk.gov.hmrc.ui.pages.StartNowPage.{getUrl, startPage_url}
-import uk.gov.hmrc.ui.pages.registration.contactDetails.ConfirmContactDetailsPage.headerCheck
 import uk.gov.hmrc.ui.utils.TotpGenerator.getTotpCode
 
 object OLAuthenticationPages extends BasePage {

@@ -19,7 +19,7 @@ package uk.gov.hmrc.ui.utils
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.SignIn.GGSignInPage.ggSignIn
 import uk.gov.hmrc.ui.pages.SignIn.OLAuthenticationPages.{betaPageStep, olAuthentication}
-import uk.gov.hmrc.ui.pages.SignIn.SignInSelectorPage.{getElementByTagName, reloadPage, signInSelectorGG, signInSelectorOL, stubGgAuthentication, stubOlAuthentication, waitForElementToBeClickable}
+import uk.gov.hmrc.ui.pages.SignIn.SignInSelectorPage.{getElementByTagName, reloadPage, signInSelectorGG, signInSelectorOL, stubGgAuthentication, waitForElementToBeClickable}
 import uk.gov.hmrc.ui.pages.StartNowPage.startNow
 
 object login {
