@@ -37,7 +37,6 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
       Then("User provide phone number")
       PhoneNumberPage.PhoneNumberDetails()
       PhoneNumberPage.userProvidesPhoneNumber()
-      waitForElementToBeClickable(continueButton).click()
 
       Then("Ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
@@ -65,9 +64,8 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
       CheckYourAnswer.checkYourAnswer()
 
       Then("Check Your Answers page is showing the updated name")
-
       CheckYourAnswer.checkYourAnswer()
-      //     CheckYourAnswer.nameChangedCheck("Jake")
+      // CheckYourAnswer.nameChangedCheck("Jake")
       waitForElementToBeClickable(continueButton).click()
 
       Then("Ratepayer is taken to the Registration complete page")
@@ -130,7 +128,6 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
     Then("User provide phone number")
     PhoneNumberPage.PhoneNumberDetails()
     PhoneNumberPage.userProvidesPhoneNumber()
-    waitForElementToBeClickable(continueButton).click()
 
     Then("Ratepayer is taken to the Confirm Contact Details page")
     ConfirmContactDetailsPage.ConfirmContactDetails()
@@ -174,7 +171,6 @@ class CheckYourAnswersSpec extends BaseSpec with StubPage {
     Then("User provide phone number")
     PhoneNumberPage.PhoneNumberDetails()
     PhoneNumberPage.userProvidesPhoneNumber()
-    waitForElementToBeClickable(continueButton).click()
 
     Then("Ratepayer is taken to the Confirm Contact Details page")
     ConfirmContactDetailsPage.ConfirmContactDetails()

@@ -39,11 +39,11 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
-      click(continueButton)
+      waitForElementToBeClickable(continueButton).click()
 
       Then("Ratepayer is taken to Provide TRN Page")
       ProvideTRNPage.provideYourTRN()
-      click(continueButton)
+      waitForElementToBeClickable(continueButton).click()
 
       /** Testing for masked UTR* */
       Then("Ratepayer is taken to ConfirmSAUTR Page where SAUTR is masked")
@@ -61,7 +61,7 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
       Then("The ratepayer is taken to the 'Check your answers' where NINO is masked")
       CheckYourAnswer.checkYourAnswer()
       CheckYourAnswer.confirmMAskedTRN("******03D")
-      click(continueButton)
+      waitForElementToBeClickable(continueButton).click()
 
       Then("Ratepayer is taken to the Registration complete page")
       RegisterComplete.RegisterComplete()
@@ -78,11 +78,11 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
-      click(continueButton)
+      waitForElementToBeClickable(continueButton).click()
 
       Then("Ratepayer is taken to Provide TRN Page")
       ProvideTRNPage.provideYourTRN()
-      click(continueButton)
+      waitForElementToBeClickable(continueButton).click()
 
       Then("User selects 'Yes, I want to provide this UTR' and submit")
       ConfirmUTRPage.confirmYourSAUTR()
@@ -91,7 +91,7 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
       Then("The ratepayer is taken to the 'Check your answers' where SAUTR is masked")
       CheckYourAnswer.checkYourAnswer()
       CheckYourAnswer.confirmMAskedTRN("*******333")
-      click(continueButton)
+      waitForElementToBeClickable(continueButton).click()
 
       Then("Ratepayer is taken to the Registration complete page")
       RegisterComplete.RegisterComplete()
@@ -108,11 +108,11 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
-      click(continueButton)
+      waitForElementToBeClickable(continueButton).click()
 
       Then("Ratepayer is taken to Provide TRN Page")
       ProvideTRNPage.provideYourTRN()
-      click(continueButton)
+      waitForElementToBeClickable(continueButton).click()
 
       Then("User selects 'No, I will provide UTR Later' and continue")
       ConfirmUTRPage.confirmYourSAUTR()
@@ -121,7 +121,7 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
       Then("The ratepayer is taken to the 'Check your answers' where SAUTR is not present, and clicks the link")
       CheckYourAnswer.checkYourAnswer()
       CheckYourAnswer.sautrNoDisplay("Provide your UTR")
-      click(continueButton)
+      waitForElementToBeClickable(continueButton).click()
 
       Then("Ratepayer is taken to the Registration complete page")
       RegisterComplete.RegisterComplete()
@@ -138,11 +138,11 @@ class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
-      click(continueButton)
+      waitForElementToBeClickable(continueButton).click()
 
       Then("Ratepayer is taken to Provide TRN Page")
       ProvideTRNPage.provideYourTRN()
-      click(continueButton)
+      waitForElementToBeClickable(continueButton).click()
 
       Then("User selects 'No, I will provide UTR Later' and continue")
       ConfirmUTRPage.confirmYourSAUTR()

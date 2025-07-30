@@ -32,6 +32,7 @@ class ConfirmContactDetailsSpec extends BaseSpec with StubPage {
       loginOl()
 
       Then("User provide phone number")
+      PhoneNumberPage.PhoneNumberDetails()
       PhoneNumberPage.userProvidesPhoneNumber()
 
       Then("Ratepayer is taken to the Confirm Contact Details page")
@@ -75,7 +76,6 @@ class ConfirmContactDetailsSpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
-      /*Change email*/
       Then("Clicks the change email link")
       ConfirmContactDetailsPage.ClickChangeEmailLink()
       Then("The ratepayer is taken to the Email Page")

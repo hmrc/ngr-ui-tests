@@ -16,18 +16,26 @@
 
 package uk.gov.hmrc.ui.specs.Register
 
+import uk.gov.hmrc.ui.pages.Registration.contactDetails.PhoneNumberPage
 import uk.gov.hmrc.ui.pages.SignIn.SignInSelectorPage
 import uk.gov.hmrc.ui.pages.{FeedbackPage, SignOutPage, StubPage}
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
+import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
 
 class SignOutSpec extends BaseSpec with StubPage {
 
   Feature("Testing the Sign out functionality") {
 
     Scenario("Testing the Sign out functionality") {
+      RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
+
+      Then("User provide phone number")
+      PhoneNumberPage.PhoneNumberDetails()
+      PhoneNumberPage.userProvidesPhoneNumber()
+      waitForElementToBeClickable(continueButton).click()
 
       And("The user click on Sign out link")
       clickLink("Sign out")
@@ -37,8 +45,14 @@ class SignOutSpec extends BaseSpec with StubPage {
     }
 
     Scenario("Testing 'Sign in' link from Signed out page") {
+      RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
+
+      Then("User provide phone number")
+      PhoneNumberPage.PhoneNumberDetails()
+      PhoneNumberPage.userProvidesPhoneNumber()
+      waitForElementToBeClickable(continueButton).click()
 
       And("The user navigated to 'You have signed out' page after clicking on Sign out link")
       clickLink("Sign out")
@@ -52,9 +66,14 @@ class SignOutSpec extends BaseSpec with StubPage {
     }
 
     Scenario("Testing 'short survey' link from Signed out page") {
-
-      Given("The ratepayer logins through one login")
+      RegistrationDB.cleanup()
+      Given("Ratepayer logins through one login")
       loginOl()
+
+      Then("User provide phone number")
+      PhoneNumberPage.PhoneNumberDetails()
+      PhoneNumberPage.userProvidesPhoneNumber()
+      waitForElementToBeClickable(continueButton).click()
 
       And("The ratepayer Sign out and click on survey link")
       clickLink("Sign out")
