@@ -31,13 +31,13 @@ object FindContactAddressPage extends BasePage {
 
   def inputPostCode(code: String): Unit = {
     sendKeys(postCode, code)
-    click(findAddressButton)
+    waitForElementToBeClickable(findAddressButton).click()
   }
 
   def inputPostCodePropertyNumber(code: String, number: String): Unit = {
     sendKeys(postCode, code)
     sendKeys(propertyNumber, number)
-    click(findAddressButton)
+    waitForElementToBeClickable(findAddressButton).click()
   }
 
 }

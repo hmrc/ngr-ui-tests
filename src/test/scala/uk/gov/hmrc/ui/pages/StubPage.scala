@@ -36,13 +36,11 @@ trait StubPage extends BasePage {
   def loginStub(): Unit = {
     val text = "Gov UK One Login Sign In"
     headerCheck(text)
-    click(submit)
+    waitForElementToBeClickable(submit).click()
   }
 
-  def IvStub(): Unit = {
-    headerCheck("GDS IV Sign")
-    click(submit)
-  }
+  def IvStub(): Unit =
+    waitForElementToBeClickable(submit).click()
 
   def stubOlAuthentication(): Unit = {
     loginStub()
@@ -52,7 +50,7 @@ trait StubPage extends BasePage {
   def stubGgAuthentication(): Unit = {
     selectByValue(confidenceLevel, "250")
     sendKeys(nino, "AA000003D")
-    click(submitAuthStub)
+    waitForElementToBeClickable(submitAuthStub).click()
   }
 
 }

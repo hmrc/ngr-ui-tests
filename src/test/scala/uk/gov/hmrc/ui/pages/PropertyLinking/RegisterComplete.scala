@@ -21,7 +21,8 @@ import uk.gov.hmrc.ui.pages.BasePage
 object RegisterComplete extends BasePage {
 
   def RegisterComplete(): Unit =
-    headerCheck("Registration Successful")
+    reloadPage()
+  headerCheck("Registration Successful")
 
   def printLinkDisplay(link: String): Unit = {
     val display = getElementByCssSelector("#printPage > a")

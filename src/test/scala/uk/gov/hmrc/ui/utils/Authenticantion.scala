@@ -16,9 +16,10 @@
 
 package uk.gov.hmrc.ui.utils
 
+import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.SignIn.GGSignInPage.ggSignIn
 import uk.gov.hmrc.ui.pages.SignIn.OLAuthenticationPages.{betaPageStep, olAuthentication}
-import uk.gov.hmrc.ui.pages.SignIn.SignInSelectorPage.{signInSelectorGG, signInSelectorOL, stubGgAuthentication, stubOlAuthentication}
+import uk.gov.hmrc.ui.pages.SignIn.SignInSelectorPage.{getElementByTagName, reloadPage, signInSelectorGG, signInSelectorOL, stubGgAuthentication, stubOlAuthentication, waitForElementToBeClickable}
 import uk.gov.hmrc.ui.pages.StartNowPage.startNow
 
 object login {
@@ -26,12 +27,12 @@ object login {
   private val env     = System.getProperty("environment")
   def loginOl(): Unit = {
     betaPageStep()
+    reloadPage()
     startNow()
+    reloadPage()
     signInSelectorOL()
-    if (env == "local" || env == "staging") {
-      stubOlAuthentication()
-    } else {
-      olAuthentication("krutika.patil+11@digital.hmrc.gov.uk", "p2ssword1234")
+    if ("GDS IV Sign" == getElementByTagName("h1")) {
+      waitForElementToBeClickable(By.name("submit"))
     }
   }
 

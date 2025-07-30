@@ -29,7 +29,6 @@ object WhatIsAddressPage extends BasePage {
     findElementById("City").clear()
     findElementById("County").clear()
     findElementById("PostalCode").clear()
-
   }
 
   def postCodeError(text: String): Unit = {
@@ -45,6 +44,6 @@ object WhatIsAddressPage extends BasePage {
   def inputPostCode(postcode: String): Unit = {
     findElementById("PostalCode").clear()
     sendKeys(getElementById("PostalCode"), postcode)
-    click(continueButton)
+    waitForElementToBeClickable(continueButton).click()
   }
 }

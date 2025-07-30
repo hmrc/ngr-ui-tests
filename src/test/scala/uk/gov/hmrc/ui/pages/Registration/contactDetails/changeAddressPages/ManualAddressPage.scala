@@ -34,7 +34,7 @@ object ManualAddressPage extends BasePage {
     sendKeys(AddressLine1Input, "11a Madeup Street")
     sendKeys(CityInput, "Testtown-upon-Test")
     sendKeys(PostalCodeInput, "FX1 7RR")
-    click(continueButton)
+    waitForElementToBeClickable(continueButton).click()
   }
 
 }

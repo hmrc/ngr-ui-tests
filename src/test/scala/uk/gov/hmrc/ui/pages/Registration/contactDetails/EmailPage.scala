@@ -24,11 +24,13 @@ object EmailPage extends BasePage {
   val emailInput = By.id("email-value")
 
   def EmailDetails(): Unit =
-    headerCheck("Enter email address")
+    reloadPage()
+  headerCheck("Enter email address")
 
   def InputEmail(newEmail: String): Unit = {
+    reloadPage()
+    headerCheck("Enter email address")
     sendKeys(emailInput, newEmail)
-    click(continueButton)
+    waitForElementToBeClickable(continueButton).click()
   }
-
 }

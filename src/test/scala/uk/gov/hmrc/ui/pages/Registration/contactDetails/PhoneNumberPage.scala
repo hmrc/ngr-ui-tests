@@ -18,6 +18,7 @@ package uk.gov.hmrc.ui.pages.Registration.contactDetails
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.registration.contactDetails.EmailPage.headerCheck
 
 object PhoneNumberPage extends BasePage {
 
@@ -27,14 +28,11 @@ object PhoneNumberPage extends BasePage {
     headerCheck("Enter phone number")
 
   def InputNumber(phoneNumber: String): Unit = {
+    headerCheck("Enter phone number")
     sendKeys(numberInput, phoneNumber)
-    click(continueButton)
+    waitForElementToBeClickable(continueButton).click()
   }
 
   def userProvidesPhoneNumber(): Unit =
-    if ("Enter phone number" == getElementByTagName("h1"))
-      PhoneNumberPage.InputNumber("8989898989")
-    else
-      println("Phone number prompt not found")
-
+    PhoneNumberPage.InputNumber("8989898989")
 }

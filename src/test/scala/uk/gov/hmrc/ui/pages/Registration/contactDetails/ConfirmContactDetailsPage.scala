@@ -26,8 +26,10 @@ object ConfirmContactDetailsPage extends BasePage {
   val changeEmailLink       = By.id("email-linkid")
   val changeAddressLink     = By.id("address-linkid")
 
-  def ConfirmContactDetails(): Unit =
+  def ConfirmContactDetails(): Unit = {
+    reloadPage()
     headerCheck("Confirm your contact details")
+  }
 
   def verifyUpdatedName(expectedName: String): Unit = {
     val actualName = getElementByCssSelector("#contact-name-id")
@@ -50,11 +52,11 @@ object ConfirmContactDetailsPage extends BasePage {
   }
 
   def ClickChangeNameLink(): Unit        =
-    click(changeNameLink)
+    waitForElementToBeClickable(changeNameLink).click()
   def ClickChangePhoneNumberLink(): Unit =
-    click(changePhoneNumberLink)
+    waitForElementToBeClickable(changePhoneNumberLink).click()
   def ClickChangeEmailLink(): Unit       =
-    click(changeEmailLink)
+    waitForElementToBeClickable(changeEmailLink).click()
   def ClickChangeAddressLink(): Unit     =
-    click(changeAddressLink)
+    waitForElementToBeClickable(changeAddressLink).click()
 }

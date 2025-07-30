@@ -28,7 +28,7 @@ object NinoPage extends BasePage {
 
   def InputNino(NINO: String): Unit = {
     sendKeys(ninoInput, NINO)
-    click(continueButton)
+    waitForElementToBeClickable(continueButton).click()
   }
 
 }

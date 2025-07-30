@@ -27,13 +27,13 @@ object DoyouWantToUseAddressPage extends BasePage {
   def SelectYesAddress(): Unit = {
     headerCheck("Do you want to use this address?")
     click(YesRadioButton)
-    click(continueButton)
+    waitForElementToBeClickable(continueButton).click()
   }
 
   def SelectNoAddress(): Unit = {
     headerCheck("Do you want to use this address?")
     click(NoRadioButton)
-    click(continueButton)
+    waitForElementToBeClickable(continueButton).click()
   }
 
   def confirmAddress(expectedAddress: String): Unit = {

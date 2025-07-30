@@ -14,13 +14,17 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.Registration.provideTRN
+package uk.gov.hmrc.ui.pages.dashboard
 
 import uk.gov.hmrc.ui.pages.BasePage
-import uk.gov.hmrc.ui.pages.registration.contactDetails.ConfirmContactDetailsPage.reloadPage
+import uk.gov.hmrc.ui.pages.propertyLinking.PropertySearchResultPage.{click, getElementByLink}
 
-object ProvideTRNPage extends BasePage {
-  def provideYourTRN(): Unit =
-    reloadPage()
-  headerCheck("Provide your tax reference number")
+object SelectYourProperty extends BasePage {
+
+  def SelectYourProperty(name: String): Unit =
+    headerCheck(name)
+
+  def selectProperty(): Unit =
+    click(getElementByLink("Select Property"))
+
 }

@@ -37,17 +37,17 @@ object ConfirmUTRPage extends BasePage {
 
   def selectYes(): Unit = {
     click(yes)
-    click(continueButton)
+    waitForElementToBeClickable(continueButton).click()
   }
 
   def selectNoProvideNI(): Unit = {
     click(noNI)
-    click(continueButton)
+    waitForElementToBeClickable(continueButton).click()
   }
 
   def selectNoLater(): Unit = {
     click(noLater)
-    click(continueButton)
+    waitForElementToBeClickable(continueButton).click()
   }
 
 }

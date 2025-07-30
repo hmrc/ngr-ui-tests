@@ -26,7 +26,6 @@ import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
 class ConfirmContactDetailsSpec extends BaseSpec with StubPage {
 
   Feature("Tests for the Changes Contact Details page, OL route") {
-
     Scenario("Change the contact name, OL route") {
       RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
@@ -41,8 +40,10 @@ class ConfirmContactDetailsSpec extends BaseSpec with StubPage {
       /*Change name*/
       Then("Clicks the name link")
       ConfirmContactDetailsPage.ClickChangeNameLink()
+
       Then("Name the page is shown")
       ContactNamePage.ContactNameDetails()
+
       Then("The ratepayer enters their name and clicks continue")
       ContactNamePage.InputName("Funny Jake")
       Then("The Ratepayer returns to the Check Your Answers page with the updated name.")
@@ -180,7 +181,7 @@ class ConfirmContactDetailsSpec extends BaseSpec with StubPage {
       Then("User clear all the fields on 'What is the address?' page and submit")
       WhatIsAddressPage.whatIsTheAddress()
       WhatIsAddressPage.clearAllTheField()
-      click(continueButton)
+      waitForElementToBeClickable(continueButton).click()
 
       Then("Application gives post code error")
       WhatIsAddressPage.postCodeError("Error:\nEnter postcode")
