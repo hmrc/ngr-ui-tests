@@ -20,8 +20,8 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 object WhatTypeOfAgreement extends BasePage {
 
-  def tellUsAboutYourRent(): Unit =
-    headerCheck("Tell us about your rent review")
+  def WhatTypeOfAgreementDoYouHave(): Unit =
+    headerCheck("What type of agreement do you have?")
 
   def leaseOrTenancyRadio(): Unit = {
     click(getElementById("what-type-of-agreement-radio"))
