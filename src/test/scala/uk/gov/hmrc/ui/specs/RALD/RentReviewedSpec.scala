@@ -17,16 +17,15 @@
 package uk.gov.hmrc.ui.specs.RALD
 
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome.dashboard
-import uk.gov.hmrc.ui.pages.RALD.{TellUsAboutYourRenewedAgreementPage, WhatDoYouWantToTellUs, WhichPropertyDoYouWantToTellUsAbout}
+import uk.gov.hmrc.ui.pages.RALD._
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
 
-class RenewedAgreementSpec extends BaseSpec with StubPage {
+class RentReviewedSpec extends BaseSpec with StubPage {
 
-  Feature("Testing the renewed agreement functionality") {
-    Scenario("The user renewed their agreement") {
-
+  Feature("Testing the 'you reviewed your rent' journey") {
+    Scenario("The user reviewed their rent") {
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -38,11 +37,13 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       WhichPropertyDoYouWantToTellUsAbout.WhichPropertyDoYouWantToTellUsAbout()
       clickLink("Select property")
 
-      Then("The user selects renewed agreement link to renew their agreement")
+      Then("The user selects renewed review your rent link to review their rent")
       WhatDoYouWantToTellUs.WhatDoYouWantToTellUs()
-      clickLink("You renewed your agreement")
-      TellUsAboutYourRenewedAgreementPage.tellUsAboutYourRenewedAgreement()
+      clickLink("You reviewed your rent")
+      TellUsAboutYourRent.tellUsAboutYourRent()
       continueButton
+
     }
   }
+
 }
