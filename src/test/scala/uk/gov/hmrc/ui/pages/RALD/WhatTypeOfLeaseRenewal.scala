@@ -25,11 +25,11 @@ object WhatTypeOfLeaseRenewal extends BasePage {
 
   def RenewedAgreementRadio(): Unit = {
     click(getElementById("type-of-renewal"))
-    waitForElementToBeClickable(continueButton).click()
+    ContinueButtonClick()
   }
 
   def SurrenderAndRenewalRadio(): Unit = {
     click(getElementById("type-of-renewal-2"))
-    waitForElementToBeClickable(continueButton).click()
+    ContinueButtonClick()
   }
 }

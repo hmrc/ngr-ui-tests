@@ -46,7 +46,7 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
 
       Then("The user selects renewed agreement type of lease renewal")
       WhatTypeOfLeaseRenewal.TypeOfLeaseRenewal()
-
+      WhatTypeOfLeaseRenewal.RenewedAgreementRadio()
     }
   }
 }
