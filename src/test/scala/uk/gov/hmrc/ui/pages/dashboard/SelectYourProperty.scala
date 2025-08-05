@@ -14,24 +14,16 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.Registration.contactDetails
+package uk.gov.hmrc.ui.pages.Dashboard
 
-import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
-object EmailPage extends BasePage {
+object SelectYourProperty extends BasePage {
 
-  val emailInput = By.id("email-value")
+  def SelectYourProperty(name: String): Unit =
+    headerCheck(name)
 
-  def EmailDetails(): Unit = {
-    reloadPage()
-    headerCheck("Enter email address")
-  }
+  def selectProperty(): Unit =
+    click(getElementByLink("Select Property"))
 
-  def InputEmail(newEmail: String): Unit = {
-    reloadPage()
-    headerCheck("Enter email address")
-    sendKeys(emailInput, newEmail)
-    waitForElementToBeClickable(continueButton).click()
-  }
 }

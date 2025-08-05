@@ -18,6 +18,7 @@ package uk.gov.hmrc.ui.pages
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.configuration.TestEnvironment
+import uk.gov.hmrc.ui.pages.SignIn.SignInSelectorPage.headerCheck
 
 object StartNowPage extends BasePage {
 
@@ -26,7 +27,8 @@ object StartNowPage extends BasePage {
 
   def startNow() = {
     getUrl(startPage_url)
-    click(startNowButton)
+    headerCheck("Register for the business rates valuation service")
+    waitForElementToBeClickable(startNowButton).click()
   }
 
 }

@@ -23,18 +23,18 @@ object PhoneNumberPage extends BasePage {
 
   val numberInput = By.id("phoneNumber-value")
 
-  def PhoneNumberDetails(): Unit =
+  def PhoneNumberDetails(): Unit = {
+    reloadPage()
     headerCheck("Enter phone number")
+  }
 
   def InputNumber(phoneNumber: String): Unit = {
+    reloadPage()
+    headerCheck("Enter phone number")
     sendKeys(numberInput, phoneNumber)
-    click(continueButton)
+    waitForElementToBeClickable(continueButton).click()
   }
 
   def userProvidesPhoneNumber(): Unit =
-    if ("Enter phone number" == getElementByTagName("h1"))
-      PhoneNumberPage.InputNumber("8989898989")
-    else
-      println("Phone number prompt not found")
-
+    PhoneNumberPage.InputNumber("8989898989")
 }

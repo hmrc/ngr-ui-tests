@@ -26,13 +26,13 @@ import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
 class ConfirmContactDetailsSpec extends BaseSpec with StubPage {
 
   Feature("Tests for the Changes Contact Details page, OL route") {
-
     Scenario("Change the contact name, OL route") {
       RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
       Then("User provide phone number")
+      PhoneNumberPage.PhoneNumberDetails()
       PhoneNumberPage.userProvidesPhoneNumber()
 
       Then("Ratepayer is taken to the Confirm Contact Details page")
@@ -41,8 +41,10 @@ class ConfirmContactDetailsSpec extends BaseSpec with StubPage {
       /*Change name*/
       Then("Clicks the name link")
       ConfirmContactDetailsPage.ClickChangeNameLink()
+
       Then("Name the page is shown")
       ContactNamePage.ContactNameDetails()
+
       Then("The ratepayer enters their name and clicks continue")
       ContactNamePage.InputName("Funny Jake")
       Then("The Ratepayer returns to the Check Your Answers page with the updated name.")
@@ -74,7 +76,6 @@ class ConfirmContactDetailsSpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the Confirm Contact Details page")
       ConfirmContactDetailsPage.ConfirmContactDetails()
-      /*Change email*/
       Then("Clicks the change email link")
       ConfirmContactDetailsPage.ClickChangeEmailLink()
       Then("The ratepayer is taken to the Email Page")
@@ -142,7 +143,6 @@ class ConfirmContactDetailsSpec extends BaseSpec with StubPage {
     }
 
     Scenario("Testing search using property number/name") {
-      RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -167,7 +167,6 @@ class ConfirmContactDetailsSpec extends BaseSpec with StubPage {
     }
 
     Scenario("Testing postcode is mandatory on manual search") {
-      RegistrationDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -180,7 +179,7 @@ class ConfirmContactDetailsSpec extends BaseSpec with StubPage {
       Then("User clear all the fields on 'What is the address?' page and submit")
       WhatIsAddressPage.whatIsTheAddress()
       WhatIsAddressPage.clearAllTheField()
-      click(continueButton)
+      waitForElementToBeClickable(continueButton).click()
 
       Then("Application gives post code error")
       WhatIsAddressPage.postCodeError("Error:\nEnter postcode")
@@ -189,6 +188,5 @@ class ConfirmContactDetailsSpec extends BaseSpec with StubPage {
       WhatIsAddressPage.inputPostCode("SL3 0AX")
       SearchResultPage.searchResult()
     }
-
   }
 }

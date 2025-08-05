@@ -24,12 +24,12 @@ object SearchResultPage extends BasePage {
     headerCheck("Search results for SL3 0AX")
 
   def selectProperty(): Unit =
-    click(getElementByLink("Select Property"))
+    waitForElementToBeClickable(getElementByLink("Select Property")).click()
 
   def searchAgain(): Unit =
-    click(getElementByLink("Search again"))
+    waitForElementToBeClickable(getElementByLink("Search again")).click()
 
   def paginationLink(link: String): Unit =
-    click(getElementByLink(link))
+    waitForElementToBeClickable(getElementByLink(link)).click()
 
 }

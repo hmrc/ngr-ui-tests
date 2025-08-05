@@ -34,6 +34,6 @@ object RegistrationDB {
   def cleanup(): Unit =
     if (env == "local") {
       collection("next-generation-rates", "ratepayerRegistration").deleteMany(expr("1 == 1")).results()
-      collection("next-generation-rates-frontend", "ratepayerRegistration").deleteMany(expr("1 == 1")).results()
+      collection("ngr-login-register-frontend", "ratepayerRegistration").deleteMany(expr("1 == 1")).results()
     }
 }

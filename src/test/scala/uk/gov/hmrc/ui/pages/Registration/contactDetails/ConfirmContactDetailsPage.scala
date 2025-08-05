@@ -26,35 +26,41 @@ object ConfirmContactDetailsPage extends BasePage {
   val changeEmailLink       = By.id("email-linkid")
   val changeAddressLink     = By.id("address-linkid")
 
-  def ConfirmContactDetails(): Unit =
+  def ConfirmContactDetails(): Unit = {
+    reloadPage()
     headerCheck("Confirm your contact details")
+  }
 
   def verifyUpdatedName(expectedName: String): Unit = {
+    reloadPage()
     val actualName = getElementByCssSelector("#contact-name-id")
     assert(actualName == expectedName, "Name doesn't match")
   }
 
   def verifyUpdatedEmail(expectedEmail: String): Unit = {
+    reloadPage()
     val actualEmail = getElementByCssSelector("#email-address-id")
     assert(actualEmail == expectedEmail, "Email doesn't match")
   }
 
   def verifyUpdatedContactNo(expectedNumber: String): Unit = {
+    reloadPage()
     val actualNumber = getElementByCssSelector("#phone-number-id")
     assert(expectedNumber == actualNumber, "Contact number doesn't match")
   }
 
   def verifyUpdatedAddress(expectedAddress: String): Unit = {
+    reloadPage()
     val actualAddress = getElementByCssSelector("#address-id")
     assert(actualAddress == expectedAddress, "Address doesn't match on confirm contact details")
   }
 
   def ClickChangeNameLink(): Unit        =
-    click(changeNameLink)
+    waitForElementToBeClickable(changeNameLink).click()
   def ClickChangePhoneNumberLink(): Unit =
-    click(changePhoneNumberLink)
+    waitForElementToBeClickable(changePhoneNumberLink).click()
   def ClickChangeEmailLink(): Unit       =
-    click(changeEmailLink)
+    waitForElementToBeClickable(changeEmailLink).click()
   def ClickChangeAddressLink(): Unit     =
-    click(changeAddressLink)
+    waitForElementToBeClickable(changeAddressLink).click()
 }
