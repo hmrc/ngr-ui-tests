@@ -17,7 +17,7 @@
 package uk.gov.hmrc.ui.specs.RALD
 
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome.dashboard
-import uk.gov.hmrc.ui.pages.RALD.{TellUsAboutYourRenewedAgreementPage, WhatDoYouWantToTellUs, WhichPropertyDoYouWantToTellUsAbout}
+import uk.gov.hmrc.ui.pages.RALD.{TellUsAboutYourRenewedAgreementPage, WhatDoYouWantToTellUs, WhatTypeOfLeaseRenewal, WhichPropertyDoYouWantToTellUsAbout}
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
@@ -42,7 +42,11 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       WhatDoYouWantToTellUs.WhatDoYouWantToTellUs()
       clickLink("You renewed your agreement")
       TellUsAboutYourRenewedAgreementPage.tellUsAboutYourRenewedAgreement()
-      continueButton
+      ContinueButtonClick()
+
+      Then("The user selects renewed agreement type of lease renewal")
+      WhatTypeOfLeaseRenewal.TypeOfLeaseRenewal()
+
     }
   }
 }

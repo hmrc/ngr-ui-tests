@@ -73,4 +73,7 @@ trait BasePage extends PageObject {
   def clickLink(link: String): Unit =
     waitForElementToBeClickable(By.linkText(link)).click()
 
+  def ContinueButtonClick(): Unit =
+    waitForElementToBeClickable(continueButton).clear()
+
 }

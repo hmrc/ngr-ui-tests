@@ -42,7 +42,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       WhatDoYouWantToTellUs.WhatDoYouWantToTellUs()
       clickLink("You have a new agreement")
       TellUsAboutYourNewAgreementPage.tellUsAboutYourNewAgreement()
-      continueButton
+      ContinueButtonClick()
     }
   }
 }
