@@ -41,7 +41,7 @@ class RentReviewedSpec extends BaseSpec with StubPage {
       WhatDoYouWantToTellUs.WhatDoYouWantToTellUs()
       clickLink("You reviewed your rent")
       TellUsAboutYourRent.tellUsAboutYourRent()
-      continueButton
+      ContinueButtonClick()
 
     }
   }

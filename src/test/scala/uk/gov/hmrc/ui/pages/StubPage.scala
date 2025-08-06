@@ -24,7 +24,6 @@ trait StubPage extends BasePage {
   val redirect_url: String = TestEnvironment.url("ngr-login-register-frontend") + "/start"
   val authStub_url: String = TestEnvironment.url("service-name-frontend") + "/gg-sign-in"
 
-  private val redirectUrl     = By.id("redirectionUrl")
   private val confidenceLevel = By.id("confidenceLevel")
   private val nino            = By.id("nino")
   private val submitAuthStub  = By.id("submit")
