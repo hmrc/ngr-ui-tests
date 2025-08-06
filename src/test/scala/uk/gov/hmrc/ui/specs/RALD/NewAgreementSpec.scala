@@ -17,6 +17,7 @@
 package uk.gov.hmrc.ui.specs.RALD
 
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome.dashboard
+import uk.gov.hmrc.ui.pages.RALD.WhatTypeOfAgreement.{click, continueButton}
 import uk.gov.hmrc.ui.pages.RALD._
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.specs.BaseSpec
@@ -42,7 +43,18 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       WhatDoYouWantToTellUs.WhatDoYouWantToTellUs()
       clickLink("You have a new agreement")
       TellUsAboutYourNewAgreementPage.tellUsAboutYourNewAgreement()
-      ContinueButtonClick()
+      click(continueButton)
+
+      Then("The user inputs the landlords name and selects family member as type")
+      Landlord.Landlord()
+      Landlord.landlordNameInput(landlordName = "Bob")
+      Landlord.familyMemberRadio()
+      click(continueButton)
+
+      Then("The user selects verbal agreement as there agreement type")
+      WhatTypeOfAgreement.TypeOfAgreement()
+      WhatTypeOfAgreement.verbalRadio()
+      continueButton
     }
   }
 }

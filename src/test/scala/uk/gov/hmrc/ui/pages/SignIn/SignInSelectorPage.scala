@@ -27,8 +27,7 @@ object SignInSelectorPage extends BasePage with StubPage {
 
   def signInSelectorOL(): Unit = {
     click(getElementById("signInType-2"))
-    waitForElementToBeClickable(continueButton)
-    click(continueButton)
+    waitForElementToBeClickable(continueButton).click()
   }
   def signInSelectorGG(): Unit = {
     click(getElementById("signInType"))
