@@ -54,7 +54,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       Then("The user selects verbal agreement as there agreement type")
       WhatTypeOfAgreement.TypeOfAgreement()
       WhatTypeOfAgreement.verbalRadio()
-      continueButton
+      click(continueButton)
     }
   }
 }
