@@ -31,11 +31,10 @@ object PhoneNumberPage extends BasePage {
     click(continueButton)
   }
 
-  def userProvidesPhoneNumber(): Unit = {
+  def userProvidesPhoneNumber(): Unit =
     if ("Enter phone number" == getElementByTagName("h1"))
       PhoneNumberPage.InputNumber("8989898989")
-     else
+    else
       println("Phone number prompt not found")
-  }
 
 }
