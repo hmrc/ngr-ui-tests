@@ -55,7 +55,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
       Then("The ratepayer is taken to the 'Check your answers' page")
       CheckYourAnswer.checkYourAnswer()
-      contactName = getElementByCssSelector("#contact-name-id").toString
+      contactName = getElementByCssSelector("#contact-name-id")
       click(continueButton)
 
       Then("Ratepayer is taken to the Registration complete page")
@@ -93,11 +93,17 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       CurrentRatepayer.currentRatepayer()
       CurrentRatepayer.beforeDateRadio()
 
-      And("The ratepayers selects 'yes' on 'business rates bill for the property' page")
+      /** Tests for NO radio button selection * */
+      And("The ratepayers selects 'No' on 'business rates bill for the property' page")
       BusinessRateBillPage.BusinessRateBill()
       BusinessRateBillPage.selectNo()
 
-      /** ToDo Add tests for NO radio button selection */
+      Then("The ratepayer selects 'lease' on 'What evidence can you provide?' page")
+      WhatEvidenceCanYouProvide.whatEvidenceCanYouProvide()
+      WhatEvidenceCanYouProvide.selectEvidenceType("Lease")
+
+      And("The ratepayer navigates to upload the lease document page")
+      headerCheck("Upload your Lease")
 
     }
 

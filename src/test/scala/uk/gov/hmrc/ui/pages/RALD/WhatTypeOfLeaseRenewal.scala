@@ -20,16 +20,16 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 object WhatTypeOfLeaseRenewal extends BasePage {
 
-  def TypeOfLeaseRenewal(): Unit =
+  def typeOfLeaseRenewal(): Unit =
     headerCheck("What type of lease renewal is it?")
 
-  def RenewedAgreementRadio(): Unit = {
+  def renewedAgreementRadio(): Unit = {
     click(getElementById("type-of-renewal"))
-    ContinueButtonClick()
+    continueButtonClick()
   }
 
-  def SurrenderAndRenewalRadio(): Unit = {
+  def surrenderAndRenewalRadio(): Unit = {
     click(getElementById("type-of-renewal-2"))
-    ContinueButtonClick()
+    continueButtonClick()
   }
 }

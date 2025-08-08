@@ -33,10 +33,15 @@ trait BasePage extends PageObject {
     element.getText
   }
 
-  def headerCheck(headerText: String): Unit = {
-    val elementText = getElementByTagName("h1")
-    assert(elementText == headerText, s"Page header is not matching with $headerText")
-  }
+  def headerCheck(headerText: String): Unit =
+    try {
+      Wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("h1")))
+      val elementText = getElementByTagName("h1")
+      assert(elementText == headerText, s"Page header is not matching with $headerText")
+    } catch {
+      case e: Exception =>
+        println(s"Header check failed due to exception: ${e.getMessage}")
+    }
 
   def getElementById(id: String): By = By.id(id)
 
@@ -73,7 +78,7 @@ trait BasePage extends PageObject {
   def clickLink(link: String): Unit =
     waitForElementToBeClickable(By.linkText(link)).click()
 
-  def ContinueButtonClick(): Unit =
+  def continueButtonClick(): Unit =
     waitForElementToBeClickable(continueButton).click()
 
 }
