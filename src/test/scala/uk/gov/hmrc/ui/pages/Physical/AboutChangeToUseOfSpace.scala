@@ -1,34 +1,46 @@
+/*
+ * Copyright 2025 HM Revenue & Customs
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package uk.gov.hmrc.ui.pages.Physical
 
 import uk.gov.hmrc.ui.pages.BasePage
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.RALD.WhatTypeOfAgreement.{click, continueButton}
 
-object AboutChangeToUseOfSpace extends BasePage{
+object AboutChangeToUseOfSpace extends BasePage {
 
   def aboutTheChangeToUseOfSpace(): Unit =
     headerCheck("About the change to use of space")
 
   // How did you change the use of space? Checkbox options
-  def rearrangedUseOfSpaceCheckbox(): Unit = {
+  def rearrangedUseOfSpaceCheckbox(): Unit =
     click(getElementById("selectUseOfSpace_0"))
-  }
 
-  def builtAnExtensionCheckbox(): Unit = {
+  def builtAnExtensionCheckbox(): Unit =
     click(getElementById("selectUseOfSpace_1"))
-  }
 
-  def DemolishedPartOfPropertyCheckbox(): Unit = {
+  def DemolishedPartOfPropertyCheckbox(): Unit =
     click(getElementById("selectUseOfSpace_2"))
-  }
 
-  //Did you get planning permission? Radio button selections
+  // Did you get planning permission? Radio button selections
 
-  val planningPermissionNumberInputLocation: By       = By.id("permissionReference")
+  val planningPermissionNumberInputLocation: By = By.id("permissionReference")
 
-  def PlanningPermissionRadio(): Unit = {
+  def PlanningPermissionRadio(): Unit =
     click(getElementById("hasPlanningPermission"))
-  }
 
   def planningPermissionNumberInput(planningPermissionNumber: String): Unit = {
     sendKeys(planningPermissionNumberInputLocation, planningPermissionNumber)
@@ -39,6 +51,5 @@ object AboutChangeToUseOfSpace extends BasePage{
     click(getElementById("hasPlanningPermission-no"))
     click(continueButton)
   }
-
 
 }
