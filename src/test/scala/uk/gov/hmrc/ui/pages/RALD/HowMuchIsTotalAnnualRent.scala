@@ -21,11 +21,11 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 object HowMuchIsTotalAnnualRent extends BasePage {
 
-  val annualTotalRentID: By       = By.id("how–much–is–total–annual–rent-value")
+  val annualTotalRentID: By = By.id("how–much–is–total–annual–rent-value")
 
   def HowMuchIsTotalAnnualRent(): Unit =
     headerCheck("How much is your total annual rent?")
 
-  def InputTotalAnnualRent(totalAnnualRent: String): Unit           =
+  def InputTotalAnnualRent(totalAnnualRent: String): Unit =
     sendKeys(annualTotalRentID, totalAnnualRent)
 }
