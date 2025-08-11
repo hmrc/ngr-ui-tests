@@ -16,20 +16,16 @@
 
 package uk.gov.hmrc.ui.pages.RALD
 
+import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
-object WhatTypeOfLeaseRenewal extends BasePage {
+object HowMuchIsTotalAnnualRent extends BasePage {
 
-  def typeOfLeaseRenewal(): Unit =
-    headerCheck("What type of lease renewal is it?")
+  val annualTotalRentID: By = By.id("how–much–is–total–annual–rent-value")
 
-  def renewedAgreementRadio(): Unit = {
-    click(getElementById("type-of-renewal"))
-    continueButtonClick()
-  }
+  def HowMuchIsTotalAnnualRent(): Unit =
+    headerCheck("How much is your total annual rent?")
 
-  def surrenderAndRenewalRadio(): Unit = {
-    click(getElementById("type-of-renewal-2"))
-    continueButtonClick()
-  }
+  def InputTotalAnnualRent(totalAnnualRent: String): Unit =
+    sendKeys(annualTotalRentID, totalAnnualRent)
 }

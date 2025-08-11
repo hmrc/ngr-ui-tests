@@ -18,18 +18,18 @@ package uk.gov.hmrc.ui.pages.RALD
 
 import uk.gov.hmrc.ui.pages.BasePage
 
-object WhatTypeOfLeaseRenewal extends BasePage {
+object AgreedRentChange extends BasePage {
 
-  def typeOfLeaseRenewal(): Unit =
-    headerCheck("What type of lease renewal is it?")
+  def AgreedRentChange(): Unit =
+    headerCheck("Have you agreed in advance with the landlord when and by how much rent goes up?")
 
-  def renewedAgreementRadio(): Unit = {
-    click(getElementById("type-of-renewal"))
-    continueButtonClick()
+  def YesRadio(): Unit = {
+    click(getElementById("agreed-rent-change-radio"))
+    ContinueButtonClick()
   }
 
-  def surrenderAndRenewalRadio(): Unit = {
-    click(getElementById("type-of-renewal-2"))
-    continueButtonClick()
+  def NoRadio(): Unit = {
+    click(getElementById("agreed-rent-change-radio-2"))
+    ContinueButtonClick()
   }
 }

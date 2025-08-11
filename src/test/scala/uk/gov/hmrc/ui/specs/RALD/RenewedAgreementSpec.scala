@@ -42,11 +42,11 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       WhatDoYouWantToTellUs.WhatDoYouWantToTellUs()
       clickLink("You renewed your agreement")
       TellUsAboutYourRenewedAgreementPage.tellUsAboutYourRenewedAgreement()
-      ContinueButtonClick()
+      continueButtonClick()
 
       Then("The user selects renewed agreement type of lease renewal")
-      WhatTypeOfLeaseRenewal.TypeOfLeaseRenewal()
-      WhatTypeOfLeaseRenewal.RenewedAgreementRadio()
+      WhatTypeOfLeaseRenewal.typeOfLeaseRenewal()
+      WhatTypeOfLeaseRenewal.renewedAgreementRadio()
     }
   }
 }
