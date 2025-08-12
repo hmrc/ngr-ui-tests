@@ -23,9 +23,9 @@ object HowMuchIsTotalAnnualRent extends BasePage {
 
   val annualTotalRentID: By = By.id("how–much–is–total–annual–rent-value")
 
-  def HowMuchIsTotalAnnualRent(): Unit =
+  def howMuchIsTotalAnnualRent(): Unit =
     headerCheck("How much is your total annual rent?")
 
-  def InputTotalAnnualRent(totalAnnualRent: String): Unit =
+  def inputTotalAnnualRent(totalAnnualRent: String): Unit =
     sendKeys(annualTotalRentID, totalAnnualRent)
 }

@@ -21,7 +21,7 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 object Landlord extends BasePage {
 
-  def Landlord(): Unit =
+  def landlord(): Unit =
     headerCheck("Landlord")
 
   val lanlordNameLocation: By       = By.id("landlord-name-value")
@@ -32,22 +32,22 @@ object Landlord extends BasePage {
 
   def landLordAndTennantRadio(): Unit = {
     click(getElementById("landlord-radio"))
-    click(continueButton)
+    continueButtonClick()
   }
 
   def familyMemberRadio(): Unit = {
     click(getElementById("landlord-radio-2"))
-    click(continueButton)
+    continueButtonClick()
   }
 
   def companyPensionFundRadio(): Unit = {
     click(getElementById("landlord-radio-3"))
-    click(continueButton)
+    continueButtonClick()
   }
 
   def businessPartnerOrSharedDirectorRadio(): Unit = {
     click(getElementById("landlord-radio-4"))
-    click(continueButton)
+    continueButtonClick()
   }
 
   def otherRelationshipRadio(): Unit = {
