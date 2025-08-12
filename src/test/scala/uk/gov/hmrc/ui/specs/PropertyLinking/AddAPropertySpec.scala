@@ -247,7 +247,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       CurrentRatepayer.beforeDateRadio()
 
       Then("The ratepayers selects 'yes' on 'business rates bill for the property' page")
-      BusinessRateBillPage.BusinessRateBill()
+      BusinessRateBillPage.businessRateBill()
       BusinessRateBillPage.selectYes()
 
 //      And("The ratepayers selects 'Owner' on 'connection to the property' page")
