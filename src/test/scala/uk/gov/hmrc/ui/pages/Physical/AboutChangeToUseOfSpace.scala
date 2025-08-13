@@ -26,14 +26,15 @@ object AboutChangeToUseOfSpace extends BasePage {
     headerCheck("About the change to use of space")
 
   // How did you change the use of space? Checkbox options
-  def rearrangedUseOfSpaceCheckbox(): Unit =
-    click(getElementById("selectUseOfSpace_0"))
-
-  def builtAnExtensionCheckbox(): Unit =
-    click(getElementById("selectUseOfSpace_1"))
-
-  def DemolishedPartOfPropertyCheckbox(): Unit =
-    click(getElementById("selectUseOfSpace_2"))
+  def selectUseOfSpace(UseOfSpace: String): Unit = {
+    val checkId = UseOfSpace match {
+      case "Rearranged the use of space in the property" => "selectUseOfSpace_0"
+      case "Built an extension"                          => "selectUseOfSpace_1"
+      case "Demolished part of the property"             => "selectUseOfSpace_2"
+    }
+    click(getElementById(checkId))
+    click(continueButton)
+  }
 
   // Did you get planning permission? Radio button selections
 
