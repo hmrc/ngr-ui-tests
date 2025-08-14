@@ -3,7 +3,7 @@ package uk.gov.hmrc.ui.pages.Physical
 import uk.gov.hmrc.ui.pages.BasePage
 import uk.gov.hmrc.ui.pages.Physical.AboutChangeToUseOfSpace.headerCheck
 
-object HaveYouChangedUseOfSpace extends BasePage{
+object HaveYouChangedUseOfSpace extends BasePage {
 
   def changedUseOfSpaceHeader(): Unit =
     headerCheck("Have you changed use of space?")
@@ -13,7 +13,7 @@ object HaveYouChangedUseOfSpace extends BasePage{
   def changedUseOfSpaceRadio(ChangedUseOfSpace: String): Unit = {
     val radioCheckId = ChangedUseOfSpace match {
       case "Yes" => "value"
-      case "No"   => "value-no"
+      case "No"  => "value-no"
     }
     click(getElementById(radioCheckId))
     click(continueButton)
