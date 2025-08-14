@@ -48,10 +48,17 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       Landlord.landlord()
       Landlord.landlordNameInput(landlordName = "Bob")
       Landlord.familyMemberRadio()
+      click(continueButton)
 
       Then("The user selects verbal agreement as there agreement type")
       WhatTypeOfAgreement.TypeOfAgreement()
       WhatTypeOfAgreement.verbalRadio()
+      click(continueButton)
+
+      Then("The user input agreement start date and end date")
+      AgreementVerbal.startDateInput("23", "4", "2025")
+      AgreementVerbal.selectOpenEndedRadio("No")
+      AgreementVerbal.endDateInput("23", "4", "2027")
     }
   }
 }
