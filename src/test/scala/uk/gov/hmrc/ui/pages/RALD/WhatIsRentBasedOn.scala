@@ -19,7 +19,7 @@ package uk.gov.hmrc.ui.pages.RALD
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
-object WhatIsRentBasedOnPage extends BasePage {
+object WhatIsRentBasedOn extends BasePage {
 
   def whatIsRentBasedOn(): Unit =
     headerCheck("What is your rent based on?")

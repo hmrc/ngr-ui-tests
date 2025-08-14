@@ -51,6 +51,17 @@ class RentReviewedSpec extends BaseSpec with StubPage {
       Then("The user selects verbal agreement as there agreement type")
       WhatTypeOfAgreement.TypeOfAgreement()
       WhatTypeOfAgreement.verbalRadio()
+
+      Then("The user input agreement start date and selected yes for open-ended")
+      AgreementVerbal.agreementVerbal()
+      AgreementVerbal.startDateInput("23", "4", "2025")
+      AgreementVerbal.selectOpenEndedRadio("Yes")
+      click(continueButton)
+
+      Then("The user enter how much is total annual rent")
+      HowMuchIsTotalAnnualRent.howMuchIsTotalAnnualRent()
+      HowMuchIsTotalAnnualRent.inputTotalAnnualRent("3500")
+      click(continueButton)
     }
   }
 }
