@@ -34,25 +34,23 @@ class RentReviewedSpec extends BaseSpec with StubPage {
       clickLink("Tell us about a change")
 
       Then("The ratepayers selects the property and proceed through the new agreement journey")
-      WhichPropertyDoYouWantToTellUsAbout.WhichPropertyDoYouWantToTellUsAbout()
+      WhichPropertyDoYouWantToTellUsAbout.whichPropertyDoYouWantToTellUsAbout()
       clickLink("Select property")
 
       Then("The user selects renewed review your rent link to review their rent")
-      WhatDoYouWantToTellUs.WhatDoYouWantToTellUs()
+      WhatDoYouWantToTellUs.whatDoYouWantToTellUs()
       clickLink("You reviewed your rent")
       TellUsAboutYourRent.tellUsAboutYourRent()
       continueButtonClick()
 
       Then("The user inputs the landlords name and selects family member as type")
-      Landlord.Landlord()
+      Landlord.landlord()
       Landlord.landlordNameInput(landlordName = "Bob")
       Landlord.familyMemberRadio()
-      continueButtonClick()
 
       Then("The user selects verbal agreement as there agreement type")
       WhatTypeOfAgreement.TypeOfAgreement()
       WhatTypeOfAgreement.verbalRadio()
-      continueButtonClick()
     }
   }
 }

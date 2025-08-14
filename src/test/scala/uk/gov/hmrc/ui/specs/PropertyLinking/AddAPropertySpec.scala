@@ -95,7 +95,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
       /** Tests for NO radio button selection * */
       And("The ratepayers selects 'No' on 'business rates bill for the property' page")
-      BusinessRateBillPage.BusinessRateBill()
+      BusinessRateBillPage.businessRateBill()
       BusinessRateBillPage.selectNo()
 
       Then("The ratepayer selects 'lease' on 'What evidence can you provide?' page")
@@ -247,7 +247,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       CurrentRatepayer.beforeDateRadio()
 
       Then("The ratepayers selects 'yes' on 'business rates bill for the property' page")
-      BusinessRateBillPage.BusinessRateBill()
+      BusinessRateBillPage.businessRateBill()
       BusinessRateBillPage.selectYes()
 
 //      And("The ratepayers selects 'Owner' on 'connection to the property' page")

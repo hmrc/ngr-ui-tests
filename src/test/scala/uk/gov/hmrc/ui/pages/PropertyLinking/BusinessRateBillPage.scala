@@ -20,7 +20,7 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 object BusinessRateBillPage extends BasePage {
 
-  def BusinessRateBill(): Unit =
+  def businessRateBill(): Unit =
     headerCheck("Do you have a business rates bill for the property?")
 
   def selectYes(): Unit = {
@@ -29,6 +29,7 @@ object BusinessRateBillPage extends BasePage {
   }
 
   def selectNo(): Unit = {
+
     click(getElementById("business-rates-bill-radio-2"))
     click(continueButton)
   }
