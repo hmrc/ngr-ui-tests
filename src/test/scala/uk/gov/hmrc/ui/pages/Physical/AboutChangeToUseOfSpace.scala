@@ -33,7 +33,6 @@ object AboutChangeToUseOfSpace extends BasePage {
       case "Demolished part of the property"             => "selectUseOfSpace_2"
     }
     click(getElementById(checkId))
-    click(continueButton)
   }
 
   // Did you get planning permission? Radio button selections
@@ -43,14 +42,10 @@ object AboutChangeToUseOfSpace extends BasePage {
   def PlanningPermissionRadio(): Unit =
     click(getElementById("hasPlanningPermission"))
 
-  def planningPermissionNumberInput(planningPermissionNumber: String): Unit = {
+  def planningPermissionNumberInput(planningPermissionNumber: String): Unit =
     sendKeys(planningPermissionNumberInputLocation, planningPermissionNumber)
-    click(continueButton)
-  }
 
-  def NoPlanningPermissionRadio(): Unit = {
+  def NoPlanningPermissionRadio(): Unit =
     click(getElementById("hasPlanningPermission-no"))
-    click(continueButton)
-  }
 
 }
