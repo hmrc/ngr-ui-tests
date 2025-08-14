@@ -37,7 +37,7 @@ object WhatIsRentBasedOnPage extends BasePage {
       case "Other"                              => "rent-based-on-radio-7"
     }
     click(getElementById(radioId))
-    click(continueButton)
+    continueButtonClick()
   }
 
   def otherRentBasedOnDescription(otherDesc: String): Unit =

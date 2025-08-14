@@ -92,7 +92,7 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       CurrentRatepayer.beforeDateRadio()
 
       Then("The ratepayers selects 'yes' on 'business rates bill for the property' page")
-      BusinessRateBillPage.BusinessRateBill()
+      BusinessRateBillPage.businessRateBill()
       BusinessRateBillPage.selectYes()
 
       Then("ratepayer hits the property-connection page, selects 'owner' and continues")
@@ -138,7 +138,7 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       PropertyLinkingCYA.clickChangeBusinessRatesBill()
 
       Then("The 'business rates bill for the property' page is shown")
-      BusinessRateBillPage.BusinessRateBill()
+      BusinessRateBillPage.businessRateBill()
 
       Then("Ratepayer selects 'no' on 'business rates bill for the property' page")
       BusinessRateBillPage.selectNo()
@@ -190,7 +190,7 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       CurrentRatepayer.beforeDateRadio()
 
       Then("The ratepayers selects 'yes' on 'business rates bill for the property' page")
-      BusinessRateBillPage.BusinessRateBill()
+      BusinessRateBillPage.businessRateBill()
       BusinessRateBillPage.selectYes()
 
       Then("The Ratepayer is taken back to the Check Your Answers page, with the address changed")
