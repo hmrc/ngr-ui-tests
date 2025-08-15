@@ -35,6 +35,5 @@ object WhatTypeOfAgreement extends BasePage {
 
   def verbalRadio(): Unit = {
     click(getElementById("what-type-of-agreement-radio-3"))
-    click(continueButton)
   }
 }

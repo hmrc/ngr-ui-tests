@@ -37,7 +37,7 @@ object Landlord extends BasePage {
 
   def familyMemberRadio(): Unit = {
     click(getElementById("landlord-radio-2"))
-    continueButtonClick()
+
   }
 
   def companyPensionFundRadio(): Unit = {
