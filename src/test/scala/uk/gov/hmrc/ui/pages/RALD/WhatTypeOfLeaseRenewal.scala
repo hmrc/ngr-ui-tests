@@ -23,9 +23,8 @@ object WhatTypeOfLeaseRenewal extends BasePage {
   def typeOfLeaseRenewal(): Unit =
     headerCheck("What type of lease renewal is it?")
 
-  def renewedAgreementRadio(): Unit = {
+  def renewedAgreementRadio(): Unit =
     click(getElementById("type-of-renewal"))
-  }
 
   def surrenderAndRenewalRadio(): Unit = {
     click(getElementById("type-of-renewal-2"))
