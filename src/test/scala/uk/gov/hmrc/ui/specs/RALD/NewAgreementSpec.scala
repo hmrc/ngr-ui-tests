@@ -23,7 +23,6 @@ import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
 
 class NewAgreementSpec extends BaseSpec with StubPage {
-
   Feature("Testing the new agreement functionality") {
     Scenario("The user creates the new agreement") {
 
