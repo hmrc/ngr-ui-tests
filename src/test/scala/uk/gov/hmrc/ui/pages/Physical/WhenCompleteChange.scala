@@ -16,10 +16,8 @@
 
 package uk.gov.hmrc.ui.pages.Physical
 
-import uk.gov.hmrc.ui.pages.BasePage
 import org.openqa.selenium.By
-import uk.gov.hmrc.ui.pages.RALD.AgreedRentChange.continueButtonClick
-import uk.gov.hmrc.ui.pages.RALD.WhatIsRentBasedOnPage.{click, continueButton}
+import uk.gov.hmrc.ui.pages.BasePage
 object WhenCompleteChange extends BasePage {
 
   def WhenCompleteChangeScreen(): Unit =
