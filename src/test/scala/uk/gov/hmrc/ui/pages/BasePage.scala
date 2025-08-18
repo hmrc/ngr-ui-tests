@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.ui.pages
 import org.openqa.selenium.{By, WebDriver, WebElement}
-import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Wait}
+import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Select, Wait}
 
 import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
@@ -81,4 +81,15 @@ trait BasePage extends PageObject {
   def continueButtonClick(): Unit =
     waitForElementToBeClickable(continueButton).click()
 
+  def selectDropdownByValue(elementId: String, value: String): Unit = {
+    val dropdownElement = findElementById(elementId)
+    val select          = new Select(dropdownElement)
+    select.selectByValue(value)
+  }
+
+  def selectDropdownByVisibleText(elementId: String, visibleText: String): Unit = {
+    val dropdownElement = findElementById(elementId)
+    val select          = new Select(dropdownElement)
+    select.selectByVisibleText(visibleText)
+  }
 }
