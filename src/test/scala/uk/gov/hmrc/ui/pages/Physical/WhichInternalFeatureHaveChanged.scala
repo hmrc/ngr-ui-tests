@@ -19,6 +19,7 @@ object WhichInternalFeatureHaveChanged extends BasePage {
   }
   def selectOtherFeatures(feature: String): Unit                               = {
     whichInternalFeatureHaveChangedRadio("value_5")
-    selectDropdownByValue("other-select", feature)
+    val dropdown = getElementById("other-select")
+    selectByValue(dropdown, feature)
   }
 }
