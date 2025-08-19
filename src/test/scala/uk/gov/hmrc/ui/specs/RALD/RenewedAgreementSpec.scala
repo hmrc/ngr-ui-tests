@@ -17,7 +17,7 @@
 package uk.gov.hmrc.ui.specs.RALD
 
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome.dashboard
-import uk.gov.hmrc.ui.pages.RALD.{AgreementPage, Landlord, TellUsAboutYourRenewedAgreementPage, WhatDoYouWantToTellUs, WhatTypeOfAgreement, WhatTypeOfLeaseRenewal, WhichPropertyDoYouWantToTellUsAbout}
+import uk.gov.hmrc.ui.pages.RALD.{Agreement, Landlord, TellUsAboutYourRenewedAgreementPage, WhatDoYouWantToTellUs, WhatTypeOfAgreement, WhatTypeOfLeaseRenewal, WhichPropertyDoYouWantToTellUsAbout}
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
@@ -61,12 +61,12 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       click(continueButton)
 
       Then("The user entered agreement started date and end date also gave break clause")
-      AgreementPage.agreement()
-      AgreementPage.agreementEnterStartDate("15", "8", "2025")
-      AgreementPage.agreementOpenEndedRadioNo()
-      AgreementPage.agreementEnterOpenEndedDate("15", "8", "2027")
-      AgreementPage.agreementHaveABreakClauseRadioYes()
-      AgreementPage.agreementHaveABreakClauseReason("Any reasons")
+      Agreement.agreement()
+      Agreement.agreementEnterStartDate("15", "8", "2025")
+      Agreement.agreementOpenEndedRadioNo()
+      Agreement.agreementEnterOpenEndedDate("15", "8", "2027")
+      Agreement.agreementHaveABreakClauseRadioYes()
+      Agreement.agreementHaveABreakClauseReason("Any reasons")
       continueButtonClick()
     }
   }

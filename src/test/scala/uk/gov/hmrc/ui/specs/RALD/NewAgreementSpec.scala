@@ -24,7 +24,51 @@ import uk.gov.hmrc.ui.utils.login.loginOl
 
 class NewAgreementSpec extends BaseSpec with StubPage {
   Feature("Testing the new agreement functionality") {
-    Scenario("The user creates the new agreement") {
+    Scenario("The user creates the new agreement, agreement type: Lease or tenancy agreement") {
+
+      Given("Ratepayer logins through one login")
+      loginOl()
+
+      When("The ratepayer clicks on 'Tell us about a change' link from dashboard")
+      dashboard()
+      clickLink("Tell us about a change")
+
+      Then("The ratepayers selects the property and proceed through the new agreement journey")
+      WhichPropertyDoYouWantToTellUsAbout.whichPropertyDoYouWantToTellUsAbout()
+      clickLink("Select property")
+
+      Then("The user selects new agreement link to tell about their new agreement")
+      WhatDoYouWantToTellUs.whatDoYouWantToTellUs()
+      clickLink("You have a new agreement")
+      TellUsAboutYourNewAgreementPage.tellUsAboutYourNewAgreement()
+      click(continueButton)
+
+      Then("The user inputs the landlords name and selects family member as type")
+      Landlord.landlord()
+      Landlord.landlordNameInput(landlordName = "Tinker Bell")
+      Landlord.familyMemberRadio()
+      click(continueButton)
+
+      Then("The user selects lease Or Tenancy as their agreement type")
+      WhatTypeOfAgreement.TypeOfAgreement()
+      WhatTypeOfAgreement.leaseOrTenancyRadio()
+      click(continueButton)
+
+      Then("The user enters agreement start date, not open ended, and 'Yes' for break clause")
+      Agreement.agreement()
+      Agreement.enterAgreementStartDate("02","01","2005")
+      Agreement.agreementOpenEndedRadio("No")
+      Agreement.enterOpenEndedAgreementDate("02","01","2030")
+      Agreement.agreementBreakClauseReason("Tenant needs to move due to employer's requirement to work in-office three days a week.")
+      click(continueButton)
+
+      Then("The user enter how much is total annual rent")
+      HowMuchIsTotalAnnualRent.howMuchIsTotalAnnualRent()
+      HowMuchIsTotalAnnualRent.inputTotalAnnualRent("7500")
+      click(continueButton)
+    }
+
+    Scenario("The user creates the new agreement, agreement type: Verbal") {
 
       Given("Ratepayer logins through one login")
       loginOl()

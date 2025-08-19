@@ -26,8 +26,8 @@ object AgreementVerbal extends BasePage {
 
   def selectOpenEndedRadio(openEnded: String): Unit = {
     val radioId = openEnded.toLowerCase match {
-      case "yes" => "agreement-verbal-radio"
-      case _     => "agreement-verbal-radio-2"
+      case "Yes" => "agreement-verbal-radio"
+      case "No"    => "agreement-verbal-radio-2"
     }
     click(getElementById(radioId))
   }
