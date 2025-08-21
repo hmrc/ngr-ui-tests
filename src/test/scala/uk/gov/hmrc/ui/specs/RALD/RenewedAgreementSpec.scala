@@ -52,7 +52,7 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       Then("The user inputs the landlords name and selects family member as type")
       Landlord.landlord()
       Landlord.landlordNameInput(landlordName = "Bob")
-      Landlord.familyMemberRadio()
+      Landlord.relationshipWithTheLandlord("family Member")
       click(continueButton)
 
       Then("The user selects verbal agreement as there agreement type")
@@ -62,11 +62,11 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
 
       Then("The user entered agreement started date and end date also gave break clause")
       Agreement.agreement()
-      Agreement.agreementEnterStartDate("15", "8", "2025")
-      Agreement.agreementOpenEndedRadioNo()
-      Agreement.agreementEnterOpenEndedDate("15", "8", "2027")
-      Agreement.agreementHaveABreakClauseRadioYes()
-      Agreement.agreementHaveABreakClauseReason("Any reasons")
+      Agreement.enterAgreementStartDate("02", "01", "2015")
+      Agreement.agreementOpenEndedRadio("No")
+      Agreement.enterOpenEndedAgreementDate("11", "11", "2027")
+      Agreement.agreementHaveABreakClauseRadio("No")
+      Agreement.agreementBreakClauseReason("VOA budget issue")
       continueButtonClick()
     }
   }

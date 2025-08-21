@@ -25,29 +25,39 @@ object Agreement extends BasePage {
     headerCheck("Agreement")
 
   def enterAgreementStartDate(day: String, month: String, year: String): Unit = {
+    click(getElementById("agreementStartDate.day"))
     sendKeys(By.id("agreementStartDate.day"), day)
+
+    click(getElementById("agreementStartDate.month"))
     sendKeys(By.id("agreementStartDate.month"), month)
+
+    click(getElementById("agreementStartDate.year"))
     sendKeys(By.id("agreementStartDate.year"), year)
   }
 
   def enterOpenEndedAgreementDate(day: String, month: String, year: String): Unit = {
+    click(getElementById("agreementEndDate.day"))
     sendKeys(By.id("agreementEndDate.day"), day)
+
+    click(getElementById("agreementEndDate.month"))
     sendKeys(By.id("agreementEndDate.month"), month)
-    sendKeys(By.id("agreementEndDate.month"), year)
+
+    click(getElementById("agreementEndDate.year"))
+    sendKeys(By.id("agreementEndDate.year"), year)
   }
 
-  def agreementOpenEndedRadio(option: String): Unit={
-   val radioId = option.toLowerCase match {
-      case "yes" => "agreement-radio-openEnded"
-      case "no" =>  "agreement-radio-openEnded-2"
+  def agreementOpenEndedRadio(option: String): Unit = {
+    val radioId = option match {
+      case "Yes" => "agreement-radio-openEnded"
+      case "No"  => "agreement-radio-openEnded-2"
     }
     click(getElementById(radioId))
   }
 
-  def agreementHaveABreakClauseRadio(option: String): Unit={
+  def agreementHaveABreakClauseRadio(option: String): Unit = {
     val radioId = option.toLowerCase match {
       case "yes" => "agreement-breakClause-radio"
-      case "no" =>  "agreement-breakClause-radio-2"
+      case "no"  => "agreement-breakClause-radio-2"
     }
     click(getElementById(radioId))
   }

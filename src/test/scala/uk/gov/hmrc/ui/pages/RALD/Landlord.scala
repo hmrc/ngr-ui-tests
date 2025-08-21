@@ -24,35 +24,26 @@ object Landlord extends BasePage {
   def landlord(): Unit =
     headerCheck("Landlord")
 
-  val lanlordNameLocation: By       = By.id("landlord-name-value")
-  val lanlordOtherInputLocation: By = By.id("landlord-radio-other")
+  val landlordNameLocation: By       = By.id("landlord-name-value")
+  val landlordOtherInputLocation: By = By.id("landlord-radio-other")
 
   def landlordNameInput(landlordName: String): Unit =
-    sendKeys(lanlordNameLocation, landlordName)
+    sendKeys(landlordNameLocation, landlordName)
 
-  def landLordAndTennantRadio(): Unit = {
-    click(getElementById("landlord-radio"))
-    continueButtonClick()
-  }
+  def relationshipWithTheLandlord(text: String): Unit = {
+    val radioId = text.toLowerCase match {
 
-  def familyMemberRadio(): Unit =
-    click(getElementById("landlord-radio-2"))
+      case "landLord And tenant relationship only" => "landlord-radio"
+      case "family Member"                         => "landlord-radio-2"
+      case "company pension fund"                  => "landlord-radio-3"
+      case "business partner or shared director"   => "landlord-radio-4"
+      case "other relationship"                    => "landlord-radio-5"
+    }
 
-  def companyPensionFundRadio(): Unit = {
-    click(getElementById("landlord-radio-3"))
-    continueButtonClick()
-  }
+    click(getElementById(radioId))
 
-  def businessPartnerOrSharedDirectorRadio(): Unit = {
-    click(getElementById("landlord-radio-4"))
-    continueButtonClick()
-  }
-
-  def otherRelationshipRadio(): Unit = {
-    click(getElementById("landlord-radio-5"))
-    click(continueButton)
   }
 
   def otherRelationshipInput(landlordRelationship: String): Unit =
-    sendKeys(lanlordOtherInputLocation, landlordRelationship)
+    sendKeys(landlordOtherInputLocation, landlordRelationship)
 }

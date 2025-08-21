@@ -23,15 +23,11 @@ object WhatTypeOfAgreement extends BasePage {
   def TypeOfAgreement(): Unit =
     headerCheck("What type of agreement do you have?")
 
-  def leaseOrTenancyRadio(): Unit = {
+  def leaseOrTenancyRadio(): Unit =
     click(getElementById("what-type-of-agreement-radio"))
-    click(continueButton)
-  }
 
-  def writtenRadio(): Unit = {
+  def writtenRadio(): Unit =
     click(getElementById("what-type-of-agreement-radio-2"))
-    click(continueButton)
-  }
 
   def verbalRadio(): Unit =
     click(getElementById("what-type-of-agreement-radio-3"))
