@@ -26,7 +26,7 @@ object WhatIsRentBasedOn extends BasePage {
 
   val rentBasedOnOtherDescLocation: By = By.id("rent-based-on-other-desc")
 
-  def selectRentBaseOn(rentBasedOnType: String): Unit = {
+  def selectAndSubmitRentBaseOn(rentBasedOnType: String): Unit = {
     val radioId = rentBasedOnType match {
       case "Open market value"                  => "rent-based-on-radio"
       case "A percentage of open market value"  => "rent-based-on-radio-2"
@@ -37,6 +37,10 @@ object WhatIsRentBasedOn extends BasePage {
       case "Other"                              => "rent-based-on-radio-7"
     }
     click(getElementById(radioId))
+
+    if(rentBasedOnType == "Other") {
+      sendKeys(By.id("radioId"), "Cap salary review")
+    }
     continueButtonClick()
   }
 
