@@ -32,6 +32,5 @@ object HaveYouChangedUseOfSpace extends BasePage {
       case "No"  => "value-no"
     }
     click(getElementById(radioCheckId))
-    click(continueButton)
   }
 }

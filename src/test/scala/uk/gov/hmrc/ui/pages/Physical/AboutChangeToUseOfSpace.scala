@@ -22,7 +22,7 @@ import uk.gov.hmrc.ui.pages.RALD.WhatTypeOfAgreement.{click, continueButton}
 
 object AboutChangeToUseOfSpace extends BasePage {
 
-  def aboutTheChangeToUseOfSpace(): Unit =
+  def aboutTheChangeToUseOfSpaceHeader(): Unit =
     headerCheck("About the change to use of space")
 
   // How did you change the use of space? Checkbox options
@@ -39,13 +39,13 @@ object AboutChangeToUseOfSpace extends BasePage {
 
   val planningPermissionNumberInputLocation: By = By.id("permissionReference")
 
-  def PlanningPermissionRadio(): Unit =
+  def planningPermissionRadio(): Unit =
     click(getElementById("hasPlanningPermission"))
 
   def planningPermissionNumberInput(planningPermissionNumber: String): Unit =
     sendKeys(planningPermissionNumberInputLocation, planningPermissionNumber)
 
-  def NoPlanningPermissionRadio(): Unit =
+  def noPlanningPermissionRadio(): Unit =
     click(getElementById("hasPlanningPermission-no"))
 
 }
