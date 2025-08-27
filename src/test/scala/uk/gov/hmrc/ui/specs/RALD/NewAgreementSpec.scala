@@ -47,7 +47,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       Then("The user inputs the landlords name and selects family member as type")
       Landlord.landlord()
       Landlord.landlordNameInput(landlordName = "Tinker Bell")
-      Landlord.relationshipWithTheLandlord("Landlord and tenant relationship only")
+      Landlord.landLordAndTenantRadio()
       continueButtonClick()
 
       /* Agreement type = 'Lease or tenancy agreement'*/
@@ -56,18 +56,18 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       WhatTypeOfAgreement.leaseOrTenancyRadio()
       continueButtonClick()
 
+      /* Open ended agreement = 'No',  Agreement have a break clause = 'Yes' */
       Then("The user enters agreement start date, not open ended, and 'Yes' for break clause")
       Agreement.agreement()
       Agreement.enterAgreementStartDate("02", "01", "2005")
       Agreement.agreementOpenEndedRadio("No")
       Agreement.enterOpenEndedAgreementDate("02", "01", "2030")
-      Thread.sleep(1000)
       Agreement.agreementHaveABreakClauseRadio("Yes")
-      Thread.sleep(1000)
       Agreement.agreementBreakClauseReason(
         "Tenant needs to move due to employer's requirement to work in-office three days a week."
       )
       continueButtonClick()
+
       /*'What is your rent based on?' = 'Other'*/
       Then("The user selects other and input reason on 'What is your rent based on?' page and submit")
       WhatIsRentBasedOn.whatIsRentBasedOn()
@@ -78,7 +78,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       /*User selects 'No' on rent agreed in advance*/
       And("The user selects 'No' on rent agreed in advance")
       HaveYouAgreedInAdvanceRentChanges.haveYouAgreedInAdvanceRentChanges()
-      HaveYouAgreedInAdvanceRentChanges.noRadio()
+      HaveYouAgreedInAdvanceRentChanges.yesRadio()
       click(continueButton)
     }
 
@@ -105,7 +105,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       Then("The user inputs the landlords name and selects family member as type")
       Landlord.landlord()
       Landlord.landlordNameInput(landlordName = "Tinker Bell")
-      Landlord.relationshipWithTheLandlord("Other relationship")
+      Landlord.otherRelationshipRadio()
       Landlord.otherRelationshipInput("Complicated")
       continueButtonClick()
 
@@ -115,6 +115,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       WhatTypeOfAgreement.writtenRadio()
       continueButtonClick()
 
+      /* Open ended agreement = 'Yes',  Agreement have a break clause = 'No' */
       Then("The user enters agreement start date, not open ended, and 'Yes' for break clause")
       Agreement.agreement()
       Agreement.enterAgreementStartDate("02", "01", "2005")
@@ -126,14 +127,13 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       Then("The user selects other and input reason on 'What is your rent based on?' page and submit")
       WhatIsRentBasedOn.whatIsRentBasedOn()
       WhatIsRentBasedOn.selectRentBaseOn("Open market value")
-      WhatIsRentBasedOn.otherRentBasedOnDescription("VOA budget")
       continueButtonClick()
 
       /*User selects 'Yes' on rent agreed in advance*/
       And("The user selects 'No' on rent agreed in advance")
       HaveYouAgreedInAdvanceRentChanges.haveYouAgreedInAdvanceRentChanges()
       HaveYouAgreedInAdvanceRentChanges.yesRadio()
-      click(continueButton)
+      continueButtonClick()
     }
 
     Scenario("New agreement, agreement type: Verbal") {
@@ -153,30 +153,30 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       WhatDoYouWantToTellUs.whatDoYouWantToTellUs()
       clickLink("You have a new agreement")
       TellUsAboutYourNewAgreementPage.tellUsAboutYourNewAgreement()
-      click(continueButton)
+      continueButtonClick()
 
       Then("The user inputs the landlords name and selects family member as type")
       Landlord.landlord()
       Landlord.landlordNameInput(landlordName = "Bob")
-      Landlord.relationshipWithTheLandlord("business partner or shared director")
-      click(continueButton)
+      Landlord.businessPartnerOrSharedDirectorRadio()
+      continueButtonClick()
 
       Then("The user selects verbal agreement as there agreement type")
       WhatTypeOfAgreement.TypeOfAgreement()
       WhatTypeOfAgreement.verbalRadio()
-      click(continueButton)
+      continueButtonClick()
 
       Then("The user input agreement start date and end date")
       AgreementVerbal.agreementVerbal()
       AgreementVerbal.startDateInput("23", "4", "2025")
-      AgreementVerbal.selectOpenEndedRadio("No")
+      AgreementVerbal.notOpenEndedAgreementRadio()
       AgreementVerbal.endDateInput("23", "4", "2027")
-      click(continueButton)
+      continueButtonClick()
 
       Then("The user enter how much is total annual rent")
       HowMuchIsTotalAnnualRent.howMuchIsTotalAnnualRent()
       HowMuchIsTotalAnnualRent.inputTotalAnnualRent("7500")
-      click(continueButton)
+      continueButtonClick()
     }
   }
 }

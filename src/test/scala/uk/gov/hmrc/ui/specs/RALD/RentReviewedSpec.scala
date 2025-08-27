@@ -43,10 +43,11 @@ class RentReviewedSpec extends BaseSpec with StubPage {
       TellUsAboutYourRent.tellUsAboutYourRent()
       continueButtonClick()
 
+      /* relationship With The Landlord = 'Company pension fund'*/
       Then("The user inputs the landlords name and selects family member as type")
       Landlord.landlord()
       Landlord.landlordNameInput(landlordName = "Bob")
-      Landlord.relationshipWithTheLandlord("company pension fund")
+      Landlord.companyPensionFundRadio()
       continueButtonClick()
 
       Then("The user selects verbal agreement as there agreement type")
@@ -57,7 +58,7 @@ class RentReviewedSpec extends BaseSpec with StubPage {
       Then("The user input agreement start date and selected yes for open-ended")
       AgreementVerbal.agreementVerbal()
       AgreementVerbal.startDateInput("23", "4", "2025")
-      AgreementVerbal.selectOpenEndedRadio("Yes")
+      AgreementVerbal.yesOpenEndedAgreementRadio()
       continueButtonClick()
 
       Then("The user enter how much is total annual rent")

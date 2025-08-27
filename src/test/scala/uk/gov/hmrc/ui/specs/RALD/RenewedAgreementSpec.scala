@@ -49,16 +49,17 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       WhatTypeOfLeaseRenewal.renewedAgreementRadio()
       continueButtonClick()
 
+      /* relationship With The Landlord = 'family Member'*/
       Then("The user inputs the landlords name and selects family member as type")
       Landlord.landlord()
       Landlord.landlordNameInput(landlordName = "Bob")
-      Landlord.relationshipWithTheLandlord("family Member")
-      click(continueButton)
+      Landlord.familyMemberRadio()
+      continueButtonClick()
 
       Then("The user selects verbal agreement as there agreement type")
       WhatTypeOfAgreement.TypeOfAgreement()
       WhatTypeOfAgreement.writtenRadio()
-      click(continueButton)
+      continueButtonClick()
 
       Then("The user entered agreement started date and end date also gave break clause")
       Agreement.agreement()

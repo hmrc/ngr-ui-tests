@@ -28,13 +28,13 @@ object WhatIsRentBasedOn extends BasePage {
 
   def selectRentBaseOn(rentBasedOnType: String): Unit = {
     val radioId = rentBasedOnType match {
-      case "Open market value"                  => "rent-based-on-radio"
+      case "Open market value"                  => "rent-based-on-radio" /*used*/
       case "A percentage of open market value"  => "rent-based-on-radio-2"
       case "Turnover top-up"                    => "rent-based-on-radio-3"
       case "A percentage of expected turnover"  => "rent-based-on-radio-4"
       case "Total Occupancy Cost leases (TOCs)" => "rent-based-on-radio-5"
       case "Indexation"                         => "rent-based-on-radio-6"
-      case "Other"                              => "rent-based-on-radio-7"
+      case "Other"                              => "rent-based-on-radio-7" /*used*/
     }
     click(getElementById(radioId))
   }

@@ -34,7 +34,7 @@ trait StubPage extends BasePage {
   def loginStub(): Unit  = {
     val text = "Gov UK One Login Sign In"
     headerCheck(text)
-    waitForElementToBeClickable(submit).click()
+    click(submit)
   }
 
   def IvStub(): Unit = {

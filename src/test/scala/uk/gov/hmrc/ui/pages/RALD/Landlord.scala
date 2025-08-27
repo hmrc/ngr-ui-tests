@@ -30,20 +30,22 @@ object Landlord extends BasePage {
   def landlordNameInput(landlordName: String): Unit =
     sendKeys(landlordNameLocation, landlordName)
 
-  def relationshipWithTheLandlord(text: String): Unit = {
-    val radioId = text.toLowerCase match {
+  def landLordAndTenantRadio(): Unit =
+    click(getElementById("landlord-radio")) /*used*/
 
-      case "landLord And tenant relationship only" => "landlord-radio"
-      case "family Member"                         => "landlord-radio-2"
-      case "company pension fund"                  => "landlord-radio-3"
-      case "business partner or shared director"   => "landlord-radio-4"
-      case "other relationship"                    => "landlord-radio-5"
-    }
+  def familyMemberRadio(): Unit =
+    click(getElementById("landlord-radio-2")) /*used*/
 
-    click(getElementById(radioId))
+  def companyPensionFundRadio(): Unit =
+    click(getElementById("landlord-radio-3")) /*used*/
 
-  }
+  def businessPartnerOrSharedDirectorRadio(): Unit = /*used*/
+    click(getElementById("landlord-radio-4"))
+
+  def otherRelationshipRadio(): Unit =
+    click(getElementById("landlord-radio-5")) /*used*/
 
   def otherRelationshipInput(landlordRelationship: String): Unit =
     sendKeys(landlordOtherInputLocation, landlordRelationship)
+
 }

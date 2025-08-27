@@ -48,16 +48,16 @@ object Agreement extends BasePage {
 
   def agreementOpenEndedRadio(option: String): Unit = {
     val radioId = option match {
-      case "Yes" => "agreement-radio-openEnded"
-      case "No"  => "agreement-radio-openEnded-2"
+      case "Yes" => "agreement-radio-openEnded" /*used*/
+      case "No"  => "agreement-radio-openEnded-2" /*used*/
     }
     click(getElementById(radioId))
   }
 
   def agreementHaveABreakClauseRadio(option: String): Unit = {
     val radioId = option.toLowerCase match {
-      case "yes" => "agreement-breakClause-radio"
-      case "no"  => "agreement-breakClause-radio-2"
+      case "yes" => "agreement-breakClause-radio" /*used*/
+      case "no"  => "agreement-breakClause-radio-2" /*used*/
     }
     click(getElementById(radioId))
   }
