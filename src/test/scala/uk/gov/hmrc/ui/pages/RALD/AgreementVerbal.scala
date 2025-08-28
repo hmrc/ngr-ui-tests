@@ -24,13 +24,11 @@ object AgreementVerbal extends BasePage {
   def agreementVerbal(): Unit =
     headerCheck("Agreement")
 
-  def selectOpenEndedRadio(openEnded: String): Unit = {
-    val radioId = openEnded.toLowerCase match {
-      case "yes" => "agreement-verbal-radio"
-      case _     => "agreement-verbal-radio-2"
-    }
-    click(getElementById(radioId))
-  }
+  def notOpenEndedAgreementRadio(): Unit =
+    click(getElementById("agreement-verbal-radio-2")) /*Used*/
+
+  def yesOpenEndedAgreementRadio(): Unit =
+    click(getElementById("agreement-verbal-radio")) /*Used*/
 
   def startDateInput(day: String, month: String, year: String): Unit =
     dateInput(day, month, year, "StartDate")

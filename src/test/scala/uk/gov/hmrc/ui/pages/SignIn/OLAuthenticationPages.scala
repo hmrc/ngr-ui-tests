@@ -33,34 +33,27 @@ object OLAuthenticationPages extends BasePage {
     click(accept)
   }
 
-  def signInClick(): Unit = {
-    waitForElementToBeClickable(By.id("sign-in-button"))
+  def signInClick(): Unit =
     click(By.id("sign-in-button"))
-  }
 
   def enterEmail(email: String): Unit = {
     sendKeys(By.id("email"), email)
-    waitForElementToBeClickable(continue)
     click(continue)
   }
 
   def enterPassword(password: String): Unit = {
     sendKeys(By.id("password"), password)
-    waitForElementToBeClickable(continue)
     click(continue)
   }
 
   def enterMfaCode(): Unit = {
     val secret = "LIL54VSU56D5FNTM7PU373B3QC6HPWZ3"
     sendKeys(By.id("code"), getTotpCode(secret))
-    waitForElementToBeClickable(continue)
     click(continue)
   }
 
-  def approvedIdentity(): Unit = {
-    waitForElementToBeClickable(continueTotheServiceButton)
+  def approvedIdentity(): Unit =
     click(continueTotheServiceButton)
-  }
 
   def returningToService(): Unit =
     waitForElementInvisibility(By.tagName("h1"), "Returning you to the ‘HMRC’ service")

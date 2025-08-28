@@ -27,7 +27,7 @@ import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
 
 class TRNAndRegistrationCompleteSpec extends BaseSpec with StubPage {
-  Feature("The user completes the registration process providing a NINO") {
+  Feature("The user completes the registration process") {
     RegistrationDB.cleanup()
     Scenario("Ratepayer choose to provide NINO") {
       Given("Ratepayer logins through one login")
