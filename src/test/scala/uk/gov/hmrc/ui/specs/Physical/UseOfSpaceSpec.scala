@@ -45,19 +45,19 @@ class UseOfSpaceSpec extends BaseSpec with StubPage {
       WhatDoYouWantToTellUs.whatDoYouWantToTellUs()
       clickLink("You changed property features or use of space")
       TellUsChangedPropertyFeaturesOrUseOfSpace.tellUsChangedPropertyFeatureHeader()
-      click(continueButton)
+      continueButtonClick()
 
       InformationAndSupportingDocumentsNeed.InformationAndSupportingDocScreen()
 
       Then("The ratepayer adds a date when the change was completed")
       WhenCompleteChange.whenCompleteChangeScreen()
       WhenCompleteChange.dateInput("10", "10", "2022")
-      click(continueButton)
+      continueButtonClick()
 
       Then("The ratepayer answers to the 'Have you changed use of space' question")
       HaveYouChangedUseOfSpace.changedUseOfSpaceHeader()
       HaveYouChangedUseOfSpace.changedUseOfSpaceRadio("Yes")
-      click(continueButton)
+      continueButtonClick()
 
       Then("The ratepayer selects all 'how they changed the use of space' options with planning permission.")
       AboutChangeToUseOfSpace.aboutTheChangeToUseOfSpaceHeader()
@@ -66,7 +66,8 @@ class UseOfSpaceSpec extends BaseSpec with StubPage {
       AboutChangeToUseOfSpace.selectUseOfSpace("Demolished part of the property")
       AboutChangeToUseOfSpace.planningPermissionRadio()
       AboutChangeToUseOfSpace.planningPermissionNumberInput("123456789")
-      click(continueButton)
+      continueButtonClick()
+      Thread.sleep(1000)
 
       Then("The ratepayer completed the 'Use of space' journey and moved to the next 'Internal feature' screen")
       HaveYouChangedInternalFeatures.changedInternalFeatureHeader()
