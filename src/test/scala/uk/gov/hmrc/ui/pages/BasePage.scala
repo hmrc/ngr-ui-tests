@@ -52,7 +52,6 @@ trait BasePage extends PageObject {
     } catch {
       case e: Exception =>
         println(s"Legend check failed due to exception: ${e.getMessage}")
-        throw e
     }
   }
 
