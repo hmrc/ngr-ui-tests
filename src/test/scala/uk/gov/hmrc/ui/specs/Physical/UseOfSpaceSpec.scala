@@ -67,7 +67,6 @@ class UseOfSpaceSpec extends BaseSpec with StubPage {
       AboutChangeToUseOfSpace.planningPermissionRadio()
       AboutChangeToUseOfSpace.planningPermissionNumberInput("123456789")
       continueButtonClick()
-      Thread.sleep(1000)
 
       Then("The ratepayer completed the 'Use of space' journey and moved to the next 'Internal feature' screen")
       HaveYouChangedInternalFeatures.changedInternalFeatureHeader()
