@@ -24,35 +24,28 @@ object Landlord extends BasePage {
   def landlord(): Unit =
     headerCheck("Landlord")
 
-  val lanlordNameLocation: By       = By.id("landlord-name-value")
-  val lanlordOtherInputLocation: By = By.id("landlord-radio-other")
+  val landlordNameLocation: By       = By.id("landlord-name-value")
+  val landlordOtherInputLocation: By = By.id("landlord-radio-other")
 
   def landlordNameInput(landlordName: String): Unit =
-    sendKeys(lanlordNameLocation, landlordName)
+    sendKeys(landlordNameLocation, landlordName)
 
-  def landLordAndTennantRadio(): Unit = {
-    click(getElementById("landlord-radio"))
-    continueButtonClick()
-  }
+  def landLordAndTenantRadio(): Unit =
+    click(getElementById("landlord-radio")) /*used*/
 
   def familyMemberRadio(): Unit =
-    click(getElementById("landlord-radio-2"))
+    click(getElementById("landlord-radio-2")) /*used*/
 
-  def companyPensionFundRadio(): Unit = {
-    click(getElementById("landlord-radio-3"))
-    continueButtonClick()
-  }
+  def companyPensionFundRadio(): Unit =
+    click(getElementById("landlord-radio-3")) /*used*/
 
-  def businessPartnerOrSharedDirectorRadio(): Unit = {
+  def businessPartnerOrSharedDirectorRadio(): Unit = /*used*/
     click(getElementById("landlord-radio-4"))
-    continueButtonClick()
-  }
 
-  def otherRelationshipRadio(): Unit = {
-    click(getElementById("landlord-radio-5"))
-    click(continueButton)
-  }
+  def otherRelationshipRadio(): Unit =
+    click(getElementById("landlord-radio-5")) /*used*/
 
   def otherRelationshipInput(landlordRelationship: String): Unit =
-    sendKeys(lanlordOtherInputLocation, landlordRelationship)
+    sendKeys(landlordOtherInputLocation, landlordRelationship)
+
 }

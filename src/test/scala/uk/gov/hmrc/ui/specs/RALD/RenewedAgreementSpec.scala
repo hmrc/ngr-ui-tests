@@ -17,7 +17,7 @@
 package uk.gov.hmrc.ui.specs.RALD
 
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome.dashboard
-import uk.gov.hmrc.ui.pages.RALD.{AgreementPage, Landlord, TellUsAboutYourRenewedAgreementPage, WhatDoYouWantToTellUs, WhatTypeOfAgreement, WhatTypeOfLeaseRenewal, WhichPropertyDoYouWantToTellUsAbout}
+import uk.gov.hmrc.ui.pages.RALD.{Agreement, Landlord, TellUsAboutYourRenewedAgreementPage, WhatDoYouWantToTellUs, WhatTypeOfAgreement, WhatTypeOfLeaseRenewal, WhichPropertyDoYouWantToTellUsAbout}
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
@@ -49,24 +49,25 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       WhatTypeOfLeaseRenewal.renewedAgreementRadio()
       continueButtonClick()
 
+      /* relationship With The Landlord = 'family Member'*/
       Then("The user inputs the landlords name and selects family member as type")
       Landlord.landlord()
       Landlord.landlordNameInput(landlordName = "Bob")
       Landlord.familyMemberRadio()
-      click(continueButton)
+      continueButtonClick()
 
       Then("The user selects verbal agreement as there agreement type")
       WhatTypeOfAgreement.TypeOfAgreement()
       WhatTypeOfAgreement.writtenRadio()
-      click(continueButton)
+      continueButtonClick()
 
       Then("The user entered agreement started date and end date also gave break clause")
-      AgreementPage.agreement()
-      AgreementPage.agreementEnterStartDate("15", "8", "2025")
-      AgreementPage.agreementOpenEndedRadioNo()
-      AgreementPage.agreementEnterOpenEndedDate("15", "8", "2027")
-      AgreementPage.agreementHaveABreakClauseRadioYes()
-      AgreementPage.agreementHaveABreakClauseReason("Any reasons")
+      Agreement.agreement()
+      Agreement.enterAgreementStartDate("02", "01", "2015")
+      Agreement.agreementOpenEndedRadio("No")
+      Agreement.enterOpenEndedAgreementDate("11", "11", "2027")
+      Agreement.agreementHaveABreakClauseRadio("No")
+      Agreement.agreementBreakClauseReason("VOA budget issue")
       continueButtonClick()
     }
   }
