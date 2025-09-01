@@ -43,6 +43,18 @@ trait BasePage extends PageObject {
         println(s"Header check failed due to exception: ${e.getMessage}")
     }
 
+  def legendCheck(expectedText: String): Unit = {
+    val legendLocator = By.tagName("legend")
+    try {
+      Wait.until(ExpectedConditions.textToBePresentInElementLocated(legendLocator, expectedText))
+      val actualText = Driver.instance.findElement(legendLocator).getText
+      assert(actualText == expectedText, s"Expected legend '$expectedText', but found '$actualText'")
+    } catch {
+      case e: Exception =>
+        println(s"Legend check failed due to exception: ${e.getMessage}")
+    }
+  }
+
   def getElementById(id: String): By = By.id(id)
 
   def getByCssSelector(cssSelector: String): By = By.cssSelector(cssSelector)

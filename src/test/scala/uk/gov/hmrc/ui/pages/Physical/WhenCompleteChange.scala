@@ -20,7 +20,7 @@ import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 object WhenCompleteChange extends BasePage {
 
-  def WhenCompleteChangeScreen(): Unit =
+  def whenCompleteChangeScreen(): Unit =
     headerCheck("When did you complete the change?")
 
   val dayInputLocation: By   = By.id("value.day")
@@ -31,7 +31,5 @@ object WhenCompleteChange extends BasePage {
     sendKeys(dayInputLocation, day)
     sendKeys(monthInputLocation, month)
     sendKeys(yearInputLocation, year)
-    click(continueButton)
   }
-
 }
