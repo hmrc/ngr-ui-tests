@@ -60,10 +60,10 @@ object ProvideDetailsOfFirstSecondRentPeriodPage extends BasePage {
   }
 
   def firstRentPeriodRadioYes(): Unit =
-    click(firstRentPeriodRadioInputYes)
+    click(firstRentPeriodRadioInputYes) /* used in new agreement */
 
   def firstRentPeriodRadioNo(): Unit =
-    click(firstRentPeriodRadioInputNo)
+    click(firstRentPeriodRadioInputNo) /* used in renewed agreement*/
 
   def firstRentPeriodRent(amount: String): Unit =
     sendKeys(firstRentPeriodRentAmount, amount)
