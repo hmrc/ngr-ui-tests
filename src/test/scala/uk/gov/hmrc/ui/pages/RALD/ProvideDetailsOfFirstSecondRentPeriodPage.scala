@@ -32,9 +32,9 @@ object ProvideDetailsOfFirstSecondRentPeriodPage extends BasePage {
   val firstDateEndInputLocationMonth: By = By.id("provideDetailsOfFirstSecondRentPeriod.firstPeriod.end.date.month")
   val firstDateEndInputLocationYear: By  = By.id("provideDetailsOfFirstSecondRentPeriod.firstPeriod.end.date.year")
 
-  val firstRentPeriodRadioInputYes: By            = By.id("provideDetailsOfFirstSecondRentPeriod-radio-firstRentPeriodRadio")
-  val firstRentPeriodRadioInputYesConditional: By = By.id("RentPeriodAmount")
-  val firstRentPeriodRadioInputNo: By             = By.id("provideDetailsOfFirstSecondRentPeriod-radio-firstRentPeriodRadio")
+  val firstRentPeriodRadioInputYes: By = By.id("provideDetailsOfFirstSecondRentPeriod-radio-firstRentPeriodRadio")
+  val firstRentPeriodRentAmount: By    = By.id("RentPeriodAmount")
+  val firstRentPeriodRadioInputNo: By  = By.id("provideDetailsOfFirstSecondRentPeriod-radio-firstRentPeriodRadio")
 
   val secondDateStartInputLocationDay: By   = By.id("provideDetailsOfFirstSecondRentPeriod.secondPeriod.start.date.day")
   val secondDateStartInputLocationMonth: By =
@@ -45,14 +45,19 @@ object ProvideDetailsOfFirstSecondRentPeriodPage extends BasePage {
   val secondDateEndInputLocationMonth: By = By.id("provideDetailsOfFirstSecondRentPeriod.secondPeriod.end.date.month")
   val secondDateEndInputLocationYear: By  = By.id("provideDetailsOfFirstSecondRentPeriod.secondPeriod.end.date.year")
 
-  val secondDateStartInput: By = By.id("conditional-rald-new-lease-rent-period-rent-2")
+  val rentForSecondRentPeriod: By = By.id("SecondRentPeriodAmount")
 
-  def firstDateStartDayInput(day: String): Unit     =
+  def firstRentPeriodStartDate(day: String, month: String, year: String): Unit = {
     sendKeys(firstDateStartInputLocationDay, day)
-  def firstDateStartMonthInput(month: String): Unit =
     sendKeys(firstDateStartInputLocationMonth, month)
-  def firstDateStartYearInput(year: String): Unit   =
     sendKeys(firstDateStartInputLocationYear, year)
+  }
+
+  def firstRentPeriodEndDate(day: String, month: String, year: String): Unit = {
+    sendKeys(firstDateEndInputLocationDay, day)
+    sendKeys(firstDateEndInputLocationMonth, month)
+    sendKeys(firstDateEndInputLocationYear, year)
+  }
 
   def firstRentPeriodRadioYes(): Unit =
     click(firstRentPeriodRadioInputYes)
@@ -60,14 +65,21 @@ object ProvideDetailsOfFirstSecondRentPeriodPage extends BasePage {
   def firstRentPeriodRadioNo(): Unit =
     click(firstRentPeriodRadioInputNo)
 
-  def firstRentPeriodRadioYesConditional(amount: String): Unit =
-    sendKeys(firstRentPeriodRadioInputYesConditional, amount)
+  def firstRentPeriodRent(amount: String): Unit =
+    sendKeys(firstRentPeriodRentAmount, amount)
 
-  def secondDateStartDayInput(day: String): Unit     =
+  def secondRentPeriodStartDate(day: String, month: String, year: String): Unit = {
     sendKeys(secondDateStartInputLocationDay, day)
-  def secondDateStartMonthInput(month: String): Unit =
     sendKeys(secondDateStartInputLocationMonth, month)
-  def secondDateStartYearInput(year: String): Unit   =
     sendKeys(secondDateStartInputLocationYear, year)
+  }
 
+  def secondRentPeriodEndDate(day: String, month: String, year: String): Unit = {
+    sendKeys(secondDateEndInputLocationDay, day)
+    sendKeys(secondDateEndInputLocationMonth, month)
+    sendKeys(secondDateEndInputLocationYear, year)
+  }
+
+  def SecondRentPeriodRent(amount: String): Unit =
+    sendKeys(rentForSecondRentPeriod, amount)
 }
