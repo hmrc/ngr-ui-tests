@@ -17,7 +17,7 @@
 package uk.gov.hmrc.ui.specs.RALD
 
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome.dashboard
-import uk.gov.hmrc.ui.pages.RALD.{Agreement, Landlord, TellUsAboutYourRenewedAgreementPage, WhatDoYouWantToTellUs, WhatTypeOfAgreement, WhatTypeOfLeaseRenewal, WhichPropertyDoYouWantToTellUsAbout}
+import uk.gov.hmrc.ui.pages.RALD.{Agreement, HaveYouAgreedInAdvanceRentChanges, HowMuchIsTotalAnnualRent, Landlord, ProvideDetailsOfFirstSecondRentPeriodPage, TellUsAboutYourRenewedAgreementPage, WhatDoYouWantToTellUs, WhatIsRentBasedOn, WhatTypeOfAgreement, WhatTypeOfLeaseRenewal, WhichPropertyDoYouWantToTellUsAbout}
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
@@ -25,7 +25,7 @@ import uk.gov.hmrc.ui.utils.login.loginOl
 class RenewedAgreementSpec extends BaseSpec with StubPage {
 
   Feature("Testing the renewed agreement functionality") {
-    Scenario("The user renewed their agreement") {
+    Scenario("The user renewed their agreement, agreement type: Licence or other type of written agreement") {
 
       Given("Ratepayer logins through one login")
       loginOl()
@@ -61,14 +61,25 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       WhatTypeOfAgreement.writtenRadio()
       continueButtonClick()
 
-      Then("The user entered agreement started date and end date also gave break clause")
+      Then("The user entered agreement start and end date")
       Agreement.agreement()
       Agreement.enterAgreementStartDate("02", "01", "2015")
       Agreement.agreementOpenEndedRadio("No")
       Agreement.enterOpenEndedAgreementDate("11", "11", "2027")
       Agreement.agreementHaveABreakClauseRadio("No")
-      Agreement.agreementBreakClauseReason("VOA budget issue")
       continueButtonClick()
+
+      /*'What is your rent based on?' = 'Open market value'*/
+      Then("The user selects other and input reason on 'What is your rent based on?' page and submit")
+      WhatIsRentBasedOn.whatIsRentBasedOn()
+      WhatIsRentBasedOn.selectRentBaseOn("A percentage of expected turnover")
+      continueButtonClick()
+
+      Then("The user enter how much is total annual rent")
+      HowMuchIsTotalAnnualRent.howMuchIsTotalAnnualRent()
+      HowMuchIsTotalAnnualRent.inputTotalAnnualRent("999900")
+      continueButtonClick()
+
     }
   }
 }

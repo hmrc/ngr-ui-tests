@@ -75,10 +75,10 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       WhatIsRentBasedOn.otherRentBasedOnDescription("VOA budget")
       continueButtonClick()
 
-      /*User selects 'No' on rent agreed in advance*/
+      /*User selects 'Yes' on rent agreed in advance*/
       And("The user selects 'No' on rent agreed in advance")
       HaveYouAgreedInAdvanceRentChanges.haveYouAgreedInAdvanceRentChanges()
-      HaveYouAgreedInAdvanceRentChanges.yesRadio()
+      HaveYouAgreedInAdvanceRentChanges.noRadio()
       click(continueButton)
     }
 
@@ -119,7 +119,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       Then("The user enters agreement start date, not open ended, and 'Yes' for break clause")
       Agreement.agreement()
       Agreement.enterAgreementStartDate("02", "01", "2005")
-      Agreement.agreementOpenEndedRadio("Yes")
+      Agreement.agreementOpenEndedRadio("No")
       Agreement.agreementHaveABreakClauseRadio("No")
       continueButtonClick()
 
@@ -133,6 +133,22 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       And("The user selects 'No' on rent agreed in advance")
       HaveYouAgreedInAdvanceRentChanges.haveYouAgreedInAdvanceRentChanges()
       HaveYouAgreedInAdvanceRentChanges.yesRadio()
+      continueButtonClick()
+
+      When("The user provides the start and end date for the first rent period")
+      ProvideDetailsOfFirstSecondRentPeriodPage.provideDetailsOfFirstSecondRentPeriod()
+      ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodStartDate("02", "01", "2011")
+      ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodEndDate("02", "01", "2022")
+
+      Then("The user selects 'Yes' radio button and enter the rent amount ")
+      ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodRadioYes()
+      ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodRent("2000")
+
+      When("The user enters the start, end date and rent amount for the second rent period")
+      ProvideDetailsOfFirstSecondRentPeriodPage.provideDetailsOfFirstSecondRentPeriod()
+      ProvideDetailsOfFirstSecondRentPeriodPage.secondRentPeriodStartDate("02", "01", "2012")
+      ProvideDetailsOfFirstSecondRentPeriodPage.secondRentPeriodEndDate("02", "01", "2023")
+      ProvideDetailsOfFirstSecondRentPeriodPage.SecondRentPeriodRent("3000")
       continueButtonClick()
     }
 

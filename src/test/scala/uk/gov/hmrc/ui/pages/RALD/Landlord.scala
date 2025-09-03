@@ -34,7 +34,7 @@ object Landlord extends BasePage {
     click(getElementById("landlord-radio")) /*used*/
 
   def familyMemberRadio(): Unit =
-    click(getElementById("landlord-radio-2")) /*used*/
+    click(getElementById("landlord-radio-2")) /*used in renewed*/
 
   def companyPensionFundRadio(): Unit =
     click(getElementById("landlord-radio-3")) /*used*/
