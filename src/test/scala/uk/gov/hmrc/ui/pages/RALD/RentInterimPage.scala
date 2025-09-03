@@ -25,12 +25,12 @@ object RentInterimPage extends BasePage {
   val yesRadioButton = By.id("rent-interim-radio")
   val noRadioButton  = By.id("rent-interim-radio-2")
 
-  def landlord(): Unit =
+  def rentInterim(): Unit =
     headerCheck("Did the court also set an interim rent?")
 
   def yesRadio(): Unit =
-    click(getElementById("landlord-radio-2")) /*used*/
+    click(yesRadioButton) /*used*/
 
   def noRadio(): Unit =
-    click(getElementById("landlord-radio-3")) /*used*/
+    click(noRadioButton) /*used*/
 }
