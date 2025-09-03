@@ -25,7 +25,7 @@ import uk.gov.hmrc.ui.utils.login.loginOl
 class RenewedAgreementSpec extends BaseSpec with StubPage {
 
   Feature("Testing the renewed agreement functionality") {
-    Scenario("The user renewed their agreement") {
+    Scenario("The user renewed their agreement, agreement type: Licence or other type of written agreement") {
 
       Given("Ratepayer logins through one login")
       loginOl()
