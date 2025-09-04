@@ -194,7 +194,8 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       HowMuchIsTotalAnnualRent.inputTotalAnnualRent("7500")
       continueButtonClick()
 
-      Then("The user enters no to having a rent period")
+      /*'By selecting No the user misses page Rent-free period'*/
+      Then("The user enters 'No' to having a rent period")
       RentFreePeriod.rentFreePeriod()
       RentFreePeriod.selectRentFreePeriodRadio("No")
       continueButtonClick()
