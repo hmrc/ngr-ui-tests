@@ -193,6 +193,27 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       HowMuchIsTotalAnnualRent.howMuchIsTotalAnnualRent()
       HowMuchIsTotalAnnualRent.inputTotalAnnualRent("7500")
       continueButtonClick()
+
+      Then("The user enters no to having a rent period")
+      RentFreePeriod.rentFreePeriod()
+      RentFreePeriod.selectRentFreePeriodRadio("No")
+      continueButtonClick()
+
+      Then("The user enters their agreement date and start date")
+      RentDatesAgreeStartPage.rentDatesAgreeStartPage
+      RentDatesAgreeStartPage.agreeDateInput(day = "12", month = "12", year = "2020")
+      RentDatesAgreeStartPage.startDateInput(day = "10", month = "01", year = "2021")
+      continueButtonClick()
+
+      Then("The user selects what their rent includes")
+      WhatYourRentIncludesPage.whatYourRentIncludes
+      WhatYourRentIncludesPage.livingAccommodationRadio("Yes")
+      WhatYourRentIncludesPage.rentPartAddressRadio("Yes")
+      WhatYourRentIncludesPage.rentEmptyShellRadio("Yes")
+      WhatYourRentIncludesPage.rentIncBusinessRatesRadio("Yes")
+      WhatYourRentIncludesPage.rentIncWaterChargesRadio("Yes")
+      WhatYourRentIncludesPage.rentIncServiceRadio("Yes")
+      continueButtonClick()
     }
   }
 }
