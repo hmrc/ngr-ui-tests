@@ -75,11 +75,16 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       WhatIsRentBasedOn.otherRentBasedOnDescription("VOA budget")
       continueButtonClick()
 
-      /*User selects 'Yes' on rent agreed in advance*/
+      /*User selects 'No' on rent agreed in advance*/
       And("The user selects 'No' on rent agreed in advance")
       HaveYouAgreedInAdvanceRentChanges.haveYouAgreedInAdvanceRentChanges()
       HaveYouAgreedInAdvanceRentChanges.noRadio()
-      click(continueButton)
+      continueButtonClick()
+
+      Then("The user enter how much is total annual rent")
+      HowMuchIsTotalAnnualRent.howMuchIsTotalAnnualRent()
+      HowMuchIsTotalAnnualRent.inputTotalAnnualRent("7000")
+      continueButtonClick()
     }
 
     Scenario("New agreement, agreement type: Licence or other type of written agreement, agreed in advance: 'Yes'") {
@@ -110,7 +115,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       continueButtonClick()
 
       /* Agreement type ='Licence or other type of written agreement' */
-      Then("The user selects lease Or Tenancy as their agreement type")
+      Then("The user selects licence or other type of written as their agreement type")
       WhatTypeOfAgreement.TypeOfAgreement()
       WhatTypeOfAgreement.writtenRadio()
       continueButtonClick()
@@ -119,7 +124,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       Then("The user enters agreement start date, not open ended, and 'Yes' for break clause")
       Agreement.agreement()
       Agreement.enterAgreementStartDate("02", "01", "2005")
-      Agreement.agreementOpenEndedRadio("No")
+      Agreement.agreementOpenEndedRadio("Yes")
       Agreement.agreementHaveABreakClauseRadio("No")
       continueButtonClick()
 
@@ -130,7 +135,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       continueButtonClick()
 
       /*User selects 'Yes' on rent agreed in advance*/
-      And("The user selects 'No' on rent agreed in advance")
+      And("The user selects 'Yes' on rent agreed in advance")
       HaveYouAgreedInAdvanceRentChanges.haveYouAgreedInAdvanceRentChanges()
       HaveYouAgreedInAdvanceRentChanges.yesRadio()
       continueButtonClick()
@@ -138,17 +143,31 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       When("The user provides the start and end date for the first rent period")
       ProvideDetailsOfFirstSecondRentPeriodPage.provideDetailsOfFirstSecondRentPeriod()
       ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodStartDate("02", "01", "2011")
-      ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodEndDate("02", "01", "2022")
+      ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodEndDate("02", "03", "2022")
 
-      Then("The user selects 'Yes' radio button and enter the rent amount ")
+      Then("The user selects 'Yes' radio button and enter the rent amount")
       ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodRadioYes()
-      ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodRent("2000")
+      ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodRent("2000.90365")
 
       When("The user enters the start, end date and rent amount for the second rent period")
       ProvideDetailsOfFirstSecondRentPeriodPage.provideDetailsOfFirstSecondRentPeriod()
-      ProvideDetailsOfFirstSecondRentPeriodPage.secondRentPeriodStartDate("02", "01", "2012")
-      ProvideDetailsOfFirstSecondRentPeriodPage.secondRentPeriodEndDate("02", "01", "2023")
-      ProvideDetailsOfFirstSecondRentPeriodPage.SecondRentPeriodRent("3000")
+      ProvideDetailsOfFirstSecondRentPeriodPage.secondRentPeriodStartDate("02", "10", "2012")
+      ProvideDetailsOfFirstSecondRentPeriodPage.secondRentPeriodEndDate("02", "12", "2023")
+      ProvideDetailsOfFirstSecondRentPeriodPage.SecondRentPeriodRent("9999999.99")
+      continueButtonClick()
+
+      When("The user check rent period details on rent periods page")
+      RentPeriods.rentPeriods()
+      RentPeriods.verifyFirstPeriodStartDate("2 January 2011")
+      RentPeriods.verifyFirstPeriodEndDate("2 March 2022")
+      RentPeriods.verifyFirstPeriodDoYouPay("Yes")
+      RentPeriods.verifyFirstPeriodRentValue("£2,000.90")
+      RentPeriods.verifySecondPeriodStartDate("2 October 2012")
+      RentPeriods.verifySecondPeriodEndDate("2 December 2023")
+      RentPeriods.verifySecondPeriodRentValue("£9,999,999.99")
+
+      Then("The user selects 'No' for adding rent period")
+      RentPeriods.addAnotherPeriod("No")
       continueButtonClick()
     }
 
