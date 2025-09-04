@@ -121,7 +121,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       continueButtonClick()
 
       /* Open ended agreement = 'Yes',  Agreement have a break clause = 'No' */
-      Then("The user enters agreement start date, not open ended, and 'Yes' for break clause")
+      Then("The user enters agreement start date, open ended, and 'No' for break clause")
       Agreement.agreement()
       Agreement.enterAgreementStartDate("02", "01", "2005")
       Agreement.agreementOpenEndedRadio("Yes")
