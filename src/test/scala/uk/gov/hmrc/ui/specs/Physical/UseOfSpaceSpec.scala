@@ -48,7 +48,7 @@ class UseOfSpaceSpec extends BaseSpec with StubPage {
       continueButtonClick()
 
       InformationAndSupportingDocumentsNeed.InformationAndSupportingDocScreen()
-
+      continueButtonClick()
       Then("The ratepayer adds a date when the change was completed")
       WhenCompleteChange.whenCompleteChangeScreen()
       WhenCompleteChange.dateInput("10", "10", "2022")
@@ -70,7 +70,6 @@ class UseOfSpaceSpec extends BaseSpec with StubPage {
 
       Then("The ratepayer completed the 'Use of space' journey and moved to the next 'Internal feature' screen")
       HaveYouChangedInternalFeatures.changedInternalFeatureHeader()
-
     }
   }
 

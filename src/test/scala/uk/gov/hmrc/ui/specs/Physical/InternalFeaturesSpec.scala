@@ -1,0 +1,109 @@
+/*
+ * Copyright 2025 HM Revenue & Customs
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package uk.gov.hmrc.ui.specs.Physical
+
+import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome.dashboard
+import uk.gov.hmrc.ui.pages.Physical.{CheckAndConfirmChangesToInternalFeatures, HaveYouChangedInternalFeatures, HaveYouChangedUseOfSpace, HowMuchOfPropertyHasAirConditioning, InformationAndSupportingDocumentsNeed, TellUsChangedPropertyFeaturesOrUseOfSpace, WhenCompleteChange, WhereAreTheEscalatorsInTheProperty, WhichFloorsOfPropertyHaveGoodsLifts, WhichFloorsOfPropertyHavePassengerLifts, WhichInternalFeatureHaveChanged}
+import uk.gov.hmrc.ui.pages.RALD.{WhatDoYouWantToTellUs, WhichPropertyDoYouWantToTellUsAbout}
+import uk.gov.hmrc.ui.pages.StubPage
+import uk.gov.hmrc.ui.specs.BaseSpec
+import uk.gov.hmrc.ui.utils.login.loginOl
+import uk.gov.hmrc.ui.utils.mongo.PhysicalDB
+
+class InternalFeaturesSpec extends BaseSpec with StubPage {
+
+  Feature("Testing the Internal features functionalities") {
+    Scenario("The user selects and adds changes to all Internal features") {
+      PhysicalDB.cleanup()
+      Given("Ratepayer logins through one login")
+      loginOl()
+
+      When("The ratepayer clicks on 'Tell us about a change' link from dashboard")
+      dashboard()
+      clickLink("Tell us about a change")
+
+      Then(
+        "The ratepayers selects the property and proceed through the changed property feature or use of space journey"
+      )
+      WhichPropertyDoYouWantToTellUsAbout.whichPropertyDoYouWantToTellUsAbout()
+      clickLink("Select property")
+
+      Then("The user selects the changed property features or use of space link")
+      WhatDoYouWantToTellUs.whatDoYouWantToTellUs()
+      clickLink("You changed property features or use of space")
+      TellUsChangedPropertyFeaturesOrUseOfSpace.tellUsChangedPropertyFeatureHeader()
+      continueButtonClick()
+
+      InformationAndSupportingDocumentsNeed.InformationAndSupportingDocScreen()
+      continueButtonClick()
+
+      Then("The ratepayer adds a date when the change was completed")
+      WhenCompleteChange.whenCompleteChangeScreen()
+      WhenCompleteChange.dateInput("10", "10", "2022")
+      continueButtonClick()
+
+      Then("The ratepayer answers NO to the 'Have you changed use of space' question")
+      HaveYouChangedUseOfSpace.changedUseOfSpaceHeader()
+      HaveYouChangedUseOfSpace.changedUseOfSpaceRadio("No")
+      continueButtonClick()
+
+      Then("The ratepayer answer Yes to 'Have you changed internal features?' question")
+      HaveYouChangedInternalFeatures.changedInternalFeatureHeader()
+      HaveYouChangedInternalFeatures.changedInternalFeatureRadio("Yes")
+      continueButtonClick()
+
+      Then("The ratepayer adds 'Air condition - All of the property has air conditioning' to the property")
+      WhichInternalFeatureHaveChanged.whichInternalFeatureHaveChangedHeader()
+      WhichInternalFeatureHaveChanged.whichInternalFeatureHaveChangedRadio("Air conditioning")
+      continueButtonClick()
+      HowMuchOfPropertyHasAirConditioning.howMuchOfPropertyHasAirConditioningLegend()
+      HowMuchOfPropertyHasAirConditioning.howMuchAirConditioningRadio("All of the property has air conditioning")
+      continueButtonClick()
+      CheckAndConfirmChangesToInternalFeatures.checkAndConfirmChangesToInternalFeaturesHeader()
+      // TODO need to check that we added the right internal feature
+      CheckAndConfirmChangesToInternalFeatures.tellAnotherInternalFeatureRadio("Yes")
+      continueButtonClick()
+
+      Then("The ratepayer adds 'Escalators - There are escalators between all floors' to the property")
+      WhichInternalFeatureHaveChanged.whichInternalFeatureHaveChangedHeader()
+      WhichInternalFeatureHaveChanged.whichInternalFeatureHaveChangedRadio("Escalators")
+      continueButtonClick()
+      WhereAreTheEscalatorsInTheProperty.whereAreTheEscalatorsInThePropertyLegend()
+      WhereAreTheEscalatorsInTheProperty.whereAreTheEscalatorsInThePropertyRadio(
+        "There are escalators between all floors"
+      )
+      continueButtonClick()
+      CheckAndConfirmChangesToInternalFeatures.checkAndConfirmChangesToInternalFeaturesHeader()
+      // TODO need to check that we added the right internal feature
+      CheckAndConfirmChangesToInternalFeatures.tellAnotherInternalFeatureRadio("Yes")
+      continueButtonClick()
+
+      Then("The ratepayer adds 'Goods lifts - All floors have goods lifts' to the property")
+      WhichInternalFeatureHaveChanged.whichInternalFeatureHaveChangedHeader()
+      WhichInternalFeatureHaveChanged.whichInternalFeatureHaveChangedRadio("Goods lifts")
+      continueButtonClick()
+      WhichFloorsOfPropertyHaveGoodsLifts.whichFloorsOfPropertyHaveGoodsLiftsHeader()
+      WhichFloorsOfPropertyHaveGoodsLifts.whichFloorsOfPropertyHaveGoodsLiftsRadio("All floors have goods lifts")
+      continueButtonClick()
+      CheckAndConfirmChangesToInternalFeatures.checkAndConfirmChangesToInternalFeaturesHeader()
+      // TODO need to check that we added the right internal feature
+      CheckAndConfirmChangesToInternalFeatures.tellAnotherInternalFeatureRadio("Yes")
+      continueButtonClick()
+    }
+    // TODO: adding new Scenario with the change and the remove Internal Feature functions
+  }
+}

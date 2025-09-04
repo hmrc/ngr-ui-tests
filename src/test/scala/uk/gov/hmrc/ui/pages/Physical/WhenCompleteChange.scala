@@ -21,7 +21,7 @@ import uk.gov.hmrc.ui.pages.BasePage
 object WhenCompleteChange extends BasePage {
 
   def whenCompleteChangeScreen(): Unit =
-    headerCheck("When did you complete the change?")
+    legendCheck("When did you complete the change?")
 
   val dayInputLocation: By   = By.id("value.day")
   val monthInputLocation: By = By.id("value.month")
