@@ -171,6 +171,11 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       Then("The user selects 'No' for adding rent period")
       RentPeriods.addAnotherPeriod("No")
       continueButtonClick()
+
+      When("The user enters the date they agreed their rent")
+      RentDatesPage.rentDatesPage()
+      RentDatesPage.agreeDateInput("03", "12", "2023")
+      continueButtonClick()
     }
 
     Scenario(
