@@ -25,6 +25,7 @@ import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
+import uk.gov.hmrc.ui.utils.mongo.PropertyLinkingDB
 
 class AddAPropertySpec extends BaseSpec with StubPage {
 
@@ -35,6 +36,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
     Scenario("The user completes registration and navigates to the Add a property page") {
       RegistrationDB.cleanup()
+      PropertyLinkingDB.cleanup()
 
       Given("Ratepayer logins through one login")
       loginOl()
@@ -51,6 +53,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       click(continueButton)
 
       Then("User selects 'Yes, I want to provide this UTR' and submit")
+      ConfirmUTRPage.confirmYourSAUTR()
       ConfirmUTRPage.selectYes()
 
       Then("The ratepayer is taken to the 'Check your answers' page")
@@ -111,6 +114,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
       Given("Ratepayer logins through one login")
       loginOl()
+      PropertyLinkingDB.cleanup()
 
       Then("Ratepayer is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
@@ -126,7 +130,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
     }
 
     Scenario("Testing 'no Results Found' feature for property search") {
-
+      PropertyLinkingDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -149,6 +153,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
     }
 
     Scenario("Testing manual address search feature for property search") {
+      PropertyLinkingDB.cleanup()
 
       Given("Ratepayer logins through one login")
       loginOl()
@@ -184,7 +189,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
     }
 
     Scenario("Registered ratepayer adds the property") {
-
+      PropertyLinkingDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
