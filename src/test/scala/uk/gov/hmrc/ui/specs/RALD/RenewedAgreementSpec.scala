@@ -17,7 +17,6 @@
 package uk.gov.hmrc.ui.specs.RALD
 
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome.dashboard
-import uk.gov.hmrc.ui.pages.RALD.DidYouAgreeRentWithLandlordPage.DidYouAgreeRentWithLandlord
 import uk.gov.hmrc.ui.pages.RALD._
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.specs.BaseSpec
