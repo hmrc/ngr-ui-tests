@@ -34,7 +34,7 @@ object WhichInternalFeatureHaveChanged extends BasePage {
     click(getElementById(radioCheckId))
   }
   def selectOtherFeatures(feature: String): Unit                               = {
-    whichInternalFeatureHaveChangedRadio("value_5")
+    whichInternalFeatureHaveChangedRadio("Other internal feature")
     val dropdown = getElementById("other-select")
     selectByValue(dropdown, feature)
   }

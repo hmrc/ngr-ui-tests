@@ -17,7 +17,7 @@
 package uk.gov.hmrc.ui.specs.Physical
 
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome.dashboard
-import uk.gov.hmrc.ui.pages.Physical.{CheckAndConfirmChangesToInternalFeatures, HaveYouChangedInternalFeatures, HaveYouChangedUseOfSpace, HowManySecurityCamerasInsideProperty, HowMuchOfPropertyHasAirConditioning, InformationAndSupportingDocumentsNeed, TellUsChangedPropertyFeaturesOrUseOfSpace, WhenCompleteChange, WhereAreTheEscalatorsInTheProperty, WhichFloorsOfPropertyHaveGoodsLifts, WhichFloorsOfPropertyHavePassengerLifts, WhichInternalFeatureHaveChanged}
+import uk.gov.hmrc.ui.pages.Physical.{CheckAndConfirmChangesToInternalFeatures, HaveYouChangedInternalFeatures, HaveYouChangedUseOfSpace, HowManySecurityCamerasInsideProperty, HowMuchOfPropertyHasAirConditioning, InformationAndSupportingDocumentsNeed, TellUsChangedPropertyFeaturesOrUseOfSpace, WhatHappenedToCompressedAirSystems, WhenCompleteChange, WhereAreTheEscalatorsInTheProperty, WhichFloorsOfPropertyHaveGoodsLifts, WhichFloorsOfPropertyHavePassengerLifts, WhichInternalFeatureHaveChanged}
 import uk.gov.hmrc.ui.pages.RALD.{WhatDoYouWantToTellUs, WhichPropertyDoYouWantToTellUsAbout}
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.specs.BaseSpec
@@ -130,6 +130,16 @@ class InternalFeaturesSpec extends BaseSpec with StubPage {
       CheckAndConfirmChangesToInternalFeatures.tellAnotherInternalFeatureRadio("Yes")
       continueButtonClick()
 
+      Then("The ratepayer adds 'Other internal feature - Compressed air systems - Added")
+      WhichInternalFeatureHaveChanged.whichInternalFeatureHaveChangedHeader()
+      WhichInternalFeatureHaveChanged.selectOtherFeatures("compressedAir")
+      continueButtonClick()
+      WhatHappenedToCompressedAirSystems.whatHappenedToCompressedAirSystemsHeader()
+      WhatHappenedToCompressedAirSystems.whatHappenedToCompressedAirSystemsRadio("You added compressed air systems")
+      continueButtonClick()
+      CheckAndConfirmChangesToInternalFeatures.verifySummaryItem("Compressed air systems", "Added")
+      CheckAndConfirmChangesToInternalFeatures.tellAnotherInternalFeatureRadio("Yes")
+      continueButtonClick()
     }
 
     // TODO: adding new Scenario with the change and the remove Internal Feature functions
