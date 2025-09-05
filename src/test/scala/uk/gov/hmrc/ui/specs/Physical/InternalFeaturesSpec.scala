@@ -17,7 +17,7 @@
 package uk.gov.hmrc.ui.specs.Physical
 
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome.dashboard
-import uk.gov.hmrc.ui.pages.Physical.{CheckAndConfirmChangesToInternalFeatures, HaveYouChangedInternalFeatures, HaveYouChangedUseOfSpace, HowMuchOfPropertyHasAirConditioning, InformationAndSupportingDocumentsNeed, TellUsChangedPropertyFeaturesOrUseOfSpace, WhenCompleteChange, WhereAreTheEscalatorsInTheProperty, WhichFloorsOfPropertyHaveGoodsLifts, WhichFloorsOfPropertyHavePassengerLifts, WhichInternalFeatureHaveChanged}
+import uk.gov.hmrc.ui.pages.Physical.{CheckAndConfirmChangesToInternalFeatures, HaveYouChangedInternalFeatures, HaveYouChangedUseOfSpace, HowManySecurityCamerasInsideProperty, HowMuchOfPropertyHasAirConditioning, InformationAndSupportingDocumentsNeed, TellUsChangedPropertyFeaturesOrUseOfSpace, WhenCompleteChange, WhereAreTheEscalatorsInTheProperty, WhichFloorsOfPropertyHaveGoodsLifts, WhichFloorsOfPropertyHavePassengerLifts, WhichInternalFeatureHaveChanged}
 import uk.gov.hmrc.ui.pages.RALD.{WhatDoYouWantToTellUs, WhichPropertyDoYouWantToTellUsAbout}
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.specs.BaseSpec
@@ -74,7 +74,7 @@ class InternalFeaturesSpec extends BaseSpec with StubPage {
       HowMuchOfPropertyHasAirConditioning.howMuchAirConditioningRadio("All of the property has air conditioning")
       continueButtonClick()
       CheckAndConfirmChangesToInternalFeatures.checkAndConfirmChangesToInternalFeaturesHeader()
-      // TODO need to check that we added the right internal feature
+      CheckAndConfirmChangesToInternalFeatures.verifySummaryItem("Air conditioning", "In all of the property")
       CheckAndConfirmChangesToInternalFeatures.tellAnotherInternalFeatureRadio("Yes")
       continueButtonClick()
 
@@ -88,7 +88,7 @@ class InternalFeaturesSpec extends BaseSpec with StubPage {
       )
       continueButtonClick()
       CheckAndConfirmChangesToInternalFeatures.checkAndConfirmChangesToInternalFeaturesHeader()
-      // TODO need to check that we added the right internal feature
+      CheckAndConfirmChangesToInternalFeatures.verifySummaryItem("Escalators", "Between all floors")
       CheckAndConfirmChangesToInternalFeatures.tellAnotherInternalFeatureRadio("Yes")
       continueButtonClick()
 
@@ -100,10 +100,38 @@ class InternalFeaturesSpec extends BaseSpec with StubPage {
       WhichFloorsOfPropertyHaveGoodsLifts.whichFloorsOfPropertyHaveGoodsLiftsRadio("All floors have goods lifts")
       continueButtonClick()
       CheckAndConfirmChangesToInternalFeatures.checkAndConfirmChangesToInternalFeaturesHeader()
-      // TODO need to check that we added the right internal feature
+      CheckAndConfirmChangesToInternalFeatures.verifySummaryItem("Goods lifts", "On all floors")
       CheckAndConfirmChangesToInternalFeatures.tellAnotherInternalFeatureRadio("Yes")
       continueButtonClick()
+
+      Then("The ratepayer adds 'Passenger lifts - All floors have Passenger lifts' to the property")
+      WhichInternalFeatureHaveChanged.whichInternalFeatureHaveChangedHeader()
+      WhichInternalFeatureHaveChanged.whichInternalFeatureHaveChangedRadio("Passenger lifts")
+      continueButtonClick()
+      WhichFloorsOfPropertyHavePassengerLifts.whichFloorsOfPropertyHavePassengerLiftsHeader()
+      WhichFloorsOfPropertyHavePassengerLifts.whichFloorsOfPropertyHavePassengerLiftsRadio(
+        "All floors have passenger lifts"
+      )
+      continueButtonClick()
+      CheckAndConfirmChangesToInternalFeatures.checkAndConfirmChangesToInternalFeaturesHeader()
+      CheckAndConfirmChangesToInternalFeatures.verifySummaryItem("Passenger lifts", "On all floors")
+      CheckAndConfirmChangesToInternalFeatures.tellAnotherInternalFeatureRadio("Yes")
+      continueButtonClick()
+
+      Then("The ratepayer adds 'Security cameras - 15' to the property")
+      WhichInternalFeatureHaveChanged.whichInternalFeatureHaveChangedHeader()
+      WhichInternalFeatureHaveChanged.whichInternalFeatureHaveChangedRadio("Security cameras")
+      continueButtonClick()
+      HowManySecurityCamerasInsideProperty.howManySecurityCamerasInsidePropertyHeader()
+      HowManySecurityCamerasInsideProperty.inputHowManyCameras("15")
+      continueButtonClick()
+      CheckAndConfirmChangesToInternalFeatures.checkAndConfirmChangesToInternalFeaturesHeader()
+      CheckAndConfirmChangesToInternalFeatures.verifySummaryItem("Security cameras", "15")
+      CheckAndConfirmChangesToInternalFeatures.tellAnotherInternalFeatureRadio("Yes")
+      continueButtonClick()
+
     }
+
     // TODO: adding new Scenario with the change and the remove Internal Feature functions
   }
 }

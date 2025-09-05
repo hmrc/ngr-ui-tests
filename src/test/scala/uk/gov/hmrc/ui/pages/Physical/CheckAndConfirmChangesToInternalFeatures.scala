@@ -16,6 +16,8 @@
 
 package uk.gov.hmrc.ui.pages.Physical
 
+import org.openqa.selenium.By
+import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.ui.pages.BasePage
 
 object CheckAndConfirmChangesToInternalFeatures extends BasePage {
@@ -29,6 +31,30 @@ object CheckAndConfirmChangesToInternalFeatures extends BasePage {
       case "No"  => "value-no"
     }
     click(getElementById(radioCheckId))
+  }
+
+  def verifySummaryItem(keyText: String, expectedValue: String): Unit = {
+    val rows = Driver.instance.findElements(By.cssSelector(".govuk-summary-list__row"))
+
+    var found    = false
+    val iterator = rows.iterator()
+    while (iterator.hasNext && !found) {
+      val row        = iterator.next()
+      val keyElement = row.findElement(By.cssSelector(".govuk-summary-list__key"))
+      if (keyElement.getText.trim == keyText) {
+        val valueElement = row.findElement(By.cssSelector(".govuk-summary-list__value"))
+        val actualValue  = valueElement.getText.trim
+        assert(
+          actualValue == expectedValue,
+          s"Expected value '$expectedValue' for '$keyText', but found '$actualValue'"
+        )
+        found = true
+      }
+    }
+
+    if (!found) {
+      throw new NoSuchElementException(s"Could not find summary row with key '$keyText'")
+    }
   }
 
 }
