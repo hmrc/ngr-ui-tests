@@ -28,8 +28,11 @@ object WhenCompleteChange extends BasePage {
   val yearInputLocation: By  = By.id("value.year")
 
   def dateInput(day: String, month: String, year: String): Unit = {
+    click(dayInputLocation)
     sendKeys(dayInputLocation, day)
+    click(monthInputLocation)
     sendKeys(monthInputLocation, month)
+    click(yearInputLocation)
     sendKeys(yearInputLocation, year)
   }
 }
