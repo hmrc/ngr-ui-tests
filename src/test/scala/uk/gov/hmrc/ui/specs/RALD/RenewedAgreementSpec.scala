@@ -82,6 +82,10 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       HowMuchIsTotalAnnualRent.inputTotalAnnualRent("999900")
       continueButtonClick()
 
+      Then("The user selects no with agreeing the rent with their landlord or their agent")
+      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlord()
+      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlordRadio("No")
+      continueButtonClick()
     }
 
     Scenario(
@@ -239,6 +243,11 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       Then("The user enter how much is total annual rent")
       HowMuchIsTotalAnnualRent.howMuchIsTotalAnnualRent()
       HowMuchIsTotalAnnualRent.inputTotalAnnualRent("999900")
+      continueButtonClick()
+
+      Then("The user selects no with agreeing the rent with their landlord or their agent")
+      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlord()
+      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlordRadio("No")
       continueButtonClick()
     }
   }
