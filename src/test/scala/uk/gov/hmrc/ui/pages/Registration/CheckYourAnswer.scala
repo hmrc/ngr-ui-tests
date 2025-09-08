@@ -25,6 +25,7 @@ object CheckYourAnswer extends BasePage {
   val changePhoneNumberLink = By.id("number-linkid")
   val changeEmailLink       = By.id("email-linkid")
   val changeAddressLink     = By.id("address-linkid")
+  val changeSautrLink       = By.id("sautr-linkid")
 
   def ClickChangeNameLink(): Unit        =
     click(changeNameLink)
@@ -34,6 +35,8 @@ object CheckYourAnswer extends BasePage {
     click(changeEmailLink)
   def ClickChangeAddressLink(): Unit     =
     click(changeAddressLink)
+  def ClickSautrLink(): Unit             =
+    click(changeSautrLink)
 
   def checkYourAnswer(): Unit =
     headerCheck("Check your answers")

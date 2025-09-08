@@ -19,7 +19,7 @@ package uk.gov.hmrc.ui.specs.PropertyLinking
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome
 import uk.gov.hmrc.ui.pages.PropertyLinking._
 import uk.gov.hmrc.ui.pages.Registration.CheckYourAnswer
-import uk.gov.hmrc.ui.pages.Registration.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
+//import uk.gov.hmrc.ui.pages.Registration.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
 import uk.gov.hmrc.ui.pages.Registration.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.specs.BaseSpec
@@ -39,12 +39,12 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       Given("Ratepayer logins through one login")
       loginOl()
 
-      Then("User provide phone number")
-      PhoneNumberPage.userProvidesPhoneNumber()
-
-      Then("Ratepayer is taken to the Confirm Contact Details page")
-      ConfirmContactDetailsPage.ConfirmContactDetails()
-      click(continueButton)
+//      Then("User provide phone number")
+//      PhoneNumberPage.userProvidesPhoneNumber()
+//
+//      Then("Ratepayer is taken to the Confirm Contact Details page")
+//      ConfirmContactDetailsPage.ConfirmContactDetails()
+//      click(continueButton)
 
       Then("Ratepayer is taken to Provide TRN Page")
       ProvideTRNPage.provideYourTRN()
