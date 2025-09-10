@@ -18,16 +18,16 @@ package uk.gov.hmrc.ui.pages.Physical
 
 import uk.gov.hmrc.ui.pages.BasePage
 
-object HowMuchOfPropertyHasHeating extends BasePage {
-  def howMuchOfPropertyHasHeatingHeader(): Unit =
-    legendCheck("How much of the property has heating?")
+object HaveYouChangedExternalFeatures extends BasePage {
+  def changedExternalFeatureHeader(): Unit =
+    legendCheck("Have you changed external features?")
 
-  def howMuchOfPropertyHasHeatingRadio(heating: String): Unit = {
-    val radioCheckId = heating match {
-      case "All of the property has heating"  => "value_0"
-      case "Some of the property has heating" => "value_1"
-      case "None of the property has heating" => "value_2"
+  def changedExternalFeatureRadio(changedInternalFeature: String): Unit = {
+    val radioCheckId = changedInternalFeature match {
+      case "Yes" => "value"
+      case "No"  => "value-no"
     }
     click(getElementById(radioCheckId))
   }
+
 }

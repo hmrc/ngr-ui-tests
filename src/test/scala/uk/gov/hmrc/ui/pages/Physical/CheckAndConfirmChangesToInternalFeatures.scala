@@ -17,6 +17,7 @@
 package uk.gov.hmrc.ui.pages.Physical
 
 import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.ExpectedConditions
 import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.ui.pages.BasePage
 
@@ -34,6 +35,8 @@ object CheckAndConfirmChangesToInternalFeatures extends BasePage {
   }
 
   def verifySummaryItem(keyText: String, expectedValue: String): Unit = {
+    Wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".govuk-summary-list")))
+    Wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".govuk-summary-list__row")))
     val rows = Driver.instance.findElements(By.cssSelector(".govuk-summary-list__row"))
 
     var found    = false
@@ -56,5 +59,4 @@ object CheckAndConfirmChangesToInternalFeatures extends BasePage {
       throw new NoSuchElementException(s"Could not find summary row with key '$keyText'")
     }
   }
-
 }

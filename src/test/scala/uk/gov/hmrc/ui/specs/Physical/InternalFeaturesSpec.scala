@@ -17,9 +17,9 @@
 package uk.gov.hmrc.ui.specs.Physical
 
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome.dashboard
-import uk.gov.hmrc.ui.pages.Physical.{CheckAndConfirmChangesToInternalFeatures, HaveYouChangedInternalFeatures, HaveYouChangedUseOfSpace, HowManySecurityCamerasInsideProperty, HowMuchOfPropertyHasAirConditioning, InformationAndSupportingDocumentsNeed, TellUsChangedPropertyFeaturesOrUseOfSpace, WhatHappenedToCompressedAirSystems, WhenCompleteChange, WhereAreTheEscalatorsInTheProperty, WhichFloorsOfPropertyHaveGoodsLifts, WhichFloorsOfPropertyHavePassengerLifts, WhichInternalFeatureHaveChanged}
+import uk.gov.hmrc.ui.pages.Physical.{CheckAndConfirmChangesToInternalFeatures, HaveYouChangedExternalFeatures, HaveYouChangedInternalFeatures, HaveYouChangedUseOfSpace, HowManySecurityCamerasInsideProperty, HowMuchOfPropertyHasAirConditioning, HowMuchOfPropertyHasHeating, HowMuchOfPropertyHasSprinklers, InformationAndSupportingDocumentsNeed, TellUsChangedPropertyFeaturesOrUseOfSpace, WhatHappenedToCompressedAirSystems, WhenCompleteChange, WhereAreTheEscalatorsInTheProperty, WhichFloorsOfPropertyHaveGoodsLifts, WhichFloorsOfPropertyHavePassengerLifts, WhichInternalFeatureHaveChanged}
 import uk.gov.hmrc.ui.pages.RALD.{WhatDoYouWantToTellUs, WhichPropertyDoYouWantToTellUsAbout}
-import uk.gov.hmrc.ui.pages.StubPage
+import uk.gov.hmrc.ui.pages.{SignOutPage, StubPage}
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.PhysicalDB
@@ -140,6 +140,31 @@ class InternalFeaturesSpec extends BaseSpec with StubPage {
       CheckAndConfirmChangesToInternalFeatures.verifySummaryItem("Compressed air systems", "Added")
       CheckAndConfirmChangesToInternalFeatures.tellAnotherInternalFeatureRadio("Yes")
       continueButtonClick()
+
+      Then("The ratepayer adds 'Other internal feature - Heating - In all of the property")
+      WhichInternalFeatureHaveChanged.whichInternalFeatureHaveChangedHeader()
+      WhichInternalFeatureHaveChanged.selectOtherFeatures("heating")
+      continueButtonClick()
+      HowMuchOfPropertyHasHeating.howMuchOfPropertyHasHeatingHeader()
+      HowMuchOfPropertyHasHeating.howMuchOfPropertyHasHeatingRadio("All of the property has heating")
+      continueButtonClick()
+      CheckAndConfirmChangesToInternalFeatures.verifySummaryItem("Heating", "In all of the property")
+      CheckAndConfirmChangesToInternalFeatures.tellAnotherInternalFeatureRadio("Yes")
+      continueButtonClick()
+
+      Then("The ratepayer adds 'Other internal feature - Sprinklers - All of the property has sprinklers")
+      WhichInternalFeatureHaveChanged.whichInternalFeatureHaveChangedHeader()
+      WhichInternalFeatureHaveChanged.selectOtherFeatures("sprinklers")
+      continueButtonClick()
+      HowMuchOfPropertyHasSprinklers.howMuchOfPropertyHasSprinklersHeader()
+      HowMuchOfPropertyHasSprinklers.howMuchOfPropertyHasSprinklersRadio("All of the property has sprinklers")
+      continueButtonClick()
+      CheckAndConfirmChangesToInternalFeatures.verifySummaryItem("Sprinklers", "In all of the property")
+      CheckAndConfirmChangesToInternalFeatures.tellAnotherInternalFeatureRadio("No")
+      continueButtonClick()
+      HaveYouChangedExternalFeatures.changedExternalFeatureHeader()
+      clickLink("Sign out")
+      SignOutPage.signOut()
     }
 
     // TODO: adding new Scenario with the change and the remove Internal Feature functions
