@@ -239,6 +239,10 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       WhatYourRentIncludesPage.rentIncWaterChargesRadio("Yes")
       WhatYourRentIncludesPage.rentIncServiceRadio("Yes")
       continueButtonClick()
+
+      Then("The user selects yes to having parking spaces or garages")
+      DoesYourRentIncludeParkingPage.doesYourRentIncludeParking()
+      DoesYourRentIncludeParkingPage.yesRadio()
     }
   }
 }
