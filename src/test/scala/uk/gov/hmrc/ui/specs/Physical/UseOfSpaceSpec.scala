@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.ui.specs.Physical
 
-import uk.gov.hmrc.ui.pages.StubPage
+import uk.gov.hmrc.ui.pages.{SignOutPage, StubPage}
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.pages.Physical._
 import uk.gov.hmrc.ui.utils.login.loginOl
@@ -48,7 +48,7 @@ class UseOfSpaceSpec extends BaseSpec with StubPage {
       continueButtonClick()
 
       InformationAndSupportingDocumentsNeed.InformationAndSupportingDocScreen()
-
+      continueButtonClick()
       Then("The ratepayer adds a date when the change was completed")
       WhenCompleteChange.whenCompleteChangeScreen()
       WhenCompleteChange.dateInput("10", "10", "2022")
@@ -70,7 +70,8 @@ class UseOfSpaceSpec extends BaseSpec with StubPage {
 
       Then("The ratepayer completed the 'Use of space' journey and moved to the next 'Internal feature' screen")
       HaveYouChangedInternalFeatures.changedInternalFeatureHeader()
-
+      clickLink("Sign out")
+      SignOutPage.signOut()
     }
   }
 

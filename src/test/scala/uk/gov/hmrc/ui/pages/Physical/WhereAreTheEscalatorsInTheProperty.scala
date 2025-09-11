@@ -19,8 +19,8 @@ package uk.gov.hmrc.ui.pages.Physical
 import uk.gov.hmrc.ui.pages.BasePage
 
 object WhereAreTheEscalatorsInTheProperty extends BasePage {
-  def whereAreTheEscalatorsInThePropertyHeader(): Unit =
-    headerCheck("Where are escalators in the property?")
+  def whereAreTheEscalatorsInThePropertyLegend(): Unit =
+    legendCheck("Where are escalators in the property?")
 
   def whereAreTheEscalatorsInThePropertyRadio(escalators: String): Unit = {
     val radioCheckId = escalators match {

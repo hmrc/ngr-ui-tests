@@ -20,7 +20,7 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 object WhichFloorsOfPropertyHaveGoodsLifts extends BasePage {
   def whichFloorsOfPropertyHaveGoodsLiftsHeader(): Unit =
-    headerCheck("Which floors of the property have goods lifts?")
+    legendCheck("Which floors of the property have goods lifts?")
 
   def whichFloorsOfPropertyHaveGoodsLiftsRadio(goodsLiftsFloors: String): Unit = {
     val radioCheckId = goodsLiftsFloors match {
