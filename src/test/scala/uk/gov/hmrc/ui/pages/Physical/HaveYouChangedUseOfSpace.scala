@@ -17,7 +17,6 @@
 package uk.gov.hmrc.ui.pages.Physical
 
 import uk.gov.hmrc.ui.pages.BasePage
-import uk.gov.hmrc.ui.pages.Physical.AboutChangeToUseOfSpace.headerCheck
 
 object HaveYouChangedUseOfSpace extends BasePage {
 

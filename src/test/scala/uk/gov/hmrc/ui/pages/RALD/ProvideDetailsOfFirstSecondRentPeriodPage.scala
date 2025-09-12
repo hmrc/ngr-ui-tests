@@ -21,29 +21,29 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 object ProvideDetailsOfFirstSecondRentPeriodPage extends BasePage {
 
-  def provideDetailsOfFirstSecondRentPeriod(): Unit =
+  def provideDetailsOfEachRentPeriod(): Unit =
     headerCheck("Provide details of each rent period")
 
-  val firstDateStartInputLocationDay: By   = By.id("provideDetailsOfFirstSecondRentPeriod.firstPeriod.start.date.day")
-  val firstDateStartInputLocationMonth: By = By.id("provideDetailsOfFirstSecondRentPeriod.firstPeriod.start.date.month")
-  val firstDateStartInputLocationYear: By  = By.id("provideDetailsOfFirstSecondRentPeriod.firstPeriod.start.date.year")
+  val firstDateStartInputLocationDay: By   = By.id("provideDetailsOfEachRentPeriod.firstPeriod.start.date.day")
+  val firstDateStartInputLocationMonth: By = By.id("provideDetailsOfEachRentPeriod.firstPeriod.start.date.month")
+  val firstDateStartInputLocationYear: By  = By.id("provideDetailsOfEachRentPeriod.firstPeriod.start.date.year")
 
-  val firstDateEndInputLocationDay: By   = By.id("provideDetailsOfFirstSecondRentPeriod.firstPeriod.end.date.day")
-  val firstDateEndInputLocationMonth: By = By.id("provideDetailsOfFirstSecondRentPeriod.firstPeriod.end.date.month")
-  val firstDateEndInputLocationYear: By  = By.id("provideDetailsOfFirstSecondRentPeriod.firstPeriod.end.date.year")
+  val firstDateEndInputLocationDay: By   = By.id("provideDetailsOfEachRentPeriod.firstPeriod.end.date.day")
+  val firstDateEndInputLocationMonth: By = By.id("provideDetailsOfEachRentPeriod.firstPeriod.end.date.month")
+  val firstDateEndInputLocationYear: By  = By.id("provideDetailsOfEachRentPeriod.firstPeriod.end.date.year")
 
-  val firstRentPeriodRadioInputYes: By = By.id("provideDetailsOfFirstSecondRentPeriod-radio-firstRentPeriodRadio")
+  val firstRentPeriodRadioInputYes: By = By.id("provideDetailsOfEachRentPeriod-radio-firstRentPeriodRadio")
   val firstRentPeriodRentAmount: By    = By.id("RentPeriodAmount")
-  val firstRentPeriodRadioInputNo: By  = By.id("provideDetailsOfFirstSecondRentPeriod-radio-firstRentPeriodRadio")
+  val firstRentPeriodRadioInputNo: By  = By.id("provideDetailsOfEachRentPeriod-radio-firstRentPeriodRadio")
 
-  val secondDateStartInputLocationDay: By   = By.id("provideDetailsOfFirstSecondRentPeriod.secondPeriod.start.date.day")
+  val secondDateStartInputLocationDay: By   = By.id("provideDetailsOfEachRentPeriod.secondPeriod.start.date.day")
   val secondDateStartInputLocationMonth: By =
-    By.id("provideDetailsOfFirstSecondRentPeriod.secondPeriod.start.date.month")
-  val secondDateStartInputLocationYear: By  = By.id("provideDetailsOfFirstSecondRentPeriod.secondPeriod.start.date.year")
+    By.id("provideDetailsOfEachRentPeriod.secondPeriod.start.date.month")
+  val secondDateStartInputLocationYear: By  = By.id("provideDetailsOfEachRentPeriod.secondPeriod.start.date.year")
 
-  val secondDateEndInputLocationDay: By   = By.id("provideDetailsOfFirstSecondRentPeriod.secondPeriod.end.date.day")
-  val secondDateEndInputLocationMonth: By = By.id("provideDetailsOfFirstSecondRentPeriod.secondPeriod.end.date.month")
-  val secondDateEndInputLocationYear: By  = By.id("provideDetailsOfFirstSecondRentPeriod.secondPeriod.end.date.year")
+  val secondDateEndInputLocationDay: By   = By.id("provideDetailsOfEachRentPeriod.secondPeriod.end.date.day")
+  val secondDateEndInputLocationMonth: By = By.id("provideDetailsOfEachRentPeriod.secondPeriod.end.date.month")
+  val secondDateEndInputLocationYear: By  = By.id("provideDetailsOfEachRentPeriod.secondPeriod.end.date.year")
 
   val rentForSecondRentPeriod: By = By.id("SecondRentPeriodAmount")
 
