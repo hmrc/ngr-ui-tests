@@ -33,6 +33,6 @@ trait BaseSpec
     startBrowser()
     Driver.instance.manage().deleteAllCookies()
   }
-//  override def afterEach(): Unit  =
-//    quitBrowser()
+  override def afterEach(): Unit  =
+    quitBrowser()
 }
