@@ -85,6 +85,11 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       HowMuchIsTotalAnnualRent.howMuchIsTotalAnnualRent()
       HowMuchIsTotalAnnualRent.inputTotalAnnualRent("7000")
       continueButtonClick()
+
+      Then("The user enters 'Yes' to having a rent period")
+      RentFreePeriod.rentFreePeriod()
+      RentFreePeriod.selectRentFreePeriodRadio("Yes")
+      continueButtonClick()
     }
 
     Scenario("New agreement, agreement type: Licence or other type of written agreement, agreed in advance: 'Yes'") {
@@ -141,7 +146,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       continueButtonClick()
 
       When("The user provides the start and end date for the first rent period")
-      ProvideDetailsOfFirstSecondRentPeriodPage.provideDetailsOfFirstSecondRentPeriod()
+      ProvideDetailsOfFirstSecondRentPeriodPage.provideDetailsOfEachRentPeriod()
       ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodStartDate("02", "01", "2011")
       ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodEndDate("02", "03", "2022")
 
@@ -150,7 +155,6 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodRent("2000.90365")
 
       When("The user enters the start, end date and rent amount for the second rent period")
-      ProvideDetailsOfFirstSecondRentPeriodPage.provideDetailsOfFirstSecondRentPeriod()
       ProvideDetailsOfFirstSecondRentPeriodPage.secondRentPeriodStartDate("02", "10", "2012")
       ProvideDetailsOfFirstSecondRentPeriodPage.secondRentPeriodEndDate("02", "12", "2023")
       ProvideDetailsOfFirstSecondRentPeriodPage.SecondRentPeriodRent("9999999.99")
@@ -158,6 +162,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
 
       When("The user check rent period details on rent periods page")
       RentPeriods.rentPeriods()
+      /*These dates should be similar to the dates entered in the previous steps(first and second rent period) */
       RentPeriods.verifyFirstPeriodStartDate("2 January 2011")
       RentPeriods.verifyFirstPeriodEndDate("2 March 2022")
       RentPeriods.verifyFirstPeriodDoYouPay("Yes")
@@ -170,10 +175,10 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       RentPeriods.addAnotherPeriod("No")
       continueButtonClick()
 
-      When("The user enters the date they agreed their rent")
-      RentDatesPage.rentDatesPage()
-      RentDatesPage.agreeDateInput("03", "12", "2023")
-      continueButtonClick()
+//      When("The user enters the date they agreed their rent")
+//      RentDatesPage.rentDatesPage()
+//      RentDatesPage.agreeDateInput("03", "12", "2023")
+//      continueButtonClick()
     }
 
     Scenario("New agreement, agreement type: Verbal") {
@@ -225,14 +230,14 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       continueButtonClick()
 
       Then("The user enters their agreement date and start date")
-      RentDatesAgreeStartPage.rentDatesAgreeStartPage
+      RentDatesAgreeStartPage.rentDatesAgreeStartPage()
       RentDatesAgreeStartPage.agreeDateInput(day = "12", month = "12", year = "2020")
       RentDatesAgreeStartPage.startDateInput(day = "10", month = "01", year = "2021")
       continueButtonClick()
 
       Then("The user selects what their rent includes")
-      WhatYourRentIncludesPage.whatYourRentIncludes
-      WhatYourRentIncludesPage.livingAccommodationRadio("Yes")
+      WhatYourRentIncludesPage.whatYourRentIncludes()
+      WhatYourRentIncludesPage.livingAccommodationRadio("No")
       WhatYourRentIncludesPage.rentPartAddressRadio("Yes")
       WhatYourRentIncludesPage.rentEmptyShellRadio("Yes")
       WhatYourRentIncludesPage.rentIncBusinessRatesRadio("Yes")

@@ -25,8 +25,8 @@ object RentFreePeriod extends BasePage {
 
   def selectRentFreePeriodRadio(isRentFree: String): Unit = {
     val radioId = isRentFree.toLowerCase match {
-      case "yes" => "check-rent-period-radio"
-      case _     => "check-rent-period-radio-2"
+      case "yes" => "check-rent-period-radio" /* New agreement sc 1*/
+      case _     => "check-rent-period-radio-2" /* New agreement sc 3*/
     }
     click(getElementById(radioId))
   }
