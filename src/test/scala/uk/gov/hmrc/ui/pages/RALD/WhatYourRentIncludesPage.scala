@@ -31,6 +31,9 @@ object WhatYourRentIncludesPage extends BasePage {
       click(By.id("livingAccommodationRadio-2"))
     }
 
+  def bedroomNumbers(numbers: String): Unit =
+    sendKeys(By.id("bedroomNumbers"), numbers)
+
   def rentPartAddressRadio(select: String): Unit =
     if (select == "Yes") {
       click(By.id("rentPartAddressRadio"))
