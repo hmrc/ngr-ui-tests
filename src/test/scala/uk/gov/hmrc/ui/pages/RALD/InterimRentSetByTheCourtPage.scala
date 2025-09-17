@@ -26,13 +26,13 @@ object InterimRentSetByTheCourtPage extends BasePage {
     headerCheck("Did the court also set an interim rent?")
 
   def interimHowMuchInput(amount: String): Unit =
-    sendKeys(By.id("conditional-rald-lease-renewal-interim-how-much"), amount)
+    sendKeys(By.id("interimAmount"), amount)
 
   def interimRentSetByTheCourtDateInput(month: String, year: String): Unit =
-    dateInput(month, year, "rald-lease-renewal-interim")
+    dateInput(month, year, "date")
 
   private def dateInput(month: String, year: String, whichDate: String): Unit = {
-    sendKeys(By.id(s"$whichDate-month"), month)
-    sendKeys(By.id(s"$whichDate-year"), year)
+    sendKeys(By.id(s"$whichDate.month"), month)
+    sendKeys(By.id(s"$whichDate.year"), year)
   }
 }
