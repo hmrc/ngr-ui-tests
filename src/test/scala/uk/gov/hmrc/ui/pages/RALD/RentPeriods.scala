@@ -43,7 +43,7 @@ object RentPeriods extends BasePage {
 
   def verifyFirstPeriodRentValue(expectedValue: String): Unit = {
     val actual = getElementByCssSelector("#first-period-rent-value-id")
-    assert(actual == expectedValue, s"First period rent value doesn't match")
+    assert(actual == expectedValue, s"First period rent value doesn't match $actual")
   }
 
   def verifyFirstPeriodDoYouPay(expectedAnswer: String): Unit = {

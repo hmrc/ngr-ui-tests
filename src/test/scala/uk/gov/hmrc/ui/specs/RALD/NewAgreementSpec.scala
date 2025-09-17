@@ -170,10 +170,10 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       RentPeriods.addAnotherPeriod("No")
       continueButtonClick()
 
-      When("The user enters the date they agreed their rent")
-      RentDatesPage.rentDatesPage()
-      RentDatesPage.agreeDateInput("03", "12", "2023")
-      continueButtonClick()
+//      When("The user enters the date they agreed their rent")
+//      RentDatesPage.rentDatesPage()
+//      RentDatesPage.agreeDateInput("03", "12", "2023")
+//      continueButtonClick()
     }
 
     Scenario("New agreement, agreement type: Verbal") {
@@ -225,24 +225,26 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       continueButtonClick()
 
       Then("The user enters their agreement date and start date")
-      RentDatesAgreeStartPage.rentDatesAgreeStartPage
+      RentDatesAgreeStartPage.rentDatesAgreeStartPage()
       RentDatesAgreeStartPage.agreeDateInput(day = "12", month = "12", year = "2020")
       RentDatesAgreeStartPage.startDateInput(day = "10", month = "01", year = "2021")
       continueButtonClick()
 
       Then("The user selects what their rent includes")
-      WhatYourRentIncludesPage.whatYourRentIncludes
+      WhatYourRentIncludesPage.whatYourRentIncludes()
       WhatYourRentIncludesPage.livingAccommodationRadio("Yes")
       WhatYourRentIncludesPage.rentPartAddressRadio("Yes")
       WhatYourRentIncludesPage.rentEmptyShellRadio("Yes")
       WhatYourRentIncludesPage.rentIncBusinessRatesRadio("Yes")
       WhatYourRentIncludesPage.rentIncWaterChargesRadio("Yes")
       WhatYourRentIncludesPage.rentIncServiceRadio("Yes")
+      WhatYourRentIncludesPage.bedroomNumbers("5")
       continueButtonClick()
 
       Then("The user selects yes to having parking spaces or garages")
       DoesYourRentIncludeParkingPage.doesYourRentIncludeParking()
       DoesYourRentIncludeParkingPage.yesRadio()
+      continueButtonClick()
     }
   }
 }

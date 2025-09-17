@@ -24,26 +24,25 @@ object ProvideDetailsOfFirstSecondRentPeriodPage extends BasePage {
   def provideDetailsOfFirstSecondRentPeriod(): Unit =
     headerCheck("Provide details of each rent period")
 
-  val firstDateStartInputLocationDay: By   = By.id("provideDetailsOfFirstSecondRentPeriod.firstPeriod.start.date.day")
-  val firstDateStartInputLocationMonth: By = By.id("provideDetailsOfFirstSecondRentPeriod.firstPeriod.start.date.month")
-  val firstDateStartInputLocationYear: By  = By.id("provideDetailsOfFirstSecondRentPeriod.firstPeriod.start.date.year")
+  val firstDateStartInputLocationDay: By   = By.id("first.startDate.day")
+  val firstDateStartInputLocationMonth: By = By.id("first.startDate.month")
+  val firstDateStartInputLocationYear: By  = By.id("first.startDate.year")
 
-  val firstDateEndInputLocationDay: By   = By.id("provideDetailsOfFirstSecondRentPeriod.firstPeriod.end.date.day")
-  val firstDateEndInputLocationMonth: By = By.id("provideDetailsOfFirstSecondRentPeriod.firstPeriod.end.date.month")
-  val firstDateEndInputLocationYear: By  = By.id("provideDetailsOfFirstSecondRentPeriod.firstPeriod.end.date.year")
+  val firstDateEndInputLocationDay: By   = By.id("first.endDate.day")
+  val firstDateEndInputLocationMonth: By = By.id("first.endDate.month")
+  val firstDateEndInputLocationYear: By  = By.id("first.endDate.year")
 
   val firstRentPeriodRadioInputYes: By = By.id("provideDetailsOfFirstSecondRentPeriod-radio-firstRentPeriodRadio")
   val firstRentPeriodRentAmount: By    = By.id("RentPeriodAmount")
   val firstRentPeriodRadioInputNo: By  = By.id("provideDetailsOfFirstSecondRentPeriod-radio-firstRentPeriodRadio")
 
-  val secondDateStartInputLocationDay: By   = By.id("provideDetailsOfFirstSecondRentPeriod.secondPeriod.start.date.day")
-  val secondDateStartInputLocationMonth: By =
-    By.id("provideDetailsOfFirstSecondRentPeriod.secondPeriod.start.date.month")
-  val secondDateStartInputLocationYear: By  = By.id("provideDetailsOfFirstSecondRentPeriod.secondPeriod.start.date.year")
+  val secondDateStartInputLocationDay: By   = By.id("second.startDate.day")
+  val secondDateStartInputLocationMonth: By = By.id("second.startDate.month")
+  val secondDateStartInputLocationYear: By  = By.id("second.startDate.year")
 
-  val secondDateEndInputLocationDay: By   = By.id("provideDetailsOfFirstSecondRentPeriod.secondPeriod.end.date.day")
-  val secondDateEndInputLocationMonth: By = By.id("provideDetailsOfFirstSecondRentPeriod.secondPeriod.end.date.month")
-  val secondDateEndInputLocationYear: By  = By.id("provideDetailsOfFirstSecondRentPeriod.secondPeriod.end.date.year")
+  val secondDateEndInputLocationDay: By   = By.id("second.endDate.day")
+  val secondDateEndInputLocationMonth: By = By.id("second.endDate.month")
+  val secondDateEndInputLocationYear: By  = By.id("second.endDate.year")
 
   val rentForSecondRentPeriod: By = By.id("SecondRentPeriodAmount")
 
