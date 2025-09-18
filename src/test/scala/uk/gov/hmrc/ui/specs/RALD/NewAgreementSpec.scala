@@ -220,8 +220,8 @@ class NewAgreementSpec extends BaseSpec with StubPage {
 
       /*'By selecting No the user misses page Rent-free period'*/
       Then("The user enters 'No' to having a rent period")
-      RentFreePeriod.rentFreePeriod()
-      RentFreePeriod.selectRentFreePeriodRadio("No")
+      DoYouHaveRentFreePeriod.doYouHaveRentFreePeriod()
+      DoYouHaveRentFreePeriod.selectRentFreePeriodRadio("No")
       continueButtonClick()
 
       Then("The user enters their agreement date and start date")
@@ -233,12 +233,13 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       Then("The user selects what their rent includes")
       WhatYourRentIncludesPage.whatYourRentIncludes()
       WhatYourRentIncludesPage.livingAccommodationRadio("Yes")
+      WhatYourRentIncludesPage.bedroomNumbers("5")
+
       WhatYourRentIncludesPage.rentPartAddressRadio("Yes")
       WhatYourRentIncludesPage.rentEmptyShellRadio("Yes")
       WhatYourRentIncludesPage.rentIncBusinessRatesRadio("Yes")
       WhatYourRentIncludesPage.rentIncWaterChargesRadio("Yes")
       WhatYourRentIncludesPage.rentIncServiceRadio("Yes")
-      WhatYourRentIncludesPage.bedroomNumbers("5")
       continueButtonClick()
 
       Then("The user selects yes to having parking spaces or garages")
