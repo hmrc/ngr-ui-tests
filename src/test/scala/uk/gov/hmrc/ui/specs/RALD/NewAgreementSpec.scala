@@ -245,6 +245,13 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       DoesYourRentIncludeParkingPage.doesYourRentIncludeParking()
       DoesYourRentIncludeParkingPage.yesRadio()
       continueButtonClick()
+
+      Then("The user enters uncovered, covered spaces and garages")
+      HowManyParkingSpacesOrGaragesIncludedInRentPage.howManyParkingSpacesOrGaragesIncludedInRent()
+      HowManyParkingSpacesOrGaragesIncludedInRentPage.enterUncoveredSpaces("2")
+      HowManyParkingSpacesOrGaragesIncludedInRentPage.enterCoveredSpaces("10")
+      HowManyParkingSpacesOrGaragesIncludedInRentPage.enterGarages("5")
+      continueButtonClick()
     }
   }
 }
