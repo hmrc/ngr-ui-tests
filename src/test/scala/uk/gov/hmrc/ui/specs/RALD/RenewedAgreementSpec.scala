@@ -28,7 +28,6 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
     Scenario(
       "The user renewed their agreement, agreement type: Licence or other type of written agreement, rent based on: A percentage of expected turnover"
     ) {
-
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -82,16 +81,43 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       HowMuchIsTotalAnnualRent.inputTotalAnnualRent("999900")
       continueButtonClick()
 
-      Then("The user selects no with agreeing the rent with their landlord or their agent")
+      Then("The user selects 'Yes' with agreeing the rent with their landlord or their agent")
       DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlord()
-      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlordRadio("No")
+      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlordRadio("Yes")
+      continueButtonClick()
+
+      And("The user selects 'Yes' for the rent-free period at the start of your agreement")
+      DoYouHaveRentFreePeriod.doYouHaveRentFreePeriod()
+      DoYouHaveRentFreePeriod.selectRentFreePeriodRadio("Yes")
+      continueButtonClick()
+
+      /*ToDo Add steps for Rent free period page*/
+      /*And("The user enters information for rent free period")
+      RentFreePeriod.RentFreePeriod()*/
+
+      Then("The user enters their agreement date and start date")
+      RentDatesAgreeStartPage.rentDatesAgreeStartPage()
+      RentDatesAgreeStartPage.agreeDateInput(day = "12", month = "12", year = "2020")
+      RentDatesAgreeStartPage.startDateInput(day = "10", month = "01", year = "2021")
+      continueButtonClick()
+
+      Then("The user selects what their rent includes")
+      WhatYourRentIncludesPage.whatYourRentIncludes()
+      WhatYourRentIncludesPage.livingAccommodationRadio("No")
+      WhatYourRentIncludesPage.bedroomNumbers("5")
+      WhatYourRentIncludesPage.rentPartAddressRadio("No")
+      WhatYourRentIncludesPage.rentEmptyShellRadio("No")
+      continueButtonClick()
+
+      Then("The user selects 'No' to having parking spaces or garages")
+      DoesYourRentIncludeParkingPage.doesYourRentIncludeParking()
+      DoesYourRentIncludeParkingPage.noRadio()
       continueButtonClick()
     }
 
     Scenario(
       "The user renewed their agreement, agreement type: Lease or tenancy agreement, rent agreed in advance: Yes"
     ) {
-
       Given("Ratepayer logins through one login")
       loginOl()
 

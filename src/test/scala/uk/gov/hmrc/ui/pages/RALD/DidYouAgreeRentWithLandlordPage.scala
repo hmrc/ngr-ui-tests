@@ -27,7 +27,7 @@ object DidYouAgreeRentWithLandlordPage extends BasePage {
 
   def didYouAgreeRentWithLandlordRadio(option: String): Unit = {
     val radioId = option.toLowerCase match {
-      case "yes" => "agreement-breakClause-radio"
+      case "yes" => "agreement-breakClause-radio" /*Renewed agreement scenario: 1*/
       case "no"  => "agreement-breakClause-radio-2"
     }
     click(By.id(radioId))

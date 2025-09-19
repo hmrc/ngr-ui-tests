@@ -33,6 +33,6 @@ object DoesYourRentIncludeParkingPage extends BasePage {
     click(yesRadioButton)
 
   def noRadio(): Unit =
-    click(noRadioButton)
+    click(noRadioButton) /*Used in renewedAgreement scenario 1*/
 
 }

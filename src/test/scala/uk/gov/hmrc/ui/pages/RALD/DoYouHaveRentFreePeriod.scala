@@ -18,15 +18,15 @@ package uk.gov.hmrc.ui.pages.RALD
 
 import uk.gov.hmrc.ui.pages.BasePage
 
-object RentFreePeriod extends BasePage {
+object DoYouHaveRentFreePeriod extends BasePage {
 
-  def rentFreePeriod(): Unit =
+  def doYouHaveRentFreePeriod(): Unit =
     headerCheck("Do you have a rent-free period at the start of your agreement?")
 
   def selectRentFreePeriodRadio(isRentFree: String): Unit = {
     val radioId = isRentFree.toLowerCase match {
-      case "yes" => "check-rent-period-radio"
-      case _     => "check-rent-period-radio-2"
+      case "yes" => "check-rent-period-radio" /*Used in renewed agreement */
+      case _     => "check-rent-period-radio-2" /*Used in new agreement*/
     }
     click(getElementById(radioId))
   }
