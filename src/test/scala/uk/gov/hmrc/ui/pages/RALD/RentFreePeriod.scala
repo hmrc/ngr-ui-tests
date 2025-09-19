@@ -19,17 +19,15 @@ package uk.gov.hmrc.ui.pages.RALD
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
-object RentDatesPage extends BasePage {
+object RentFreePeriod extends BasePage {
 
-  def rentDatesPage(): Unit =
-    headerCheck("Rent Dates")
+  def rentFreePeriod(): Unit =
+    headerCheck("Rent-free period")
 
-  def agreeDateInput(day: String, month: String, year: String): Unit =
-    dateInput(day, month, year, "rentDatesAgreeInput")
+  def enterRentFreePeriodMonths(months: String): Unit =
+    sendKeys(By.id("rentFreePeriodMonths"), months)
 
-  private def dateInput(day: String, month: String, year: String, whichDate: String): Unit = {
-    sendKeys(By.id(s"$whichDate.day"), day)
-    sendKeys(By.id(s"$whichDate.month"), month)
-    sendKeys(By.id(s"$whichDate.year"), year)
-  }
+  def enterReasons(reasons: String): Unit =
+    sendKeys(By.id("reasons"), reasons)
+
 }

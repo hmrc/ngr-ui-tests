@@ -91,9 +91,11 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       DoYouHaveRentFreePeriod.selectRentFreePeriodRadio("Yes")
       continueButtonClick()
 
-      /*ToDo Add steps for Rent free period page*/
-      /*And("The user enters information for rent free period")
-      RentFreePeriod.RentFreePeriod()*/
+      Then("The user enter how many months of rent free and reasons")
+      RentFreePeriod.rentFreePeriod()
+      RentFreePeriod.enterRentFreePeriodMonths("5")
+      RentFreePeriod.enterReasons("Any reasons")
+      continueButtonClick()
 
       Then("The user enters their agreement date and start date")
       RentDatesAgreeStartPage.rentDatesAgreeStartPage()

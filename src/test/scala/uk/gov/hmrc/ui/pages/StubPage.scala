@@ -37,13 +37,20 @@ trait StubPage extends BasePage {
     click(submit)
   }
 
+  def proveYourIdentity(): Unit = {
+    headerCheck("You need to prove your identity")
+    click(continueButton)
+  }
+
   def IvStub(): Unit = {
     headerCheck("GDS IV Sign")
     click(submit)
   }
 
-  def stubOlAuthentication(): Unit = {
+  def stubOlAuthentication(env: String): Unit = {
     loginStub()
+    if (env == "staging")
+      proveYourIdentity()
     IvStub()
   }
 
