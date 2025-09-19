@@ -49,7 +49,7 @@ trait StubPage extends BasePage {
 
   def stubOlAuthentication(): Unit = {
     loginStub()
-    //This page will be added in the future time.
+    // This page will be added in the future time.
 //    proveYourIdentity()
     IvStub()
   }
