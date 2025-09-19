@@ -21,5 +21,5 @@ import uk.gov.hmrc.ui.pages.BasePage
 object WhichPropertyDoYouWantToTellUsAbout extends BasePage {
 
   def whichPropertyDoYouWantToTellUsAbout(): Unit =
-    headerCheck("Which property do you want to tell us about?")
+    headerCheck("Your property")
 }
