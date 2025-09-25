@@ -17,7 +17,7 @@
 package uk.gov.hmrc.ui.specs.Physical
 
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome.dashboard
-import uk.gov.hmrc.ui.pages.Physical.{CheckAndConfirmChangesToInternalFeatures, HaveYouChangedExternalFeatures, HaveYouChangedInternalFeatures, HaveYouChangedUseOfSpace, HowManySecurityCamerasInsideProperty, HowMuchOfPropertyHasAirConditioning, HowMuchOfPropertyHasHeating, HowMuchOfPropertyHasSprinklers, InformationAndSupportingDocumentsNeed, TellUsChangedPropertyFeaturesOrUseOfSpace, WhatHappenedToCompressedAirSystems, WhenCompleteChange, WhereAreTheEscalatorsInTheProperty, WhichFloorsOfPropertyHaveGoodsLifts, WhichFloorsOfPropertyHavePassengerLifts, WhichInternalFeatureHaveChanged}
+import uk.gov.hmrc.ui.pages.Physical.{CheckAndConfirmChangesToInternalFeatures, HaveYouChangedExternalFeatures, HaveYouChangedInternalFeatures, HaveYouChangedUseOfSpace, HowManySecurityCamerasInsideProperty, HowMuchOfPropertyHasAirConditioning, HowMuchOfPropertyHasHeating, HowMuchOfPropertyHasSprinklers, InformationAndSupportingDocumentsNeed, SelectYourProperty, TellUsChangedPropertyFeaturesOrUseOfSpace, WhatHappenedToCompressedAirSystems, WhenCompleteChange, WhereAreTheEscalatorsInTheProperty, WhichFloorsOfPropertyHaveGoodsLifts, WhichFloorsOfPropertyHavePassengerLifts, WhichInternalFeatureHaveChanged}
 import uk.gov.hmrc.ui.pages.RALD.{WhatDoYouWantToTellUs, WhichPropertyDoYouWantToTellUsAbout}
 import uk.gov.hmrc.ui.pages.{SignOutPage, StubPage}
 import uk.gov.hmrc.ui.specs.BaseSpec
@@ -39,7 +39,7 @@ class InternalFeaturesSpec extends BaseSpec with StubPage {
       Then(
         "The ratepayers selects the property and proceed through the changed property feature or use of space journey"
       )
-      WhichPropertyDoYouWantToTellUsAbout.whichPropertyDoYouWantToTellUsAbout()
+      SelectYourProperty.yourPropertyHeader()
       clickLink("Select property")
 
       Then("The user selects the changed property features or use of space link")
@@ -166,7 +166,5 @@ class InternalFeaturesSpec extends BaseSpec with StubPage {
       clickLink("Sign out")
       SignOutPage.signOut()
     }
-
-    // TODO: adding new Scenario with the change and the remove Internal Feature functions
   }
 }

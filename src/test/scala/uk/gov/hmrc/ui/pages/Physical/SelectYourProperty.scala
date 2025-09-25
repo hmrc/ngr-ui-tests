@@ -16,27 +16,10 @@
 
 package uk.gov.hmrc.ui.pages.Physical
 
-import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
-object AnythingElseTellUs extends BasePage {
-
-  def anythingElseTellUsHeader(): Unit =
-    headerCheck("Is there anything else you want to tell us about the changes?")
-
-  def anythingElseTellUsRadio(anythingElseTellUs: String): Unit = {
-    val radioCheckId = anythingElseTellUs match {
-      case "Yes" => "value"
-      case "No"  => "value-no"
-    }
-    click(getElementById(radioCheckId))
-  }
-
-  val textInputLocation: By  = By.id("text")
-
-  def AnythingElseTellUsTextInput(textInput: String): Unit = {
-    click(textInputLocation)
-    sendKeys(textInputLocation, textInput)
-  }
+object SelectYourProperty extends BasePage {
+  def yourPropertyHeader(): Unit =
+    headerCheck("Your property")
 
 }
