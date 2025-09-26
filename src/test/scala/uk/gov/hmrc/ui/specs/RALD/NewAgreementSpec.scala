@@ -174,7 +174,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       continueButtonClick()
 
       When("The user provides the start and end date for the first rent period")
-      ProvideDetailsOfFirstSecondRentPeriodPage.provideDetailsOfFirstSecondRentPeriod()
+      ProvideDetailsOfFirstSecondRentPeriodPage.provideDetailsOfEachRentPeriod()
       ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodStartDate("02", "01", "2011")
       ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodEndDate("02", "03", "2022")
 
@@ -191,6 +191,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
 
       When("The user check rent period details on rent periods page")
       RentPeriods.rentPeriods()
+      /*These dates should be similar to the dates entered in the previous steps(first and second rent period) */
       RentPeriods.verifyFirstPeriodStartDate("2 January 2011")
       RentPeriods.verifyFirstPeriodEndDate("2 March 2022")
       RentPeriods.verifyFirstPeriodDoYouPay("Yes")
@@ -265,9 +266,8 @@ class NewAgreementSpec extends BaseSpec with StubPage {
 
       Then("The user selects what their rent includes")
       WhatYourRentIncludesPage.whatYourRentIncludes()
-      WhatYourRentIncludesPage.livingAccommodationRadio("Yes")
+      WhatYourRentIncludesPage.livingAccommodationRadio("No")
       WhatYourRentIncludesPage.bedroomNumbers("5")
-
       WhatYourRentIncludesPage.rentPartAddressRadio("Yes")
       WhatYourRentIncludesPage.rentEmptyShellRadio("Yes")
       WhatYourRentIncludesPage.rentIncBusinessRatesRadio("Yes")

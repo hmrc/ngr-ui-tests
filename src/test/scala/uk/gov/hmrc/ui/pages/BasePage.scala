@@ -37,7 +37,7 @@ trait BasePage extends PageObject {
     try {
       Wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("h1")))
       val elementText = getElementByTagName("h1")
-      assert(elementText == headerText, s"$elementText Page header is not matching with $headerText")
+      assert(elementText == headerText, s" Expected header = $headerText, header displayed = $elementText")
     } catch {
       case e: Exception =>
         println(s"Header check failed due to exception: ${e.getMessage}")
