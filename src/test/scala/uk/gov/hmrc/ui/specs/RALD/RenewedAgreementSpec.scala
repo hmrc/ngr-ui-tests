@@ -105,15 +105,23 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
 
       Then("The user selects what their rent includes")
       WhatYourRentIncludesPage.whatYourRentIncludes()
-      WhatYourRentIncludesPage.livingAccommodationRadio("No")
+      WhatYourRentIncludesPage.livingAccommodationRadio("Yes")
       WhatYourRentIncludesPage.bedroomNumbers("5")
       WhatYourRentIncludesPage.rentPartAddressRadio("No")
       WhatYourRentIncludesPage.rentEmptyShellRadio("No")
+      WhatYourRentIncludesPage.rentIncBusinessRatesRadio("No")
+      WhatYourRentIncludesPage.rentIncWaterChargesRadio("No")
+      WhatYourRentIncludesPage.rentIncServiceRadio("No")
       continueButtonClick()
 
       Then("The user selects 'No' to having parking spaces or garages")
       DoesYourRentIncludeParkingPage.doesYourRentIncludeParking()
       DoesYourRentIncludeParkingPage.noRadio()
+      continueButtonClick()
+
+      Then("The user select yes to pay extra parking spaces not included in rent")
+      DoYouPayExtraForParkingSpaces.doYouPayExtraForParkingSpaces()
+      DoYouPayExtraForParkingSpaces.selectPayExtraRadio("yes")
       continueButtonClick()
     }
 
