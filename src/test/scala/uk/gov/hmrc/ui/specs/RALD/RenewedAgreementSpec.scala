@@ -123,6 +123,13 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       DoYouPayExtraForParkingSpaces.doYouPayExtraForParkingSpaces()
       DoYouPayExtraForParkingSpaces.selectPayExtraRadio("yes")
       continueButtonClick()
+
+      Then("The user selects you and the landlord to who pays for internal, external and building insurance repairs")
+      RepairsAndInsurancePage.repairsAndInsurance()
+      RepairsAndInsurancePage.whoPaysForInternalRepairsRadio("You and the landlord")
+      RepairsAndInsurancePage.whoPaysForExternalRepairsRadio("You and the landlord")
+      RepairsAndInsurancePage.WhoPaysForBuildingInsuranceRepairs("You and the landlord")
+      continueButtonClick()
     }
 
     Scenario(

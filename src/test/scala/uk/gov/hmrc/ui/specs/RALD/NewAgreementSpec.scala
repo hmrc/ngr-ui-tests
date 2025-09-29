@@ -123,6 +123,13 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       DoYouPayExtraForParkingSpaces.doYouPayExtraForParkingSpaces()
       DoYouPayExtraForParkingSpaces.selectPayExtraRadio("yes")
       continueButtonClick()
+
+      Then("The user selects the landlord to who pays for internal, external and building insurance repairs")
+      RepairsAndInsurancePage.repairsAndInsurance()
+      RepairsAndInsurancePage.whoPaysForInternalRepairsRadio("The landlord")
+      RepairsAndInsurancePage.whoPaysForExternalRepairsRadio("The landlord")
+      RepairsAndInsurancePage.WhoPaysForBuildingInsuranceRepairs("The landlord")
+      continueButtonClick()
     }
 
     Scenario("New agreement, agreement type: Licence or other type of written agreement, agreed in advance: 'Yes'") {
@@ -295,6 +302,13 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       Then("The user select no to pay extra parking spaces not included in rent")
       DoYouPayExtraForParkingSpaces.doYouPayExtraForParkingSpaces()
       DoYouPayExtraForParkingSpaces.selectPayExtraRadio("no")
+      continueButtonClick()
+
+      Then("The user selects you to who pays for internal, external and building insurance repairs")
+      RepairsAndInsurancePage.repairsAndInsurance()
+      RepairsAndInsurancePage.whoPaysForInternalRepairsRadio("You")
+      RepairsAndInsurancePage.whoPaysForExternalRepairsRadio("You")
+      RepairsAndInsurancePage.WhoPaysForBuildingInsuranceRepairs("You")
       continueButtonClick()
     }
   }
