@@ -118,6 +118,11 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       DoesYourRentIncludeParkingPage.doesYourRentIncludeParking()
       DoesYourRentIncludeParkingPage.noRadio()
       continueButtonClick()
+
+      Then("The user select yes to pay extra parking spaces not included in rent")
+      DoYouPayExtraForParkingSpaces.doYouPayExtraForParkingSpaces()
+      DoYouPayExtraForParkingSpaces.selectPayExtraRadio("yes")
+      continueButtonClick()
     }
 
     Scenario("New agreement, agreement type: Licence or other type of written agreement, agreed in advance: 'Yes'") {
@@ -285,6 +290,11 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       HowManyParkingSpacesOrGaragesIncludedInRentPage.enterUncoveredSpaces("2")
       HowManyParkingSpacesOrGaragesIncludedInRentPage.enterCoveredSpaces("10")
       HowManyParkingSpacesOrGaragesIncludedInRentPage.enterGarages("5")
+      continueButtonClick()
+
+      Then("The user select no to pay extra parking spaces not included in rent")
+      DoYouPayExtraForParkingSpaces.doYouPayExtraForParkingSpaces()
+      DoYouPayExtraForParkingSpaces.selectPayExtraRadio("no")
       continueButtonClick()
     }
   }

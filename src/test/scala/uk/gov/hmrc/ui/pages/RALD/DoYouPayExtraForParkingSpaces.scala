@@ -16,19 +16,18 @@
 
 package uk.gov.hmrc.ui.pages.RALD
 
-import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
-object DidYouAgreeRentWithLandlordPage extends BasePage {
+object DoYouPayExtraForParkingSpaces extends BasePage {
 
-  def didYouAgreeRentWithLandlord(): Unit =
-    headerCheck("Did you agree the rent with your landlord or their agent?")
+  def doYouPayExtraForParkingSpaces(): Unit =
+    headerCheck("Do you pay extra for parking spaces or garages that are not included in your rent?")
 
-  def didYouAgreeRentWithLandlordRadio(option: String): Unit = {
-    val radioId = option.toLowerCase match {
-      case "yes" => "did-you-agree-rent-with-landlord-radio" /*Renewed agreement scenario: 1*/
-      case "no"  => "did-you-agree-rent-with-landlord-radio-2"
+  def selectPayExtraRadio(isPayingExtra: String): Unit = {
+    val radioId = isPayingExtra.toLowerCase match {
+      case "yes" => "payExtra" /*Used in renewed agreement */
+      case _     => "payExtra-2" /*Used in new agreement*/
     }
-    click(By.id(radioId))
+    click(getElementById(radioId))
   }
 }
