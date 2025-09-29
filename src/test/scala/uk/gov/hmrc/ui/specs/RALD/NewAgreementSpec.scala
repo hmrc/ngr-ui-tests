@@ -123,13 +123,6 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       DoYouPayExtraForParkingSpaces.doYouPayExtraForParkingSpaces()
       DoYouPayExtraForParkingSpaces.selectPayExtraRadio("yes")
       continueButtonClick()
-
-      Then("The user selects the landlord to who pays for internal, external and building insurance repairs")
-      RepairsAndInsurancePage.repairsAndInsurance()
-      RepairsAndInsurancePage.whoPaysForInternalRepairsRadio("The landlord")
-      RepairsAndInsurancePage.whoPaysForExternalRepairsRadio("The landlord")
-      RepairsAndInsurancePage.WhoPaysForBuildingInsuranceRepairs("The landlord")
-      continueButtonClick()
     }
 
     Scenario("New agreement, agreement type: Licence or other type of written agreement, agreed in advance: 'Yes'") {
@@ -215,10 +208,10 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       RentPeriods.addAnotherPeriod("No")
       continueButtonClick()
 
-//      When("The user enters the date they agreed their rent")
-//      RentDatesPage.rentDatesPage()
-//      RentDatesPage.agreeDateInput("03", "12", "2023")
-//      continueButtonClick()
+      When("The user enters yes to agree rent with the landlord")
+      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlord()
+      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlordRadio("Yes")
+      continueButtonClick()
     }
 
     Scenario("New agreement, agreement type: Verbal") {
