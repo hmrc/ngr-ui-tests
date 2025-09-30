@@ -36,7 +36,7 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       clickLink("Tell us about a change")
 
       Then("The ratepayers selects the property and proceed through the new agreement journey")
-      WhichPropertyDoYouWantToTellUsAbout.whichPropertyDoYouWantToTellUsAbout()
+      YourProperty.yourProperty()
       clickLink("Select property")
 
       Then("The user selects renewed agreement link to renew their agreement")
@@ -128,7 +128,7 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       clickLink("Tell us about a change")
 
       Then("The ratepayers selects the property and proceed through the new agreement journey")
-      WhichPropertyDoYouWantToTellUsAbout.whichPropertyDoYouWantToTellUsAbout()
+      YourProperty.yourProperty()
       clickLink("Select property")
 
       Then("The user selects renewed agreement link to renew their agreement")
@@ -222,7 +222,7 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       clickLink("Tell us about a change")
 
       Then("The ratepayers selects the property and proceed through the new agreement journey")
-      WhichPropertyDoYouWantToTellUsAbout.whichPropertyDoYouWantToTellUsAbout()
+      YourProperty.yourProperty()
       clickLink("Select property")
 
       Then("The user selects renewed agreement link to renew their agreement")
