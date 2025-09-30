@@ -20,6 +20,7 @@ import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.ExpectedConditions
 import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.ui.pages.BasePage
+import scala.jdk.CollectionConverters._
 
 object CheckAndConfirmChangesToInternalFeatures extends BasePage {
 
@@ -37,26 +38,21 @@ object CheckAndConfirmChangesToInternalFeatures extends BasePage {
   def verifySummaryItem(keyText: String, expectedValue: String): Unit = {
     Wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".govuk-summary-list")))
     Wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".govuk-summary-list__row")))
-    val rows = Driver.instance.findElements(By.cssSelector(".govuk-summary-list__row"))
+    val rows = Driver.instance.findElements(By.cssSelector(".govuk-summary-list__row")).asScala
 
-    var found    = false
-    val iterator = rows.iterator()
-    while (iterator.hasNext && !found) {
-      val row        = iterator.next()
-      val keyElement = row.findElement(By.cssSelector(".govuk-summary-list__key"))
-      if (keyElement.getText.trim == keyText) {
-        val valueElement = row.findElement(By.cssSelector(".govuk-summary-list__value"))
-        val actualValue  = valueElement.getText.trim
+    val maybeRow = rows.find { row =>
+      row.findElement(By.cssSelector(".govuk-summary-list__key")).getText.trim == keyText
+    }
+
+    maybeRow match {
+      case Some(row) =>
+        val actualValue = row.findElement(By.cssSelector(".govuk-summary-list__value")).getText.trim
         assert(
           actualValue == expectedValue,
           s"Expected value '$expectedValue' for '$keyText', but found '$actualValue'"
         )
-        found = true
-      }
-    }
-
-    if (!found) {
-      throw new NoSuchElementException(s"Could not find summary row with key '$keyText'")
+      case None      =>
+        throw new NoSuchElementException(s"Could not find summary row with key '$keyText'")
     }
   }
 }
