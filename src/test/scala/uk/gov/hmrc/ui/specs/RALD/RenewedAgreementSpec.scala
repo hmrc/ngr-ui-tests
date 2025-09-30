@@ -86,21 +86,9 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlordRadio("Yes")
       continueButtonClick()
 
-      And("The user selects 'Yes' for the rent-free period at the start of your agreement")
-      DoYouHaveRentFreePeriod.doYouHaveRentFreePeriod()
-      DoYouHaveRentFreePeriod.selectRentFreePeriodRadio("Yes")
-      continueButtonClick()
-
-      Then("The user enter how many months of rent free and reasons")
-      RentFreePeriod.rentFreePeriod()
-      RentFreePeriod.enterRentFreePeriodMonths("5")
-      RentFreePeriod.enterReasons("Any reasons")
-      continueButtonClick()
-
-      Then("The user enters their agreement date and start date")
-      RentDatesAgreeStartPage.rentDatesAgreeStartPage()
-      RentDatesAgreeStartPage.agreeDateInput(day = "12", month = "12", year = "2020")
-      RentDatesAgreeStartPage.startDateInput(day = "10", month = "01", year = "2021")
+      When("The user enters the date they agreed their rent")
+      RentDatesPage.rentDatesPage()
+      RentDatesPage.agreeDateInput("03", "12", "2023")
       continueButtonClick()
 
       Then("The user selects what their rent includes")
@@ -212,9 +200,9 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       RentPeriods.addAnotherPeriod("No")
       continueButtonClick()
 
-      When("The user enters the date they agreed their rent")
-      RentDatesPage.rentDatesPage()
-      RentDatesPage.agreeDateInput("03", "12", "2023")
+      When("The user enters yes to agree rent with the landlord")
+      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlord()
+      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlordRadio("Yes")
       continueButtonClick()
     }
 

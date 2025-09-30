@@ -208,10 +208,10 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       RentPeriods.addAnotherPeriod("No")
       continueButtonClick()
 
-//      When("The user enters the date they agreed their rent")
-//      RentDatesPage.rentDatesPage()
-//      RentDatesPage.agreeDateInput("03", "12", "2023")
-//      continueButtonClick()
+      When("The user enters yes to agree rent with the landlord")
+      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlord()
+      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlordRadio("Yes")
+      continueButtonClick()
     }
 
     Scenario("New agreement, agreement type: Verbal") {
@@ -295,6 +295,13 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       Then("The user select no to pay extra parking spaces not included in rent")
       DoYouPayExtraForParkingSpaces.doYouPayExtraForParkingSpaces()
       DoYouPayExtraForParkingSpaces.selectPayExtraRadio("no")
+      continueButtonClick()
+
+      Then("The user selects you to who pays for internal, external and building insurance repairs")
+      RepairsAndInsurancePage.repairsAndInsurance()
+      RepairsAndInsurancePage.whoPaysForInternalRepairsRadio("You")
+      RepairsAndInsurancePage.whoPaysForExternalRepairsRadio("You")
+      RepairsAndInsurancePage.WhoPaysForBuildingInsuranceRepairs("You")
       continueButtonClick()
     }
   }
