@@ -34,7 +34,7 @@ class RentReviewedSpec extends BaseSpec with StubPage {
       clickLink("Tell us about a change")
 
       Then("The ratepayers selects the property and proceed through the new agreement journey")
-      WhichPropertyDoYouWantToTellUsAbout.whichPropertyDoYouWantToTellUsAbout()
+      YourProperty.yourProperty()
       clickLink("Select property")
 
       Then("The user selects renewed review your rent link to review their rent")

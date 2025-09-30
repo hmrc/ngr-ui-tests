@@ -18,6 +18,8 @@ package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome
 import uk.gov.hmrc.ui.pages.PropertyLinking.RegisterComplete
+import uk.gov.hmrc.ui.pages.RALD.YourProperty
+import uk.gov.hmrc.ui.pages.RALD.YourProperty.yourProperty
 import uk.gov.hmrc.ui.pages.Registration.CheckYourAnswer
 import uk.gov.hmrc.ui.pages.Registration.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
 import uk.gov.hmrc.ui.pages.Registration.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
@@ -84,5 +86,17 @@ class DashboardSpec extends BaseSpec with StubPage {
       FeedbackPage.sendFeedbackPage()
 
     }
+
+    Scenario("Test to check 'Review your property details' link on dashboard") {
+      Given("Ratepayer logins through one login")
+      loginOl()
+      Then("Ratepayer is taken to the dashboard")
+      DashboardHome.DashboardHome(contactName)
+      Then("Ratepayer clicks the 'Review your property details' link and navigated to yourProperty page")
+      clickLink("Review your property details")
+      YourProperty.yourProperty()
+
+    }
+
   }
 }

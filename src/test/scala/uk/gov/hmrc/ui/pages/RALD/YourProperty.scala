@@ -18,8 +18,8 @@ package uk.gov.hmrc.ui.pages.RALD
 
 import uk.gov.hmrc.ui.pages.BasePage
 
-object WhichPropertyDoYouWantToTellUsAbout extends BasePage {
+object YourProperty extends BasePage {
 
-  def whichPropertyDoYouWantToTellUsAbout(): Unit =
+  def yourProperty(): Unit =
     headerCheck("Your property")
 }

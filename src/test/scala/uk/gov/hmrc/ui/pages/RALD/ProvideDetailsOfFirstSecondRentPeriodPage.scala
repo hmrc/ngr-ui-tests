@@ -21,7 +21,7 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 object ProvideDetailsOfFirstSecondRentPeriodPage extends BasePage {
 
-  def provideDetailsOfFirstSecondRentPeriod(): Unit =
+  def provideDetailsOfEachRentPeriod(): Unit =
     headerCheck("Provide details of each rent period")
 
   val firstDateStartInputLocationDay: By   = By.id("first.startDate.day")
@@ -32,9 +32,9 @@ object ProvideDetailsOfFirstSecondRentPeriodPage extends BasePage {
   val firstDateEndInputLocationMonth: By = By.id("first.endDate.month")
   val firstDateEndInputLocationYear: By  = By.id("first.endDate.year")
 
-  val firstRentPeriodRadioInputYes: By = By.id("provideDetailsOfFirstSecondRentPeriod-radio-firstRentPeriodRadio")
+  val firstRentPeriodRadioInputYes: By = By.id("provideDetailsOfEachRentPeriod-radio-firstRentPeriodRadio")
   val firstRentPeriodRentAmount: By    = By.id("RentPeriodAmount")
-  val firstRentPeriodRadioInputNo: By  = By.id("provideDetailsOfFirstSecondRentPeriod-radio-firstRentPeriodRadio")
+  val firstRentPeriodRadioInputNo: By  = By.id("provideDetailsOfEachRentPeriod-radio-firstRentPeriodRadio")
 
   val secondDateStartInputLocationDay: By   = By.id("second.startDate.day")
   val secondDateStartInputLocationMonth: By = By.id("second.startDate.month")
