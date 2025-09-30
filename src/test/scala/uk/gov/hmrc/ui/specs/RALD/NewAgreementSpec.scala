@@ -267,7 +267,6 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       Then("The user selects what their rent includes")
       WhatYourRentIncludesPage.whatYourRentIncludes()
       WhatYourRentIncludesPage.livingAccommodationRadio("No")
-      WhatYourRentIncludesPage.bedroomNumbers("5")
       WhatYourRentIncludesPage.rentPartAddressRadio("Yes")
       WhatYourRentIncludesPage.rentEmptyShellRadio("Yes")
       WhatYourRentIncludesPage.rentIncBusinessRatesRadio("Yes")
