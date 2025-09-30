@@ -140,7 +140,7 @@ class ExternalFeaturesSpec extends BaseSpec with StubPage {
         "The ratepayer adds 'Other external feature - Advertising displays on your property - You added advertising displays on your property' to the property"
       )
       WhichExternalFeatureHaveChange.whichInternalFeatureHaveChangedHeader()
-      WhichExternalFeatureHaveChange.selectOtherExternalFeatures("Advertising displays on your property")
+      WhichExternalFeatureHaveChange.selectOtherExternalFeatures("advertisingDisplays")
       continueButtonClick()
       WhatHappenedToAdvertisingDisplaysOnProperty.whatHappenedToAdvertisingDisplaysOnPropertyHeader()
       WhatHappenedToAdvertisingDisplaysOnProperty.whatHappenedToAdvertisingDisplaysOnPropertyRadio(
@@ -157,7 +157,7 @@ class ExternalFeaturesSpec extends BaseSpec with StubPage {
 
       Then("The ratepayer adds 'Other external feature - Bike sheds - You added bike sheds' to the property")
       WhichExternalFeatureHaveChange.whichInternalFeatureHaveChangedHeader()
-      WhichExternalFeatureHaveChange.selectOtherExternalFeatures("Bike sheds")
+      WhichExternalFeatureHaveChange.selectOtherExternalFeatures("bikeSheds")
       continueButtonClick()
       WhatHappenedToBikeSheds.whatHappenedToBikeShedsHeader()
       WhatHappenedToBikeSheds.whatHappenedToBikeShedsRadio("You added bike sheds")
@@ -167,11 +167,23 @@ class ExternalFeaturesSpec extends BaseSpec with StubPage {
       CheckAndConfirmChangesToExternalFeatures.tellAnotherExternalFeatureRadio("Yes")
       continueButtonClick()
 
+      Then("The ratepayer adds 'Other external feature - Canopies - You added canopies' to the property")
+      WhichExternalFeatureHaveChange.whichInternalFeatureHaveChangedHeader()
+      WhichExternalFeatureHaveChange.selectOtherExternalFeatures("canopies")
+      continueButtonClick()
+      WhatHappenedToCanopies.whatHappenedToCanopiesHeader()
+      WhatHappenedToCanopies.whatHappenedToCanopiesRadio("You added canopies")
+      continueButtonClick()
+      CheckAndConfirmChangesToExternalFeatures.checkAndConfirmChangesToExternalFeaturesHeader()
+      CheckAndConfirmChangesToExternalFeatures.verifyExternalSummaryItem("Canopies", "Added")
+      CheckAndConfirmChangesToExternalFeatures.tellAnotherExternalFeatureRadio("Yes")
+      continueButtonClick()
+
       Then(
         "The ratepayer adds 'Other external feature - Gravelled, fenced land - You added gravelled, fenced land' to the property"
       )
       WhichExternalFeatureHaveChange.whichInternalFeatureHaveChangedHeader()
-      WhichExternalFeatureHaveChange.selectOtherExternalFeatures("Land - gravelled, fenced")
+      WhichExternalFeatureHaveChange.selectOtherExternalFeatures("landGravelledFenced")
       continueButtonClick()
       WhatHappenedToGravelledFencedLand.whatHappenedToGravelledFencedLandHeader()
       WhatHappenedToGravelledFencedLand.whatHappenedToGravelledFencedLandRadio("You added gravelled, fenced land")
@@ -185,7 +197,7 @@ class ExternalFeaturesSpec extends BaseSpec with StubPage {
         "The ratepayer adds 'Other external feature - Gravelled, open land - You added gravelled, open land' to the property"
       )
       WhichExternalFeatureHaveChange.whichInternalFeatureHaveChangedHeader()
-      WhichExternalFeatureHaveChange.selectOtherExternalFeatures("Land - gravelled, open")
+      WhichExternalFeatureHaveChange.selectOtherExternalFeatures("landGravelledOpen")
       continueButtonClick()
       WhatHappenedToGravelledOpenLand.whatHappenedToGravelledOpenLandHeader()
       WhatHappenedToGravelledOpenLand.wwhatHappenedToGravelledOpenLandRadio("You added gravelled, open land")
@@ -199,7 +211,7 @@ class ExternalFeaturesSpec extends BaseSpec with StubPage {
         "The ratepayer adds 'Other external feature - Hard-surfaced, fenced land - You added hard-surfaced, fenced land' to the property"
       )
       WhichExternalFeatureHaveChange.whichInternalFeatureHaveChangedHeader()
-      WhichExternalFeatureHaveChange.selectOtherExternalFeatures("Land - hard-surfaced, fenced")
+      WhichExternalFeatureHaveChange.selectOtherExternalFeatures("landHardSurfacedFenced")
       continueButtonClick()
       WhatHappenedToHardSurfacedFencedLand.whatHappenedToHardSurfacedFencedLandHeader()
       WhatHappenedToHardSurfacedFencedLand.whatHappenedToHardSurfacedFencedLandRadio(
@@ -215,7 +227,7 @@ class ExternalFeaturesSpec extends BaseSpec with StubPage {
         "The ratepayer adds 'Other external feature - Hard-surfaced, open land - You added hard-surfaced, open land' to the property"
       )
       WhichExternalFeatureHaveChange.whichInternalFeatureHaveChangedHeader()
-      WhichExternalFeatureHaveChange.selectOtherExternalFeatures("Land - hard-surfaced, open")
+      WhichExternalFeatureHaveChange.selectOtherExternalFeatures("landHardSurfacedOpen")
       continueButtonClick()
       WhatHappenedToHardSurfacedOpenLand.whatHappenedToHardSurfacedOpenLandHeader()
       WhatHappenedToHardSurfacedOpenLand.whatHappenedToHardSurfacedOpenLandRadio("You added hard-surfaced, open land")
@@ -229,7 +241,7 @@ class ExternalFeaturesSpec extends BaseSpec with StubPage {
         "The ratepayer adds 'Other external feature - Unsurfaced, fenced land - You added unsurfaced, fenced land' to the property"
       )
       WhichExternalFeatureHaveChange.whichInternalFeatureHaveChangedHeader()
-      WhichExternalFeatureHaveChange.selectOtherExternalFeatures("Land - unsurfaced, fenced")
+      WhichExternalFeatureHaveChange.selectOtherExternalFeatures("landUnsurfacedFenced")
       continueButtonClick()
       WhatHappenedToUnsurfacedFencedLand.whatHappenedToUnsurfacedFencedLandHeader()
       WhatHappenedToUnsurfacedFencedLand.whatHappenedToUnsurfacedFencedLandRadio("You added unsurfaced, fenced land")
@@ -243,7 +255,7 @@ class ExternalFeaturesSpec extends BaseSpec with StubPage {
         "The ratepayer adds 'Other external feature - Unsurfaced, open land - You added unsurfaced, open land' to the property"
       )
       WhichExternalFeatureHaveChange.whichInternalFeatureHaveChangedHeader()
-      WhichExternalFeatureHaveChange.selectOtherExternalFeatures("Land - unsurfaced, open")
+      WhichExternalFeatureHaveChange.selectOtherExternalFeatures("landUnsurfacedOpen")
       continueButtonClick()
       WhatHappenedToUnsurfacedOpenLand.whatHappenedToUnsurfacedOpenLandHeader()
       WhatHappenedToUnsurfacedOpenLand.whatHappenedToUnsurfacedOpenLandRadio("You added unsurfaced, open land")
@@ -257,7 +269,7 @@ class ExternalFeaturesSpec extends BaseSpec with StubPage {
         "The ratepayer adds 'Other external feature - Portable buildings - You added portable buildings ' to the property"
       )
       WhichExternalFeatureHaveChange.whichInternalFeatureHaveChangedHeader()
-      WhichExternalFeatureHaveChange.selectOtherExternalFeatures("Portable buildings")
+      WhichExternalFeatureHaveChange.selectOtherExternalFeatures("portableBuildings")
       continueButtonClick()
       WhatHappenedToPortableBuildings.whatHappenedToPortableBuildingsHeader()
       WhatHappenedToPortableBuildings.whatHappenedToPortableBuildingsRadio("You added portable buildings")
@@ -271,7 +283,7 @@ class ExternalFeaturesSpec extends BaseSpec with StubPage {
         "The ratepayer adds 'Other external feature Shipping containers - You added shipping containers ' to the property"
       )
       WhichExternalFeatureHaveChange.whichInternalFeatureHaveChangedHeader()
-      WhichExternalFeatureHaveChange.selectOtherExternalFeatures("Shipping containers")
+      WhichExternalFeatureHaveChange.selectOtherExternalFeatures("shippingContainers")
       continueButtonClick()
       WhatHappenedToShippingContainers.whatHappenedToShippingContainersHeader()
       WhatHappenedToShippingContainers.whatHappenedToShippingContainersRadio("You added shipping containers")

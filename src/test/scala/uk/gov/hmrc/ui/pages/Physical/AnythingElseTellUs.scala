@@ -32,7 +32,7 @@ object AnythingElseTellUs extends BasePage {
     click(getElementById(radioCheckId))
   }
 
-  val textInputLocation: By  = By.id("text")
+  val textInputLocation: By = By.id("text")
 
   def AnythingElseTellUsTextInput(textInput: String): Unit = {
     click(textInputLocation)
