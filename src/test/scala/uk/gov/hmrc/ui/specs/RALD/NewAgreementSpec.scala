@@ -183,7 +183,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodRent("2000.90365")
 
       When("The user enters the start, end date and rent amount for the second rent period")
-      ProvideDetailsOfFirstSecondRentPeriodPage.provideDetailsOfFirstSecondRentPeriod()
+      ProvideDetailsOfFirstSecondRentPeriodPage.provideDetailsOfEachRentPeriod()
       ProvideDetailsOfFirstSecondRentPeriodPage.secondRentPeriodStartDate("02", "10", "2012")
       ProvideDetailsOfFirstSecondRentPeriodPage.secondRentPeriodEndDate("02", "12", "2023")
       ProvideDetailsOfFirstSecondRentPeriodPage.SecondRentPeriodRent("9999999.99")
