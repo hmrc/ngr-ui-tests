@@ -25,7 +25,9 @@ import uk.gov.hmrc.ui.utils.login.loginOl
 class RenewedAgreementSpec extends BaseSpec with StubPage {
 
   Feature("Testing the renewed agreement functionality") {
-    Scenario("The user renewed their agreement, agreement type: Licence or other type of written agreement, rent based on: A percentage of expected turnover") {
+    Scenario(
+      "The user renewed their agreement, agreement type: Licence or other type of written agreement, rent based on: A percentage of expected turnover"
+    ) {
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -212,7 +214,9 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       continueButtonClick()
     }
 
-    Scenario("The user renewed their agreement, agreement type: Lease or tenancy agreement, rent agreed in advance: No") {
+    Scenario(
+      "The user renewed their agreement, agreement type: Lease or tenancy agreement, rent agreed in advance: No"
+    ) {
 
       Given("Ratepayer logins through one login")
       loginOl()
