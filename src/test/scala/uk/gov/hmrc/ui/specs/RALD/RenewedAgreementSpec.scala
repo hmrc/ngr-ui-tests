@@ -25,9 +25,7 @@ import uk.gov.hmrc.ui.utils.login.loginOl
 class RenewedAgreementSpec extends BaseSpec with StubPage {
 
   Feature("Testing the renewed agreement functionality") {
-    Scenario(
-      "The user renewed their agreement, agreement type: Licence or other type of written agreement, rent based on: A percentage of expected turnover"
-    ) {
+    Scenario("The user renewed their agreement, agreement type: Licence or other type of written agreement, rent based on: A percentage of expected turnover") {
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -81,29 +79,24 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       HowMuchIsTotalAnnualRent.inputTotalAnnualRent("999900")
       continueButtonClick()
 
-      Then("The user selects 'No' with agreeing the rent with their landlord or their agent")
+      Then("The user selects 'Yes' with agreeing the rent with their landlord or their agent")
       DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlord()
-      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlordRadio("No")
+      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlordRadio("Yes")
       continueButtonClick()
 
-      Then("The ratepayer selects the 'Yes' on the 'Did the court also set an interim rent?' page")
-      DidTheCourtSetTheInterimRent.rentInterim()
-      DidTheCourtSetTheInterimRent.yesRadio()
+      Then("The user enters 'Yes' to having a rent free period")
+      DoYouHaveRentFreePeriod.doYouHaveRentFreePeriod()
+      DoYouHaveRentFreePeriod.selectRentFreePeriodRadio("Yes")
       continueButtonClick()
 
-      And("The ratepayer enter the details of Interim rent set by court")
-      InterimRentSetByTheCourtPage.interimRentSetByTheCourt()
-      InterimRentSetByTheCourtPage.interimHowMuchInput("1111111.11")
-      InterimRentSetByTheCourtPage.interimRentSetByTheCourtDateInput("3", "2019")
+      Then("The user enter how many months of rent free and reasons")
+      RentFreePeriod.rentFreePeriod()
+      RentFreePeriod.enterRentFreePeriodMonths("5")
+      RentFreePeriod.enterReasons("Any reasons")
       continueButtonClick()
 
       /*Todo Add missing steps*/
 
-//      When("The user enters the date they agreed their rent")
-//      RentDatesPage.rentDatesPage()
-//      RentDatesPage.agreeDateInput("03", "12", "2023")
-//      continueButtonClick()
-//
 //      Then("The user selects what their rent includes")
 //      WhatYourRentIncludesPage.whatYourRentIncludes()
 //      WhatYourRentIncludesPage.livingAccommodationRadio("Yes")
@@ -219,9 +212,7 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       continueButtonClick()
     }
 
-    Scenario(
-      "The user renewed their agreement, agreement type: Lease or tenancy agreement, rent agreed in advance: No"
-    ) {
+    Scenario("The user renewed their agreement, agreement type: Lease or tenancy agreement, rent agreed in advance: No") {
 
       Given("Ratepayer logins through one login")
       loginOl()
@@ -286,6 +277,18 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlord()
       DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlordRadio("No")
       continueButtonClick()
+
+      Then("The ratepayer selects the 'Yes' on the 'Did the court also set an interim rent?' page")
+      DidTheCourtSetTheInterimRent.rentInterim()
+      DidTheCourtSetTheInterimRent.yesRadio()
+      continueButtonClick()
+
+      And("The ratepayer enter the details of Interim rent set by court")
+      InterimRentSetByTheCourtPage.interimRentSetByTheCourt()
+      InterimRentSetByTheCourtPage.interimHowMuchInput("1111111.11")
+      InterimRentSetByTheCourtPage.interimRentSetByTheCourtDateInput("3", "2019")
+      continueButtonClick()
+
     }
   }
 }
