@@ -16,8 +16,8 @@
 
 package uk.gov.hmrc.ui.pages.Physical
 
-import uk.gov.hmrc.ui.pages.BasePage
 import org.openqa.selenium.By
+import uk.gov.hmrc.ui.pages.BasePage
 
 object HowManySecurityCamerasInsideProperty extends BasePage {
   def howManySecurityCamerasInsidePropertyHeader(): Unit =

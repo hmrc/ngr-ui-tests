@@ -17,7 +17,7 @@
 package uk.gov.hmrc.ui.specs.Physical
 
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome.dashboard
-import uk.gov.hmrc.ui.pages.Physical.{CheckAndConfirmChangesToInternalFeatures, HaveYouChangedExternalFeatures, HaveYouChangedInternalFeatures, HaveYouChangedUseOfSpace, HowManySecurityCamerasInsideProperty, HowMuchOfPropertyHasAirConditioning, HowMuchOfPropertyHasHeating, HowMuchOfPropertyHasSprinklers, InformationAndSupportingDocumentsNeed, TellUsChangedPropertyFeaturesOrUseOfSpace, WhatHappenedToCompressedAirSystems, WhenCompleteChange, WhereAreTheEscalatorsInTheProperty, WhichFloorsOfPropertyHaveGoodsLifts, WhichFloorsOfPropertyHavePassengerLifts, WhichInternalFeatureHaveChanged}
+import uk.gov.hmrc.ui.pages.Physical._
 import uk.gov.hmrc.ui.pages.RALD.{WhatDoYouWantToTellUs, YourProperty}
 import uk.gov.hmrc.ui.pages.{SignOutPage, StubPage}
 import uk.gov.hmrc.ui.specs.BaseSpec

@@ -17,7 +17,6 @@
 package uk.gov.hmrc.ui.pages.RALD
 
 import uk.gov.hmrc.ui.pages.BasePage
-import uk.gov.hmrc.ui.pages.RALD.RentPeriods.{click, getElementById}
 
 object RepairsAndInsurancePage extends BasePage {
 
