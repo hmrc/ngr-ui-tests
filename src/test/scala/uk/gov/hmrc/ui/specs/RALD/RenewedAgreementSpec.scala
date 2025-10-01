@@ -126,7 +126,9 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
 //      continueButtonClick()
     }
 
-    Scenario("The user renewed their agreement, agreement type: Lease or tenancy agreement, rent agreed in advance: Yes") {
+    Scenario(
+      "The user renewed their agreement, agreement type: Lease or tenancy agreement, rent agreed in advance: Yes"
+    ) {
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -217,7 +219,9 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       continueButtonClick()
     }
 
-    Scenario("The user renewed their agreement, agreement type: Lease or tenancy agreement, rent agreed in advance: No") {
+    Scenario(
+      "The user renewed their agreement, agreement type: Lease or tenancy agreement, rent agreed in advance: No"
+    ) {
 
       Given("Ratepayer logins through one login")
       loginOl()
