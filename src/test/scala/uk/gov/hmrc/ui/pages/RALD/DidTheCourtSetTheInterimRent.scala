@@ -20,9 +20,9 @@ import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 import uk.gov.hmrc.ui.pages.RALD.Landlord.{click, getElementById, headerCheck}
 
-object RentInterimPage extends BasePage {
+object DidTheCourtSetTheInterimRent extends BasePage {
 
-  val yesRadioButton = By.id("rent-interim-radio")
+  val yesRadioButton = By.id("rent-interim-radio") /*Renewed agreement scenario: 1*/
   val noRadioButton  = By.id("rent-interim-radio-2")
 
   def rentInterim(): Unit =

@@ -22,7 +22,7 @@ import uk.gov.hmrc.ui.pages.RALD.RentDatesPage.{headerCheck, sendKeys}
 
 object InterimRentSetByTheCourtPage extends BasePage {
 
-  def interimRentSetByTheCourtPage(): Unit =
+  def interimRentSetByTheCourt(): Unit =
     headerCheck("Interim rent set by the court")
 
   def interimHowMuchInput(amount: String): Unit =
