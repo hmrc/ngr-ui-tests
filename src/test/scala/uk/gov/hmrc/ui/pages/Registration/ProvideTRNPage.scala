@@ -14,22 +14,11 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.Registration.contactDetails.changeAddressPages
+package uk.gov.hmrc.ui.pages.Registration
 
 import uk.gov.hmrc.ui.pages.BasePage
 
-object SearchResultPage extends BasePage {
-
-  def searchResult(): Unit =
-    headerCheck("Search results for SL3 0AX")
-
-  def selectProperty(): Unit =
-    click(getElementByLink("Select Property"))
-
-  def searchAgain(): Unit =
-    click(getElementByLink("Search again"))
-
-  def paginationLink(link: String): Unit =
-    click(getElementByLink(link))
-
+object ProvideTRNPage extends BasePage {
+  def provideYourTRN(): Unit =
+    headerCheck("Provide your tax reference number")
 }

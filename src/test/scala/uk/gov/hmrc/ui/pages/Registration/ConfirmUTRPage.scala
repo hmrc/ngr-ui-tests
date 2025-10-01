@@ -14,30 +14,40 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.Registration.contactDetails.changeAddressPages
+package uk.gov.hmrc.ui.pages.Registration
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
-object DoyouWantToUseAddressPage extends BasePage {
+object ConfirmUTRPage extends BasePage {
 
-  val YesRadioButton = By.id("confirm-address-radio")
-  val NoRadioButton  = By.id("confirm-address-radio-2")
+  val yes: By     = By.id("confirmUTR")
+  val noNI: By    = By.id("confirmUTR-2")
+  val noLater: By = By.id("confirmUTR-3")
 
-  def SelectYesAddress(): Unit = {
-    headerCheck("Do you want to use this address?")
-    click(YesRadioButton)
+  def confirmYourSAUTR(): Unit =
+    headerCheck("Confirm your Self Assessment Unique Taxpayer Reference")
+
+  def confirmUTR(utr: String): Unit = {
+
+    val maskedUtr = getElementByCssSelector("#main-content > div > div > form > dl > div > dd")
+    assert(maskedUtr == utr, "Masked TRN verification failed")
+
+  }
+
+  def selectYes(): Unit = {
+    click(yes)
     click(continueButton)
   }
 
-  def SelectNoAddress(): Unit = {
-    headerCheck("Do you want to use this address?")
-    click(NoRadioButton)
+  def selectNoProvideNI(): Unit = {
+    click(noNI)
     click(continueButton)
   }
 
-  def confirmAddress(expectedAddress: String): Unit = {
-    val actualAddress = getElementByXpath("//*[@id=\"main-content\"]/div/div/form/p[1]")
-    assert(actualAddress == expectedAddress, "Address doesn't match on confirmAddress page ")
+  def selectNoLater(): Unit = {
+    click(noLater)
+    click(continueButton)
   }
+
 }

@@ -18,9 +18,7 @@ package uk.gov.hmrc.ui.specs.Register
 
 import uk.gov.hmrc.ui.pages.PropertyLinking.RegisterComplete
 import uk.gov.hmrc.ui.pages.PropertyLinking.RegisterComplete.{printLinkDisplay, regCompleteEmailChangedCheck}
-import uk.gov.hmrc.ui.pages.Registration.CheckYourAnswer
-import uk.gov.hmrc.ui.pages.Registration.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
-import uk.gov.hmrc.ui.pages.Registration.provideTRN.{ConfirmUTRPage, NinoPage, ProvideTRNPage}
+import uk.gov.hmrc.ui.pages.Registration.{CheckYourAnswer, ConfirmUTRPage, NinoPage, PhoneNumberPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl

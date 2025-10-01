@@ -18,9 +18,7 @@ package uk.gov.hmrc.ui.specs.PropertyLinking
 
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome
 import uk.gov.hmrc.ui.pages.PropertyLinking._
-import uk.gov.hmrc.ui.pages.Registration.CheckYourAnswer
-import uk.gov.hmrc.ui.pages.Registration.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
-import uk.gov.hmrc.ui.pages.Registration.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
+import uk.gov.hmrc.ui.pages.Registration.{CheckYourAnswer, ConfirmUTRPage, PhoneNumberPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl

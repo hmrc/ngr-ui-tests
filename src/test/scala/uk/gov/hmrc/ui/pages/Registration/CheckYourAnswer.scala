@@ -21,20 +21,6 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 object CheckYourAnswer extends BasePage {
 
-  val changeNameLink        = By.id("name-linkid")
-  val changePhoneNumberLink = By.id("number-linkid")
-  val changeEmailLink       = By.id("email-linkid")
-  val changeAddressLink     = By.id("address-linkid")
-
-  def ClickChangeNameLink(): Unit        =
-    click(changeNameLink)
-  def ClickChangePhoneNumberLink(): Unit =
-    click(changePhoneNumberLink)
-  def ClickChangeEmailLink(): Unit       =
-    click(changeEmailLink)
-  def ClickChangeAddressLink(): Unit     =
-    click(changeAddressLink)
-
   def checkYourAnswer(): Unit =
     headerCheck("Check your answers")
 
@@ -44,28 +30,11 @@ object CheckYourAnswer extends BasePage {
       "Masked TRN verification failed"
     )
 
-  def sautrNoDisplay(sautr: String): Unit = {
+  def sauUtrNoDisplay(utr: String): Unit = {
     val display = getElementByCssSelector("#sautr-linkid")
-    assert(sautr == display, "Provide your UTR link is not present")
+    assert(utr == display, "Provide your UTR link is not present")
   }
 
-  def nameChangedCheck(name: String): Unit = {
-    val display = getElementByCssSelector("#contact-name-id")
-    assert(name == display, "the contact name was not changed")
-  }
-
-  def phoneChangedCheck(phoneNumber: String): Unit = {
-    val display = getElementByCssSelector("#phone-number-id")
-    assert(phoneNumber == display, "the contact phone number was not changed")
-  }
-
-  def emailChangedCheck(email: String): Unit = {
-    val display = getElementByCssSelector("#email-address-id")
-    assert(email == display, "the email was not changed")
-  }
-
-  def verifyAddress(expectedAddress: String): Unit = {
-    val actualAddress = getElementByCssSelector("#address-id")
-    assert(actualAddress == expectedAddress, "Address doesn't match")
-  }
 }
+
+

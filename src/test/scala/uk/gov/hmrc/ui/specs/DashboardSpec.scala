@@ -20,9 +20,7 @@ import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome
 import uk.gov.hmrc.ui.pages.PropertyLinking.RegisterComplete
 import uk.gov.hmrc.ui.pages.RALD.YourProperty
 import uk.gov.hmrc.ui.pages.RALD.YourProperty.yourProperty
-import uk.gov.hmrc.ui.pages.Registration.CheckYourAnswer
-import uk.gov.hmrc.ui.pages.Registration.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
-import uk.gov.hmrc.ui.pages.Registration.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
+import uk.gov.hmrc.ui.pages.Registration.{CheckYourAnswer, ConfirmUTRPage, PhoneNumberPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.pages.{FeedbackPage, StubPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
