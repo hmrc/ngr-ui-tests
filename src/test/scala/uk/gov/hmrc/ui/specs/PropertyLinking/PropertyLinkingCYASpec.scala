@@ -17,14 +17,13 @@
 package uk.gov.hmrc.ui.specs.PropertyLinking
 
 import org.openqa.selenium.By
-import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome
 import uk.gov.hmrc.ui.pages.PropertyLinking.PropertyLinkingCYA.hitCYAStep
 import uk.gov.hmrc.ui.pages.PropertyLinking._
+import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.PropertyLinkingDB
-import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
 
 import java.time.{Clock, Instant, ZoneId}
 

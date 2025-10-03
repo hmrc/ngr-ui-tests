@@ -16,9 +16,9 @@
 
 package uk.gov.hmrc.ui.specs.Register
 
-import uk.gov.hmrc.ui.pages._
 import uk.gov.hmrc.ui.pages.Registration.contactDetails.changeAddressPages.{DoyouWantToUseAddressPage, FindContactAddressPage, SearchResultPage, WhatIsAddressPage}
 import uk.gov.hmrc.ui.pages.Registration.contactDetails.{ConfirmContactDetailsPage, ContactNamePage, EmailPage, PhoneNumberPage}
+import uk.gov.hmrc.ui.pages._
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.RegistrationDB

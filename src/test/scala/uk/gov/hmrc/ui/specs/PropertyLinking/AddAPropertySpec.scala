@@ -24,8 +24,7 @@ import uk.gov.hmrc.ui.pages.Registration.provideTRN.{ConfirmUTRPage, ProvideTRNP
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
-import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
-import uk.gov.hmrc.ui.utils.mongo.PropertyLinkingDB
+import uk.gov.hmrc.ui.utils.mongo.{PropertyLinkingDB, RegistrationDB}
 
 class AddAPropertySpec extends BaseSpec with StubPage {
 

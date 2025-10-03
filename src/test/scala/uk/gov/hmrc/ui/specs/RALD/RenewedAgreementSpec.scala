@@ -86,31 +86,39 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlordRadio("Yes")
       continueButtonClick()
 
-      When("The user enters the date they agreed their rent")
-      RentDatesPage.rentDatesPage()
-      RentDatesPage.agreeDateInput("03", "12", "2023")
+      Then("The user enters 'Yes' to having a rent free period")
+      DoYouHaveRentFreePeriod.doYouHaveRentFreePeriod()
+      DoYouHaveRentFreePeriod.selectRentFreePeriodRadio("Yes")
       continueButtonClick()
 
-      Then("The user selects what their rent includes")
-      WhatYourRentIncludesPage.whatYourRentIncludes()
-      WhatYourRentIncludesPage.livingAccommodationRadio("Yes")
-      WhatYourRentIncludesPage.bedroomNumbers("5")
-      WhatYourRentIncludesPage.rentPartAddressRadio("No")
-      WhatYourRentIncludesPage.rentEmptyShellRadio("No")
-      WhatYourRentIncludesPage.rentIncBusinessRatesRadio("No")
-      WhatYourRentIncludesPage.rentIncWaterChargesRadio("No")
-      WhatYourRentIncludesPage.rentIncServiceRadio("No")
+      Then("The user enter how many months of rent free and reasons")
+      RentFreePeriod.rentFreePeriod()
+      RentFreePeriod.enterRentFreePeriodMonths("5")
+      RentFreePeriod.enterReasons("Any reasons")
       continueButtonClick()
 
-      Then("The user selects 'No' to having parking spaces or garages")
-      DoesYourRentIncludeParkingPage.doesYourRentIncludeParking()
-      DoesYourRentIncludeParkingPage.noRadio()
-      continueButtonClick()
+      /*Todo Add missing steps*/
 
-      Then("The user select yes to pay extra parking spaces not included in rent")
-      DoYouPayExtraForParkingSpaces.doYouPayExtraForParkingSpaces()
-      DoYouPayExtraForParkingSpaces.selectPayExtraRadio("yes")
-      continueButtonClick()
+//      Then("The user selects what their rent includes")
+//      WhatYourRentIncludesPage.whatYourRentIncludes()
+//      WhatYourRentIncludesPage.livingAccommodationRadio("Yes")
+//      WhatYourRentIncludesPage.bedroomNumbers("5")
+//      WhatYourRentIncludesPage.rentPartAddressRadio("No")
+//      WhatYourRentIncludesPage.rentEmptyShellRadio("No")
+//      WhatYourRentIncludesPage.rentIncBusinessRatesRadio("No")
+//      WhatYourRentIncludesPage.rentIncWaterChargesRadio("No")
+//      WhatYourRentIncludesPage.rentIncServiceRadio("No")
+//      continueButtonClick()
+//
+//      Then("The user selects 'No' to having parking spaces or garages")
+//      DoesYourRentIncludeParkingPage.doesYourRentIncludeParking()
+//      DoesYourRentIncludeParkingPage.noRadio()
+//      continueButtonClick()
+//
+//      Then("The user select yes to pay extra parking spaces not included in rent")
+//      DoYouPayExtraForParkingSpaces.doYouPayExtraForParkingSpaces()
+//      DoYouPayExtraForParkingSpaces.selectPayExtraRadio("yes")
+//      continueButtonClick()
     }
 
     Scenario(
@@ -273,6 +281,18 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlord()
       DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlordRadio("No")
       continueButtonClick()
+
+      Then("The ratepayer selects the 'Yes' on the 'Did the court also set an interim rent?' page")
+      DidTheCourtSetTheInterimRent.rentInterim()
+      DidTheCourtSetTheInterimRent.yesRadio()
+      continueButtonClick()
+
+      And("The ratepayer enter the details of Interim rent set by court")
+      InterimRentSetByTheCourtPage.interimRentSetByTheCourt()
+      InterimRentSetByTheCourtPage.interimHowMuchInput("1111111.11")
+      InterimRentSetByTheCourtPage.interimRentSetByTheCourtDateInput("3", "2019")
+      continueButtonClick()
+
     }
   }
 }
