@@ -33,9 +33,8 @@ object ProvideDetailsOfFirstSecondRentPeriodPage extends BasePage {
   val firstDateEndInputLocationYear: By  = By.id("first.endDate.year")
 
   val firstRentPeriodRadioInputYes: By = By.id("provideDetailsOfFirstSecondRentPeriod-radio-firstRentPeriodRadio")
-
-  val firstRentPeriodRentAmount: By   = By.id("RentPeriodAmount")
-  val firstRentPeriodRadioInputNo: By = By.id("provideDetailsOfFirstSecondRentPeriod-radio-firstRentPeriodRadio-2")
+  val firstRentPeriodRentAmount: By    = By.id("RentPeriodAmount")
+  val firstRentPeriodRadioInputNo: By  = By.id("provideDetailsOfFirstSecondRentPeriod-radio-firstRentPeriodRadio-2")
 
   val secondDateStartInputLocationDay: By   = By.id("second.startDate.day")
   val secondDateStartInputLocationMonth: By = By.id("second.startDate.month")

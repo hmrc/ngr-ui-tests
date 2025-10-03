@@ -47,7 +47,8 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       Then("The user inputs the landlords name and selects family member as type")
       Landlord.landlord()
       Landlord.landlordNameInput(landlordName = "Tinker Bell")
-      Landlord.landLordAndTenantRadio()
+      Landlord.yesRadio()
+      Landlord.supplyRelationship("I am the tenant")
       continueButtonClick()
 
       /* Agreement type = 'Lease or tenancy agreement'*/
@@ -123,6 +124,22 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       DoYouPayExtraForParkingSpaces.doYouPayExtraForParkingSpaces()
       DoYouPayExtraForParkingSpaces.selectPayExtraRadio("yes")
       continueButtonClick()
+
+      Then(
+        "The user enters 3 for uncovered parking spaces, 4000 for how much extra they pay with an agreement date of 19-01-2020"
+      )
+
+      ParkingSpacesOrGaragesNotIncludedInYourRentPage.enterUncoveredSpaces("3")
+      ParkingSpacesOrGaragesNotIncludedInYourRentPage.totalCost("4000")
+      ParkingSpacesOrGaragesNotIncludedInYourRentPage.agreementDateInput(day = "19", month = "01", year = "1997")
+      continueButtonClick()
+
+      Then("The user selects you to who pays for internal, external and building insurance repairs")
+      RepairsAndInsurancePage.repairsAndInsurance()
+      RepairsAndInsurancePage.whoPaysForInternalRepairsRadio("You")
+      RepairsAndInsurancePage.whoPaysForExternalRepairsRadio("You")
+      RepairsAndInsurancePage.WhoPaysForBuildingInsuranceRepairs("You")
+      continueButtonClick()
     }
 
     Scenario("New agreement, agreement type: Licence or other type of written agreement, agreed in advance: 'Yes'") {
@@ -148,8 +165,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       Then("The user inputs the landlords name and selects family member as type")
       Landlord.landlord()
       Landlord.landlordNameInput(landlordName = "Tinker Bell")
-      Landlord.otherRelationshipRadio()
-      Landlord.otherRelationshipInput("Complicated")
+      Landlord.noRadio()
       continueButtonClick()
 
       /* Agreement type ='Licence or other type of written agreement' */
@@ -209,10 +225,9 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       RentPeriods.addAnotherPeriod("No")
       continueButtonClick()
 
-      When("The user enters yes to agree rent with the landlord")
-      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlord()
-      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlordRadio("Yes")
-      continueButtonClick()
+      Then("The user enters their rent date")
+      RentDatesPage.rentDatesPage()
+      RentDatesPage.agreeDateInput("19", "01", "2020")
     }
 
     Scenario("New agreement, agreement type: Verbal") {
@@ -237,7 +252,8 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       Then("The user inputs the landlords name and selects family member as type")
       Landlord.landlord()
       Landlord.landlordNameInput(landlordName = "Bob")
-      Landlord.businessPartnerOrSharedDirectorRadio()
+      Landlord.yesRadio()
+      Landlord.supplyRelationship("I am the tenant")
       continueButtonClick()
 
       Then("The user selects verbal agreement as there agreement type")

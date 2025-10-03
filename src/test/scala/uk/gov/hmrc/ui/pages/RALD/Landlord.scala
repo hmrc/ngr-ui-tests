@@ -30,20 +30,14 @@ object Landlord extends BasePage {
   def landlordNameInput(landlordName: String): Unit =
     sendKeys(landlordNameLocation, landlordName)
 
-  def landLordAndTenantRadio(): Unit =
+  def yesRadio(): Unit =
     click(getElementById("landlord-radio")) /*used*/
 
-  def familyMemberRadio(): Unit =
+  def noRadio(): Unit =
     click(getElementById("landlord-radio-2")) /*used in renewed*/
 
-  def companyPensionFundRadio(): Unit =
-    click(getElementById("landlord-radio-3")) /*used*/
-
-  def businessPartnerOrSharedDirectorRadio(): Unit = /*used*/
-    click(getElementById("landlord-radio-4"))
-
-  def otherRelationshipRadio(): Unit =
-    click(getElementById("landlord-radio-5")) /*used*/
+  def supplyRelationship(description: String): Unit =
+    sendKeys(By.id("landlord-relationship"), description)
 
   def otherRelationshipInput(landlordRelationship: String): Unit =
     sendKeys(landlordOtherInputLocation, landlordRelationship)
