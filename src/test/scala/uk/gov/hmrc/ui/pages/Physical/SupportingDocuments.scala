@@ -18,18 +18,8 @@ package uk.gov.hmrc.ui.pages.Physical
 
 import uk.gov.hmrc.ui.pages.BasePage
 
-object HaveYouChangedUseOfSpace extends BasePage {
+object SupportingDocuments extends BasePage {
 
-  def changedUseOfSpaceHeader(): Unit =
-    headerCheck("Have you changed use of space?")
-
-  // Have you changed use of space? Radio button selection
-
-  def changedUseOfSpaceRadio(ChangedUseOfSpace: String): Unit = {
-    val radioCheckId = ChangedUseOfSpace match {
-      case "Yes" => "value"
-      case "No"  => "value-no"
-    }
-    click(getElementById(radioCheckId))
-  }
+  def supportingDocumentsHeader(): Unit =
+    headerCheck("Supporting documents")
 }

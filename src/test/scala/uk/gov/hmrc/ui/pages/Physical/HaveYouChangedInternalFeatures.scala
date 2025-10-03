@@ -20,7 +20,7 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 object HaveYouChangedInternalFeatures extends BasePage {
   def changedInternalFeatureHeader(): Unit =
-    legendCheck("Have you changed internal features?")
+    headerCheck("Have you changed internal features?")
 
   def changedInternalFeatureRadio(changedInternalFeature: String): Unit = {
     val radioCheckId = changedInternalFeature match {

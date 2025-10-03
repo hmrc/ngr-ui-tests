@@ -22,20 +22,19 @@ import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.ui.pages.BasePage
 import scala.jdk.CollectionConverters._
 
-object CheckAndConfirmChangesToInternalFeatures extends BasePage {
+object CheckAndConfirmChangesToExternalFeatures extends BasePage {
+  def checkAndConfirmChangesToExternalFeaturesHeader(): Unit =
+    headerCheck("Check and confirm changes to external features")
 
-  def checkAndConfirmChangesToInternalFeaturesHeader(): Unit =
-    headerCheck("Check and confirm changes to internal features")
-
-  def tellAnotherInternalFeatureRadio(anotherInternalFeature: String): Unit = {
-    val radioCheckId = anotherInternalFeature match {
+  def tellAnotherExternalFeatureRadio(anotherExternalFeature: String): Unit = {
+    val radioCheckId = anotherExternalFeature match {
       case "Yes" => "value"
       case "No"  => "value-no"
     }
     click(getElementById(radioCheckId))
   }
 
-  def verifySummaryItem(keyText: String, expectedValue: String): Unit = {
+  def verifyExternalSummaryItem(keyText: String, expectedValue: String): Unit = {
     Wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".govuk-summary-list")))
     Wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".govuk-summary-list__row")))
     val rows = Driver.instance.findElements(By.cssSelector(".govuk-summary-list__row")).asScala
@@ -55,4 +54,5 @@ object CheckAndConfirmChangesToInternalFeatures extends BasePage {
         throw new NoSuchElementException(s"Could not find summary row with key '$keyText'")
     }
   }
+
 }

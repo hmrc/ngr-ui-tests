@@ -20,7 +20,7 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 object WhatHappenedToCompressedAirSystems extends BasePage {
   def whatHappenedToCompressedAirSystemsHeader(): Unit =
-    legendCheck("What has happened to compressed air systems?")
+    headerCheck("What has happened to compressed air systems?")
 
   def whatHappenedToCompressedAirSystemsRadio(compressedAirSystems: String): Unit = {
     val radioCheckId = compressedAirSystems match {

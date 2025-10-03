@@ -20,7 +20,7 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 object HowMuchOfPropertyHasHeating extends BasePage {
   def howMuchOfPropertyHasHeatingHeader(): Unit =
-    legendCheck("How much of the property has heating?")
+    headerCheck("How much of the property has heating?")
 
   def howMuchOfPropertyHasHeatingRadio(heating: String): Unit = {
     val radioCheckId = heating match {

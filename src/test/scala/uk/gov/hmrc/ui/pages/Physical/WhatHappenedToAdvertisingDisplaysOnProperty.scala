@@ -18,18 +18,18 @@ package uk.gov.hmrc.ui.pages.Physical
 
 import uk.gov.hmrc.ui.pages.BasePage
 
-object HaveYouChangedUseOfSpace extends BasePage {
+object WhatHappenedToAdvertisingDisplaysOnProperty extends BasePage {
 
-  def changedUseOfSpaceHeader(): Unit =
-    headerCheck("Have you changed use of space?")
+  def whatHappenedToAdvertisingDisplaysOnPropertyHeader(): Unit =
+    headerCheck("What has happened to advertising displays on your property?")
 
-  // Have you changed use of space? Radio button selection
-
-  def changedUseOfSpaceRadio(ChangedUseOfSpace: String): Unit = {
-    val radioCheckId = ChangedUseOfSpace match {
-      case "Yes" => "value"
-      case "No"  => "value-no"
+  def whatHappenedToAdvertisingDisplaysOnPropertyRadio(advertisingDisplaysOnProperty: String): Unit = {
+    val radioCheckId = advertisingDisplaysOnProperty match {
+      case "You added advertising displays on your property"        => "value_0"
+      case "You removed some advertising displays on your property" => "value_1"
+      case "You removed all advertising displays on your property"  => "value_2"
     }
     click(getElementById(radioCheckId))
   }
+
 }

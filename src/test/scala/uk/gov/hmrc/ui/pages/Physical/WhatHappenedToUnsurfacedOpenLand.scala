@@ -18,18 +18,18 @@ package uk.gov.hmrc.ui.pages.Physical
 
 import uk.gov.hmrc.ui.pages.BasePage
 
-object HaveYouChangedUseOfSpace extends BasePage {
+object WhatHappenedToUnsurfacedOpenLand extends BasePage {
 
-  def changedUseOfSpaceHeader(): Unit =
-    headerCheck("Have you changed use of space?")
+  def whatHappenedToUnsurfacedOpenLandHeader(): Unit =
+    headerCheck("What has happened to unsurfaced, open land?")
 
-  // Have you changed use of space? Radio button selection
-
-  def changedUseOfSpaceRadio(ChangedUseOfSpace: String): Unit = {
-    val radioCheckId = ChangedUseOfSpace match {
-      case "Yes" => "value"
-      case "No"  => "value-no"
+  def whatHappenedToUnsurfacedOpenLandRadio(unsurfacedOpenLand: String): Unit = {
+    val radioCheckId = unsurfacedOpenLand match {
+      case "You added unsurfaced, open land"        => "value_0"
+      case "You removed some unsurfaced, open land" => "value_1"
+      case "You removed all unsurfaced, open land"  => "value_2"
     }
     click(getElementById(radioCheckId))
   }
+
 }
