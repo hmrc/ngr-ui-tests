@@ -22,8 +22,7 @@ import uk.gov.hmrc.ui.pages.Registration.{CheckYourAnswer, ConfirmUTRPage, Phone
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
-import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
-import uk.gov.hmrc.ui.utils.mongo.PropertyLinkingDB
+import uk.gov.hmrc.ui.utils.mongo.{PropertyLinkingDB, RegistrationDB}
 
 class AddAPropertySpec extends BaseSpec with StubPage {
 
@@ -41,10 +40,6 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
       Then("User provide phone number")
       PhoneNumberPage.userProvidesPhoneNumber()
-
-      Then("Ratepayer is taken to the Confirm Contact Details page")
-      ConfirmContactDetailsPage.ConfirmContactDetails()
-      click(continueButton)
 
       Then("Ratepayer is taken to Provide TRN Page")
       ProvideTRNPage.provideYourTRN()

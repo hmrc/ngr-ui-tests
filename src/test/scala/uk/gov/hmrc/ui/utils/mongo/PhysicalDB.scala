@@ -17,8 +17,8 @@
 package uk.gov.hmrc.ui.utils.mongo
 
 import com.mongodb.client.model.IndexOptions
-import org.mongodb.scala.{Document, MongoClient, MongoCollection, MongoDatabase}
 import org.mongodb.scala.model.Filters.expr
+import org.mongodb.scala.{Document, MongoClient, MongoCollection, MongoDatabase}
 import uk.gov.hmrc.ui.utils.mongo.MongoHelper.GenericObservable
 
 object PhysicalDB {

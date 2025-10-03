@@ -19,7 +19,7 @@ package uk.gov.hmrc.ui.utils.mongo
 import com.mongodb.client.model.IndexOptions
 import org.mongodb.scala._
 import org.mongodb.scala.model.Filters._
-import MongoHelper.GenericObservable
+import uk.gov.hmrc.ui.utils.mongo.MongoHelper.GenericObservable
 
 object RegistrationDB {
 

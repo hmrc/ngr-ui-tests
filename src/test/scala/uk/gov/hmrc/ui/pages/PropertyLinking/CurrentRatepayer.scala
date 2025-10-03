@@ -17,9 +17,9 @@
 package uk.gov.hmrc.ui.pages.PropertyLinking
 
 import org.openqa.selenium.By
+import uk.gov.hmrc.ui.pages.BasePage
 
 import java.time.{Clock, LocalDateTime}
-import uk.gov.hmrc.ui.pages.BasePage
 
 object CurrentRatepayer extends BasePage {
 

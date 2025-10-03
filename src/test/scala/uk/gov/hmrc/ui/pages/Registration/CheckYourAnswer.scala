@@ -16,7 +16,6 @@
 
 package uk.gov.hmrc.ui.pages.Registration
 
-import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
 object CheckYourAnswer extends BasePage {
@@ -24,17 +23,14 @@ object CheckYourAnswer extends BasePage {
   def checkYourAnswer(): Unit =
     headerCheck("Check your answers")
 
-  def confirmMAskedTRN(TRN: String): Unit =
-    assert(
-      getElementByXpath("//*[@id=\"main-content\"]/div/div/form/dl[2]/div/dd[1]") == TRN,
-      "Masked TRN verification failed"
-    )
+  def confirmMAskedNINO(NINO: String): Unit = {
+    val MaskedNINO = findElementById("national-insurance-number-id").getText
+    assert(MaskedNINO == NINO, "Masked NINO verification failed")
+  }
 
-  def sauUtrNoDisplay(utr: String): Unit = {
-    val display = getElementByCssSelector("#sautr-linkid")
-    assert(utr == display, "Provide your UTR link is not present")
+  def confirmMAskedUTR(UTR: String): Unit = {
+    val MaskedUTR = findElementById("self-assessment-unique-taxpayer-reference-id").getText
+    assert(MaskedUTR == UTR, "Masked TRN verification failed")
   }
 
 }
-
-

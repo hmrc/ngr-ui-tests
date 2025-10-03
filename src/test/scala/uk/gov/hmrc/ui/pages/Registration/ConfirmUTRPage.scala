@@ -45,7 +45,7 @@ object ConfirmUTRPage extends BasePage {
     click(continueButton)
   }
 
-  def selectNoLater(): Unit = {
+  def provideTRNLater(): Unit = {
     click(noLater)
     click(continueButton)
   }
