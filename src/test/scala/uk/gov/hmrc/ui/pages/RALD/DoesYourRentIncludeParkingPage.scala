@@ -18,23 +18,21 @@ package uk.gov.hmrc.ui.pages.RALD
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.RALD.AgreementVerbal.headerCheck
+import uk.gov.hmrc.ui.pages.RALD.RentInterimPage.{click, noRadioButton, yesRadioButton}
 
-object RentFreePeriod extends BasePage {
+object DoesYourRentIncludeParkingPage extends BasePage {
 
-  def rentFreePeriod(): Unit =
-    headerCheck("Rent-free period")
+  private val yesRadioButton = By.id("doesYourRentIncludeParking-radio-value")
+  private val noRadioButton  = By.id("doesYourRentIncludeParking-radio-value-2")
 
-  def enterRentFreePeriodMonths(months: String): Unit =
-    sendKeys(By.id("rentFreePeriodMonths"), months)
+  def doesYourRentIncludeParking(): Unit =
+    headerCheck("Does your rent include parking spaces or garages?")
 
-  def enterReasons(reasons: String): Unit =
-    sendKeys(By.id("reasons"), reasons)
+  def yesRadio(): Unit =
+    click(yesRadioButton)
 
-  def selectRentFreePeriodRadio(isRentFree: String): Unit = {
-    val radioId = isRentFree.toLowerCase match {
-      case "yes" => "check-rent-period-radio" /* New agreement sc 1*/
-      case _     => "check-rent-period-radio-2" /* New agreement sc 3*/
-    }
-    click(getElementById(radioId))
-  }
+  def noRadio(): Unit =
+    click(noRadioButton) /*Used in renewedAgreement scenario 1*/
+
 }

@@ -31,18 +31,21 @@ object WhatYourRentIncludesPage extends BasePage {
       click(By.id("livingAccommodationRadio-2"))
     }
 
+  def bedroomNumbers(numbers: String): Unit =
+    sendKeys(By.id("bedroomNumbers"), numbers)
+
   def rentPartAddressRadio(select: String): Unit =
     if (select == "Yes") {
-      click(By.id("rentPartAddressRadio"))
+      click(By.id("rentPartAddressRadio")) /*Used in NewedAgreement scenario 3*/
     } else {
-      click(By.id("rentPartAddressRadio-2"))
+      click(By.id("rentPartAddressRadio-2")) /*Used in renewedAgreement scenario 1*/
     }
 
   def rentEmptyShellRadio(select: String): Unit =
     if (select == "Yes") {
       click(By.id("rentEmptyShellRadio"))
     } else {
-      click(By.id("rentEmptyShellRadio-2"))
+      click(By.id("rentEmptyShellRadio-2")) /*Used in renewedAgreement scenario 1*/
     }
 
   def rentIncBusinessRatesRadio(select: String): Unit =

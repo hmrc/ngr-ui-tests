@@ -18,7 +18,6 @@ package uk.gov.hmrc.ui.pages.RALD
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
-import uk.gov.hmrc.ui.pages.RALD.AgreementVerbal.headerCheck
 
 object DidYouAgreeRentWithLandlordPage extends BasePage {
 
@@ -27,8 +26,8 @@ object DidYouAgreeRentWithLandlordPage extends BasePage {
 
   def didYouAgreeRentWithLandlordRadio(option: String): Unit = {
     val radioId = option.toLowerCase match {
-      case "yes" => "agreement-breakClause-radio"
-      case "no"  => "agreement-breakClause-radio-2"
+      case "yes" => "did-you-agree-rent-with-landlord-radio" /*Renewed agreement scenario: 1*/
+      case "no"  => "did-you-agree-rent-with-landlord-radio-2"
     }
     click(By.id(radioId))
   }

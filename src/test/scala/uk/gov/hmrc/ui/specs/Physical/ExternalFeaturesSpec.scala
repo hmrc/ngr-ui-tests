@@ -17,8 +17,8 @@
 package uk.gov.hmrc.ui.specs.Physical
 
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome.dashboard
-import uk.gov.hmrc.ui.pages.Physical.{AnythingElseTellUs, CheckAndConfirmChangesToExternalFeatures, HaveYouChangedExternalFeatures, HaveYouChangedInternalFeatures, HaveYouChangedUseOfSpace, InformationAndSupportingDocumentsNeed, SelectYourProperty, TellUsChangedPropertyFeaturesOrUseOfSpace, WhatHappenedToAdvertisingDisplaysOnProperty, WhatHappenedToBikeSheds, WhatHappenedToCanopies, WhatHappenedToGravelledFencedLand, WhatHappenedToGravelledOpenLand, WhatHappenedToHardSurfacedFencedLand, WhatHappenedToHardSurfacedOpenLand, WhatHappenedToLoadingBays, WhatHappenedToLockUpGarages, WhatHappenedToOutdoorSeating, WhatHappenedToParking, WhatHappenedToPortableBuildings, WhatHappenedToShippingContainers, WhatHappenedToSolarPanels, WhatHappenedToUnsurfacedFencedLand, WhatHappenedToUnsurfacedOpenLand, WhenCompleteChange, WhichExternalFeatureHaveChange}
-import uk.gov.hmrc.ui.pages.RALD.{WhatDoYouWantToTellUs, WhichPropertyDoYouWantToTellUsAbout}
+import uk.gov.hmrc.ui.pages.Physical._
+import uk.gov.hmrc.ui.pages.RALD.WhatDoYouWantToTellUs
 import uk.gov.hmrc.ui.pages.{SignOutPage, StubPage}
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl

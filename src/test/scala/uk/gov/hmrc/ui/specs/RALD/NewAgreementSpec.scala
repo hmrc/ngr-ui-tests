@@ -34,7 +34,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       clickLink("Tell us about a change")
 
       Then("The ratepayers selects the property and proceed through the new agreement journey")
-      WhichPropertyDoYouWantToTellUsAbout.whichPropertyDoYouWantToTellUsAbout()
+      YourProperty.yourProperty()
       clickLink("Select property")
 
       Then("The user selects new agreement link to tell about their new agreement")
@@ -85,6 +85,44 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       HowMuchIsTotalAnnualRent.howMuchIsTotalAnnualRent()
       HowMuchIsTotalAnnualRent.inputTotalAnnualRent("7000")
       continueButtonClick()
+
+      /*'By selecting Yes the user misses page Rent-free period'*/
+      Then("The user enters 'Yes' to having a rent period")
+      DoYouHaveRentFreePeriod.doYouHaveRentFreePeriod()
+      DoYouHaveRentFreePeriod.selectRentFreePeriodRadio("Yes")
+      continueButtonClick()
+
+      Then("The user enter how many months of rent free and reasons")
+      RentFreePeriod.rentFreePeriod()
+      RentFreePeriod.enterRentFreePeriodMonths("5")
+      RentFreePeriod.enterReasons("Any reasons")
+      continueButtonClick()
+
+      Then("The user enters their agreement date and start date")
+      RentDatesAgreeStartPage.rentDatesAgreeStartPage()
+      RentDatesAgreeStartPage.agreeDateInput(day = "12", month = "12", year = "2020")
+      RentDatesAgreeStartPage.startDateInput(day = "10", month = "01", year = "2021")
+      continueButtonClick()
+
+      Then("The user selects what their rent includes")
+      WhatYourRentIncludesPage.whatYourRentIncludes()
+      WhatYourRentIncludesPage.livingAccommodationRadio("No")
+      WhatYourRentIncludesPage.rentPartAddressRadio("Yes")
+      WhatYourRentIncludesPage.rentEmptyShellRadio("Yes")
+      WhatYourRentIncludesPage.rentIncBusinessRatesRadio("Yes")
+      WhatYourRentIncludesPage.rentIncWaterChargesRadio("Yes")
+      WhatYourRentIncludesPage.rentIncServiceRadio("Yes")
+      continueButtonClick()
+
+      Then("The user selects no to having parking spaces or garages")
+      DoesYourRentIncludeParkingPage.doesYourRentIncludeParking()
+      DoesYourRentIncludeParkingPage.noRadio()
+      continueButtonClick()
+
+      Then("The user select yes to pay extra parking spaces not included in rent")
+      DoYouPayExtraForParkingSpaces.doYouPayExtraForParkingSpaces()
+      DoYouPayExtraForParkingSpaces.selectPayExtraRadio("yes")
+      continueButtonClick()
     }
 
     Scenario("New agreement, agreement type: Licence or other type of written agreement, agreed in advance: 'Yes'") {
@@ -97,7 +135,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       clickLink("Tell us about a change")
 
       Then("The ratepayers selects the property and proceed through the new agreement journey")
-      WhichPropertyDoYouWantToTellUsAbout.whichPropertyDoYouWantToTellUsAbout()
+      YourProperty.yourProperty()
       clickLink("Select property")
 
       Then("The user selects new agreement link to tell about their new agreement")
@@ -141,7 +179,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       continueButtonClick()
 
       When("The user provides the start and end date for the first rent period")
-      ProvideDetailsOfFirstSecondRentPeriodPage.provideDetailsOfFirstSecondRentPeriod()
+      ProvideDetailsOfFirstSecondRentPeriodPage.provideDetailsOfEachRentPeriod()
       ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodStartDate("02", "01", "2011")
       ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodEndDate("02", "03", "2022")
 
@@ -150,7 +188,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodRent("2000.90365")
 
       When("The user enters the start, end date and rent amount for the second rent period")
-      ProvideDetailsOfFirstSecondRentPeriodPage.provideDetailsOfFirstSecondRentPeriod()
+      ProvideDetailsOfFirstSecondRentPeriodPage.provideDetailsOfEachRentPeriod()
       ProvideDetailsOfFirstSecondRentPeriodPage.secondRentPeriodStartDate("02", "10", "2012")
       ProvideDetailsOfFirstSecondRentPeriodPage.secondRentPeriodEndDate("02", "12", "2023")
       ProvideDetailsOfFirstSecondRentPeriodPage.SecondRentPeriodRent("9999999.99")
@@ -158,6 +196,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
 
       When("The user check rent period details on rent periods page")
       RentPeriods.rentPeriods()
+      /*These dates should be similar to the dates entered in the previous steps(first and second rent period) */
       RentPeriods.verifyFirstPeriodStartDate("2 January 2011")
       RentPeriods.verifyFirstPeriodEndDate("2 March 2022")
       RentPeriods.verifyFirstPeriodDoYouPay("Yes")
@@ -170,9 +209,9 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       RentPeriods.addAnotherPeriod("No")
       continueButtonClick()
 
-      When("The user enters the date they agreed their rent")
-      RentDatesPage.rentDatesPage()
-      RentDatesPage.agreeDateInput("03", "12", "2023")
+      When("The user enters yes to agree rent with the landlord")
+      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlord()
+      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlordRadio("Yes")
       continueButtonClick()
     }
 
@@ -186,7 +225,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       clickLink("Tell us about a change")
 
       Then("The ratepayers selects the property and proceed through the new agreement journey")
-      WhichPropertyDoYouWantToTellUsAbout.whichPropertyDoYouWantToTellUsAbout()
+      YourProperty.yourProperty()
       clickLink("Select property")
 
       Then("The user selects new agreement link to tell about their new agreement")
@@ -220,24 +259,48 @@ class NewAgreementSpec extends BaseSpec with StubPage {
 
       /*'By selecting No the user misses page Rent-free period'*/
       Then("The user enters 'No' to having a rent period")
-      RentFreePeriod.rentFreePeriod()
-      RentFreePeriod.selectRentFreePeriodRadio("No")
+      DoYouHaveRentFreePeriod.doYouHaveRentFreePeriod()
+      DoYouHaveRentFreePeriod.selectRentFreePeriodRadio("No")
       continueButtonClick()
 
       Then("The user enters their agreement date and start date")
-      RentDatesAgreeStartPage.rentDatesAgreeStartPage
+      RentDatesAgreeStartPage.rentDatesAgreeStartPage()
       RentDatesAgreeStartPage.agreeDateInput(day = "12", month = "12", year = "2020")
       RentDatesAgreeStartPage.startDateInput(day = "10", month = "01", year = "2021")
       continueButtonClick()
 
       Then("The user selects what their rent includes")
-      WhatYourRentIncludesPage.whatYourRentIncludes
-      WhatYourRentIncludesPage.livingAccommodationRadio("Yes")
+      WhatYourRentIncludesPage.whatYourRentIncludes()
+      WhatYourRentIncludesPage.livingAccommodationRadio("No")
       WhatYourRentIncludesPage.rentPartAddressRadio("Yes")
       WhatYourRentIncludesPage.rentEmptyShellRadio("Yes")
       WhatYourRentIncludesPage.rentIncBusinessRatesRadio("Yes")
       WhatYourRentIncludesPage.rentIncWaterChargesRadio("Yes")
       WhatYourRentIncludesPage.rentIncServiceRadio("Yes")
+      continueButtonClick()
+
+      Then("The user selects yes to having parking spaces or garages")
+      DoesYourRentIncludeParkingPage.doesYourRentIncludeParking()
+      DoesYourRentIncludeParkingPage.yesRadio()
+      continueButtonClick()
+
+      Then("The user enters uncovered, covered spaces and garages")
+      HowManyParkingSpacesOrGaragesIncludedInRentPage.howManyParkingSpacesOrGaragesIncludedInRent()
+      HowManyParkingSpacesOrGaragesIncludedInRentPage.enterUncoveredSpaces("2")
+      HowManyParkingSpacesOrGaragesIncludedInRentPage.enterCoveredSpaces("10")
+      HowManyParkingSpacesOrGaragesIncludedInRentPage.enterGarages("5")
+      continueButtonClick()
+
+      Then("The user select no to pay extra parking spaces not included in rent")
+      DoYouPayExtraForParkingSpaces.doYouPayExtraForParkingSpaces()
+      DoYouPayExtraForParkingSpaces.selectPayExtraRadio("no")
+      continueButtonClick()
+
+      Then("The user selects you to who pays for internal, external and building insurance repairs")
+      RepairsAndInsurancePage.repairsAndInsurance()
+      RepairsAndInsurancePage.whoPaysForInternalRepairsRadio("You")
+      RepairsAndInsurancePage.whoPaysForExternalRepairsRadio("You")
+      RepairsAndInsurancePage.WhoPaysForBuildingInsuranceRepairs("You")
       continueButtonClick()
     }
   }

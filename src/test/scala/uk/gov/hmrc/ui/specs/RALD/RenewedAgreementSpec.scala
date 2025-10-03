@@ -28,7 +28,6 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
     Scenario(
       "The user renewed their agreement, agreement type: Licence or other type of written agreement, rent based on: A percentage of expected turnover"
     ) {
-
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -37,7 +36,7 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       clickLink("Tell us about a change")
 
       Then("The ratepayers selects the property and proceed through the new agreement journey")
-      WhichPropertyDoYouWantToTellUsAbout.whichPropertyDoYouWantToTellUsAbout()
+      YourProperty.yourProperty()
       clickLink("Select property")
 
       Then("The user selects renewed agreement link to renew their agreement")
@@ -82,16 +81,41 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       HowMuchIsTotalAnnualRent.inputTotalAnnualRent("999900")
       continueButtonClick()
 
-      Then("The user selects no with agreeing the rent with their landlord or their agent")
+      Then("The user selects 'Yes' with agreeing the rent with their landlord or their agent")
       DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlord()
-      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlordRadio("No")
+      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlordRadio("Yes")
+      continueButtonClick()
+
+      When("The user enters the date they agreed their rent")
+      RentDatesPage.rentDatesPage()
+      RentDatesPage.agreeDateInput("03", "12", "2023")
+      continueButtonClick()
+
+      Then("The user selects what their rent includes")
+      WhatYourRentIncludesPage.whatYourRentIncludes()
+      WhatYourRentIncludesPage.livingAccommodationRadio("Yes")
+      WhatYourRentIncludesPage.bedroomNumbers("5")
+      WhatYourRentIncludesPage.rentPartAddressRadio("No")
+      WhatYourRentIncludesPage.rentEmptyShellRadio("No")
+      WhatYourRentIncludesPage.rentIncBusinessRatesRadio("No")
+      WhatYourRentIncludesPage.rentIncWaterChargesRadio("No")
+      WhatYourRentIncludesPage.rentIncServiceRadio("No")
+      continueButtonClick()
+
+      Then("The user selects 'No' to having parking spaces or garages")
+      DoesYourRentIncludeParkingPage.doesYourRentIncludeParking()
+      DoesYourRentIncludeParkingPage.noRadio()
+      continueButtonClick()
+
+      Then("The user select yes to pay extra parking spaces not included in rent")
+      DoYouPayExtraForParkingSpaces.doYouPayExtraForParkingSpaces()
+      DoYouPayExtraForParkingSpaces.selectPayExtraRadio("yes")
       continueButtonClick()
     }
 
     Scenario(
       "The user renewed their agreement, agreement type: Lease or tenancy agreement, rent agreed in advance: Yes"
     ) {
-
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -100,7 +124,7 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       clickLink("Tell us about a change")
 
       Then("The ratepayers selects the property and proceed through the new agreement journey")
-      WhichPropertyDoYouWantToTellUsAbout.whichPropertyDoYouWantToTellUsAbout()
+      YourProperty.yourProperty()
       clickLink("Select property")
 
       Then("The user selects renewed agreement link to renew their agreement")
@@ -147,7 +171,7 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       continueButtonClick()
 
       When("The user provides the start and end date for the first rent period")
-      ProvideDetailsOfFirstSecondRentPeriodPage.provideDetailsOfFirstSecondRentPeriod()
+      ProvideDetailsOfFirstSecondRentPeriodPage.provideDetailsOfEachRentPeriod()
       ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodStartDate("02", "01", "2011")
       ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodEndDate("02", "03", "2022")
 
@@ -156,7 +180,7 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodRent("2000.00")
 
       When("The user enters the start, end date and rent amount for the second rent period")
-      ProvideDetailsOfFirstSecondRentPeriodPage.provideDetailsOfFirstSecondRentPeriod()
+      ProvideDetailsOfFirstSecondRentPeriodPage.provideDetailsOfEachRentPeriod()
       ProvideDetailsOfFirstSecondRentPeriodPage.secondRentPeriodStartDate("02", "10", "2012")
       ProvideDetailsOfFirstSecondRentPeriodPage.secondRentPeriodEndDate("02", "12", "2023")
       ProvideDetailsOfFirstSecondRentPeriodPage.SecondRentPeriodRent("9999999.99")
@@ -176,9 +200,9 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       RentPeriods.addAnotherPeriod("No")
       continueButtonClick()
 
-      When("The user enters the date they agreed their rent")
-      RentDatesPage.rentDatesPage()
-      RentDatesPage.agreeDateInput("03", "12", "2023")
+      When("The user enters yes to agree rent with the landlord")
+      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlord()
+      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlordRadio("Yes")
       continueButtonClick()
     }
 
@@ -194,7 +218,7 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       clickLink("Tell us about a change")
 
       Then("The ratepayers selects the property and proceed through the new agreement journey")
-      WhichPropertyDoYouWantToTellUsAbout.whichPropertyDoYouWantToTellUsAbout()
+      YourProperty.yourProperty()
       clickLink("Select property")
 
       Then("The user selects renewed agreement link to renew their agreement")

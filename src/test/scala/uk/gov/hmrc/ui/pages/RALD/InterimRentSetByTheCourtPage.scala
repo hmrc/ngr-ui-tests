@@ -18,23 +18,21 @@ package uk.gov.hmrc.ui.pages.RALD
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.RALD.RentDatesPage.{headerCheck, sendKeys}
 
-object RentFreePeriod extends BasePage {
+object InterimRentSetByTheCourtPage extends BasePage {
 
-  def rentFreePeriod(): Unit =
-    headerCheck("Rent-free period")
+  def interimRentSetByTheCourtPage(): Unit =
+    headerCheck("Interim rent set by the court")
 
-  def enterRentFreePeriodMonths(months: String): Unit =
-    sendKeys(By.id("rentFreePeriodMonths"), months)
+  def interimHowMuchInput(amount: String): Unit =
+    sendKeys(By.id("interimAmount"), amount)
 
-  def enterReasons(reasons: String): Unit =
-    sendKeys(By.id("reasons"), reasons)
+  def interimRentSetByTheCourtDateInput(month: String, year: String): Unit =
+    dateInput(month, year, "date")
 
-  def selectRentFreePeriodRadio(isRentFree: String): Unit = {
-    val radioId = isRentFree.toLowerCase match {
-      case "yes" => "check-rent-period-radio" /* New agreement sc 1*/
-      case _     => "check-rent-period-radio-2" /* New agreement sc 3*/
-    }
-    click(getElementById(radioId))
+  private def dateInput(month: String, year: String, whichDate: String): Unit = {
+    sendKeys(By.id(s"$whichDate.month"), month)
+    sendKeys(By.id(s"$whichDate.year"), year)
   }
 }

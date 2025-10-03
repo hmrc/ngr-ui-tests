@@ -16,24 +16,17 @@
 
 package uk.gov.hmrc.ui.pages.RALD
 
-import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
-object RentFreePeriod extends BasePage {
+object DoYouPayExtraForParkingSpaces extends BasePage {
 
-  def rentFreePeriod(): Unit =
-    headerCheck("Rent-free period")
+  def doYouPayExtraForParkingSpaces(): Unit =
+    headerCheck("Do you pay extra for parking spaces or garages that are not included in your rent?")
 
-  def enterRentFreePeriodMonths(months: String): Unit =
-    sendKeys(By.id("rentFreePeriodMonths"), months)
-
-  def enterReasons(reasons: String): Unit =
-    sendKeys(By.id("reasons"), reasons)
-
-  def selectRentFreePeriodRadio(isRentFree: String): Unit = {
-    val radioId = isRentFree.toLowerCase match {
-      case "yes" => "check-rent-period-radio" /* New agreement sc 1*/
-      case _     => "check-rent-period-radio-2" /* New agreement sc 3*/
+  def selectPayExtraRadio(isPayingExtra: String): Unit = {
+    val radioId = isPayingExtra.toLowerCase match {
+      case "yes" => "payExtra" /*Used in renewed agreement */
+      case _     => "payExtra-2" /*Used in new agreement*/
     }
     click(getElementById(radioId))
   }
