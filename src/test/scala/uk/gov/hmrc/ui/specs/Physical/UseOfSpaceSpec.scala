@@ -16,12 +16,12 @@
 
 package uk.gov.hmrc.ui.specs.Physical
 
+import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome.dashboard
+import uk.gov.hmrc.ui.pages.Physical._
+import uk.gov.hmrc.ui.pages.RALD._
 import uk.gov.hmrc.ui.pages.{SignOutPage, StubPage}
 import uk.gov.hmrc.ui.specs.BaseSpec
-import uk.gov.hmrc.ui.pages.Physical._
 import uk.gov.hmrc.ui.utils.login.loginOl
-import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome.dashboard
-import uk.gov.hmrc.ui.pages.RALD._
 import uk.gov.hmrc.ui.utils.mongo.PhysicalDB
 
 class UseOfSpaceSpec extends BaseSpec with StubPage {

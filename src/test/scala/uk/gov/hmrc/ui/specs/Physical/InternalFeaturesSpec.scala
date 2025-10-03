@@ -18,7 +18,7 @@ package uk.gov.hmrc.ui.specs.Physical
 
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome.dashboard
 import uk.gov.hmrc.ui.pages.Physical._
-import uk.gov.hmrc.ui.pages.RALD.WhatDoYouWantToTellUs
+import uk.gov.hmrc.ui.pages.RALD.{WhatDoYouWantToTellUs, YourProperty}
 import uk.gov.hmrc.ui.pages.{SignOutPage, StubPage}
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
@@ -39,7 +39,7 @@ class InternalFeaturesSpec extends BaseSpec with StubPage {
       Then(
         "The ratepayers selects the property and proceed through the changed property feature or use of space journey"
       )
-      SelectYourProperty.yourPropertyHeader()
+      YourProperty.yourProperty()
       clickLink("Select property")
 
       Then("The user selects the changed property features or use of space link")
@@ -166,5 +166,7 @@ class InternalFeaturesSpec extends BaseSpec with StubPage {
       clickLink("Sign out")
       SignOutPage.signOut()
     }
+
+    // TODO: adding new Scenario with the change and the remove Internal Feature functions
   }
 }
