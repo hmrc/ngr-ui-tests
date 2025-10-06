@@ -14,22 +14,22 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.Physical
+package uk.gov.hmrc.ui.pages.RALD
 
+import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
-object HaveYouChangedUseOfSpace extends BasePage {
+object DidTheCourtSetTheInterimRent extends BasePage {
 
-  def changedUseOfSpaceHeader(): Unit =
-    headerCheck("Have you changed use of space?")
+  val yesRadioButton = By.id("rent-interim-radio") /*Renewed agreement scenario: 1*/
+  val noRadioButton  = By.id("rent-interim-radio-2")
 
-  // Have you changed use of space? Radio button selection
+  def rentInterim(): Unit =
+    headerCheck("Did the court also set an interim rent?")
 
-  def changedUseOfSpaceRadio(ChangedUseOfSpace: String): Unit = {
-    val radioCheckId = ChangedUseOfSpace match {
-      case "Yes" => "value"
-      case "No"  => "value-no"
-    }
-    click(getElementById(radioCheckId))
-  }
+  def yesRadio(): Unit =
+    click(yesRadioButton) /*used*/
+
+  def noRadio(): Unit =
+    click(noRadioButton) /*used*/
 }

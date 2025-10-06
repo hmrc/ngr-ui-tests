@@ -14,18 +14,28 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.Physical
+package uk.gov.hmrc.ui.pages.review
 
 import org.openqa.selenium.By
+import uk.gov.hmrc.configuration.TestEnvironment
 import uk.gov.hmrc.ui.pages.BasePage
-object WhenCompleteChange extends BasePage {
 
-  def whenCompleteChangeScreen(): Unit =
-    headerCheck("When did you complete the change?")
+object WhenThisPageTookPlaceSpec extends BasePage {
 
-  val dayInputLocation: By   = By.id("value.day")
-  val monthInputLocation: By = By.id("value.month")
-  val yearInputLocation: By  = By.id("value.year")
+  def checkTheHeading(): Unit =
+    headerCheck("Do you know when this change took place?")
+
+  def selectRadioOption(ChangedUseOfSpace: String): Unit = {
+    val radioCheckId = ChangedUseOfSpace match {
+      case "Yes" => "value"
+      case "No"  => "value-no"
+    }
+    click(getElementById(radioCheckId))
+  }
+
+  val dayInputLocation: By   = By.id("date.day")
+  val monthInputLocation: By = By.id("date.month")
+  val yearInputLocation: By  = By.id("date.year")
 
   def dateInput(day: String, month: String, year: String): Unit = {
     click(dayInputLocation)
@@ -35,4 +45,9 @@ object WhenCompleteChange extends BasePage {
     click(yearInputLocation)
     sendKeys(yearInputLocation, year)
   }
+
+  private val connection_url: String = TestEnvironment.url("ngr-review-frontend") + "/review/when-change-took-place"
+
+  def renderThePageStep(): Unit =
+    getUrl(connection_url)
 }

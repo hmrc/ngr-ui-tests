@@ -20,7 +20,7 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 object WhereAreTheEscalatorsInTheProperty extends BasePage {
   def whereAreTheEscalatorsInThePropertyLegend(): Unit =
-    legendCheck("Where are escalators in the property?")
+    headerCheck("Where are escalators in the property?")
 
   def whereAreTheEscalatorsInThePropertyRadio(escalators: String): Unit = {
     val radioCheckId = escalators match {

@@ -38,7 +38,7 @@ class UseOfSpaceSpec extends BaseSpec with StubPage {
       Then(
         "The ratepayers selects the property and proceed through the changed property feature or use of space journey"
       )
-      YourProperty.yourProperty()
+      SelectYourProperty.yourPropertyHeader()
       clickLink("Select property")
 
       Then("The user selects the changed property features or use of space link")

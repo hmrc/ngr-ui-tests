@@ -79,17 +79,5 @@ class DashboardSpec extends BaseSpec with StubPage {
       FeedbackPage.sendFeedbackPage()
 
     }
-
-    Scenario("Test to check 'Review your property details' link on dashboard") {
-      Given("Ratepayer logins through one login")
-      loginOl()
-      Then("Ratepayer is taken to the dashboard")
-      DashboardHome.DashboardHome(contactName)
-      Then("Ratepayer clicks the 'Review your property details' link and navigated to yourProperty page")
-      clickLink("Review your property details")
-      YourProperty.yourProperty()
-
-    }
-
   }
 }

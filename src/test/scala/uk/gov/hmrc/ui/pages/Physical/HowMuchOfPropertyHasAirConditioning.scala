@@ -20,7 +20,7 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 object HowMuchOfPropertyHasAirConditioning extends BasePage {
   def howMuchOfPropertyHasAirConditioningLegend(): Unit =
-    legendCheck("How much of the property has air conditioning?")
+    headerCheck("How much of the property has air conditioning?")
 
   def howMuchAirConditioningRadio(airConditioning: String): Unit = {
     val radioCheckId = airConditioning match {
