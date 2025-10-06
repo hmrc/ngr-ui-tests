@@ -17,7 +17,7 @@
 package uk.gov.hmrc.ui.specs.Physical
 
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome.dashboard
-import uk.gov.hmrc.ui.pages.Physical.{AnythingElseTellUs, CheckAndConfirmChangesToInternalFeatures, HaveYouChangedExternalFeatures, HaveYouChangedInternalFeatures, HaveYouChangedUseOfSpace, HowMuchOfPropertyHasAirConditioning, InformationAndSupportingDocumentsNeed, SelectYourProperty, SupportingDocuments, TellUsChangedPropertyFeaturesOrUseOfSpace, WhenCompleteChange, WhichInternalFeatureHaveChanged}
+import uk.gov.hmrc.ui.pages.Physical._
 import uk.gov.hmrc.ui.pages.RALD.WhatDoYouWantToTellUs
 import uk.gov.hmrc.ui.pages.{SignOutPage, StubPage}
 import uk.gov.hmrc.ui.specs.BaseSpec

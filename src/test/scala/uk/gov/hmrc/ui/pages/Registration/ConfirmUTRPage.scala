@@ -28,13 +28,6 @@ object ConfirmUTRPage extends BasePage {
   def confirmYourSAUTR(): Unit =
     headerCheck("Confirm your Self Assessment Unique Taxpayer Reference")
 
-  def confirmUTR(utr: String): Unit = {
-
-    val maskedUtr = getElementByCssSelector("#main-content > div > div > form > dl > div > dd")
-    assert(maskedUtr == utr, "Masked TRN verification failed")
-
-  }
-
   def selectYes(): Unit = {
     click(yes)
     click(continueButton)
