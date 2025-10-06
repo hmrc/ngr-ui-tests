@@ -19,6 +19,7 @@ import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Wait}
 import org.openqa.selenium.{By, WebDriver, WebElement}
 import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
+import scala.jdk.CollectionConverters._
 
 import java.time.Duration
 
@@ -43,6 +44,21 @@ trait BasePage extends PageObject {
         println(s"Header check failed due to exception: ${e.getMessage}")
     }
   }
+
+  def h2Check(expectedText: String): Unit = {
+    val headerLocator = By.tagName("h2")
+    try {
+      val headers = Driver.instance.findElements(headerLocator)
+      val headerTexts = headers.asScala.map(_.getText)
+
+      assert(headerTexts.contains(expectedText),
+        s"Expected h2 '$expectedText' not found. Found headers: ${headerTexts.mkString(", ")}")
+    } catch {
+      case e: Exception =>
+        println(s"H2 check failed due to exception: ${e.getMessage}")
+    }
+  }
+
 
   def getElementById(id: String): By = By.id(id)
 
