@@ -20,7 +20,7 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 object HowMuchOfPropertyHasSprinklers extends BasePage {
   def howMuchOfPropertyHasSprinklersHeader(): Unit =
-    legendCheck("How much of the property has sprinklers?")
+    headerCheck("How much of the property has sprinklers?")
 
   def howMuchOfPropertyHasSprinklersRadio(sprinklers: String): Unit = {
     val radioCheckId = sprinklers match {

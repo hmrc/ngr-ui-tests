@@ -32,28 +32,15 @@ trait BasePage extends PageObject {
     element.getText
   }
 
-  def headerCheck(headerText: String): Unit =
+  def headerCheck(expectedText: String): Unit = {
+    val headerLocator = By.tagName("h1")
     try {
-      Wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("h1")))
-      val actualHeaderDisplayed = getElementByTagName("h1")
-      assert(
-        actualHeaderDisplayed == headerText,
-        s" Expected header = $headerText, header displayed = $actualHeaderDisplayed"
-      )
+      Wait.until(ExpectedConditions.textToBePresentInElementLocated(headerLocator, expectedText))
+      val actualText = Driver.instance.findElement(headerLocator).getText
+      assert(actualText == expectedText, s"Expected header '$expectedText', but found '$actualText'")
     } catch {
       case e: Exception =>
         println(s"Header check failed due to exception: ${e.getMessage}")
-    }
-
-  def legendCheck(expectedText: String): Unit = {
-    val legendLocator = By.tagName("legend")
-    try {
-      Wait.until(ExpectedConditions.textToBePresentInElementLocated(legendLocator, expectedText))
-      val actualText = Driver.instance.findElement(legendLocator).getText
-      assert(actualText == expectedText, s"Expected legend '$expectedText', but found '$actualText'")
-    } catch {
-      case e: Exception =>
-        println(s"Legend check failed due to exception: ${e.getMessage}")
     }
   }
 
