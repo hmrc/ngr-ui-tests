@@ -50,12 +50,13 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       WhatTypeOfLeaseRenewal.renewedAgreementRadio()
       continueButtonClick()
 
-      /* relationship With The Landlord = 'family Member'*/
-      Then("The user inputs the landlords name and selects family member as type")
-      Landlord.landlord()
-      Landlord.landlordNameInput(landlordName = "Bob")
-      Landlord.familyMemberRadio()
-      continueButtonClick()
+//      /* relationship With The Landlord = 'has relationship'*/
+//      Then("The user inputs the landlords name and selects yes in radios")
+//      Landlord.landlord()
+//      Landlord.landlordNameInput(landlordName = "Bob")
+//      Landlord.selectLandlordRadio("yes")
+//      Landlord.assertRelationshipTextAreaVisible()
+//      continueButtonClick()
 
       Then("The user selects licence or other type of written agreement as there agreement type")
       WhatTypeOfAgreement.TypeOfAgreement()
@@ -146,11 +147,10 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       WhatTypeOfLeaseRenewal.renewedAgreementRadio()
       continueButtonClick()
 
-      /* relationship With The Landlord = 'family Member'*/
-      Then("The user inputs the landlords name and selects family member as type")
+      Then("The user inputs the landlords name and 'no' to the relationship")
       Landlord.landlord()
       Landlord.landlordNameInput(landlordName = "Bob")
-      Landlord.familyMemberRadio()
+      Landlord.selectLandlordRadio("no")
       continueButtonClick()
 
       Then("The user selects lease or tenancy agreement as there agreement type")
@@ -240,11 +240,11 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       WhatTypeOfLeaseRenewal.renewedAgreementRadio()
       continueButtonClick()
 
-      /* relationship With The Landlord = 'family Member'*/
-      Then("The user inputs the landlords name and selects family member as type")
+      /* relationship With The Landlord = 'no'*/
+      Then("The user inputs the landlords name and selects no to relationship")
       Landlord.landlord()
       Landlord.landlordNameInput(landlordName = "Bob")
-      Landlord.familyMemberRadio()
+      Landlord.selectLandlordRadio("no")
       continueButtonClick()
 
       Then("The user selects lease or tenancy agreement as there agreement type")

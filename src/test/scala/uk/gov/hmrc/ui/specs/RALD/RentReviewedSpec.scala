@@ -43,11 +43,12 @@ class RentReviewedSpec extends BaseSpec with StubPage {
       TellUsAboutYourRent.tellUsAboutYourRent()
       continueButtonClick()
 
-      /* relationship With The Landlord = 'Company pension fund'*/
-      Then("The user inputs the landlords name and selects family member as type")
+      /* relationship With The Landlord = 'yes'*/
+      Then("The user inputs the landlords name")
       Landlord.landlord()
       Landlord.landlordNameInput(landlordName = "Bob")
-      Landlord.companyPensionFundRadio()
+      Landlord.selectLandlordRadio("yes")
+      Landlord.assertRelationshipTextAreaVisible()
       continueButtonClick()
 
       Then("The user selects verbal agreement as there agreement type")

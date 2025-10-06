@@ -43,11 +43,12 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       TellUsAboutYourNewAgreementPage.tellUsAboutYourNewAgreement()
       continueButtonClick()
 
-      /* relationship With The Landlord = 'Landlord and tenant relationship only'*/
-      Then("The user inputs the landlords name and selects family member as type")
+      /* relationship With The Landlord = 'has relationship'*/
+      Then("The user inputs the landlords name and selects yes in radios")
       Landlord.landlord()
       Landlord.landlordNameInput(landlordName = "Tinker Bell")
-      Landlord.landLordAndTenantRadio()
+      Landlord.selectLandlordRadio("yes")
+      Landlord.assertRelationshipTextAreaVisible()
       continueButtonClick()
 
       /* Agreement type = 'Lease or tenancy agreement'*/
@@ -144,12 +145,11 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       TellUsAboutYourNewAgreementPage.tellUsAboutYourNewAgreement()
       continueButtonClick()
 
-      /* relationship with landlord = 'Other relationship'*/
-      Then("The user inputs the landlords name and selects family member as type")
+      /* relationship with landlord = 'No relationship'*/
+      Then("The user inputs the landlords name and selects no relationship")
       Landlord.landlord()
       Landlord.landlordNameInput(landlordName = "Tinker Bell")
-      Landlord.otherRelationshipRadio()
-      Landlord.otherRelationshipInput("Complicated")
+      Landlord.selectLandlordRadio("no")
       continueButtonClick()
 
       /* Agreement type ='Licence or other type of written agreement' */
@@ -234,10 +234,10 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       TellUsAboutYourNewAgreementPage.tellUsAboutYourNewAgreement()
       continueButtonClick()
 
-      Then("The user inputs the landlords name and selects family member as type")
+      Then("The user inputs the landlords name select no relationship")
       Landlord.landlord()
       Landlord.landlordNameInput(landlordName = "Bob")
-      Landlord.businessPartnerOrSharedDirectorRadio()
+      Landlord.selectLandlordRadio("no")
       continueButtonClick()
 
       Then("The user selects verbal agreement as there agreement type")

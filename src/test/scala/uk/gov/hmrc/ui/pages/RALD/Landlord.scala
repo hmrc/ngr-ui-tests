@@ -24,28 +24,20 @@ object Landlord extends BasePage {
   def landlord(): Unit =
     headerCheck("Landlord")
 
-  val landlordNameLocation: By       = By.id("landlord-name-value")
-  val landlordOtherInputLocation: By = By.id("landlord-radio-other")
+  val landlordNameLocation: By = By.id("landlord-name-value")
 
   def landlordNameInput(landlordName: String): Unit =
     sendKeys(landlordNameLocation, landlordName)
 
-  def landLordAndTenantRadio(): Unit =
-    click(getElementById("landlord-radio")) /*used*/
+  def selectLandlordRadio(hasRelationship: String): Unit = {
+    val radioId = hasRelationship.toLowerCase match {
+      case "yes" => "landlord-radio"
+      case _     => "landlord-radio-2"
+    }
+    click(getElementById(radioId))
+  }
 
-  def familyMemberRadio(): Unit =
-    click(getElementById("landlord-radio-2")) /*used in renewed*/
-
-  def companyPensionFundRadio(): Unit =
-    click(getElementById("landlord-radio-3")) /*used*/
-
-  def businessPartnerOrSharedDirectorRadio(): Unit = /*used*/
-    click(getElementById("landlord-radio-4"))
-
-  def otherRelationshipRadio(): Unit =
-    click(getElementById("landlord-radio-5")) /*used*/
-
-  def otherRelationshipInput(landlordRelationship: String): Unit =
-    sendKeys(landlordOtherInputLocation, landlordRelationship)
+  def assertRelationshipTextAreaVisible(): Unit =
+    assert(findElementById("landlord-relationship").isDisplayed, "Textarea is visible when radio 'yes'")
 
 }
