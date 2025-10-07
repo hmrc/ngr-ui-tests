@@ -19,12 +19,13 @@ import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Wait}
 import org.openqa.selenium.{By, WebDriver, WebElement}
 import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
-import scala.jdk.CollectionConverters._
 
 import java.time.Duration
+import scala.jdk.CollectionConverters._
 
 trait BasePage extends PageObject {
   val continueButton: By                        = By.id("continue")
+  val submitButton: By                          = By.id("submit")
   def getElementByLink(text: String): By        = By.linkText(text)
   def getElementByPartialLink(text: String): By = By.partialLinkText(text)
 
@@ -33,7 +34,7 @@ trait BasePage extends PageObject {
     element.getText
   }
 
-  def headerCheck(expectedText: String): Unit = {
+  def headerCheck(expectedText: String): Unit  = {
     val headerLocator = By.tagName("h1")
     try {
       Wait.until(ExpectedConditions.textToBePresentInElementLocated(headerLocator, expectedText))
@@ -44,21 +45,17 @@ trait BasePage extends PageObject {
         println(s"Header check failed due to exception: ${e.getMessage}")
     }
   }
-
-  def h2Check(expectedText: String): Unit = {
+  def headerCheck2(expectedText: String): Unit = {
     val headerLocator = By.tagName("h2")
     try {
-      val headers = Driver.instance.findElements(headerLocator)
-      val headerTexts = headers.asScala.map(_.getText)
-
-      assert(headerTexts.contains(expectedText),
-        s"Expected h2 '$expectedText' not found. Found headers: ${headerTexts.mkString(", ")}")
+      Wait.until(ExpectedConditions.textToBePresentInElementLocated(headerLocator, expectedText))
+      val actualText = Driver.instance.findElement(headerLocator).getText
+      assert(actualText == expectedText, s"Expected header 2 '$expectedText', but found '$actualText'")
     } catch {
       case e: Exception =>
-        println(s"H2 check failed due to exception: ${e.getMessage}")
+        println(s"Header 2 check failed due to exception: ${e.getMessage}")
     }
   }
-
 
   def getElementById(id: String): By = By.id(id)
 
@@ -97,5 +94,8 @@ trait BasePage extends PageObject {
 
   def continueButtonClick(): Unit =
     click(continueButton)
+
+  def submitButtonClick(): Unit =
+    click(submitButton)
 
 }

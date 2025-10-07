@@ -1,3 +1,19 @@
+/*
+ * Copyright 2025 HM Revenue & Customs
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package uk.gov.hmrc.ui.pages.Physical
 
 import org.openqa.selenium.By
@@ -13,12 +29,12 @@ object CheckAndConfirmYourChanges extends BasePage {
 
   // Use this checkAndConfirmYourChangesH2 check function only when you added at least one feature for all of these below. The h2 title won't show if there is no feature in that section.
   def checkAndConfirmYourChangesH2(): Unit = {
-    h2Check("Date of change")
-    h2Check("Use of space")
-    h2Check("Internal features")
-    h2Check("External features")
-    h2Check("Additional information")
-    h2Check("Supporting documents")
+    headerCheck2("Date of change")
+    headerCheck2("Use of space")
+    headerCheck2("Internal features")
+    headerCheck2("External features")
+    headerCheck2("Additional information")
+    headerCheck2("Supporting documents")
   }
 
   def verifyAddedFeatureItems(keyText: String, expectedValue: String): Unit = {
