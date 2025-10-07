@@ -18,10 +18,7 @@ package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome
 import uk.gov.hmrc.ui.pages.PropertyLinking.RegisterComplete
-import uk.gov.hmrc.ui.pages.RALD.YourProperty
-import uk.gov.hmrc.ui.pages.Registration.CheckYourAnswer
-import uk.gov.hmrc.ui.pages.Registration.contactDetails.{ConfirmContactDetailsPage, PhoneNumberPage}
-import uk.gov.hmrc.ui.pages.Registration.provideTRN.{ConfirmUTRPage, ProvideTRNPage}
+import uk.gov.hmrc.ui.pages.Registration.{CheckYourAnswer, ConfirmUTRPage, PhoneNumberPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.pages.{FeedbackPage, StubPage}
 import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
@@ -39,10 +36,6 @@ class DashboardSpec extends BaseSpec with StubPage {
 
       Then("User provide phone number")
       PhoneNumberPage.userProvidesPhoneNumber()
-
-      Then("Ratepayer is taken to the Confirm Contact Details page")
-      ConfirmContactDetailsPage.ConfirmContactDetails()
-      click(continueButton)
 
       Then("Ratepayer is taken to Provide TRN Page")
       ProvideTRNPage.provideYourTRN()
