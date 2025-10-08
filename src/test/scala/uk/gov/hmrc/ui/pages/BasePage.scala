@@ -67,6 +67,7 @@ trait BasePage extends PageObject {
   }
 
   def getElementByXpath(xpath: String): String     = {
+    waitForElementVisibility(By.xpath(xpath))
     val element = Driver.instance.findElement(By.xpath(xpath))
     element.getText
   }
@@ -85,6 +86,9 @@ trait BasePage extends PageObject {
 
   def waitForElementInvisibility(locator: By, text: String): Boolean =
     Wait.until(ExpectedConditions.invisibilityOfElementWithText(locator, text))
+
+  def waitForElementVisibility(locator: By): WebElement =
+    Wait.until(ExpectedConditions.visibilityOfElementLocated(locator))
 
   def reloadPage(): Unit =
     Driver.instance.navigate().refresh()
