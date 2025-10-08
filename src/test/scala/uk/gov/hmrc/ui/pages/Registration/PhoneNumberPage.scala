@@ -14,11 +14,27 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.Registration.provideTRN
+package uk.gov.hmrc.ui.pages.Registration
 
+import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
-object ProvideTRNPage extends BasePage {
-  def provideYourTRN(): Unit =
-    headerCheck("Provide your tax reference number")
+object PhoneNumberPage extends BasePage {
+
+  val numberInput = By.id("phoneNumber-value")
+
+  def PhoneNumberDetails(): Unit =
+    headerCheck("Enter phone number")
+
+  def InputNumber(phoneNumber: String): Unit = {
+    sendKeys(numberInput, phoneNumber)
+    click(continueButton)
+  }
+
+  def userProvidesPhoneNumber(): Unit =
+    if ("Enter phone number" == getElementByTagName("h1"))
+      PhoneNumberPage.InputNumber("8989898989")
+    else
+      println("Phone number prompt not found")
+
 }

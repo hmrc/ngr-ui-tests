@@ -140,6 +140,19 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       RepairsAndInsurancePage.whoPaysForExternalRepairsRadio("You")
       RepairsAndInsurancePage.WhoPaysForBuildingInsuranceRepairs("You")
       continueButtonClick()
+
+      Then("The user selects you to who pays for internal, external and building insurance repairs")
+      RepairsAndInsurancePage.repairsAndInsurance()
+      RepairsAndInsurancePage.whoPaysForInternalRepairsRadio("The landlord")
+      RepairsAndInsurancePage.whoPaysForExternalRepairsRadio("The landlord")
+      RepairsAndInsurancePage.WhoPaysForBuildingInsuranceRepairs("The landlord")
+      continueButtonClick()
+
+      Then("The user select no for rent review and yes for rent go down")
+      RentReviewPage.rentReview()
+      RentReviewPage.hasIncludeRentReview("no")
+      RentReviewPage.canRentGoDown("yes")
+      continueButtonClick()
     }
 
     Scenario("New agreement, agreement type: Licence or other type of written agreement, agreed in advance: 'Yes'") {
@@ -228,6 +241,41 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       Then("The user enters their rent date")
       RentDatesPage.rentDatesPage()
       RentDatesPage.agreeDateInput("19", "01", "2020")
+      continueButtonClick()
+
+      Then("The user selects what their rent includes")
+      WhatYourRentIncludesPage.whatYourRentIncludes()
+      WhatYourRentIncludesPage.livingAccommodationRadio("No")
+      WhatYourRentIncludesPage.rentPartAddressRadio("Yes")
+      WhatYourRentIncludesPage.rentEmptyShellRadio("Yes")
+      WhatYourRentIncludesPage.rentIncBusinessRatesRadio("Yes")
+      WhatYourRentIncludesPage.rentIncWaterChargesRadio("Yes")
+      WhatYourRentIncludesPage.rentIncServiceRadio("Yes")
+      continueButtonClick()
+
+      Then("The user selects no to having parking spaces or garages")
+      DoesYourRentIncludeParkingPage.doesYourRentIncludeParking()
+      DoesYourRentIncludeParkingPage.noRadio()
+      continueButtonClick()
+
+      Then("The user select no to pay extra parking spaces not included in rent")
+      DoYouPayExtraForParkingSpaces.doYouPayExtraForParkingSpaces()
+      DoYouPayExtraForParkingSpaces.selectPayExtraRadio("no")
+      continueButtonClick()
+
+      Then("The user selects you to who pays for internal, external and building insurance repairs")
+      RepairsAndInsurancePage.repairsAndInsurance()
+      RepairsAndInsurancePage.whoPaysForInternalRepairsRadio("You and the landlord")
+      RepairsAndInsurancePage.whoPaysForExternalRepairsRadio("You and the landlord")
+      RepairsAndInsurancePage.WhoPaysForBuildingInsuranceRepairs("You and the landlord")
+      continueButtonClick()
+
+      Then("The user select yes for rent review and no for rent go down")
+      RentReviewPage.rentReview()
+      RentReviewPage.hasIncludeRentReview("yes")
+      RentReviewPage.enterRentReviewMonths("12")
+      RentReviewPage.canRentGoDown("no")
+      continueButtonClick()
     }
 
     Scenario("New agreement, agreement type: Verbal") {
@@ -317,6 +365,14 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       RepairsAndInsurancePage.whoPaysForInternalRepairsRadio("You")
       RepairsAndInsurancePage.whoPaysForExternalRepairsRadio("You")
       RepairsAndInsurancePage.WhoPaysForBuildingInsuranceRepairs("You")
+      continueButtonClick()
+
+      Then("The user select yes for rent review and no for rent go down")
+      RentReviewPage.rentReview()
+      RentReviewPage.hasIncludeRentReview("yes")
+      RentReviewPage.enterRentReviewYears("2")
+      RentReviewPage.enterRentReviewMonths("6")
+      RentReviewPage.canRentGoDown("no")
       continueButtonClick()
     }
   }

@@ -16,8 +16,7 @@
 
 package uk.gov.hmrc.ui.specs
 
-import uk.gov.hmrc.ui.pages.Registration.contactDetails.ConfirmContactDetailsPage.ConfirmContactDetails
-import uk.gov.hmrc.ui.pages.Registration.contactDetails.PhoneNumberPage
+import uk.gov.hmrc.ui.pages.Registration.{PhoneNumberPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.pages.SignIn.{OLAuthenticationPages, SignInSelectorPage}
 import uk.gov.hmrc.ui.pages.{StartNowPage, StubPage}
 import uk.gov.hmrc.ui.utils.mongo.RegistrationDB
@@ -51,8 +50,8 @@ class RatePayerOLSignInSpec extends BaseSpec with StubPage {
       Then("User provide phone number")
       PhoneNumberPage.userProvidesPhoneNumber()
 
-      Then("Ratepayer successfully authenticated navigated to contact details page ")
-      ConfirmContactDetails()
+      Then("Ratepayer successfully authenticated navigated to Provide TRN Page")
+      ProvideTRNPage.provideYourTRN()
     }
 
   }

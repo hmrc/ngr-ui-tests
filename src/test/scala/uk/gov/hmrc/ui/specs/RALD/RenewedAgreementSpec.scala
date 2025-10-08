@@ -138,6 +138,13 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       RepairsAndInsurancePage.whoPaysForExternalRepairsRadio("You")
       RepairsAndInsurancePage.WhoPaysForBuildingInsuranceRepairs("You")
       continueButtonClick()
+
+      Then("The user select yes for rent review and no for rent go down")
+      RentReviewPage.rentReview()
+      RentReviewPage.hasIncludeRentReview("yes")
+      RentReviewPage.enterRentReviewYears("12")
+      RentReviewPage.canRentGoDown("no")
+      continueButtonClick()
     }
 
     Scenario(
@@ -185,7 +192,7 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       Agreement.agreementHaveABreakClauseRadio("No")
       continueButtonClick()
 
-      /*'What is your rent based on?' = 'Open market value'*/
+      /*'What is your rent based on?' = 'Total Occupancy Cost leases (TOCs)'*/
       Then("The user selects other and input reason on 'What is your rent based on?' page and submit")
       WhatIsRentBasedOn.whatIsRentBasedOn()
       WhatIsRentBasedOn.selectRentBaseOn("Total Occupancy Cost leases (TOCs)")
@@ -234,7 +241,8 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
     }
 
     Scenario(
-      "The user renewed their agreement, agreement type: Lease or tenancy agreement, rent agreed in advance: No"
+      "The user renewed their agreement, agreement type: Lease or tenancy agreement, rent agreed in advance: No " +
+        "Rent free period: Yes"
     ) {
 
       Given("Ratepayer logins through one login")
@@ -282,7 +290,7 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       /*'What is your rent based on?' = 'Open market value'*/
       Then("The user selects other and input reason on 'What is your rent based on?' page and submit")
       WhatIsRentBasedOn.whatIsRentBasedOn()
-      WhatIsRentBasedOn.selectRentBaseOn("Total Occupancy Cost leases (TOCs)")
+      WhatIsRentBasedOn.selectRentBaseOn("Open market value")
       continueButtonClick()
 
       /*User selects 'Yes' on rent agreed in advance*/
@@ -312,6 +320,64 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       InterimRentSetByTheCourtPage.interimRentSetByTheCourtDateInput("3", "2019")
       continueButtonClick()
 
+      Then("The user enters 'Yes' to having a rent period")
+      DoYouHaveRentFreePeriod.doYouHaveRentFreePeriod()
+      DoYouHaveRentFreePeriod.selectRentFreePeriodRadio("Yes")
+      continueButtonClick()
+
+      Then("The user enter how many months of rent free and reasons")
+      RentFreePeriod.rentFreePeriod()
+      RentFreePeriod.enterRentFreePeriodMonths("5")
+      RentFreePeriod.enterReasons("Any reasons")
+      continueButtonClick()
+
+      Then("The user enters the date they agreed their rent")
+      RentDatesAgreeStartPage.rentDatesAgreeStartPage()
+      RentDatesAgreeStartPage.agreeDateInput("03", "12", "2023")
+      RentDatesAgreeStartPage.startDateInput("19", "12", "2023")
+      continueButtonClick()
+
+      Then("The user selects what their rent includes")
+      WhatYourRentIncludesPage.whatYourRentIncludes()
+      WhatYourRentIncludesPage.livingAccommodationRadio("No")
+      WhatYourRentIncludesPage.rentPartAddressRadio("Yes")
+      WhatYourRentIncludesPage.rentEmptyShellRadio("Yes")
+      WhatYourRentIncludesPage.rentIncBusinessRatesRadio("Yes")
+      WhatYourRentIncludesPage.rentIncWaterChargesRadio("Yes")
+      WhatYourRentIncludesPage.rentIncServiceRadio("Yes")
+      continueButtonClick()
+
+      Then("The user selects yes to having parking spaces or garages")
+      DoesYourRentIncludeParkingPage.doesYourRentIncludeParking()
+      DoesYourRentIncludeParkingPage.yesRadio()
+      continueButtonClick()
+
+      Then("The user enters uncovered, covered spaces and garages")
+      HowManyParkingSpacesOrGaragesIncludedInRentPage.howManyParkingSpacesOrGaragesIncludedInRent()
+      HowManyParkingSpacesOrGaragesIncludedInRentPage.enterUncoveredSpaces("2")
+      HowManyParkingSpacesOrGaragesIncludedInRentPage.enterCoveredSpaces("10")
+      HowManyParkingSpacesOrGaragesIncludedInRentPage.enterGarages("5")
+      continueButtonClick()
+
+      Then("The user select no to pay extra parking spaces not included in rent")
+      DoYouPayExtraForParkingSpaces.doYouPayExtraForParkingSpaces()
+      DoYouPayExtraForParkingSpaces.selectPayExtraRadio("no")
+      continueButtonClick()
+
+      Then("The user selects you to who pays for internal, external and building insurance repairs")
+      RepairsAndInsurancePage.repairsAndInsurance()
+      RepairsAndInsurancePage.whoPaysForInternalRepairsRadio("You")
+      RepairsAndInsurancePage.whoPaysForExternalRepairsRadio("You")
+      RepairsAndInsurancePage.WhoPaysForBuildingInsuranceRepairs("You")
+      continueButtonClick()
+
+      Then("The user select yes for rent review and no for rent go down")
+      RentReviewPage.rentReview()
+      RentReviewPage.hasIncludeRentReview("yes")
+      RentReviewPage.enterRentReviewYears("2")
+      RentReviewPage.enterRentReviewMonths("6")
+      RentReviewPage.canRentGoDown("no")
+      continueButtonClick()
     }
   }
 }
