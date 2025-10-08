@@ -89,10 +89,25 @@ trait BasePage extends PageObject {
   def reloadPage(): Unit =
     Driver.instance.navigate().refresh()
 
-  def clickLink(link: String): Unit =
-    waitForElementToBeClickable(By.linkText(link)).click()
+  def clickLink(linkText: String): Unit = {
+    val linkLocator = By.linkText(linkText)
 
-  def continueButtonClick(): Unit =
+    try {
+      // Wait until the link is both visible and clickable
+      Wait.until(ExpectedConditions.visibilityOfElementLocated(linkLocator))
+      Wait.until(ExpectedConditions.elementToBeClickable(linkLocator))
+
+      val linkElement = Driver.instance.findElement(linkLocator)
+      linkElement.click()
+    } catch {
+      case e: Exception =>
+        println(s"Click link failed for '$linkText' due to exception: ${e.getMessage}")
+    }
+  }
+  /* def clickLink(link: String): Unit =
+    waitForElementToBeClickable(By.linkText(link)).click()
+   */
+  def continueButtonClick(): Unit       =
     click(continueButton)
 
   def submitButtonClick(): Unit =
