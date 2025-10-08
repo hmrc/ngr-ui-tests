@@ -20,7 +20,6 @@ import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.ExpectedConditions
 import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.ui.pages.BasePage
-
 import scala.jdk.CollectionConverters._
 
 object CheckAndConfirmChangesToExternalFeatures extends BasePage {
