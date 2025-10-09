@@ -16,9 +16,11 @@
 
 package uk.gov.hmrc.ui.pages.SignIn
 
+import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.{BasePage, StubPage}
 
 object SignInSelectorPage extends BasePage with StubPage {
+  val oneLoginSelector: By = By.cssSelector("label[for='signInType-2']")
 
   /** ********** SignInSelector page ******************
     */
@@ -26,7 +28,7 @@ object SignInSelectorPage extends BasePage with StubPage {
     headerCheck("Sign in to HMRC")
 
   def signInSelectorOL(): Unit = {
-    click(getElementById("signInType-2"))
+    waitForElementToBeClickable(oneLoginSelector).click()
     waitForElementToBeClickable(continueButton).click()
   }
   def signInSelectorGG(): Unit = {

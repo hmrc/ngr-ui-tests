@@ -22,19 +22,22 @@ import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.ui.pages.BasePage
 import scala.jdk.CollectionConverters._
 
-object CheckAndConfirmChangesToExternalFeatures extends BasePage {
-  def checkAndConfirmChangesToExternalFeaturesHeader(): Unit =
-    headerCheck("Check and confirm changes to external features")
+object CheckAndConfirmYourChanges extends BasePage {
 
-  def tellAnotherExternalFeatureRadio(anotherExternalFeature: String): Unit = {
-    val radioCheckId = anotherExternalFeature match {
-      case "Yes" => "value"
-      case "No"  => "value-no"
-    }
-    click(getElementById(radioCheckId))
+  def checkAndConfirmYourChangesHeader(): Unit =
+    headerCheck("Check and confirm your changes")
+
+  // Use this checkAndConfirmYourChangesH2 check function only when you added at least one feature for all of these below. The h2 title won't show if there is no feature in that section.
+  def checkAndConfirmYourChangesH2(): Unit = {
+    headerCheck2("Date of change")
+    headerCheck2("Use of space")
+    headerCheck2("Internal features")
+    headerCheck2("External features")
+    headerCheck2("Additional information")
+    headerCheck2("Supporting documents")
   }
 
-  def verifyExternalSummaryItem(keyText: String, expectedValue: String): Unit = {
+  def verifyAddedFeatureItems(keyText: String, expectedValue: String): Unit = {
     Wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".govuk-summary-list")))
     Wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".govuk-summary-list__row")))
     val rows = Driver.instance.findElements(By.cssSelector(".govuk-summary-list__row")).asScala
@@ -54,5 +57,4 @@ object CheckAndConfirmChangesToExternalFeatures extends BasePage {
         throw new NoSuchElementException(s"Could not find summary row with key '$keyText'")
     }
   }
-
 }

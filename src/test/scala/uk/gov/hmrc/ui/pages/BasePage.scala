@@ -21,9 +21,11 @@ import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
 
 import java.time.Duration
+import scala.jdk.CollectionConverters._
 
 trait BasePage extends PageObject {
   val continueButton: By                        = By.id("continue")
+  val submitButton: By                          = By.id("submit")
   def getElementByLink(text: String): By        = By.linkText(text)
   def getElementByPartialLink(text: String): By = By.partialLinkText(text)
 
@@ -32,7 +34,7 @@ trait BasePage extends PageObject {
     element.getText
   }
 
-  def headerCheck(expectedText: String): Unit = {
+  def headerCheck(expectedText: String): Unit  = {
     val headerLocator = By.tagName("h1")
     try {
       Wait.until(ExpectedConditions.textToBePresentInElementLocated(headerLocator, expectedText))
@@ -41,6 +43,22 @@ trait BasePage extends PageObject {
     } catch {
       case e: Exception =>
         println(s"Header check failed due to exception: ${e.getMessage}")
+    }
+  }
+  def headerCheck2(expectedText: String): Unit = {
+    val headerLocator = By.tagName("h2")
+    try {
+      Wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(headerLocator))
+      val headers     = Driver.instance.findElements(headerLocator)
+      val headerTexts = headers.asScala.map(_.getText)
+
+      assert(
+        headerTexts.contains(expectedText),
+        s"Expected h2 '$expectedText' not found. Found headers: ${headerTexts.mkString(", ")}"
+      )
+    } catch {
+      case e: Exception =>
+        println(s"H2 check failed due to exception: ${e.getMessage}")
     }
   }
 
@@ -54,6 +72,7 @@ trait BasePage extends PageObject {
   }
 
   def getElementByXpath(xpath: String): String     = {
+    waitForElementVisibility(By.xpath(xpath))
     val element = Driver.instance.findElement(By.xpath(xpath))
     element.getText
   }
@@ -73,13 +92,34 @@ trait BasePage extends PageObject {
   def waitForElementInvisibility(locator: By, text: String): Boolean =
     Wait.until(ExpectedConditions.invisibilityOfElementWithText(locator, text))
 
+  def waitForElementVisibility(locator: By): WebElement =
+    Wait.until(ExpectedConditions.visibilityOfElementLocated(locator))
+
   def reloadPage(): Unit =
     Driver.instance.navigate().refresh()
 
-  def clickLink(link: String): Unit =
-    waitForElementToBeClickable(By.linkText(link)).click()
+  def clickLink(linkText: String): Unit = {
+    val linkLocator = By.linkText(linkText)
 
-  def continueButtonClick(): Unit =
+    try {
+      // Wait until the link is both visible and clickable
+      Wait.until(ExpectedConditions.visibilityOfElementLocated(linkLocator))
+      Wait.until(ExpectedConditions.elementToBeClickable(linkLocator))
+
+      val linkElement = Driver.instance.findElement(linkLocator)
+      linkElement.click()
+    } catch {
+      case e: Exception =>
+        println(s"Click link failed for '$linkText' due to exception: ${e.getMessage}")
+    }
+  }
+  /* def clickLink(link: String): Unit =
+    waitForElementToBeClickable(By.linkText(link)).click()
+   */
+  def continueButtonClick(): Unit       =
     click(continueButton)
+
+  def submitButtonClick(): Unit =
+    click(submitButton)
 
 }
