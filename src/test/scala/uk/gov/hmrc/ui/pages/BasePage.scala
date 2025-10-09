@@ -48,12 +48,17 @@ trait BasePage extends PageObject {
   def headerCheck2(expectedText: String): Unit = {
     val headerLocator = By.tagName("h2")
     try {
-      Wait.until(ExpectedConditions.textToBePresentInElementLocated(headerLocator, expectedText))
-      val actualText = Driver.instance.findElement(headerLocator).getText
-      assert(actualText == expectedText, s"Expected header 2 '$expectedText', but found '$actualText'")
+      Wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(headerLocator))
+      val headers     = Driver.instance.findElements(headerLocator)
+      val headerTexts = headers.asScala.map(_.getText)
+
+      assert(
+        headerTexts.contains(expectedText),
+        s"Expected h2 '$expectedText' not found. Found headers: ${headerTexts.mkString(", ")}"
+      )
     } catch {
       case e: Exception =>
-        println(s"Header 2 check failed due to exception: ${e.getMessage}")
+        println(s"H2 check failed due to exception: ${e.getMessage}")
     }
   }
 
