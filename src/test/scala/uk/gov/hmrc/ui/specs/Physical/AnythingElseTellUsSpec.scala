@@ -16,6 +16,9 @@
 
 package uk.gov.hmrc.ui.specs.Physical
 
+import org.scalatest.concurrent.Eventually.eventually
+import org.scalatest.concurrent.Futures.{interval, timeout}
+import org.scalatest.time.{Seconds, Span}
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome.dashboard
 import uk.gov.hmrc.ui.pages.Physical._
 import uk.gov.hmrc.ui.pages.RALD.WhatDoYouWantToTellUs
@@ -29,10 +32,10 @@ class AnythingElseTellUsSpec extends BaseSpec with StubPage {
     Scenario("The user selects and adds changes to Add extra information what changed on the property") {
       PhysicalDB.cleanup()
       Given("Ratepayer logins through one login")
-      loginOl()
+      eventually(timeout(Span(15, Seconds)), interval(Span(5, Seconds)))(loginOl())
 
       When("The ratepayer clicks on 'Tell us about a change' link from dashboard")
-      dashboard()
+      eventually(timeout(Span(15, Seconds)), interval(Span(5, Seconds)))(dashboard())
       clickLink("Tell us about a change")
 
       Then(
