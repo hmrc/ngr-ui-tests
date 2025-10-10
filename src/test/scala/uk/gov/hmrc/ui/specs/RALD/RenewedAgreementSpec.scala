@@ -21,6 +21,7 @@ import uk.gov.hmrc.ui.pages.RALD._
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
+import uk.gov.hmrc.ui.utils.mongo.RaldDB
 
 class RenewedAgreementSpec extends BaseSpec with StubPage {
 
@@ -28,6 +29,7 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
     Scenario(
       "The user renewed their agreement, agreement type: Licence or other type of written agreement, rent based on: A percentage of expected turnover"
     ) {
+      RaldDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -119,17 +121,9 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       DoesYourRentIncludeParkingPage.noRadio()
       continueButtonClick()
 
-      Then("The user select yes to pay extra parking spaces not included in rent")
+      Then("The user select no to pay extra parking spaces not included in rent")
       DoYouPayExtraForParkingSpaces.doYouPayExtraForParkingSpaces()
-      DoYouPayExtraForParkingSpaces.selectPayExtraRadio("yes")
-      continueButtonClick()
-
-      Then(
-        "The user enters 3 for uncovered parking spaces, 4000 for how much extra they pay with an agreement date of 19-01-2020"
-      )
-      ParkingSpacesOrGaragesNotIncludedInYourRentPage.enterUncoveredSpaces("3")
-      ParkingSpacesOrGaragesNotIncludedInYourRentPage.totalCost("4000")
-      ParkingSpacesOrGaragesNotIncludedInYourRentPage.agreementDateInput(day = "19", month = "01", year = "1997")
+      DoYouPayExtraForParkingSpaces.selectPayExtraRadio("no")
       continueButtonClick()
 
       Then("The user selects you to who pays for internal, external and building insurance repairs")
@@ -150,6 +144,7 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
     Scenario(
       "The user renewed their agreement, agreement type: Lease or tenancy agreement, rent agreed in advance: Yes"
     ) {
+      RaldDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -238,13 +233,50 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlord()
       DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlordRadio("Yes")
       continueButtonClick()
+
+      Then("The user enters their rent date")
+      RentDatesPage.rentDatesPage()
+      RentDatesPage.agreeDateInput("19", "01", "2020")
+      continueButtonClick()
+
+      Then("The user selects what their rent includes")
+      WhatYourRentIncludesPage.whatYourRentIncludes()
+      WhatYourRentIncludesPage.livingAccommodationRadio("Yes")
+      WhatYourRentIncludesPage.bedroomNumbers("5")
+      WhatYourRentIncludesPage.rentPartAddressRadio("No")
+      WhatYourRentIncludesPage.rentEmptyShellRadio("No")
+      continueButtonClick()
+
+      Then("The user selects no to having parking spaces or garages")
+      DoesYourRentIncludeParkingPage.doesYourRentIncludeParking()
+      DoesYourRentIncludeParkingPage.noRadio()
+      continueButtonClick()
+
+      Then("The user select no to pay extra parking spaces not included in rent")
+      DoYouPayExtraForParkingSpaces.doYouPayExtraForParkingSpaces()
+      DoYouPayExtraForParkingSpaces.selectPayExtraRadio("no")
+      continueButtonClick()
+
+      Then("The user selects you to who pays for internal, external and building insurance repairs")
+      RepairsAndInsurancePage.repairsAndInsurance()
+      RepairsAndInsurancePage.whoPaysForInternalRepairsRadio("You and the landlord")
+      RepairsAndInsurancePage.whoPaysForExternalRepairsRadio("You and the landlord")
+      RepairsAndInsurancePage.WhoPaysForBuildingInsuranceRepairs("You and the landlord")
+      continueButtonClick()
+
+      Then("The user select yes for rent review and no for rent go down")
+      RentReviewPage.rentReview()
+      RentReviewPage.hasIncludeRentReview("yes")
+      RentReviewPage.enterRentReviewMonths("12")
+      RentReviewPage.canRentGoDown("no")
+      continueButtonClick()
     }
 
     Scenario(
       "The user renewed their agreement, agreement type: Lease or tenancy agreement, rent agreed in advance: No " +
         "Rent free period: Yes"
     ) {
-
+      RaldDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -320,21 +352,15 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       InterimRentSetByTheCourtPage.interimRentSetByTheCourtDateInput("3", "2019")
       continueButtonClick()
 
-      Then("The user enters 'Yes' to having a rent period")
+      Then("The user selects 'No' to having a rent free period")
       DoYouHaveRentFreePeriod.doYouHaveRentFreePeriod()
-      DoYouHaveRentFreePeriod.selectRentFreePeriodRadio("Yes")
+      DoYouHaveRentFreePeriod.selectRentFreePeriodRadio("No")
       continueButtonClick()
 
-      Then("The user enter how many months of rent free and reasons")
-      RentFreePeriod.rentFreePeriod()
-      RentFreePeriod.enterRentFreePeriodMonths("5")
-      RentFreePeriod.enterReasons("Any reasons")
-      continueButtonClick()
-
-      Then("The user enters the date they agreed their rent")
+      Then("The user enters their agreement date and start date")
       RentDatesAgreeStartPage.rentDatesAgreeStartPage()
-      RentDatesAgreeStartPage.agreeDateInput("03", "12", "2023")
-      RentDatesAgreeStartPage.startDateInput("19", "12", "2023")
+      RentDatesAgreeStartPage.agreeDateInput(day = "12", month = "12", year = "2020")
+      RentDatesAgreeStartPage.startDateInput(day = "10", month = "01", year = "2021")
       continueButtonClick()
 
       Then("The user selects what their rent includes")
@@ -376,6 +402,114 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       RentReviewPage.hasIncludeRentReview("yes")
       RentReviewPage.enterRentReviewYears("2")
       RentReviewPage.enterRentReviewMonths("6")
+      RentReviewPage.canRentGoDown("no")
+      continueButtonClick()
+    }
+
+    Scenario(
+      "The user renewed their agreement, agreement type: Licence or other type of written agreement, agreement type: Verbal"
+    ) {
+      RaldDB.cleanup()
+      Given("Ratepayer logins through one login")
+      loginOl()
+
+      When("The ratepayer clicks on 'Tell us about a change' link from dashboard")
+      dashboard()
+      clickLink("Tell us about a change")
+
+      Then("The ratepayers selects the property and proceed through the new agreement journey")
+      YourProperty.yourProperty()
+      clickLink("Select property")
+
+      Then("The user selects renewed agreement link to renew their agreement")
+      WhatDoYouWantToTellUs.whatDoYouWantToTellUs()
+      clickLink("You renewed your agreement")
+      TellUsAboutYourRenewedAgreementPage.tellUsAboutYourRenewedAgreement()
+      continueButtonClick()
+
+      Then("The user selects renewed agreement type of lease renewal")
+      WhatTypeOfLeaseRenewal.typeOfLeaseRenewal()
+      WhatTypeOfLeaseRenewal.renewedAgreementRadio()
+      continueButtonClick()
+
+      /* relationship With The Landlord = 'family Member'*/
+      Then("The user inputs the landlords name and selects family member as type")
+      Landlord.landlord()
+      Landlord.landlordNameInput(landlordName = "Bob")
+      Landlord.noRadio()
+      continueButtonClick()
+
+      Then("The user selects verbal as there agreement type")
+      WhatTypeOfAgreement.TypeOfAgreement()
+      WhatTypeOfAgreement.verbalRadio()
+      continueButtonClick()
+
+      Then("The user input agreement start date and end date")
+      AgreementVerbal.agreementVerbal()
+      AgreementVerbal.startDateInput("23", "4", "2025")
+      AgreementVerbal.notOpenEndedAgreementRadio()
+      AgreementVerbal.endDateInput("23", "4", "2027")
+      continueButtonClick()
+
+      Then("The user enter how much is total annual rent")
+      HowMuchIsTotalAnnualRent.howMuchIsTotalAnnualRent()
+      HowMuchIsTotalAnnualRent.inputTotalAnnualRent("7500")
+      continueButtonClick()
+
+      Then("The user selects 'Yes' with agreeing the rent with their landlord or their agent")
+      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlord()
+      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlordRadio("Yes")
+      continueButtonClick()
+
+      Then("The user selects 'Yes' to having a rent free period")
+      DoYouHaveRentFreePeriod.doYouHaveRentFreePeriod()
+      DoYouHaveRentFreePeriod.selectRentFreePeriodRadio("Yes")
+      continueButtonClick()
+
+      Then("The user states 10 rent free months with a reason")
+      RentFreePeriod.rentFreePeriod()
+      RentFreePeriod.enterRentFreePeriodMonths("10")
+      RentFreePeriod.enterReasons("Was out the country")
+      continueButtonClick()
+
+      Then("The user enters the date they agreed their rent")
+      RentDatesAgreeStartPage.rentDatesAgreeStartPage()
+      RentDatesAgreeStartPage.agreeDateInput("03", "12", "2023")
+      RentDatesAgreeStartPage.startDateInput("19", "12", "2023")
+      continueButtonClick()
+
+      Then("The user selects what their rent includes")
+      WhatYourRentIncludesPage.whatYourRentIncludes()
+      WhatYourRentIncludesPage.livingAccommodationRadio("Yes")
+      WhatYourRentIncludesPage.bedroomNumbers("5")
+      WhatYourRentIncludesPage.rentPartAddressRadio("No")
+      WhatYourRentIncludesPage.rentEmptyShellRadio("No")
+      WhatYourRentIncludesPage.rentIncBusinessRatesRadio("No")
+      WhatYourRentIncludesPage.rentIncWaterChargesRadio("No")
+      WhatYourRentIncludesPage.rentIncServiceRadio("No")
+      continueButtonClick()
+
+      Then("The user selects 'No' to having parking spaces or garages")
+      DoesYourRentIncludeParkingPage.doesYourRentIncludeParking()
+      DoesYourRentIncludeParkingPage.noRadio()
+      continueButtonClick()
+
+      Then("The user select no to pay extra parking spaces not included in rent")
+      DoYouPayExtraForParkingSpaces.doYouPayExtraForParkingSpaces()
+      DoYouPayExtraForParkingSpaces.selectPayExtraRadio("no")
+      continueButtonClick()
+
+      Then("The user selects you to who pays for internal, external and building insurance repairs")
+      RepairsAndInsurancePage.repairsAndInsurance()
+      RepairsAndInsurancePage.whoPaysForInternalRepairsRadio("You")
+      RepairsAndInsurancePage.whoPaysForExternalRepairsRadio("You")
+      RepairsAndInsurancePage.WhoPaysForBuildingInsuranceRepairs("You")
+      continueButtonClick()
+
+      Then("The user select yes for rent review and no for rent go down")
+      RentReviewPage.rentReview()
+      RentReviewPage.hasIncludeRentReview("yes")
+      RentReviewPage.enterRentReviewYears("12")
       RentReviewPage.canRentGoDown("no")
       continueButtonClick()
     }

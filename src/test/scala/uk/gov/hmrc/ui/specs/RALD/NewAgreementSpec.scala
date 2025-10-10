@@ -21,11 +21,12 @@ import uk.gov.hmrc.ui.pages.RALD._
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
+import uk.gov.hmrc.ui.utils.mongo.RaldDB
 
 class NewAgreementSpec extends BaseSpec with StubPage {
   Feature("Testing the new agreement functionality") {
     Scenario("New agreement, agreement type: Lease or tenancy agreement, agreed in advance: 'No'") {
-
+      RaldDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -141,13 +142,6 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       RepairsAndInsurancePage.WhoPaysForBuildingInsuranceRepairs("You")
       continueButtonClick()
 
-      Then("The user selects you to who pays for internal, external and building insurance repairs")
-      RepairsAndInsurancePage.repairsAndInsurance()
-      RepairsAndInsurancePage.whoPaysForInternalRepairsRadio("The landlord")
-      RepairsAndInsurancePage.whoPaysForExternalRepairsRadio("The landlord")
-      RepairsAndInsurancePage.WhoPaysForBuildingInsuranceRepairs("The landlord")
-      continueButtonClick()
-
       Then("The user select no for rent review and yes for rent go down")
       RentReviewPage.rentReview()
       RentReviewPage.hasIncludeRentReview("no")
@@ -156,7 +150,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
     }
 
     Scenario("New agreement, agreement type: Licence or other type of written agreement, agreed in advance: 'Yes'") {
-
+      RaldDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -278,8 +272,130 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       continueButtonClick()
     }
 
-    Scenario("New agreement, agreement type: Verbal") {
+    Scenario(
+      "New agreement, agreement type: Licence or other type of written agreement, Rent Based On: 'Total Occupancy Cost leases (TOCs)'"
+    ) {
+      RaldDB.cleanup()
+      Given("Ratepayer logins through one login")
+      loginOl()
 
+      When("The ratepayer clicks on 'Tell us about a change' link from dashboard")
+      dashboard()
+      clickLink("Tell us about a change")
+
+      Then("The ratepayers selects the property and proceed through the new agreement journey")
+      YourProperty.yourProperty()
+      clickLink("Select property")
+
+      Then("The user selects new agreement link to tell about their new agreement")
+      WhatDoYouWantToTellUs.whatDoYouWantToTellUs()
+      clickLink("You have a new agreement")
+      TellUsAboutYourNewAgreementPage.tellUsAboutYourNewAgreement()
+      continueButtonClick()
+
+      /* No relationship with landlord*/
+      Then("The user inputs the landlords name and selects family member as type")
+      Landlord.landlord()
+      Landlord.landlordNameInput(landlordName = "Tinker Bell")
+      Landlord.noRadio()
+      continueButtonClick()
+
+      /* Agreement type ='Licence or other type of written agreement' */
+      Then("The user selects licence or other type of written as their agreement type")
+      WhatTypeOfAgreement.TypeOfAgreement()
+      WhatTypeOfAgreement.writtenRadio()
+      continueButtonClick()
+
+      /* Open ended agreement = 'Yes',  Agreement have a break clause = 'No' */
+      Then("The user enters agreement start date, open ended, and 'No' for break clause")
+      Agreement.agreement()
+      Agreement.enterAgreementStartDate("02", "01", "2005")
+      Agreement.agreementOpenEndedRadio("Yes")
+      Agreement.agreementHaveABreakClauseRadio("No")
+      continueButtonClick()
+
+      /*'What is your rent based on?' = 'Total Occupancy Cost leases (TOCs)'*/
+      Then("The user selects other and input reason on 'What is your rent based on?' page and submit")
+      WhatIsRentBasedOn.whatIsRentBasedOn()
+      WhatIsRentBasedOn.selectRentBaseOn("Total Occupancy Cost leases (TOCs)")
+      continueButtonClick()
+
+      /*User selects 'Yes' on rent agreed in advance*/
+      And("The user selects 'Yes' on rent agreed in advance")
+      HaveYouAgreedInAdvanceRentChanges.haveYouAgreedInAdvanceRentChanges()
+      HaveYouAgreedInAdvanceRentChanges.yesRadio()
+      continueButtonClick()
+
+      When("The user provides the start and end date for the first rent period")
+      ProvideDetailsOfFirstSecondRentPeriodPage.provideDetailsOfEachRentPeriod()
+      ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodStartDate("02", "01", "2011")
+      ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodEndDate("02", "03", "2022")
+
+      Then("The user selects 'Yes' radio button and enter the rent amount")
+      ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodRadioYes()
+      ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodRent("2000.90365")
+
+      When("The user enters the start, end date and rent amount for the second rent period")
+      ProvideDetailsOfFirstSecondRentPeriodPage.provideDetailsOfEachRentPeriod()
+      ProvideDetailsOfFirstSecondRentPeriodPage.secondRentPeriodStartDate("02", "10", "2012")
+      ProvideDetailsOfFirstSecondRentPeriodPage.secondRentPeriodEndDate("02", "12", "2023")
+      ProvideDetailsOfFirstSecondRentPeriodPage.SecondRentPeriodRent("9999999.99")
+      continueButtonClick()
+
+      When("The user check rent period details on rent periods page")
+      RentPeriods.rentPeriods()
+      /*These dates should be similar to the dates entered in the previous steps(first and second rent period) */
+      RentPeriods.verifyFirstPeriodStartDate("2 January 2011")
+      RentPeriods.verifyFirstPeriodEndDate("2 March 2022")
+      RentPeriods.verifyFirstPeriodDoYouPay("Yes")
+      RentPeriods.verifyFirstPeriodRentValue("£2,000.90")
+      RentPeriods.verifySecondPeriodStartDate("2 October 2012")
+      RentPeriods.verifySecondPeriodEndDate("2 December 2023")
+      RentPeriods.verifySecondPeriodRentValue("£9,999,999.99")
+
+      Then("The user selects 'No' for adding rent period")
+      RentPeriods.addAnotherPeriod("No")
+      continueButtonClick()
+
+      Then("The user enters their rent date")
+      RentDatesPage.rentDatesPage()
+      RentDatesPage.agreeDateInput("19", "01", "2020")
+      continueButtonClick()
+
+      Then("The user selects what their rent includes")
+      WhatYourRentIncludesPage.whatYourRentIncludes()
+      WhatYourRentIncludesPage.livingAccommodationRadio("No")
+      WhatYourRentIncludesPage.rentPartAddressRadio("Yes")
+      WhatYourRentIncludesPage.rentEmptyShellRadio("Yes")
+      continueButtonClick()
+
+      Then("The user selects no to having parking spaces or garages")
+      DoesYourRentIncludeParkingPage.doesYourRentIncludeParking()
+      DoesYourRentIncludeParkingPage.noRadio()
+      continueButtonClick()
+
+      Then("The user select no to pay extra parking spaces not included in rent")
+      DoYouPayExtraForParkingSpaces.doYouPayExtraForParkingSpaces()
+      DoYouPayExtraForParkingSpaces.selectPayExtraRadio("no")
+      continueButtonClick()
+
+      Then("The user selects you to who pays for internal, external and building insurance repairs")
+      RepairsAndInsurancePage.repairsAndInsurance()
+      RepairsAndInsurancePage.whoPaysForInternalRepairsRadio("The landlord")
+      RepairsAndInsurancePage.whoPaysForExternalRepairsRadio("The landlord")
+      RepairsAndInsurancePage.WhoPaysForBuildingInsuranceRepairs("The landlord")
+      continueButtonClick()
+
+      Then("The user select yes for rent review and no for rent go down")
+      RentReviewPage.rentReview()
+      RentReviewPage.hasIncludeRentReview("yes")
+      RentReviewPage.enterRentReviewMonths("12")
+      RentReviewPage.canRentGoDown("no")
+      continueButtonClick()
+    }
+
+    Scenario("New agreement, agreement type: Verbal") {
+      RaldDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
