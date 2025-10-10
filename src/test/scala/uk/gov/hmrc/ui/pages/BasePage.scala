@@ -79,8 +79,10 @@ trait BasePage extends PageObject {
   def findElementById(locator: String): WebElement =
     Driver.instance.findElement(By.id(locator))
 
-  def getUrl(url: String): Unit =
+  def getUrl(url: String): Unit = {
     get(url)
+    Wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.tagName("body")))
+  }
 
   def Wait: Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
     .withTimeout(Duration.ofSeconds(10))
