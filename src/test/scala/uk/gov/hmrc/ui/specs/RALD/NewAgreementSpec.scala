@@ -21,11 +21,12 @@ import uk.gov.hmrc.ui.pages.RALD._
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
+import uk.gov.hmrc.ui.utils.mongo.RaldDB
 
 class NewAgreementSpec extends BaseSpec with StubPage {
   Feature("Testing the new agreement functionality") {
     Scenario("New agreement, agreement type: Lease or tenancy agreement, agreed in advance: 'No'") {
-
+      RaldDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -149,7 +150,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
     }
 
     Scenario("New agreement, agreement type: Licence or other type of written agreement, agreed in advance: 'Yes'") {
-
+      RaldDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -274,7 +275,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
     Scenario(
       "New agreement, agreement type: Licence or other type of written agreement, Rent Based On: 'Total Occupancy Cost leases (TOCs)'"
     ) {
-
+      RaldDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -394,7 +395,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
     }
 
     Scenario("New agreement, agreement type: Verbal") {
-
+      RaldDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 

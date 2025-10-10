@@ -29,8 +29,8 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
     Scenario(
       "The user renewed their agreement, agreement type: Licence or other type of written agreement, rent based on: A percentage of expected turnover"
     ) {
-      Given("Ratepayer logins through one login")
       RaldDB.cleanup()
+      Given("Ratepayer logins through one login")
       loginOl()
 
       When("The ratepayer clicks on 'Tell us about a change' link from dashboard")
@@ -144,8 +144,8 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
     Scenario(
       "The user renewed their agreement, agreement type: Lease or tenancy agreement, rent agreed in advance: Yes"
     ) {
-      Given("Ratepayer logins through one login")
       RaldDB.cleanup()
+      Given("Ratepayer logins through one login")
       loginOl()
 
       When("The ratepayer clicks on 'Tell us about a change' link from dashboard")
@@ -276,9 +276,8 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       "The user renewed their agreement, agreement type: Lease or tenancy agreement, rent agreed in advance: No " +
         "Rent free period: Yes"
     ) {
-
-      Given("Ratepayer logins through one login")
       RaldDB.cleanup()
+      Given("Ratepayer logins through one login")
       loginOl()
 
       When("The ratepayer clicks on 'Tell us about a change' link from dashboard")
@@ -410,8 +409,8 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
     Scenario(
       "The user renewed their agreement, agreement type: Licence or other type of written agreement, agreement type: Verbal"
     ) {
-      Given("Ratepayer logins through one login")
       RaldDB.cleanup()
+      Given("Ratepayer logins through one login")
       loginOl()
 
       When("The ratepayer clicks on 'Tell us about a change' link from dashboard")

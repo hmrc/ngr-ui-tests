@@ -21,11 +21,13 @@ import uk.gov.hmrc.ui.pages.RALD._
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
+import uk.gov.hmrc.ui.utils.mongo.RaldDB
 
 class RentReviewedSpec extends BaseSpec with StubPage {
 
   Feature("Testing the 'you reviewed your rent' journey") {
     Scenario("The user reviewed their rent") {
+      RaldDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
@@ -93,6 +95,7 @@ class RentReviewedSpec extends BaseSpec with StubPage {
     }
 
     Scenario("The user reviewed their rent, rent based on: Total Occupancy Cost leases (TOCs)") {
+      RaldDB.cleanup()
       Given("Ratepayer logins through one login")
       loginOl()
 
