@@ -23,16 +23,19 @@ import uk.gov.hmrc.ui.pages.{SignOutPage, StubPage}
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.PhysicalDB
+import org.scalatest.concurrent.Eventually.eventually
+import org.scalatest.concurrent.Futures.{interval, timeout}
+import org.scalatest.time.{Seconds, Span}
 
 class UseOfSpaceSpec extends BaseSpec with StubPage {
   Feature("Testing the changed property features or use of space functionality") {
     Scenario("The user adds all 3 option with planning permission number to the change use of space") {
       PhysicalDB.cleanup()
       Given("Ratepayer logins through one login")
-      loginOl()
+      eventually(timeout(Span(15, Seconds)), interval(Span(5, Seconds)))(loginOl())
 
       When("The ratepayer clicks on 'Tell us about a change' link from dashboard")
-      dashboard()
+      eventually(timeout(Span(15, Seconds)), interval(Span(5, Seconds)))(dashboard())
       clickLink("Tell us about a change")
 
       Then(
