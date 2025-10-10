@@ -85,8 +85,8 @@ trait BasePage extends PageObject {
   }
 
   def Wait: Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
-    .withTimeout(Duration.ofSeconds(20))
-    .pollingEvery(Duration.ofSeconds(3))
+    .withTimeout(Duration.ofSeconds(10))
+    .pollingEvery(Duration.ofSeconds(1))
 
   def waitForElementToBeClickable(locator: By): WebElement =
     Wait.until(ExpectedConditions.elementToBeClickable(locator))
