@@ -26,10 +26,13 @@ trait StubPage extends BasePage {
 
   private val confidenceLevel = By.id("confidenceLevel")
   private val nino            = By.id("nino")
+  private val ninoValue       = By.id("nino-value")
   private val submitAuthStub  = By.id("submit")
+  private val continue        = By.id("continue")
   private val submit          = By.xpath("//button[@value='submit']")
-  private val secondarySubmit = By.xpath("//*[@id='main-content']/div/div/form[2]/button")
+  private val secondarySubmit = By.xpath("//button[@value='submit'][2]")
   private val answer          = By.id("answer")
+  private val confirmUTR      = By.id("confirmUTR-2")
 
   def getStubUrl(): Unit =
     getUrl(authStub_url)
@@ -72,9 +75,35 @@ trait StubPage extends BasePage {
     click(submit)
   }
 
-  def complete(): Unit = {
+  def provideTaxReference(): Unit = {
+    headerCheck("Provide your tax reference number")
+    click(continue)
+  }
+
+  def confirmSAReference(): Unit = {
+    headerCheck("Confirm your Self Assessment Unique Taxpayer Reference")
+    click(confirmUTR)
+    click(continue)
+  }
+
+  def provideNino(): Unit = {
+    headerCheck("Provide your National Insurance number")
+    sendKeys(ninoValue, "AA000003D")
+    click(continue)
+  }
+
+  def checkYourAnswer(): Unit = {
+    headerCheck("Check your answers")
+    click(continue)
+  }
+
+  def complete(): Unit               = {
     headerCheck("GOV.UK One Login set up complete")
     click(submit)
+  }
+  def registrationSuccessful(): Unit = {
+    headerCheck("Registration Successful")
+    click(continue)
   }
 
   def stubOlAuthentication(): Unit = {
@@ -93,6 +122,12 @@ trait StubPage extends BasePage {
     selectByValue(confidenceLevel, "250")
     sendKeys(nino, "AA000003D")
     click(submitAuthStub)
+    provideTaxReference()
+    confirmSAReference()
+    provideNino()
+    checkYourAnswer()
+    registrationSuccessful()
+
   }
 
 }
