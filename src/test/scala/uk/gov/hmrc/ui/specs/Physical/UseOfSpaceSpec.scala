@@ -21,7 +21,7 @@ import uk.gov.hmrc.ui.pages.Physical._
 import uk.gov.hmrc.ui.pages.RALD._
 import uk.gov.hmrc.ui.pages.{SignOutPage, StubPage}
 import uk.gov.hmrc.ui.specs.BaseSpec
-import uk.gov.hmrc.ui.utils.login.loginOl
+import uk.gov.hmrc.ui.utils.login.loginGg
 import uk.gov.hmrc.ui.utils.mongo.PhysicalDB
 
 class UseOfSpaceSpec extends BaseSpec with StubPage {
@@ -29,7 +29,7 @@ class UseOfSpaceSpec extends BaseSpec with StubPage {
     Scenario("The user adds all 3 option with planning permission number to the change use of space") {
       PhysicalDB.cleanup()
       Given("Ratepayer logins through one login")
-      loginOl()
+      loginGg()
 
       When("The ratepayer clicks on 'Tell us about a change' link from dashboard")
       dashboard()

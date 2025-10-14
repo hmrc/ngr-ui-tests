@@ -17,11 +17,11 @@
 package uk.gov.hmrc.ui.specs.Physical
 
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome.dashboard
-import uk.gov.hmrc.ui.pages.Physical.{AboutChangeToUseOfSpace, AnythingElseTellUs, CheckAndConfirmChangesToExternalFeatures, CheckAndConfirmChangesToInternalFeatures, CheckAndConfirmYourChanges, Declaration, HaveYouChangedExternalFeatures, HaveYouChangedInternalFeatures, HaveYouChangedUseOfSpace, HowMuchOfPropertyHasAirConditioning, InformationAndSupportingDocumentsNeed, PropertyChangeDetailsSent, SupportingDocuments, TellUsChangedPropertyFeaturesOrUseOfSpace, UploadSupportingDocument, UploadedSupportingDocument, WhatHappenedToLoadingBays, WhenCompleteChange, WhichExternalFeatureHaveChange, WhichInternalFeatureHaveChanged}
+import uk.gov.hmrc.ui.pages.Physical._
 import uk.gov.hmrc.ui.pages.RALD.{WhatDoYouWantToTellUs, YourProperty}
 import uk.gov.hmrc.ui.pages.{SignOutPage, StubPage}
 import uk.gov.hmrc.ui.specs.BaseSpec
-import uk.gov.hmrc.ui.utils.login.loginOl
+import uk.gov.hmrc.ui.utils.login.loginGg
 import uk.gov.hmrc.ui.utils.mongo.PhysicalDB
 
 class EndToEndTestSpec extends BaseSpec with StubPage {
@@ -30,7 +30,7 @@ class EndToEndTestSpec extends BaseSpec with StubPage {
     Scenario("The user adds features and complete the journey") {
       PhysicalDB.cleanup()
       Given("Ratepayer logins through one login")
-      loginOl()
+      loginGg()
 
       When("The ratepayer clicks on 'Tell us about a change' link from dashboard")
       dashboard()
