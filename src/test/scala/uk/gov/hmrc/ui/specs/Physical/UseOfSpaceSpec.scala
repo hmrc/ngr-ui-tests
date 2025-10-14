@@ -30,6 +30,7 @@ class UseOfSpaceSpec extends BaseSpec with StubPage {
       PhysicalDB.cleanup()
       Given("Ratepayer logins through one login")
       loginGg()
+
       When("The ratepayer clicks on 'Tell us about a change' link from dashboard")
       dashboard()
       clickLink("Tell us about a change")
