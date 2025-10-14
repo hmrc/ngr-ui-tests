@@ -16,6 +16,7 @@
 
 package uk.gov.hmrc.ui.specs.Physical
 
+import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome.dashboard
 import uk.gov.hmrc.ui.pages.Physical._
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.specs.BaseSpec
@@ -29,6 +30,10 @@ class ExternalFeaturesSpec extends BaseSpec with StubPage {
       PhysicalDB.cleanup()
       Given("Ratepayer logins through one login")
       loginGg()
+
+      When("The ratepayer clicks on 'Tell us about a change' link from dashboard")
+      dashboard()
+      clickLink("Tell us about a change")
 
 
     }
