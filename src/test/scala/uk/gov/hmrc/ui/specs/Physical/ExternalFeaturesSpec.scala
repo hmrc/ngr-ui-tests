@@ -31,7 +31,6 @@ class ExternalFeaturesSpec extends BaseSpec with StubPage {
       PhysicalDB.cleanup()
       Given("Ratepayer logins through one login")
       loginGg()
-      PhysicalDB.insertPropertyLinkingData()
 
       When("The ratepayer clicks on 'Tell us about a change' link from dashboard")
       dashboard()
