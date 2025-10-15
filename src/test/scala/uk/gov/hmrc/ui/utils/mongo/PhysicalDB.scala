@@ -34,4 +34,56 @@ object PhysicalDB {
     if (env == "local") {
       collection("ngr-physical-frontend", "user-answers").deleteMany(expr("1 == 1")).results()
     }
+
+  def insertPropertyLinkingData(): Unit = {
+
+    val json =
+      """
+        |{
+        |  "credId": {
+        |    "value": "12345"
+        |  },
+        |  "vmvProperty": {
+        |    "uarn": 11905603000,
+        |    "addressFull": "(INCL STORE R/O 2 & 2A) 2A, RODLEY LANE, RODLEY, LEEDS, BH1 1HU",
+        |    "localAuthorityCode": "4720",
+        |    "localAuthorityReference": "2191322564521",
+        |    "valuations": [
+        |      {
+        |        "assessmentStatus": "CURRENT",
+        |        "assessmentRef": 29775650000,
+        |        "rateableValue": 9300,
+        |        "scatCode": "249",
+        |        "currentFromDate": "2026-04-01",
+        |        "effectiveDate": "2026-04-01",
+        |        "descriptionText": "SHOP AND PREMISES",
+        |        "listYear": "2026",
+        |        "primaryDescription": "CS",
+        |        "allowedActions": [
+        |          "viewDetailedValuation",
+        |          "propertyLink",
+        |          "similarProperties",
+        |          "enquiry",
+        |          "businessRatesEstimator"
+        |        ],
+        |        "propertyLinkEarliestStartDate": "2017-04-01",
+        |        "listType": "current"
+        |      }
+        |    ]
+        |  },
+        |  "currentRatepayer": {
+        |    "isBeforeApril": true
+        |  },
+        |  "businessRatesBill": "Yes",
+        |  "connectionToProperty": "Owner",
+        |  "requestSentReference": "ref",
+        |  "evidenceDocument": "test.png",
+        |  "uploadEvidence": "StampDuty"
+        |}
+        |""".stripMargin
+
+
+    val doc: Document = Document(json)
+    collection("next-generation-rates", "ratepayerPropertyLinking").insertOne(doc).results()
+  }
 }
