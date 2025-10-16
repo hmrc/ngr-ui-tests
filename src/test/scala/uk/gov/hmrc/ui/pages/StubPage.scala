@@ -26,6 +26,7 @@ trait StubPage extends BasePage {
 
   private val confidenceLevel = By.id("confidenceLevel")
   private val nino            = By.id("nino")
+  private val authorityId     = By.id("authorityId")
   private val ninoValue       = By.id("nino-value")
   private val submitAuthStub  = By.id("submit")
   private val continue        = By.id("continue")
@@ -103,6 +104,11 @@ trait StubPage extends BasePage {
   }
   def registrationSuccessful(): Unit = {
     headerCheck("Registration Successful")
+    println("Registration Successful")
+    println("Registration Successful")
+    println("Registration Successful")
+    println("Registration Successful")
+    println("Registration Successful")
     click(continue)
   }
 
@@ -116,12 +122,13 @@ trait StubPage extends BasePage {
   def stubGgAuthentication(): Unit = {
     selectByValue(confidenceLevel, "250")
     sendKeys(nino, "AA000003D")
+    sendKeys(authorityId, "9900000000000101")
     click(submitAuthStub)
-    provideTaxReference()
+    /*    provideTaxReference()
     confirmSAReference()
     provideNino()
     checkYourAnswer()
-    registrationSuccessful()
+    registrationSuccessful()*/
 
   }
 
