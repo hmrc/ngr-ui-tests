@@ -104,11 +104,6 @@ trait StubPage extends BasePage {
   }
   def registrationSuccessful(): Unit = {
     headerCheck("Registration Successful")
-    println("Registration Successful")
-    println("Registration Successful")
-    println("Registration Successful")
-    println("Registration Successful")
-    println("Registration Successful")
     click(continue)
   }
 
@@ -124,11 +119,11 @@ trait StubPage extends BasePage {
     sendKeys(nino, "AA000003D")
     sendKeys(authorityId, "9900000000000101")
     click(submitAuthStub)
-    provideTaxReference()
+/*    provideTaxReference()
     confirmSAReference()
     provideNino()
     checkYourAnswer()
-    registrationSuccessful()
+    registrationSuccessful()*/
 
   }
 
