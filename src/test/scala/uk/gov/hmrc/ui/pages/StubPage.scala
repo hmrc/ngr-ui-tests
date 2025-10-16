@@ -115,15 +115,15 @@ trait StubPage extends BasePage {
   }
 
   def stubGgAuthentication(): Unit = {
+    sendKeys(authorityId, "9900000000000101")
     selectByValue(confidenceLevel, "250")
     sendKeys(nino, "AA000003D")
-    sendKeys(authorityId, "9900000000000101")
     click(submitAuthStub)
-/*    provideTaxReference()
+    provideTaxReference()
     confirmSAReference()
     provideNino()
     checkYourAnswer()
-    registrationSuccessful()*/
+    registrationSuccessful()
 
   }
 
