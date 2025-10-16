@@ -124,11 +124,11 @@ trait StubPage extends BasePage {
     sendKeys(nino, "AA000003D")
     sendKeys(authorityId, "9900000000000101")
     click(submitAuthStub)
-    /*    provideTaxReference()
+    provideTaxReference()
     confirmSAReference()
     provideNino()
     checkYourAnswer()
-    registrationSuccessful()*/
+    registrationSuccessful()
 
   }
 
