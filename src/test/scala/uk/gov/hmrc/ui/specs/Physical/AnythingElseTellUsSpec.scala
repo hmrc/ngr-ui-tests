@@ -21,7 +21,7 @@ import uk.gov.hmrc.ui.pages.Physical._
 import uk.gov.hmrc.ui.pages.RALD.WhatDoYouWantToTellUs
 import uk.gov.hmrc.ui.pages.{SignOutPage, StubPage}
 import uk.gov.hmrc.ui.specs.BaseSpec
-import uk.gov.hmrc.ui.utils.login.loginOl
+import uk.gov.hmrc.ui.utils.login.loginGg
 import uk.gov.hmrc.ui.utils.mongo.PhysicalDB
 
 class AnythingElseTellUsSpec extends BaseSpec with StubPage {
@@ -29,7 +29,7 @@ class AnythingElseTellUsSpec extends BaseSpec with StubPage {
     Scenario("The user selects and adds changes to Add extra information what changed on the property") {
       PhysicalDB.cleanup()
       Given("Ratepayer logins through one login")
-      loginOl()
+      loginGg()
 
       When("The ratepayer clicks on 'Tell us about a change' link from dashboard")
       dashboard()
