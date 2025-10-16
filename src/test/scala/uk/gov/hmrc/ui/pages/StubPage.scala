@@ -18,6 +18,7 @@ package uk.gov.hmrc.ui.pages
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.configuration.TestEnvironment
+import uk.gov.hmrc.selenium.webdriver.Driver
 
 trait StubPage extends BasePage {
 
@@ -119,12 +120,16 @@ trait StubPage extends BasePage {
     selectByValue(confidenceLevel, "250")
     sendKeys(nino, "AA000003D")
     click(submitAuthStub)
-    provideTaxReference()
-    confirmSAReference()
-    provideNino()
-    checkYourAnswer()
-    registrationSuccessful()
-
+    def getCurrentPageUrl: String = Driver.instance.getCurrentUrl
+    println()
+    println("Current Page URL: " + getCurrentPageUrl)
+    if (!getCurrentPageUrl.contains("dashboard")) {
+      provideTaxReference()
+      confirmSAReference()
+      provideNino()
+      checkYourAnswer()
+      registrationSuccessful()
+    }
   }
 
 }
