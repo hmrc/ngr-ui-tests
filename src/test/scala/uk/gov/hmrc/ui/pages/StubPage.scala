@@ -32,8 +32,6 @@ trait StubPage extends BasePage {
   private val submitAuthStub  = By.id("submit")
   private val continue        = By.id("continue")
   private val submit          = By.xpath("//button[@value='submit']")
-  private val secondarySubmit = By.xpath("//button[@value='submit'][2]")
-  private val answer          = By.id("answer")
   private val confirmUTR      = By.id("confirmUTR-2")
 
   def getStubUrl(): Unit =
@@ -51,29 +49,6 @@ trait StubPage extends BasePage {
 
   def IvStub(): Unit = {
     headerCheck("GDS IV Sign")
-    click(submit)
-  }
-
-  def IvNinoStub(): Unit = {
-    headerCheck("Test Only Nino access")
-    click(secondarySubmit)
-  }
-
-  def linkToHMRCRecordStub(): Unit = {
-    headerCheck("We need to link your GOV.UK One Login to your HMRC records")
-    click(answer)
-    click(submit)
-  }
-
-  def enterNinoStub(): Unit = {
-    headerCheck("Enter your National Insurance number")
-    sendKeys(nino, "AA000003D")
-    click(submit)
-  }
-
-  def checkNino(): Unit = {
-    headerCheck("Check your National Insurance number")
-    click(answer)
     click(submit)
   }
 
@@ -99,10 +74,6 @@ trait StubPage extends BasePage {
     click(continue)
   }
 
-  def complete(): Unit               = {
-    headerCheck("GOV.UK One Login set up complete")
-    click(submit)
-  }
   def registrationSuccessful(): Unit = {
     headerCheck("Registration Successful")
     click(continue)
@@ -120,9 +91,8 @@ trait StubPage extends BasePage {
     selectByValue(confidenceLevel, "250")
     sendKeys(nino, "AA000003D")
     click(submitAuthStub)
+
     def getCurrentPageUrl: String = Driver.instance.getCurrentUrl
-    println()
-    println("Current Page URL: " + getCurrentPageUrl)
     if (!getCurrentPageUrl.contains("dashboard")) {
       provideTaxReference()
       confirmSAReference()
