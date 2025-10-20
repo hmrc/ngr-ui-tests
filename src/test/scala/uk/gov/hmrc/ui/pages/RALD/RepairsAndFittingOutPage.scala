@@ -24,7 +24,7 @@ object RepairsAndFittingOutPage extends BasePage {
   val repairsAndFittingOutID: By = By.id("repairsAndFittingOut-radio-value")
 
   def repairsAndFittingOut(): Unit =
-    headerCheck("repairsAndFittingOut")
+    headerCheck("Repairs and fitting out")
 
   def repairsAndFittingOutInput(repairsAndFittingOut: String): Unit =
     sendKeys(repairsAndFittingOutID, repairsAndFittingOut)

@@ -24,7 +24,7 @@ object DidYouPayAnyMoneyToLandlordPage extends BasePage {
   val didYouPayAnyMoneyToLandlordID: By = By.id("didYouPayAnyMoneyToLandlord-radio-value")
 
   def didYouPayAnyMoneyToLandlord(): Unit =
-    headerCheck("didYouPayAnyMoneyToLandlord")
+    headerCheck("Did you pay any money in advance to the landlord?")
 
   def didYouPayAnyMoneyToLandlordInput(didYouPayAnyMoneyToLandlord: String): Unit =
     sendKeys(didYouPayAnyMoneyToLandlordID, didYouPayAnyMoneyToLandlord)

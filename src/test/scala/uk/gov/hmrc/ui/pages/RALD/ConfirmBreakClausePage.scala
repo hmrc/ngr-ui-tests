@@ -24,7 +24,7 @@ object ConfirmBreakClausePage extends BasePage {
   val confirmBreakClauseID: By = By.id("confirmBreakClause-radio-value")
 
   def confirmBreakClause(): Unit =
-    headerCheck("confirmBreakClause")
+    headerCheck("Did your agreement allow you to trigger a break clause?")
 
   def confirmBreakClauseInput(confirmBreakClause: String): Unit =
     sendKeys(confirmBreakClauseID, confirmBreakClause)
