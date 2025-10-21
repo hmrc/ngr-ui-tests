@@ -26,9 +26,6 @@ object ConfirmBreakClausePage extends BasePage {
   def confirmBreakClause(): Unit =
     headerCheck("Did your agreement allow you to trigger a break clause?")
 
-  def confirmBreakClauseInput(confirmBreakClause: String): Unit =
-    sendKeys(confirmBreakClauseID, confirmBreakClause)
-
   def yesRadio(): Unit =
     click(getElementById("confirmBreakClause-radio-value"))
 

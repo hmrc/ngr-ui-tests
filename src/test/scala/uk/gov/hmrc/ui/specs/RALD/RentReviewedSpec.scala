@@ -18,7 +18,7 @@ package uk.gov.hmrc.ui.specs.RALD
 
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome.dashboard
 import uk.gov.hmrc.ui.pages.RALD._
-import uk.gov.hmrc.ui.pages.StubPage
+import uk.gov.hmrc.ui.pages.{DidYouGetIncentiveForNotTriggeringBreakClausePage, StubPage}
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.RaldDB
@@ -92,6 +92,16 @@ class RentReviewedSpec extends BaseSpec with StubPage {
       RepairsAndInsurancePage.whoPaysForExternalRepairsRadio("The landlord")
       RepairsAndInsurancePage.WhoPaysForBuildingInsuranceRepairs("The landlord")
       continueButtonClick()
+
+      Then("The user selects Yes that their agreement allowed them to have a break clause")
+      ConfirmBreakClausePage.confirmBreakClause()
+      ConfirmBreakClausePage.yesRadio()
+      continueButtonClick()
+
+      Then("The user selects Yes, I got a lump sum and Yes, I got a rent-free period")
+      DidYouGetIncentiveForNotTriggeringBreakClausePage.didYouGetIncentiveForNotTriggeringBreakClause()
+      DidYouGetIncentiveForNotTriggeringBreakClausePage.noIDidNotGetAnIncentive()
+      continueButtonClick()
     }
 
     Scenario("The user reviewed their rent, rent based on: Total Occupancy Cost leases (TOCs)") {
@@ -157,6 +167,17 @@ class RentReviewedSpec extends BaseSpec with StubPage {
       RepairsAndInsurancePage.whoPaysForInternalRepairsRadio("The landlord")
       RepairsAndInsurancePage.whoPaysForExternalRepairsRadio("The landlord")
       RepairsAndInsurancePage.WhoPaysForBuildingInsuranceRepairs("The landlord")
+      continueButtonClick()
+
+      Then("The user selects Yes that their agreement allowed them to have a break clause")
+      ConfirmBreakClausePage.confirmBreakClause()
+      ConfirmBreakClausePage.yesRadio()
+      continueButtonClick()
+
+      Then("The user selects Yes, I got a lump sum and Yes, I got a rent-free period")
+      DidYouGetIncentiveForNotTriggeringBreakClausePage.didYouGetIncentiveForNotTriggeringBreakClause()
+      DidYouGetIncentiveForNotTriggeringBreakClausePage.yesIGotALumpSum()
+      DidYouGetIncentiveForNotTriggeringBreakClausePage.yesIGetARentFreePeriod()
       continueButtonClick()
     }
   }
