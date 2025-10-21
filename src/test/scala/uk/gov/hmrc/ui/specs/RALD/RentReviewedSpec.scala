@@ -179,6 +179,11 @@ class RentReviewedSpec extends BaseSpec with StubPage {
       DidYouGetIncentiveForNotTriggeringBreakClausePage.yesIGotALumpSum()
       DidYouGetIncentiveForNotTriggeringBreakClausePage.yesIGetARentFreePeriod()
       continueButtonClick()
+
+      Then("The user inputs their lump sum amount of £1000")
+      HowMuchWasTheLumpSumPage.howMuchWasTheLumpSum()
+      HowMuchWasTheLumpSumPage.inputHowMuchWasTheLumpSum("1000")
+      continueButtonClick()
     }
   }
 }

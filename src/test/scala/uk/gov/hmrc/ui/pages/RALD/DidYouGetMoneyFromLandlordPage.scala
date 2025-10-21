@@ -16,18 +16,12 @@
 
 package uk.gov.hmrc.ui.pages.RALD
 
-import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
 object DidYouGetMoneyFromLandlordPage extends BasePage {
 
-  val didYouGetMoneyFromLandlordID: By = By.id("didYouGetMoneyFromLandlord-radio-value")
-
   def didYouGetMoneyFromLandlord(): Unit =
     headerCheck("Did you get any money from the landlord or previous tenant to take on the lease?")
-
-  def didYouGetMoneyFromLandlordInput(didYouGetMoneyFromLandlord: String): Unit =
-    sendKeys(didYouGetMoneyFromLandlordID, didYouGetMoneyFromLandlord)
 
   def yesRadio(): Unit =
     click(getElementById("didYouGetMoneyFromLandlord-radio-value"))

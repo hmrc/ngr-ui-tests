@@ -129,7 +129,6 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       Then(
         "The user enters 3 for uncovered parking spaces, 4000 for how much extra they pay with an agreement date of 19-01-2020"
       )
-
       ParkingSpacesOrGaragesNotIncludedInYourRentPage.enterUncoveredSpaces("3")
       ParkingSpacesOrGaragesNotIncludedInYourRentPage.totalCost("4000")
       ParkingSpacesOrGaragesNotIncludedInYourRentPage.agreementDateInput(day = "19", month = "01", year = "1997")
@@ -147,6 +146,10 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       RentReviewPage.hasIncludeRentReview("no")
       RentReviewPage.canRentGoDown("yes")
       continueButtonClick()
+
+      Then("The user selects yes they got money from the previous landlord or tenant to taking on the lease")
+      DidYouGetMoneyFromLandlordPage.didYouGetMoneyFromLandlord()
+      DidYouGetMoneyFromLandlordPage.yesRadio()
     }
 
     Scenario("New agreement, agreement type: Licence or other type of written agreement, agreed in advance: 'Yes'") {
@@ -270,6 +273,11 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       RentReviewPage.enterRentReviewMonths("12")
       RentReviewPage.canRentGoDown("no")
       continueButtonClick()
+
+      Then("The user selects yes they got money from the previous landlord or tenant to taking on the lease")
+      DidYouGetMoneyFromLandlordPage.didYouGetMoneyFromLandlord()
+      DidYouGetMoneyFromLandlordPage.yesRadio()
+      continueButtonClick()
     }
 
     Scenario(
@@ -392,6 +400,11 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       RentReviewPage.enterRentReviewMonths("12")
       RentReviewPage.canRentGoDown("no")
       continueButtonClick()
+
+      Then("The user selects yes they got money from the previous landlord or tenant to taking on the lease")
+      DidYouGetMoneyFromLandlordPage.didYouGetMoneyFromLandlord()
+      DidYouGetMoneyFromLandlordPage.yesRadio()
+      continueButtonClick()
     }
 
     Scenario("New agreement, agreement type: Verbal") {
@@ -489,6 +502,11 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       RentReviewPage.enterRentReviewYears("2")
       RentReviewPage.enterRentReviewMonths("6")
       RentReviewPage.canRentGoDown("no")
+      continueButtonClick()
+
+      Then("The user selects yes they got money from the previous landlord or tenant to taking on the lease")
+      DidYouGetMoneyFromLandlordPage.didYouGetMoneyFromLandlord()
+      DidYouGetMoneyFromLandlordPage.yesRadio()
       continueButtonClick()
     }
   }
