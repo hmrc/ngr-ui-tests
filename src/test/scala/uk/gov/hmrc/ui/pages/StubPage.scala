@@ -17,6 +17,7 @@
 package uk.gov.hmrc.ui.pages
 
 import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.ExpectedConditions
 import uk.gov.hmrc.configuration.TestEnvironment
 import uk.gov.hmrc.selenium.webdriver.Driver
 
@@ -92,6 +93,7 @@ trait StubPage extends BasePage {
     sendKeys(nino, "AA000003D")
     click(submitAuthStub)
 
+    Wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("h1")))
     def getCurrentPageUrl: String = Driver.instance.getCurrentUrl
     if (!getCurrentPageUrl.contains("dashboard")) {
       provideTaxReference()
