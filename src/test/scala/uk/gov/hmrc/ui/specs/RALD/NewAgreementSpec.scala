@@ -147,9 +147,9 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       RentReviewPage.canRentGoDown("yes")
       continueButtonClick()
 
-      Then("The user selects yes they have done fitting and repairs in the property")
+      Then("The user select no on repairs and fitting out")
       RepairsAndFittingOutPage.repairsAndFittingOut()
-      RepairsAndFittingOutPage.yesRadio()
+      RepairsAndFittingOutPage.noRadio()
       continueButtonClick()
     }
 
@@ -514,9 +514,9 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       RentReviewPage.canRentGoDown("no")
       continueButtonClick()
 
-      Then("The user selects yes they have done fitting and repairs in the property")
+      Then("The user select no on repairs and fitting out")
       RepairsAndFittingOutPage.repairsAndFittingOut()
-      RepairsAndFittingOutPage.yesRadio()
+      RepairsAndFittingOutPage.noRadio()
       continueButtonClick()
     }
   }

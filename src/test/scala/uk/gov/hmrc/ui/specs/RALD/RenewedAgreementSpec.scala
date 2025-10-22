@@ -280,9 +280,9 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       RentReviewPage.canRentGoDown("no")
       continueButtonClick()
 
-      Then("The user selects yes they got money from the previous landlord or tenant to taking on the lease")
+      Then("The user selects no they got money from the previous landlord or tenant to taking on the lease")
       DidYouGetMoneyFromLandlordPage.didYouGetMoneyFromLandlord()
-      DidYouGetMoneyFromLandlordPage.yesRadio()
+      DidYouGetMoneyFromLandlordPage.noRadio()
       continueButtonClick()
     }
 
@@ -532,9 +532,9 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       RentReviewPage.canRentGoDown("no")
       continueButtonClick()
 
-      Then("The user selects yes they got money from the previous landlord or tenant to taking on the lease")
+      Then("The user selects no they got money from the previous landlord or tenant to taking on the lease")
       DidYouGetMoneyFromLandlordPage.didYouGetMoneyFromLandlord()
-      DidYouGetMoneyFromLandlordPage.yesRadio()
+      DidYouGetMoneyFromLandlordPage.noRadio()
       continueButtonClick()
     }
   }
