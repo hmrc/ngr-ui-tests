@@ -124,7 +124,7 @@ class EndToEndTestSpec extends BaseSpec with StubPage {
       UploadedSupportingDocument.verifyUploadedItem("testFile.png", "Uploaded")
       continueButtonClick()
 
-      // it verify that the features are added and shows on the Check and Confirm Changes
+      // it verifies that the features are added and shows on the Check and Confirm Changes
       Then("The ratepayer can check the added features on the summary screen")
       CheckAndConfirmYourChanges.checkAndConfirmYourChangesHeader()
       CheckAndConfirmYourChanges.checkAndConfirmYourChangesH2()

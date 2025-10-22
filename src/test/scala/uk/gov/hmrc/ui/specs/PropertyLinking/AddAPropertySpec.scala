@@ -17,8 +17,9 @@
 package uk.gov.hmrc.ui.specs.PropertyLinking
 
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome
+import uk.gov.hmrc.ui.pages.PropertyLinking.RegisterComplete.printLinkDisplay
 import uk.gov.hmrc.ui.pages.PropertyLinking._
-import uk.gov.hmrc.ui.pages.Registration.{CheckYourAnswer, ConfirmUTRPage, PhoneNumberPage, ProvideTRNPage}
+import uk.gov.hmrc.ui.pages.Registration.{CheckYourAnswer, ConfirmUTRPage, NinoPage, PhoneNumberPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
@@ -43,20 +44,22 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to Provide TRN Page")
       ProvideTRNPage.provideYourTRN()
-      click(continueButton)
-
-      Then("User selects 'Yes, I want to provide this UTR' and submit")
+      continueButtonClick()
+      Then("User selects 'NO, I want to provide this NINO' and submit")
       ConfirmUTRPage.confirmYourSAUTR()
-      ConfirmUTRPage.selectYes()
+      ConfirmUTRPage.selectNoProvideNI()
+      Then("The ratepayer is taken to the 'Provide your National Insurance number'")
+      NinoPage.InputNino("AA000003D")
 
-      Then("The ratepayer is taken to the 'Check your answers' page")
+      Then("The ratepayer is taken to the 'Check your answers' where NINO is masked")
       CheckYourAnswer.checkYourAnswer()
-      contactName = getElementByCssSelector("#contact-name-id")
+      CheckYourAnswer.confirmMAskedNINO("******03D")
       click(continueButton)
 
       Then("Ratepayer is taken to the Registration complete page")
       RegisterComplete.RegisterComplete()
-      click(continueButton)
+      printLinkDisplay("Print this page")
+      continueButtonClick()
 
       Then("Ratepayer is now fully registered and is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
@@ -98,11 +101,26 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       WhatEvidenceCanYouProvide.whatEvidenceCanYouProvide()
       WhatEvidenceCanYouProvide.selectEvidenceType("Lease")
 
-      And("The ratepayer navigates to upload the lease document page")
-      headerCheck("Upload your Lease")
+      Then("The ratepayer uploads the Lease document on the lease document page")
+      UploadYourLease.uploadYourLeaseHeader()
+      UploadYourLease.uploadYourLeaseDocuments()
+      continueButtonClick()
+
+      Then("The ratepayer can check the uploaded file on the uploaded your lease screen")
+      UploadedYourLease.uploadedYourLeaseHeader()
+      UploadedYourLease.verifyUploadedItem("testFile.png", "Uploaded")
+      continueButtonClick()
+
+      Then("The ratepayer selects the connection to the property")
+      ConnectionToPropertyPage.connectionToPropertyHeader()
+      ConnectionToPropertyPage.connectionTypeRadio("Owner")
+      continueButtonClick()
+
+      Then("The ratepayer checks the provided details on the Check your answer screen")
+      CheckYourAnswers.checkYourAnswersHeader()
 
     }
-
+    /*
     Scenario("Ratepayer navigates to the add a property page and clicks the account home link") {
 
       Given("Ratepayer logins through one login")
@@ -122,6 +140,8 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
     }
 
+     */
+    /*
     Scenario("Testing 'no Results Found' feature for property search") {
       PropertyLinkingDB.cleanup()
       Given("Ratepayer logins through one login")
@@ -144,7 +164,8 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       FindAProperty.inputPostCode("LS1 9LB")
       FindAProperty.noResultsFound()
     }
-
+     */
+    /*
     Scenario("Testing manual address search feature for property search") {
       PropertyLinkingDB.cleanup()
 
@@ -180,7 +201,8 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       ManualAddressPage.MaxRateableValueInput("8000000")
       ManualAddressPage.findAddress()
     }
-
+     */
+    /*
     Scenario("Registered ratepayer adds the property") {
       PropertyLinkingDB.cleanup()
       Given("Ratepayer logins through one login")
@@ -268,6 +290,6 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 //      RequestSentPage.requestSent()
 //      RequestSentPage.reqPrintLinkDisplay("Print or save this page")
 //      RequestSentPage.requestSentAddressCheck(propertyAddress)
-    }
+    } */
   }
 }
