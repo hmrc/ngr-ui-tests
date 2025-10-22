@@ -49,6 +49,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       ConfirmUTRPage.confirmYourSAUTR()
       ConfirmUTRPage.selectNoProvideNI()
       Then("The ratepayer is taken to the 'Provide your National Insurance number'")
+      NinoPage.NinoDetails()
       NinoPage.InputNino("AA000003D")
 
       Then("The ratepayer is taken to the 'Check your answers' where NINO is masked")
@@ -114,10 +115,27 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       Then("The ratepayer selects the connection to the property")
       ConnectionToPropertyPage.connectionToPropertyHeader()
       ConnectionToPropertyPage.connectionTypeRadio("Owner")
-      continueButtonClick()
 
       Then("The ratepayer checks the provided details on the Check your answer screen")
       CheckYourAnswers.checkYourAnswersHeader()
+      CheckYourAnswers.verifyPropertyLinkingDetails(
+        "Property to add to account",
+        "(INCL STORE R/O 2 & 2A) 2A, RODLEY LANE, RODLEY, LEEDS, BH1 1HU"
+      )
+      CheckYourAnswers.verifyPropertyLinkingDetails("Property reference", "1322564521")
+      CheckYourAnswers.verifyPropertyLinkingDetails("When did you become the current ratepayer?", "Before 1 April 2026")
+      CheckYourAnswers.verifyPropertyLinkingDetails("Do you have a business rates bill for this property?", "No")
+      CheckYourAnswers.verifyPropertyLinkingDetails("What evidence can you provide?", "Lease")
+      CheckYourAnswers.verifyPropertyLinkingDetails("Evidence document", "testFile.png")
+      CheckYourAnswers.verifyPropertyLinkingDetails("What is your connection to the property?", "Owner")
+      continueButtonClick()
+
+      Then("The ratepayer accept the declaration")
+      DeclarationPage.declaration()
+      continueButtonClick()
+
+      Then("The ratepayer is taken to the 'Add a property request sent' screen ")
+      RegisterComplete.RegisterComplete()
 
     }
     /*
