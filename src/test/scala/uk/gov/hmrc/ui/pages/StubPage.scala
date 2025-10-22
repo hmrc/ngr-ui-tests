@@ -114,11 +114,15 @@ trait StubPage extends BasePage {
     // This page will be added in the future time.
 //    proveYourIdentity()
     IvStub()
-    IvNinoStub()
-    linkToHMRCRecordStub()
-    enterNinoStub()
-    checkNino()
-    complete()
+    Wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("h1")))
+    def getCurrentPageUrl: String = Driver.instance.getCurrentUrl
+    if (!getCurrentPageUrl.contains("provide-your-tax-reference-number")) {
+      IvNinoStub()
+      linkToHMRCRecordStub()
+      enterNinoStub()
+      checkNino()
+      complete()
+    }
 
   }
 
