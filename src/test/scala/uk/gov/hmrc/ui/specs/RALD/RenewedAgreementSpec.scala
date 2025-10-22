@@ -148,11 +148,6 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       Then("The user select yes for money in advance to landlord")
       DidYouPayAnyMoneyToLandlordPage.didYouPayAnyMoneyToLandlord()
       DidYouPayAnyMoneyToLandlordPage.yesRadio()
-
-      Then("The user selects yes they got money from the previous landlord or tenant to taking on the lease")
-      DidYouGetMoneyFromLandlordPage.didYouGetMoneyFromLandlord()
-      DidYouGetMoneyFromLandlordPage.yesRadio()
-      continueButtonClick()
     }
 
     Scenario(
