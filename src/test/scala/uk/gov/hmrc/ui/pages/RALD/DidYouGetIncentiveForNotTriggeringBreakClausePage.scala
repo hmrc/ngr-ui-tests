@@ -14,20 +14,26 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.RALD
+package uk.gov.hmrc.ui.pages
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
-object RepairsAndFittingOutPage extends BasePage {
+object DidYouGetIncentiveForNotTriggeringBreakClausePage extends BasePage {
 
-  def repairsAndFittingOut(): Unit =
-    headerCheck("Repairs and fitting out")
+  private val yesIGotALumpSumID         = By.id("incentive_0")
+  private val yesIGetARentFreePeriodID  = By.id("incentive_1")
+  private val noIDidNotGetAnIncentiveID = By.id("incentive_2")
 
-  def yesRadio(): Unit =
-    click(getElementById("repairsAndFittingOut-radio-value"))
+  def didYouGetIncentiveForNotTriggeringBreakClause(): Unit =
+    headerCheck("Did you get incentive for not triggering the break clause?")
 
-  def noRadio(): Unit =
-    click(getElementById("repairsAndFittingOut-radio-value-2"))
+  def yesIGotALumpSum(): Unit =
+    click(yesIGotALumpSumID)
 
+  def yesIGetARentFreePeriod(): Unit =
+    click(yesIGetARentFreePeriodID)
+
+  def noIDidNotGetAnIncentive(): Unit =
+    click(noIDidNotGetAnIncentiveID)
 }
