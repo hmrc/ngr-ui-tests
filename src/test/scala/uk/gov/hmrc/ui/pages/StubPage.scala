@@ -116,7 +116,7 @@ trait StubPage extends BasePage {
     IvStub()
     Wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("h1")))
     def getCurrentPageUrl: String = Driver.instance.getCurrentUrl
-    if (!getCurrentPageUrl.contains("provide-your-tax-reference-number")) {
+    if (getCurrentPageUrl.contains("nino-access")) {
       IvNinoStub()
       linkToHMRCRecordStub()
       enterNinoStub()
