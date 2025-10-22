@@ -21,13 +21,8 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 object RepairsAndFittingOutPage extends BasePage {
 
-  val repairsAndFittingOutID: By = By.id("repairsAndFittingOut-radio-value")
-
   def repairsAndFittingOut(): Unit =
     headerCheck("Repairs and fitting out")
-
-  def repairsAndFittingOutInput(repairsAndFittingOut: String): Unit =
-    sendKeys(repairsAndFittingOutID, repairsAndFittingOut)
 
   def yesRadio(): Unit =
     click(getElementById("repairsAndFittingOut-radio-value"))

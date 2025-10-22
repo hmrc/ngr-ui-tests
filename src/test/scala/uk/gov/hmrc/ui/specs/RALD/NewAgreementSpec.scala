@@ -147,9 +147,10 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       RentReviewPage.canRentGoDown("yes")
       continueButtonClick()
 
-      Then("The user selects yes they got money from the previous landlord or tenant to taking on the lease")
-      DidYouGetMoneyFromLandlordPage.didYouGetMoneyFromLandlord()
-      DidYouGetMoneyFromLandlordPage.yesRadio()
+      Then("The user selects yes they have done fitting and repairs in the property")
+      RepairsAndFittingOutPage.repairsAndFittingOut()
+      RepairsAndFittingOutPage.yesRadio()
+      continueButtonClick()
     }
 
     Scenario("New agreement, agreement type: Licence or other type of written agreement, agreed in advance: 'Yes'") {
@@ -274,9 +275,9 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       RentReviewPage.canRentGoDown("no")
       continueButtonClick()
 
-      Then("The user selects yes they got money from the previous landlord or tenant to taking on the lease")
-      DidYouGetMoneyFromLandlordPage.didYouGetMoneyFromLandlord()
-      DidYouGetMoneyFromLandlordPage.yesRadio()
+      Then("The user selects yes they have done fitting and repairs in the property")
+      RepairsAndFittingOutPage.repairsAndFittingOut()
+      RepairsAndFittingOutPage.yesRadio()
       continueButtonClick()
     }
 
@@ -401,9 +402,9 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       RentReviewPage.canRentGoDown("no")
       continueButtonClick()
 
-      Then("The user selects yes they got money from the previous landlord or tenant to taking on the lease")
-      DidYouGetMoneyFromLandlordPage.didYouGetMoneyFromLandlord()
-      DidYouGetMoneyFromLandlordPage.yesRadio()
+      Then("The user selects yes they have done fitting and repairs in the property")
+      RepairsAndFittingOutPage.repairsAndFittingOut()
+      RepairsAndFittingOutPage.yesRadio()
       continueButtonClick()
     }
 
@@ -504,9 +505,9 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       RentReviewPage.canRentGoDown("no")
       continueButtonClick()
 
-      Then("The user selects yes they got money from the previous landlord or tenant to taking on the lease")
-      DidYouGetMoneyFromLandlordPage.didYouGetMoneyFromLandlord()
-      DidYouGetMoneyFromLandlordPage.yesRadio()
+      Then("The user selects yes they have done fitting and repairs in the property")
+      RepairsAndFittingOutPage.repairsAndFittingOut()
+      RepairsAndFittingOutPage.yesRadio()
       continueButtonClick()
     }
   }
