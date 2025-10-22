@@ -275,6 +275,11 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       RentReviewPage.canRentGoDown("no")
       continueButtonClick()
 
+      Then("The user selects yes they have done fitting and repairs in the property")
+      RepairsAndFittingOutPage.repairsAndFittingOut()
+      RepairsAndFittingOutPage.yesRadio()
+      continueButtonClick()
+
       Then("The user select no for money from the landlord")
       DidYouGetMoneyFromLandlordPage.didYouGetMoneyFromLandlord()
       DidYouGetMoneyFromLandlordPage.noRadio()
@@ -283,11 +288,6 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       Then("The user select yes for money in advance to landlord")
       DidYouPayAnyMoneyToLandlordPage.didYouPayAnyMoneyToLandlord()
       DidYouPayAnyMoneyToLandlordPage.yesRadio()
-
-      Then("The user selects yes they have done fitting and repairs in the property")
-      RepairsAndFittingOutPage.repairsAndFittingOut()
-      RepairsAndFittingOutPage.yesRadio()
-      continueButtonClick()
     }
 
     Scenario(
