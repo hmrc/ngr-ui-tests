@@ -1,0 +1,8 @@
+{
+  "_id": "/ngr-stub/ngrPropertyStatus/9900000000000101",
+  "method": "GET",
+  "status": 200,
+  "response": {
+    "status": "Approved"
+  }
+}
