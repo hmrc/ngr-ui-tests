@@ -129,7 +129,6 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       Then(
         "The user enters 3 for uncovered parking spaces, 4000 for how much extra they pay with an agreement date of 19-01-2020"
       )
-
       ParkingSpacesOrGaragesNotIncludedInYourRentPage.enterUncoveredSpaces("3")
       ParkingSpacesOrGaragesNotIncludedInYourRentPage.totalCost("4000")
       ParkingSpacesOrGaragesNotIncludedInYourRentPage.agreementDateInput(day = "19", month = "01", year = "1997")
@@ -146,6 +145,11 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       RentReviewPage.rentReview()
       RentReviewPage.hasIncludeRentReview("no")
       RentReviewPage.canRentGoDown("yes")
+      continueButtonClick()
+
+      Then("The user selects yes they have done fitting and repairs in the property")
+      RepairsAndFittingOutPage.repairsAndFittingOut()
+      RepairsAndFittingOutPage.yesRadio()
       continueButtonClick()
     }
 
@@ -289,6 +293,9 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       Then("The user select yes for money in advance to landlord")
       DidYouPayAnyMoneyToLandlordPage.didYouPayAnyMoneyToLandlord()
       DidYouPayAnyMoneyToLandlordPage.yesRadio()
+      Then("The user selects yes they have done fitting and repairs in the property")
+      RepairsAndFittingOutPage.repairsAndFittingOut()
+      RepairsAndFittingOutPage.yesRadio()
       continueButtonClick()
     }
 
@@ -412,6 +419,11 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       RentReviewPage.enterRentReviewMonths("12")
       RentReviewPage.canRentGoDown("no")
       continueButtonClick()
+
+      Then("The user selects yes they have done fitting and repairs in the property")
+      RepairsAndFittingOutPage.repairsAndFittingOut()
+      RepairsAndFittingOutPage.yesRadio()
+      continueButtonClick()
     }
 
     Scenario("New agreement, agreement type: Verbal") {
@@ -509,6 +521,11 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       RentReviewPage.enterRentReviewYears("2")
       RentReviewPage.enterRentReviewMonths("6")
       RentReviewPage.canRentGoDown("no")
+      continueButtonClick()
+
+      Then("The user selects yes they have done fitting and repairs in the property")
+      RepairsAndFittingOutPage.repairsAndFittingOut()
+      RepairsAndFittingOutPage.yesRadio()
       continueButtonClick()
     }
   }

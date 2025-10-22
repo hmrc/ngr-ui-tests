@@ -21,7 +21,7 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 object HowMuchWasTheLumpSumPage extends BasePage {
 
-  val howMuchWasTheLumpSumID: By = By.id("how-much-was-the-lump-sum-value")
+  private val howMuchWasTheLumpSumID: By = By.id("how-much-was-the-lump-sum-value")
 
   def howMuchWasTheLumpSum(): Unit =
     headerCheck("How much was the lump sum?")
