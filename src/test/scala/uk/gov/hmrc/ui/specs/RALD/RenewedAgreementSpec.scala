@@ -140,10 +140,14 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       RentReviewPage.canRentGoDown("no")
       continueButtonClick()
 
-      Then("The user selects yes they got money from the previous landlord or tenant to taking on the lease")
+      Then("The user select no for money from the landlord")
       DidYouGetMoneyFromLandlordPage.didYouGetMoneyFromLandlord()
-      DidYouGetMoneyFromLandlordPage.yesRadio()
+      DidYouGetMoneyFromLandlordPage.noRadio()
       continueButtonClick()
+
+      Then("The user select yes for money in advance to landlord")
+      DidYouPayAnyMoneyToLandlordPage.didYouPayAnyMoneyToLandlord()
+      DidYouPayAnyMoneyToLandlordPage.yesRadio()
     }
 
     Scenario(

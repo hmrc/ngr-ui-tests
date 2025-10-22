@@ -279,6 +279,15 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       RepairsAndFittingOutPage.repairsAndFittingOut()
       RepairsAndFittingOutPage.yesRadio()
       continueButtonClick()
+
+      Then("The user select no for money from the landlord")
+      DidYouGetMoneyFromLandlordPage.didYouGetMoneyFromLandlord()
+      DidYouGetMoneyFromLandlordPage.noRadio()
+      continueButtonClick()
+
+      Then("The user select yes for money in advance to landlord")
+      DidYouPayAnyMoneyToLandlordPage.didYouPayAnyMoneyToLandlord()
+      DidYouPayAnyMoneyToLandlordPage.yesRadio()
     }
 
     Scenario(
