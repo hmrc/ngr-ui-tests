@@ -283,12 +283,15 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       ManualAddressPage.InputAddressLine2Input("rodley lane")
       ManualAddressPage.InputTownInput("rodley")
       ManualAddressPage.InputCountyInput("Leeds")
-      ManualAddressPage.InputPostcodeInput("BH1 7ST")
-      ManualAddressPage.AdditionalSearchOption()
+      ManualAddressPage.InputPostcodeInput("BH1 1HU")
+      continueButtonClick()
+      PropertySearchResultPage.searchResult("BH1 1HU")
+
+      /*ManualAddressPage.AdditionalSearchOption()
       ManualAddressPage.PropertyReferenceInput("2191322564521")
       ManualAddressPage.MinRateableValueInput("10000")
       ManualAddressPage.MaxRateableValueInput("8000000")
-      ManualAddressPage.findAddress()
+      ManualAddressPage.findAddress() */
     }
     /*
     Scenario("Registered ratepayer adds the property") {
