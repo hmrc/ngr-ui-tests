@@ -197,6 +197,11 @@ class RentReviewedSpec extends BaseSpec with StubPage {
       DidYouGetIncentiveForNotTriggeringBreakClausePage.yesIGetARentFreePeriod()
       continueButtonClick()
 
+      Then("The user selects Yes, I got a lump sum and Yes, I got a rent-free period")
+      AboutTheRentFreePeriodPage.aboutTheRentFreePeriodHowManyMonthsInput("1")
+      AboutTheRentFreePeriodPage.aboutTheRentFreePeriodDateInput(day = "19", month = "01", year = "1997")
+      continueButtonClick()
+
       Then("The user inputs their lump sum amount of £1000")
       HowMuchWasTheLumpSumPage.howMuchWasTheLumpSum()
       HowMuchWasTheLumpSumPage.inputHowMuchWasTheLumpSum("1000")
