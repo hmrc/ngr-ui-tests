@@ -1,0 +1,8 @@
+{
+  "_id": "/ngr-stub/ngrPropertyStatus/88888",
+  "method": "GET",
+  "status": 200,
+  "response": {
+    "status": "Pending"
+  }
+}
