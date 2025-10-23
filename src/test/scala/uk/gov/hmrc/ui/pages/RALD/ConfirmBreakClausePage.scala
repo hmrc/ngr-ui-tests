@@ -16,12 +16,9 @@
 
 package uk.gov.hmrc.ui.pages.RALD
 
-import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
 object ConfirmBreakClausePage extends BasePage {
-
-  val confirmBreakClauseID: By = By.id("confirmBreakClause-radio-value")
 
   def confirmBreakClause(): Unit =
     headerCheck("Did your agreement allow you to trigger a break clause?")
