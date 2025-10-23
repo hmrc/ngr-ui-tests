@@ -288,6 +288,12 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       RepairsAndFittingOutPage.repairsAndFittingOut()
       RepairsAndFittingOutPage.yesRadio()
       continueButtonClick()
+
+      Then("The user is on the About Repairs and Fitting Out page")
+      AboutRepairsAndFittingOutPage.verifyPageHeader()
+      AboutRepairsAndFittingOutPage.enterRepairCost("1234.56")
+      AboutRepairsAndFittingOutPage.enterRepairDate("10", "2025")
+      continueButtonClick()
     }
 
     Scenario(
@@ -414,6 +420,12 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       Then("The user selects yes they have done fitting and repairs in the property")
       RepairsAndFittingOutPage.repairsAndFittingOut()
       RepairsAndFittingOutPage.yesRadio()
+      continueButtonClick()
+
+      Then("The user is on the About Repairs and Fitting Out page")
+      AboutRepairsAndFittingOutPage.verifyPageHeader()
+      AboutRepairsAndFittingOutPage.enterRepairCost("1234.56")
+      AboutRepairsAndFittingOutPage.enterRepairDate("10", "2025")
       continueButtonClick()
     }
 
