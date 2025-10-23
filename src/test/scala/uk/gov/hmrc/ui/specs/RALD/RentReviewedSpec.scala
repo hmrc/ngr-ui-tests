@@ -53,6 +53,15 @@ class RentReviewedSpec extends BaseSpec with StubPage {
       Landlord.supplyRelationship("I am the tenant")
       continueButtonClick()
 
+      Then("The user give rent review details and select no on agreed new rent radio")
+      RentReviewDetailsPage.rentReviewDetails()
+      RentReviewDetailsPage.enterAnnualRentAmount("3000")
+      RentReviewDetailsPage.whatHappensAtRentReview("GoUpOrDown")
+      RentReviewDetailsPage.enterStartDate("30", "10", "2025")
+      RentReviewDetailsPage.hasAgreedNewRent("no")
+      RentReviewDetailsPage.whoAgreedNewRent("IndependentExpert")
+      continueButtonClick()
+
       /*'What is your rent based on?' = 'Indexation'*/
       Then("The user selects other and input reason on 'What is your rent based on?' page and submit")
       WhatIsRentBasedOn.whatIsRentBasedOn()
@@ -129,6 +138,14 @@ class RentReviewedSpec extends BaseSpec with StubPage {
       Landlord.landlordNameInput(landlordName = "Bob")
       Landlord.yesRadio()
       Landlord.supplyRelationship("I am the tenant")
+      continueButtonClick()
+
+      Then("The user give rent review details and select yes on agreed new rent radio")
+      RentReviewDetailsPage.rentReviewDetails()
+      RentReviewDetailsPage.enterAnnualRentAmount("3000")
+      RentReviewDetailsPage.whatHappensAtRentReview("GoUpOrDown")
+      RentReviewDetailsPage.enterStartDate("30", "10", "2025")
+      RentReviewDetailsPage.hasAgreedNewRent("yes")
       continueButtonClick()
 
       /*'What is your rent based on?' = 'Total Occupancy Cost leases (TOCs)'*/

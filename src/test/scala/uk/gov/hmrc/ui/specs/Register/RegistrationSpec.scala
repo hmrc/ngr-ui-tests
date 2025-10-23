@@ -32,9 +32,6 @@ class RegistrationSpec extends BaseSpec with StubPage {
       Given("Ratepayer logins through one login")
       loginOl()
 
-      Then("User provide phone number")
-      PhoneNumberPage.userProvidesPhoneNumber()
-
       Then("Ratepayer is taken to Provide TRN Page")
       ProvideTRNPage.provideYourTRN()
       click(continueButton)
