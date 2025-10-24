@@ -17,8 +17,9 @@
 package uk.gov.hmrc.ui.specs.PropertyLinking
 
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome
+import uk.gov.hmrc.ui.pages.PropertyLinking.RegisterComplete.printLinkDisplay
 import uk.gov.hmrc.ui.pages.PropertyLinking._
-import uk.gov.hmrc.ui.pages.Registration.{CheckYourAnswer, ConfirmUTRPage, PhoneNumberPage, ProvideTRNPage}
+import uk.gov.hmrc.ui.pages.Registration.{CheckYourAnswer, ConfirmUTRPage, NinoPage, PhoneNumberPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
@@ -31,7 +32,7 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
   Feature("Testing the 'Add Property' functionality") {
 
-    Scenario("The user completes registration and navigates to the Add a property page") {
+    Scenario("The user completes registration and adds a property") {
       RegistrationDB.cleanup()
       PropertyLinkingDB.cleanup()
 
@@ -43,20 +44,23 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to Provide TRN Page")
       ProvideTRNPage.provideYourTRN()
-      click(continueButton)
-
-      Then("User selects 'Yes, I want to provide this UTR' and submit")
+      continueButtonClick()
+      Then("User selects 'NO, I want to provide this NINO' and submit")
       ConfirmUTRPage.confirmYourSAUTR()
-      ConfirmUTRPage.selectYes()
+      ConfirmUTRPage.selectNoProvideNI()
+      Then("The ratepayer is taken to the 'Provide your National Insurance number'")
+      NinoPage.NinoDetails()
+      NinoPage.InputNino("AA000003D")
 
-      Then("The ratepayer is taken to the 'Check your answers' page")
+      Then("The ratepayer is taken to the 'Check your answers' where NINO is masked")
       CheckYourAnswer.checkYourAnswer()
-      contactName = getElementByCssSelector("#contact-name-id")
+      CheckYourAnswer.confirmMAskedNINO("******03D")
       click(continueButton)
 
       Then("Ratepayer is taken to the Registration complete page")
       RegisterComplete.RegisterComplete()
-      click(continueButton)
+      printLinkDisplay("Print this page")
+      continueButtonClick()
 
       Then("Ratepayer is now fully registered and is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
@@ -98,18 +102,75 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       WhatEvidenceCanYouProvide.whatEvidenceCanYouProvide()
       WhatEvidenceCanYouProvide.selectEvidenceType("Lease")
 
-      And("The ratepayer navigates to upload the lease document page")
-      headerCheck("Upload your Lease")
+      Then("The ratepayer uploads the Lease document on the lease document page")
+      UploadYourLease.uploadYourLeaseHeader()
+      UploadYourLease.uploadYourLeaseDocuments()
+      continueButtonClick()
+
+      Then("The ratepayer can check the uploaded file on the uploaded your lease screen")
+      UploadedYourLease.uploadedYourLeaseHeader()
+      UploadedYourLease.verifyUploadedItem("testFile.png", "Uploaded")
+      continueButtonClick()
+
+      Then("The ratepayer selects the connection to the property")
+      ConnectionToPropertyPage.connectionToPropertyHeader()
+      ConnectionToPropertyPage.connectionTypeRadio("Owner")
+
+      Then("The ratepayer checks the provided details on the Check your answer screen")
+      CheckYourAnswers.checkYourAnswersHeader()
+      CheckYourAnswers.verifyPropertyLinkingDetails(
+        "Property to add to account",
+        "(INCL STORE R/O 2 & 2A) 2A, RODLEY LANE, RODLEY, LEEDS, BH1 1HU"
+      )
+      CheckYourAnswers.verifyPropertyLinkingDetails("Property reference", "1322564521")
+      CheckYourAnswers.verifyPropertyLinkingDetails("When did you become the current ratepayer?", "Before 1 April 2026")
+      CheckYourAnswers.verifyPropertyLinkingDetails("Do you have a business rates bill for this property?", "No")
+      CheckYourAnswers.verifyPropertyLinkingDetails("What evidence can you provide?", "Lease")
+      CheckYourAnswers.verifyPropertyLinkingDetails("Evidence document", "testFile.png")
+      CheckYourAnswers.verifyPropertyLinkingDetails("What is your connection to the property?", "Owner")
+      continueButtonClick()
+
+      Then("The ratepayer accept the declaration")
+      DeclarationPage.declaration()
+      continueButtonClick()
+
+      Then("The ratepayer is taken to the 'Add a property request sent' screen ")
+      RegisterComplete.RegisterComplete()
 
     }
 
     Scenario("Ratepayer navigates to the add a property page and clicks the account home link") {
 
-      Given("Ratepayer logins through one login")
-      loginOl()
+      RegistrationDB.cleanup()
       PropertyLinkingDB.cleanup()
 
-      Then("Ratepayer is taken to the dashboard")
+      Given("Ratepayer logins through one login")
+      loginOl()
+
+      Then("User provide phone number")
+      PhoneNumberPage.userProvidesPhoneNumber()
+
+      Then("Ratepayer is taken to Provide TRN Page")
+      ProvideTRNPage.provideYourTRN()
+      continueButtonClick()
+      Then("User selects 'NO, I want to provide this NINO' and submit")
+      ConfirmUTRPage.confirmYourSAUTR()
+      ConfirmUTRPage.selectNoProvideNI()
+      Then("The ratepayer is taken to the 'Provide your National Insurance number'")
+      NinoPage.NinoDetails()
+      NinoPage.InputNino("AA000003D")
+
+      Then("The ratepayer is taken to the 'Check your answers' where NINO is masked")
+      CheckYourAnswer.checkYourAnswer()
+      CheckYourAnswer.confirmMAskedNINO("******03D")
+      click(continueButton)
+
+      Then("Ratepayer is taken to the Registration complete page")
+      RegisterComplete.RegisterComplete()
+      printLinkDisplay("Print this page")
+      continueButtonClick()
+
+      Then("Ratepayer is now fully registered and is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
 
       Then("Ratepayer clicks the add a property link")
@@ -123,9 +184,34 @@ class AddAPropertySpec extends BaseSpec with StubPage {
     }
 
     Scenario("Testing 'no Results Found' feature for property search") {
+      RegistrationDB.cleanup()
       PropertyLinkingDB.cleanup()
+
       Given("Ratepayer logins through one login")
       loginOl()
+
+      Then("User provide phone number")
+      PhoneNumberPage.userProvidesPhoneNumber()
+
+      Then("Ratepayer is taken to Provide TRN Page")
+      ProvideTRNPage.provideYourTRN()
+      continueButtonClick()
+      Then("User selects 'NO, I want to provide this NINO' and submit")
+      ConfirmUTRPage.confirmYourSAUTR()
+      ConfirmUTRPage.selectNoProvideNI()
+      Then("The ratepayer is taken to the 'Provide your National Insurance number'")
+      NinoPage.NinoDetails()
+      NinoPage.InputNino("AA000003D")
+
+      Then("The ratepayer is taken to the 'Check your answers' where NINO is masked")
+      CheckYourAnswer.checkYourAnswer()
+      CheckYourAnswer.confirmMAskedNINO("******03D")
+      click(continueButton)
+
+      Then("Ratepayer is taken to the Registration complete page")
+      RegisterComplete.RegisterComplete()
+      printLinkDisplay("Print this page")
+      continueButtonClick()
 
       Then("Ratepayer is now fully registered and is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
@@ -133,11 +219,11 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       Then("Ratepayer clicks the Add a Property link and is taken to the Add a Property page")
       clickLink("Add a property")
       AddAProperty.addAProperty()
-      click(continueButton)
+      continueButtonClick()
 
       Then("Ratepayer is taken to the What You Need page")
       WhatYouNeed.whatYouNeed()
-      click(continueButton)
+      continueButtonClick()
 
       Then("Ratepayer is taken to the search a property page and searches for a property that does not exist")
       FindAProperty.findProperty()
@@ -146,10 +232,34 @@ class AddAPropertySpec extends BaseSpec with StubPage {
     }
 
     Scenario("Testing manual address search feature for property search") {
+      RegistrationDB.cleanup()
       PropertyLinkingDB.cleanup()
 
       Given("Ratepayer logins through one login")
       loginOl()
+
+      Then("User provide phone number")
+      PhoneNumberPage.userProvidesPhoneNumber()
+
+      Then("Ratepayer is taken to Provide TRN Page")
+      ProvideTRNPage.provideYourTRN()
+      continueButtonClick()
+      Then("User selects 'NO, I want to provide this NINO' and submit")
+      ConfirmUTRPage.confirmYourSAUTR()
+      ConfirmUTRPage.selectNoProvideNI()
+      Then("The ratepayer is taken to the 'Provide your National Insurance number'")
+      NinoPage.NinoDetails()
+      NinoPage.InputNino("AA000003D")
+
+      Then("The ratepayer is taken to the 'Check your answers' where NINO is masked")
+      CheckYourAnswer.checkYourAnswer()
+      CheckYourAnswer.confirmMAskedNINO("******03D")
+      click(continueButton)
+
+      Then("Ratepayer is taken to the Registration complete page")
+      RegisterComplete.RegisterComplete()
+      printLinkDisplay("Print this page")
+      continueButtonClick()
 
       Then("Ratepayer is now fully registered and is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
@@ -157,11 +267,11 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       Then("Ratepayer clicks the Add a Property link and is taken to the Add a Property page")
       clickLink("Add a property")
       AddAProperty.addAProperty()
-      click(continueButton)
+      continueButtonClick()
 
       Then("Ratepayer is taken to the What You Need page")
       WhatYouNeed.whatYouNeed()
-      click(continueButton)
+      continueButtonClick()
 
       Then("Ratepayer is taken to the search a property page and clicks the enter manual address link")
       FindAProperty.findProperty()
@@ -173,14 +283,17 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       ManualAddressPage.InputAddressLine2Input("rodley lane")
       ManualAddressPage.InputTownInput("rodley")
       ManualAddressPage.InputCountyInput("Leeds")
-      ManualAddressPage.InputPostcodeInput("BH1 7ST")
-      ManualAddressPage.AdditionalSearchOption()
+      ManualAddressPage.InputPostcodeInput("BH1 1HU")
+      continueButtonClick()
+      PropertySearchResultPage.searchResult("BH1 1HU")
+
+      /*ManualAddressPage.AdditionalSearchOption()
       ManualAddressPage.PropertyReferenceInput("2191322564521")
       ManualAddressPage.MinRateableValueInput("10000")
       ManualAddressPage.MaxRateableValueInput("8000000")
-      ManualAddressPage.findAddress()
+      ManualAddressPage.findAddress() */
     }
-
+    /*
     Scenario("Registered ratepayer adds the property") {
       PropertyLinkingDB.cleanup()
       Given("Ratepayer logins through one login")
@@ -268,6 +381,6 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 //      RequestSentPage.requestSent()
 //      RequestSentPage.reqPrintLinkDisplay("Print or save this page")
 //      RequestSentPage.requestSentAddressCheck(propertyAddress)
-    }
+    } */
   }
 }
