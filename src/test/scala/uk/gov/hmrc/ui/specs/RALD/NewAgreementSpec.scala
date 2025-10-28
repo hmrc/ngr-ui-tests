@@ -214,6 +214,17 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       HaveYouAgreedInAdvanceRentChanges.yesRadio()
       continueButtonClick()
 
+      // Uncomment when the 'Second Rent Period' page is implemented.
+//      When("The user provides the start and end date for the first rent period")
+//      ProvideDetailsOfFirstRentPeriodPage.provideDetailsOfFirstRentPeriodHeader()
+//      ProvideDetailsOfFirstRentPeriodPage.startDate("2011-01-02")
+//      ProvideDetailsOfFirstRentPeriodPage.endDate("2022-03-02")
+//
+//      Then("The user selects 'Yes' radio button and enter the rent amount")
+//      ProvideDetailsOfFirstRentPeriodPage.rentPayablePeriodRadioYes()
+//      ProvideDetailsOfFirstRentPeriodPage.rentPeriodAmount("2,000.90")
+//      continueButtonClick()
+
       When("The user provides the start and end date for the first rent period")
       ProvideDetailsOfFirstSecondRentPeriodPage.provideDetailsOfEachRentPeriod()
       ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodStartDate("02", "01", "2011")

@@ -15,12 +15,13 @@
  */
 
 package uk.gov.hmrc.ui.pages
+
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Wait}
 import org.openqa.selenium.{By, WebDriver, WebElement}
 import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
 
-import java.time.Duration
+import java.time.{Duration, LocalDate}
 import scala.jdk.CollectionConverters._
 
 trait BasePage extends PageObject {
@@ -121,5 +122,17 @@ trait BasePage extends PageObject {
 
   def submitButtonClick(): Unit =
     click(submitButton)
+
+  def setDate(dateInputPrefix: String, isoDate: String): Unit = {
+    val date                  = LocalDate.parse(isoDate)
+    val Seq(day, month, year) = Seq(date.getDayOfMonth, date.getMonthValue, date.getYear).map(_.toString)
+    setDate(dateInputPrefix, day, month, year)
+  }
+
+  def setDate(dateInputPrefix: String, day: String, month: String, year: String): Unit = {
+    sendKeys(By.id(s"$dateInputPrefix.day"), day)
+    sendKeys(By.id(s"$dateInputPrefix.month"), month)
+    sendKeys(By.id(s"$dateInputPrefix.year"), year)
+  }
 
 }
