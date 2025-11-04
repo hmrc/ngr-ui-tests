@@ -30,7 +30,12 @@ object PropertySearchResultPage extends BasePage {
   def searchAgainUnderHelpLink(): Unit =
     click(By.xpath("//*[@id=\"help-if-you-cannot-find-your-property\"]/div/p[4]/a"))
 
-  def clickHelpSpan(): Unit =
-    click(By.xpath("//*[@id=\"help-if-you-cannot-find-your-property\"]/summary/span"))
+  def selectSortOption(optionValue: String): Unit = {
+    selectFromDropdown(getElementById("sortBy"), optionValue)
+    click(continueButton)
+  }
+
+  def openHelp(): Unit =
+    click(getElementById("help-if-you-cannot-find-your-property"))
 
 }

@@ -59,6 +59,8 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the search results page")
       PropertySearchResultPage.searchResult(postCode)
+      PropertySearchResultPage.selectSortOption("AddressASC")
+      PropertySearchResultPage.openHelp()
 
       Then("Ratepayer click 'Select property' on the search results page")
       clickLink("Select property")
@@ -149,6 +151,7 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the search results page")
       PropertySearchResultPage.searchResult(postCode)
+      PropertySearchResultPage.selectSortOption("AddressDESC")
 
       Then("Ratepayer clicks the second 'Select property' on the search results page")
       val link = By.cssSelector(

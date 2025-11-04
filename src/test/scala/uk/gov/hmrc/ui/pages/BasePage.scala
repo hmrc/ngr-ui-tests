@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.ui.pages
 
-import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Wait}
+import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Select, Wait}
 import org.openqa.selenium.{By, WebDriver, WebElement}
 import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
@@ -133,6 +133,11 @@ trait BasePage extends PageObject {
     sendKeys(By.id(s"$dateInputPrefix.day"), day)
     sendKeys(By.id(s"$dateInputPrefix.month"), month)
     sendKeys(By.id(s"$dateInputPrefix.year"), year)
+  }
+
+  def selectFromDropdown(dropdown: By, value: String): Unit = {
+    val selectElement = new Select(Driver.instance.findElement(dropdown))
+    selectElement.selectByValue(value)
   }
 
 }
