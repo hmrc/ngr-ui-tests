@@ -83,8 +83,8 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the search results page")
       PropertySearchResultPage.searchResult(postCode)
-      PropertySearchResultPage.selectSortOption("DescriptionDESC")
-      PropertySearchResultPage.openHelp()
+      PropertySearchResultPage.selectSortOption("AddressASC")
+      PropertySearchResultPage.clickHelpSpan()
       clickLink("Select property")
 
       Then("Ratepayer is taken to the selected property page, clicks the 'yes' radio and continues")
@@ -365,6 +365,10 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       Then("The ratepayers selects 'yes' on 'business rates bill for the property' page")
       BusinessRateBillPage.businessRateBill()
       BusinessRateBillPage.selectYes()
+
+      Then("The ratepayer can upload business rates bill")
+      UploadYourBillPage.uploadSupportingDocumentsHeader()
+      UploadYourBillPage.uploadSupportingDocuments()
 
 //      And("The ratepayers selects 'Owner' on 'connection to the property' page")
 //      ConnectionToPropertyPage.ConnectionToProperty()
