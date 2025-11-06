@@ -22,11 +22,6 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 object PropertyLinkingCYA extends BasePage {
 
-  private val cya_url: String = TestEnvironment.url("ngr-property-linking-frontend") + "/check-your-answers"
-
-  def hitCYAStep() =
-    getUrl(cya_url)
-
   val changePropertyAddressLink = By.id("property-address")
   val changeRatepayerDate       = By.id("current-ratepayer")
   val changeBusinessRatesBill   = By.id("business-rates-bill")
@@ -66,8 +61,8 @@ object PropertyLinkingCYA extends BasePage {
   }
 
   def connectionChangedCheck(connection: String): Unit = {
-    val display = getElementByCssSelector("#what-is-your-connection-to-the-property-id")
+    val element = findElementById("what-is-your-connection-to-the-property?-id")
+    val display = element.getText.trim
     assert(connection == display, "the property connection was not changed")
   }
-
 }

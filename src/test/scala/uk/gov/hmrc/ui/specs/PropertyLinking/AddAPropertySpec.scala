@@ -83,6 +83,8 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the search results page")
       PropertySearchResultPage.searchResult(postCode)
+      PropertySearchResultPage.selectSortOption("AddressASC")
+      PropertySearchResultPage.clickHelpSpan()
       clickLink("Select property")
 
       Then("Ratepayer is taken to the selected property page, clicks the 'yes' radio and continues")
@@ -317,6 +319,8 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the search results page")
       PropertySearchResultPage.searchResult(postCode)
+      PropertySearchResultPage.selectSortOption("DescriptionASC")
+
 
       Then("Ratepayer clicks the search again link and is take back to the Find a property page")
       clickLink("Search again")
@@ -327,7 +331,8 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
       Then("Ratepayer is taken to the search results page and opens the help-if-you-cannot-find-your-property span")
       PropertySearchResultPage.searchResult(postCode)
-      PropertySearchResultPage.clickHelpSpan()
+      PropertySearchResultPage.selectSortOption("AddressDESC")
+      PropertySearchResultPage.openHelp()
 
       Then("Ratepayer clicks the search again link within the span and is take back to the Find a property page")
       PropertySearchResultPage.searchAgainUnderHelpLink()
@@ -360,6 +365,10 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       Then("The ratepayers selects 'yes' on 'business rates bill for the property' page")
       BusinessRateBillPage.businessRateBill()
       BusinessRateBillPage.selectYes()
+
+      Then("The ratepayer can upload business rates bill")
+      UploadYourBillPage.uploadSupportingDocumentsHeader()
+      UploadYourBillPage.uploadSupportingDocuments()
 
 //      And("The ratepayers selects 'Owner' on 'connection to the property' page")
 //      ConnectionToPropertyPage.ConnectionToProperty()

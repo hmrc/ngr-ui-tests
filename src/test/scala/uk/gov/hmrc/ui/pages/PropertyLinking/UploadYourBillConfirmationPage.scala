@@ -14,25 +14,18 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.RALD
+package uk.gov.hmrc.ui.pages.PropertyLinking
 
-import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
-object AboutRepairsAndFittingOutPage extends BasePage {
+object UploadYourBillConfirmationPage extends BasePage {
 
-  def verifyPageHeader(): Unit =
-    headerCheck("About repairs and fitting out")
+  def uploadYourBillConfirmationHeader(): Unit =
+    headerCheck("Upload your business rates bill")
 
-  def enterRepairCost(amount: String): Unit =
-    sendKeys(By.id("cost"), amount)
-
-  def enterRepairDate(month: String, year: String): Unit =
-    dateInput(month, year, "date")
-
-  private def dateInput(month: String, year: String, whichDate: String): Unit = {
-    sendKeys(By.id(s"$whichDate.month"), month)
-    sendKeys(By.id(s"$whichDate.year"), year)
+  def continueWhenUploaded(): Unit = {
+    waitForElementToBeClickable(getElementById("continue"))
+    click(getElementById("continue"))
   }
 
 }

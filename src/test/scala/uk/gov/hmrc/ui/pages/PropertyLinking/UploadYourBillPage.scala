@@ -14,25 +14,24 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.RALD
+package uk.gov.hmrc.ui.pages.PropertyLinking
 
-import org.openqa.selenium.By
+import org.openqa.selenium.WebElement
 import uk.gov.hmrc.ui.pages.BasePage
 
-object AboutRepairsAndFittingOutPage extends BasePage {
+import java.nio.file.Paths
 
-  def verifyPageHeader(): Unit =
-    headerCheck("About repairs and fitting out")
+object UploadYourBillPage extends BasePage {
 
-  def enterRepairCost(amount: String): Unit =
-    sendKeys(By.id("cost"), amount)
+  def uploadYourBillHeader(): Unit =
+    headerCheck("Upload your business rates bill")
 
-  def enterRepairDate(month: String, year: String): Unit =
-    dateInput(month, year, "date")
+  def uploadYourBill(): Unit = {
+    val absolutePath          = Paths.get("src/test/resources/UploadTestFiles/testFile.png").toAbsolutePath.toString
+    val fileInput: WebElement = findElementById("file-input")
+    fileInput.sendKeys(absolutePath)
 
-  private def dateInput(month: String, year: String, whichDate: String): Unit = {
-    sendKeys(By.id(s"$whichDate.month"), month)
-    sendKeys(By.id(s"$whichDate.year"), year)
+    click(continueButton)
   }
 
 }

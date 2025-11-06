@@ -17,6 +17,7 @@
 package uk.gov.hmrc.ui.pages.PropertyLinking
 
 import org.openqa.selenium.By
+import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.ui.pages.BasePage
 
 object PropertySearchResultPage extends BasePage {
@@ -33,4 +34,16 @@ object PropertySearchResultPage extends BasePage {
   def clickHelpSpan(): Unit =
     click(By.xpath("//*[@id=\"help-if-you-cannot-find-your-property\"]/summary/span"))
 
+  def selectSortOption(optionValue: String): Unit = {
+    selectFromDropdown(getElementById("sortBy"), optionValue)
+    click(continueButton)
+  }
+
+  def selectLink(text: String, index: Int): Unit = {
+    val links   = Driver.instance.findElements(By.linkText(text))
+    val element = links.get(index - 1)
+    val locator = By.linkText(text)
+    waitForElementToBeClickable(locator)
+    element.click()
+  }
 }

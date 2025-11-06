@@ -16,9 +16,7 @@
 
 package uk.gov.hmrc.ui.specs.PropertyLinking
 
-import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome
-import uk.gov.hmrc.ui.pages.PropertyLinking.PropertyLinkingCYA.hitCYAStep
 import uk.gov.hmrc.ui.pages.PropertyLinking._
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.specs.BaseSpec
@@ -33,56 +31,70 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
   val postCode            = "BH1 1HU"
   val fixedClock          = Clock.fixed(Instant.parse("2026-06-05T12:00:00Z"), ZoneId.of("UTC"))
 
+  def reachCheckYourAnswers(): Unit = {
+
+    Given("Ratepayer logins through one login")
+    loginOl()
+
+    Then("Ratepayer is now fully registered and is taken to the dashboard")
+    DashboardHome.DashboardHome(contactName)
+
+    Then("Ratepayer clicks the Add a Property link and is taken to the Add a Property page")
+    clickLink("Add a property")
+    AddAProperty.addAProperty()
+    click(continueButton)
+
+    Then("Ratepayer is taken to the What You Need page")
+    WhatYouNeed.whatYouNeed()
+    click(continueButton)
+
+    Then("Ratepayer is taken to the find a property page and searches for a property")
+    FindAProperty.findProperty()
+    FindAProperty.inputPostCode(postCode)
+
+    Then("Ratepayer is taken to the search results page")
+    PropertySearchResultPage.searchResult(postCode)
+    PropertySearchResultPage.clickHelpSpan()
+    PropertySearchResultPage.selectSortOption("AddressASC")
+
+    Then("Ratepayer click 'Select property' on the search results page")
+    clickLink("Select property")
+
+    Then("Ratepayer is taken to the selected property page, clicks the 'yes' radio and continues")
+    SelectedProperty.selectedProperty()
+    SelectedProperty.yesRadio()
+
+    Then("Ratepayer selects 'Before 1 April 2026' on 'When did you become the current ratepayer?' page")
+    CurrentRatepayer.currentRatepayer()
+    CurrentRatepayer.beforeDateRadio()
+
+    Then("The ratepayers selects 'yes' on 'business rates bill for the property' page")
+    BusinessRateBillPage.businessRateBill()
+    BusinessRateBillPage.selectYes()
+
+    Then("The ratepayer can upload business rates bill")
+    UploadYourBillPage.uploadYourBillHeader()
+    UploadYourBillPage.uploadYourBill()
+
+    Then("The ratepayer can confirm uploaded business rates bill")
+    UploadYourBillConfirmationPage.uploadYourBillConfirmationHeader()
+    UploadYourBillConfirmationPage.continueWhenUploaded()
+
+    Then("ratepayer hits the property-connection page, selects 'owner' and continues")
+    ConnectionToPropertyPage.hitConnectionStep()
+    ConnectionToPropertyPage.connectionToPropertyHeader()
+    ConnectionToPropertyPage.connectionTypeRadio("Owner")
+
+    Then("The ratepayer hits the CYA page")
+    PropertyLinkingCYA.checkYourAnswer()
+  }
+
   Feature("Tests for the change details feature of the Property Linking Check Your Answers page") {
 
     Scenario("Registered ratepayer goes through the flow to establish a property, and changes the ratepayer date") {
       PropertyLinkingDB.cleanup()
 
-      Given("Ratepayer logins through one login")
-      loginOl()
-
-      Then("Ratepayer is now fully registered and is taken to the dashboard")
-      DashboardHome.DashboardHome(contactName)
-
-      Then("Ratepayer clicks the Add a Property link and is taken to the Add a Property page")
-      clickLink("Add a property")
-      AddAProperty.addAProperty()
-      click(continueButton)
-
-      Then("Ratepayer is taken to the What You Need page")
-      WhatYouNeed.whatYouNeed()
-      click(continueButton)
-
-      Then("Ratepayer is taken to the find a property page and searches for a property")
-      FindAProperty.findProperty()
-      FindAProperty.inputPostCode(postCode)
-
-      Then("Ratepayer is taken to the search results page")
-      PropertySearchResultPage.searchResult(postCode)
-
-      Then("Ratepayer click 'Select property' on the search results page")
-      clickLink("Select property")
-
-      Then("Ratepayer is taken to the selected property page, clicks the 'yes' radio and continues")
-      SelectedProperty.selectedProperty()
-      SelectedProperty.yesRadio()
-
-      Then("Ratepayer selects 'Before 1 April 2026' on 'When did you become the current ratepayer?' page")
-      CurrentRatepayer.currentRatepayer()
-      CurrentRatepayer.beforeDateRadio()
-
-      Then("The ratepayers selects 'yes' on 'business rates bill for the property' page")
-      BusinessRateBillPage.businessRateBill()
-      BusinessRateBillPage.selectYes()
-
-      Then("ratepayer hits the property-connection page, selects 'owner' and continues")
-      ConnectionToPropertyPage.hitConnectionStep()
-      ConnectionToPropertyPage.connectionToPropertyHeader()
-      ConnectionToPropertyPage.connectionTypeRadio("Owner")
-
-      Then("The ratepayer hits the CYA page")
-      hitCYAStep()
-      PropertyLinkingCYA.checkYourAnswer()
+      reachCheckYourAnswers()
 
       Then("Clicks the change ratePayer link")
       PropertyLinkingCYA.clickChangeRatepayerDate()
@@ -104,15 +116,7 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
 
     Scenario("Registered ratepayer goes through the flow to establish a property, and changes the rates bill bool") {
 
-      Given("Ratepayer logins through one login")
-      loginOl()
-
-      Then("Ratepayer is now fully registered and is taken to the dashboard")
-      DashboardHome.DashboardHome(contactName)
-
-      Then("The ratepayer hits the CYA page")
-      hitCYAStep()
-      PropertyLinkingCYA.checkYourAnswer()
+      reachCheckYourAnswers()
 
       Then("Clicks the change business rates bill link")
       PropertyLinkingCYA.clickChangeBusinessRatesBill()
@@ -123,6 +127,24 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       Then("Ratepayer selects 'no' on 'business rates bill for the property' page")
       BusinessRateBillPage.selectNo()
 
+      Then("The ratepayer selects 'lease' on 'What evidence can you provide?' page")
+      WhatEvidenceCanYouProvide.whatEvidenceCanYouProvide()
+      WhatEvidenceCanYouProvide.selectEvidenceType("Lease")
+
+      Then("The ratepayer uploads the Lease document on the lease document page")
+      UploadYourLease.uploadYourLeaseHeader()
+      UploadYourLease.uploadYourLeaseDocuments()
+      continueButtonClick()
+
+      Then("The ratepayer can check the uploaded file on the uploaded your lease screen")
+      UploadedYourLease.uploadedYourLeaseHeader()
+      UploadedYourLease.verifyUploadedItem("testFile.png", "Uploaded")
+      continueButtonClick()
+
+      Then("The ratepayer selects the connection to the property")
+      ConnectionToPropertyPage.connectionToPropertyHeader()
+      ConnectionToPropertyPage.connectionTypeRadio("Owner")
+
       Then("The Ratepayer is taken back to the Check Your Answers page, with the ratepayer bill bool changed")
       PropertyLinkingCYA.checkYourAnswer()
       PropertyLinkingCYA.billChangedCheck("No")
@@ -130,15 +152,7 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
 
     Scenario("Registered ratepayer goes through the flow to establish a property, and changes the property address") {
 
-      Given("Ratepayer logins through one login")
-      loginOl()
-
-      Then("Ratepayer is now fully registered and is taken to the dashboard")
-      DashboardHome.DashboardHome(contactName)
-
-      Then("The ratepayer hits the CYA page")
-      hitCYAStep()
-      PropertyLinkingCYA.checkYourAnswer()
+      reachCheckYourAnswers()
 
       Then("Clicks the change property address link")
       PropertyLinkingCYA.clickChangePropertyAddressLink()
@@ -147,19 +161,10 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       FindAProperty.findProperty()
       FindAProperty.inputPostCode(postCode)
 
-      Then("Ratepayer is taken to the search results page")
+      Then("Ratepayer clicks the fourth 'Select property' on the search results page")
       PropertySearchResultPage.searchResult(postCode)
-
-      Then("Ratepayer clicks the second 'Select property' on the search results page")
-      val link = By.cssSelector(
-        "#main-content > div > div > div:nth-child(2) > div > table > tbody > tr:nth-child(2) > td:nth-child(5) > a"
-      )
-      waitForElementToBeClickable(link)
-      click(
-        By.cssSelector(
-          "#main-content > div > div > div:nth-child(2) > div > table > tbody > tr:nth-child(2) > td:nth-child(5) > a"
-        )
-      )
+      PropertySearchResultPage.selectSortOption("AddressASC")
+      PropertySearchResultPage.selectLink("Select property", 4)
 
       Then("Ratepayer is taken to the selected property page, clicks the 'yes' radio and continues")
       SelectedProperty.selectedProperty()
@@ -173,25 +178,30 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       BusinessRateBillPage.businessRateBill()
       BusinessRateBillPage.selectYes()
 
+      Then("The ratepayer can upload business rates bill")
+      UploadYourBillPage.uploadYourBillHeader()
+      UploadYourBillPage.uploadYourBill()
+
+      Then("The ratepayer can confirm uploaded business rates bill")
+      UploadYourBillConfirmationPage.uploadYourBillConfirmationHeader()
+      UploadYourBillConfirmationPage.continueWhenUploaded()
+
+      Then("ratepayer hits the property-connection page, selects 'owner' and continues")
+      ConnectionToPropertyPage.hitConnectionStep()
+      ConnectionToPropertyPage.connectionToPropertyHeader()
+      ConnectionToPropertyPage.connectionTypeRadio("Owner")
+
       Then("The Ratepayer is taken back to the Check Your Answers page, with the address changed")
-      hitCYAStep()
       PropertyLinkingCYA.checkYourAnswer()
       PropertyLinkingCYA.addressChangedCheck("Bug Me Not PVT LTD, RODLEY LANE, RODLEY, LEEDS, BH1 1HU")
+
     }
 
     Scenario(
       "Registered ratepayer goes through the flow to establish a property, and changes the property connection"
     ) {
 
-      Given("Ratepayer logins through one login")
-      loginOl()
-
-      Then("Ratepayer is now fully registered and is taken to the dashboard")
-      DashboardHome.DashboardHome(contactName)
-
-      Then("The ratepayer hits the CYA page")
-      hitCYAStep()
-      PropertyLinkingCYA.checkYourAnswer()
+      reachCheckYourAnswers()
 
       Then("The Ratepayer clicks the change property connection link, and is taken to the property connection page")
       PropertyLinkingCYA.clickChangePropertyConnection()
@@ -204,6 +214,5 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
       PropertyLinkingCYA.checkYourAnswer()
       PropertyLinkingCYA.connectionChangedCheck("Occupier")
     }
-
   }
 }
