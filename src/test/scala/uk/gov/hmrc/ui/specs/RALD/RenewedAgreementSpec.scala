@@ -208,31 +208,19 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       HaveYouAgreedInAdvanceRentChanges.yesRadio()
       continueButtonClick()
 
-      // Uncomment when the 'Second Rent Period' page is implemented.
-//      When("The user provides the start and end date for the first rent period")
-//      ProvideDetailsOfFirstRentPeriodPage.provideDetailsOfFirstRentPeriodHeader()
-//      ProvideDetailsOfFirstRentPeriodPage.startDate("2011-01-02")
-//      ProvideDetailsOfFirstRentPeriodPage.endDate("2022-03-02")
-//
-//      Then("The user selects 'Yes' radio button and enter the rent amount")
-//      ProvideDetailsOfFirstRentPeriodPage.rentPayablePeriodRadioYes()
-//      ProvideDetailsOfFirstRentPeriodPage.rentPeriodAmount("2,000.00")
-//      continueButtonClick()
-
       When("The user provides the start and end date for the first rent period")
-      ProvideDetailsOfFirstSecondRentPeriodPage.provideDetailsOfEachRentPeriod()
-      ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodStartDate("02", "01", "2011")
-      ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodEndDate("02", "03", "2022")
+      ProvideDetailsOfFirstRentPeriodPage.provideDetailsOfFirstRentPeriodHeader()
+      ProvideDetailsOfFirstRentPeriodPage.startDate("2011-01-02")
+      ProvideDetailsOfFirstRentPeriodPage.endDate("2022-03-02")
 
       Then("The user selects 'Yes' radio button and enter the rent amount")
-      ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodRadioYes()
-      ProvideDetailsOfFirstSecondRentPeriodPage.firstRentPeriodRent("2000.00")
+      ProvideDetailsOfFirstRentPeriodPage.rentPayablePeriodRadioYes()
+      ProvideDetailsOfFirstRentPeriodPage.rentPeriodAmount("2,000.00")
+      continueButtonClick()
 
-      When("The user enters the start, end date and rent amount for the second rent period")
-      ProvideDetailsOfFirstSecondRentPeriodPage.provideDetailsOfEachRentPeriod()
-      ProvideDetailsOfFirstSecondRentPeriodPage.secondRentPeriodStartDate("02", "10", "2012")
-      ProvideDetailsOfFirstSecondRentPeriodPage.secondRentPeriodEndDate("02", "12", "2023")
-      ProvideDetailsOfFirstSecondRentPeriodPage.SecondRentPeriodRent("9999999.99")
+      When("The user provides the end date for the second rent period")
+      ProvideDetailsOfSecondRentPeriodPage.secondRentPeriodEndDate("02", "12", "2023")
+      ProvideDetailsOfSecondRentPeriodPage.SecondRentPeriodRent("9999999.99")
       continueButtonClick()
 
       When("The user check rent period details on rent periods page")
@@ -241,7 +229,7 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       RentPeriods.verifyFirstPeriodEndDate("2 March 2022")
       RentPeriods.verifyFirstPeriodDoYouPay("Yes")
       RentPeriods.verifyFirstPeriodRentValue("£2,000")
-      RentPeriods.verifySecondPeriodStartDate("2 October 2012")
+      RentPeriods.verifySecondPeriodStartDate("3 March 2022")
       RentPeriods.verifySecondPeriodEndDate("2 December 2023")
       RentPeriods.verifySecondPeriodRentValue("£9,999,999.99")
 
