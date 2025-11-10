@@ -154,6 +154,13 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordAmountInput("500")
       MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordDateInput("12", "11", "2025")
       continueButtonClick()
+
+      Then("Has anything else affected the rent")
+      HasAnythingElsePage.hasAnythingElseAffectedTheRent()
+      HasAnythingElsePage.hasAffected("yes")
+      HasAnythingElsePage.reasonDescription("test")
+      continueButtonClick()
+
     }
 
     Scenario(
@@ -299,6 +306,13 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordAmountInput("500")
       MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordDateInput("12", "11", "2025")
       continueButtonClick()
+
+      Then("Has anything else affected the rent")
+      HasAnythingElsePage.hasAnythingElseAffectedTheRent()
+      HasAnythingElsePage.hasAffected("yes")
+      HasAnythingElsePage.reasonDescription("test")
+      continueButtonClick()
+
     }
 
     Scenario(
@@ -456,6 +470,12 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordAmountInput("500")
       MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordDateInput("12", "11", "2025")
       continueButtonClick()
+
+      Then("Has anything else affected the rent")
+      HasAnythingElsePage.hasAnythingElseAffectedTheRent()
+      HasAnythingElsePage.hasAffected("no")
+      continueButtonClick()
+
     }
 
     Scenario(

@@ -19,21 +19,21 @@ package uk.gov.hmrc.ui.pages.RALD
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
-object MoneyToTakeOnTheLeasePage extends BasePage {
+object HasAnythingElsePage extends BasePage {
 
-  def moneyToTakeOnTheLease(): Unit =
-    headerCheck("Money you got from the landlord or previous tenant to take on the lease")
+  val reasonLocator: By = By.id("reason")
 
-  def moneyToTakeOnTheLeaseAmountInput(amount: String): Unit =
-    sendKeys(By.id("amount"), amount)
+  def hasAnythingElseAffectedTheRent(): Unit =
+    headerCheck("Has anything else affected the rent?")
 
-  private def dateInput(day: String, month: String, year: String): Unit = {
-    sendKeys(By.id("date.day"), day)
-    sendKeys(By.id("date.month"), month)
-    sendKeys(By.id("date.year"), year)
+  def hasAffected(answer: String): Unit = {
+    val radioId = answer.toLowerCase match {
+      case "yes" => "hasAnythingElseAffectedTheRent"
+      case _     => "hasAnythingElseAffectedTheRent-2"
+    }
+    click(getElementById(radioId))
   }
 
-  def moneyToTakeOnTheLeaseDateInput(day: String, month: String, year: String): Unit =
-    dateInput(day, month, year)
-
+  def reasonDescription(reasonDesc: String): Unit =
+    sendKeys(reasonLocator, reasonDesc)
 }
