@@ -14,17 +14,13 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.PropertyLinking
+package uk.gov.hmrc.ui.pages.RALD
 
 import uk.gov.hmrc.ui.pages.BasePage
 
-object WhatYouNeed extends BasePage {
+object DeclarationPage extends BasePage {
 
-  def whatYouNeed(): Unit =
-    headerCheck("What you need")
-
-  def contactLinkDisplay(link: String): Unit = {
-//    assert(link == display, "contact council link is not present")
-  }
+  def declaration(): Unit =
+    headerCheck("Declaration")
 
 }
