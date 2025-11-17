@@ -20,12 +20,19 @@ import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.ExpectedConditions
 import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.PropertyLinking.UploadYourBillConfirmationPage.{click, getElementById, waitForElementToBeClickable}
+
 import scala.jdk.CollectionConverters._
 
 object UploadedSupportingDocument extends BasePage {
 
   def uploadedSupportingDocumentHeader(): Unit =
     headerCheck("Uploaded files")
+
+  def continueWhenUploaded(): Unit = {
+    waitForElementToBeClickable(getElementById("continue"))
+    click(getElementById("continue"))
+  }
 
   def verifyUploadedItem(keyText: String, expectedValue: String): Unit = {
     val listLocator = By.cssSelector(".govuk-summary-list")

@@ -17,6 +17,7 @@
 package uk.gov.hmrc.ui.specs.Physical
 
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome.dashboard
+import uk.gov.hmrc.ui.pages.Physical.UploadedSupportingDocument.continueWhenUploaded
 import uk.gov.hmrc.ui.pages.Physical._
 import uk.gov.hmrc.ui.pages.RALD.{WhatDoYouWantToTellUs, YourProperty}
 import uk.gov.hmrc.ui.pages.{SignOutPage, StubPage}
@@ -122,7 +123,7 @@ class EndToEndTestSpec extends BaseSpec with StubPage {
       Then("The ratepayer can see the uploaded document status")
       UploadedSupportingDocument.uploadedSupportingDocumentHeader()
       UploadedSupportingDocument.verifyUploadedItem("testFile.png", "Uploaded")
-      continueButtonClick()
+      continueWhenUploaded()
 
       // it verifies that the features are added and shows on the Check and Confirm Changes
       Then("The ratepayer can check the added features on the summary screen")
