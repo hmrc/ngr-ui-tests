@@ -17,7 +17,7 @@ object MoneyToTakeOnTheLeasePage extends BasePage {
     sendKeys(By.id("date.year"), year)
   }
 
-  def moneyYouPaidInAdvanceToLandlordDateInput(day: String, month: String, year: String): Unit =
+  def moneyToTakeOnTheLeaseDateInput(day: String, month: String, year: String): Unit =
     dateInput(day, month, year)
 
 }

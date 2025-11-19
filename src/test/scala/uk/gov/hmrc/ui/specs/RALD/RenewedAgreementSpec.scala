@@ -148,6 +148,12 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       Then("The user select yes for money in advance to landlord")
       DidYouPayAnyMoneyToLandlordPage.didYouPayAnyMoneyToLandlord()
       DidYouPayAnyMoneyToLandlordPage.yesRadio()
+
+      Then("Money you paid in advance to the landlord")
+      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlord()
+      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordAmountInput("500")
+      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordDateInput("12", "11", "2025")
+      continueButtonClick()
     }
 
     Scenario(
@@ -287,6 +293,12 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       Then("The user select yes for money in advance to landlord")
       DidYouPayAnyMoneyToLandlordPage.didYouPayAnyMoneyToLandlord()
       DidYouPayAnyMoneyToLandlordPage.yesRadio()
+
+      Then("Money you paid in advance to the landlord")
+      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlord()
+      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordAmountInput("500")
+      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordDateInput("12", "11", "2025")
+      continueButtonClick()
     }
 
     Scenario(
@@ -425,6 +437,24 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       Then("The user selects yes they got money from the previous landlord or tenant to taking on the lease")
       DidYouGetMoneyFromLandlordPage.didYouGetMoneyFromLandlord()
       DidYouGetMoneyFromLandlordPage.yesRadio()
+      continueButtonClick()
+
+      Then("Money you got from the landlord or previous tenant to take on the lease")
+
+      MoneyToTakeOnTheLeasePage.moneyToTakeOnTheLease()
+      MoneyToTakeOnTheLeasePage.moneyToTakeOnTheLeaseAmountInput("500")
+      MoneyToTakeOnTheLeasePage.moneyToTakeOnTheLeaseDateInput("12", "11", "2025")
+      continueButtonClick()
+
+      Then("The user select yes for money in advance to landlord")
+      DidYouPayAnyMoneyToLandlordPage.didYouPayAnyMoneyToLandlord()
+      DidYouPayAnyMoneyToLandlordPage.yesRadio()
+      continueButtonClick()
+
+      Then("Money you paid in advance to the landlord")
+      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlord()
+      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordAmountInput("500")
+      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordDateInput("12", "11", "2025")
       continueButtonClick()
     }
 
