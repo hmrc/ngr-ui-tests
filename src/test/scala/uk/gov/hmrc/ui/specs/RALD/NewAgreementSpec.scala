@@ -294,6 +294,30 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       AboutRepairsAndFittingOutPage.enterRepairCost("1234.56")
       AboutRepairsAndFittingOutPage.enterRepairDate("10", "2025")
       continueButtonClick()
+
+      Then("Did you get any money from the landlord or previous tenant to take on the lease?")
+      DidYouGetMoneyFromLandlordPage.didYouGetMoneyFromLandlord()
+      DidYouGetMoneyFromLandlordPage.yesRadio()
+      continueButtonClick()
+
+      Then("Money you got from the landlord or previous tenant to take on the lease")
+
+      MoneyToTakeOnTheLeasePage.moneyToTakeOnTheLease()
+      MoneyToTakeOnTheLeasePage.moneyToTakeOnTheLeaseAmountInput("500")
+      MoneyToTakeOnTheLeasePage.moneyToTakeOnTheLeaseDateInput("12", "11", "2025")
+      continueButtonClick()
+
+      Then("Did you pay any money in advance to the landlord?")
+      DidYouPayAnyMoneyToLandlordPage.didYouPayAnyMoneyToLandlord()
+      DidYouPayAnyMoneyToLandlordPage.yesRadio()
+      continueButtonClick()
+
+      Then("Money you paid in advance to the landlord")
+      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlord()
+      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordAmountInput("500")
+      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordDateInput("12", "11", "2025")
+      continueButtonClick()
+
     }
 
     Scenario(
@@ -427,6 +451,30 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       AboutRepairsAndFittingOutPage.enterRepairCost("1234.56")
       AboutRepairsAndFittingOutPage.enterRepairDate("10", "2025")
       continueButtonClick()
+
+      Then("Did you get any money from the landlord or previous tenant to take on the lease?")
+      DidYouGetMoneyFromLandlordPage.didYouGetMoneyFromLandlord()
+      DidYouGetMoneyFromLandlordPage.yesRadio()
+      continueButtonClick()
+
+      Then("Money you got from the landlord or previous tenant to take on the lease")
+
+      MoneyToTakeOnTheLeasePage.moneyToTakeOnTheLease()
+      MoneyToTakeOnTheLeasePage.moneyToTakeOnTheLeaseAmountInput("500")
+      MoneyToTakeOnTheLeasePage.moneyToTakeOnTheLeaseDateInput("12", "11", "2025")
+      continueButtonClick()
+
+      Then("Did you pay any money in advance to the landlord?")
+      DidYouPayAnyMoneyToLandlordPage.didYouPayAnyMoneyToLandlord()
+      DidYouPayAnyMoneyToLandlordPage.yesRadio()
+      continueButtonClick()
+
+      Then("Money you paid in advance to the landlord")
+      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlord()
+      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordAmountInput("500")
+      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordDateInput("12", "11", "2025")
+      continueButtonClick()
+
     }
 
     Scenario("New agreement, agreement type: Verbal") {
