@@ -159,7 +159,15 @@ class NewAgreementSpec extends BaseSpec with StubPage {
 
       Then("The user select yes for money in advance to landlord")
       DidYouPayAnyMoneyToLandlordPage.didYouPayAnyMoneyToLandlord()
-      DidYouPayAnyMoneyToLandlordPage.yesRadio()
+      DidYouPayAnyMoneyToLandlordPage.noRadio()
+      continueButtonClick()
+
+      Then("The user selects 'Yes' and enters input on 'Has anything else affected the rent?'page")
+      HasAnythingElseAffectedTheRent.hasAnythingElseAffectedTheRent()
+      HasAnythingElseAffectedTheRent.yesRadio()
+      HasAnythingElseAffectedTheRent.whatElseHasAffectedTheRentInput()
+      continueButtonClick()
+
     }
 
     Scenario("New agreement, agreement type: Licence or other type of written agreement, agreed in advance: 'Yes'") {
@@ -355,15 +363,14 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       ProvideDetailsOfFirstRentPeriodPage.startDate("2011-01-02")
       ProvideDetailsOfFirstRentPeriodPage.endDate("2022-03-02")
 
-      Then("The user selects 'Yes' radio button and enter the rent amount")
-      ProvideDetailsOfFirstRentPeriodPage.rentPayablePeriodRadioYes()
-      ProvideDetailsOfFirstRentPeriodPage.rentPeriodAmount("2,000.90365")
+      Then("The user selects 'No, this is a rent-free period' option")
+      ProvideDetailsOfFirstRentPeriodPage.rentPayablePeriodRadioNo()
       continueButtonClick()
 
       When("The user provides the end date for the second rent period")
       ProvideDetailsOfSecondRentPeriodPage.provideDetailsOfSecondRentPeriod()
       ProvideDetailsOfSecondRentPeriodPage.secondRentPeriodEndDate("02", "12", "2023")
-      ProvideDetailsOfSecondRentPeriodPage.SecondRentPeriodRent("9999999.99")
+      ProvideDetailsOfSecondRentPeriodPage.SecondRentPeriodRent("50")
       continueButtonClick()
 
       When("The user check rent period details on rent periods page")
@@ -371,11 +378,10 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       /*These dates should be similar to the dates entered in the previous steps(first and second rent period) */
       RentPeriods.verifyFirstPeriodStartDate("2 January 2011")
       RentPeriods.verifyFirstPeriodEndDate("2 March 2022")
-      RentPeriods.verifyFirstPeriodDoYouPay("Yes")
-      RentPeriods.verifyFirstPeriodRentValue("£2,000.90")
+      RentPeriods.verifyFirstPeriodDoYouPay("No")
       RentPeriods.verifySecondPeriodStartDate("3 March 2022")
       RentPeriods.verifySecondPeriodEndDate("2 December 2023")
-      RentPeriods.verifySecondPeriodRentValue("£9,999,999.99")
+      RentPeriods.verifySecondPeriodRentValue("£50")
 
       Then("The user selects 'No' for adding rent period")
       RentPeriods.addAnotherPeriod("No")
@@ -539,6 +545,13 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       Then("The user select yes for money in advance to landlord")
       DidYouPayAnyMoneyToLandlordPage.didYouPayAnyMoneyToLandlord()
       DidYouPayAnyMoneyToLandlordPage.yesRadio()
+      continueButtonClick()
+
+      Then("The user enters the details on page 'Money you paid in advance to the landlord'")
+      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlord()
+      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordAmountInput("3000")
+      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordDateInput("2", "1", "1988")
+      continueButtonClick()
     }
   }
 }
