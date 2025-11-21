@@ -29,7 +29,7 @@ object login {
     startNow()
     signInSelectorOL()
     if (env == "local" || env == "staging") {
-      stubOlAuthentication()
+      stubOlAuthentication(env)
     } else {
       olAuthentication("krutika.patil+11@digital.hmrc.gov.uk", "p2ssword1234")
     }

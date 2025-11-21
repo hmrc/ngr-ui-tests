@@ -45,6 +45,12 @@ trait StubPage extends BasePage {
     click(submit)
   }
 
+  def signedInWithOnelogin(): Unit = {
+    val text = "You’re signed in with GOV.UK One Login"
+    headerCheck(text)
+    click(continueButton)
+  }
+
   def proveYourIdentity(): Unit = {
     headerCheck("You need to prove your identity")
     click(continueButton)
@@ -109,8 +115,10 @@ trait StubPage extends BasePage {
     click(continue)
   }
 
-  def stubOlAuthentication(): Unit = {
+  def stubOlAuthentication(env: String): Unit = {
     loginStub()
+    if (env == "staging")
+      signedInWithOnelogin()
     // This page will be added in the future time.
 //    proveYourIdentity()
     IvStub()
