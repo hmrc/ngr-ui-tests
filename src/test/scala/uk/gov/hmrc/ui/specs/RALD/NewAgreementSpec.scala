@@ -157,9 +157,10 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       DidYouGetMoneyFromLandlordPage.noRadio()
       continueButtonClick()
 
-      Then("The user select yes for money in advance to landlord")
+      Then("The user select no for money in advance to landlord")
       DidYouPayAnyMoneyToLandlordPage.didYouPayAnyMoneyToLandlord()
-      DidYouPayAnyMoneyToLandlordPage.yesRadio()
+      DidYouPayAnyMoneyToLandlordPage.noRadio()
+      continueButtonClick()
     }
 
     Scenario("New agreement, agreement type: Licence or other type of written agreement, agreed in advance: 'Yes'") {
@@ -626,9 +627,9 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       DidYouGetMoneyFromLandlordPage.noRadio()
       continueButtonClick()
 
-      Then("The user select yes for money in advance to landlord")
+      Then("The user select no for money in advance to landlord")
       DidYouPayAnyMoneyToLandlordPage.didYouPayAnyMoneyToLandlord()
-      DidYouPayAnyMoneyToLandlordPage.yesRadio()
+      DidYouPayAnyMoneyToLandlordPage.noRadio()
     }
   }
 }

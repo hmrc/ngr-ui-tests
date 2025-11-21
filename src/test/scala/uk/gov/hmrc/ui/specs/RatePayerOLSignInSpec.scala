@@ -42,7 +42,7 @@ class RatePayerOLSignInSpec extends BaseSpec with StubPage {
 
       And("Ratepayer authenticate using One Login")
       if (env == "local" || env == "staging") {
-        stubOlAuthentication()
+        stubOlAuthentication(env)
       } else {
         OlAuthentication.olAuthentication("krutika.patil+11@digital.hmrc.gov.uk", "p2ssword1234")
       }
