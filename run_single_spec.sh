@@ -7,7 +7,7 @@ ENVIRONMENT=$3
 
 sbt scalafmtAll
 sbt clean -Dbrowser="${BROWSER:=chrome}" \
-          -Dbrowser.option.headless=false \
+          -Dbrowser.option.headless=true \
           -Denvironment="${ENVIRONMENT:=local}" \
           -Dsecurity.assessment=false \
           "testOnly *specs.${JOURNEYTYPE}.${SPEC}" testReport
