@@ -1,7 +1,7 @@
 {
-  "_id": "/ngr-stub/hip/job/physical",
+  "_id": "/ngr-stub/voa/v1/job",
   "method": "POST",
-  "status": 200,
+  "status": 202,
   "response": {
     "physical": "Response JSON TBC",
     "status": "OK",

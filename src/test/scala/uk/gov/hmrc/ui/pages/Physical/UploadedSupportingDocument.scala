@@ -20,7 +20,6 @@ import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.ExpectedConditions
 import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.ui.pages.BasePage
-import uk.gov.hmrc.ui.pages.PropertyLinking.UploadYourBillConfirmationPage.{click, getElementById, waitForElementToBeClickable}
 
 import scala.jdk.CollectionConverters._
 
@@ -31,6 +30,15 @@ object UploadedSupportingDocument extends BasePage {
 
   def continueWhenUploaded(): Unit = {
     waitForElementToBeClickable(getElementById("continue"))
+    println("Clicking Continue button after uploading supporting document")
+    println("Clicking Continue button after uploading supporting document")
+    println("Clicking Continue button after uploading supporting document")
+    println("Clicking Continue button after uploading supporting document")
+    println("Clicking Continue button after uploading supporting document")
+    println("Clicking Continue button after uploading supporting document")
+    println("Clicking Continue button after uploading supporting document")
+    println("Clicking Continue button after uploading supporting document")
+    waitForElementVisibility(getElementById("continue"))
     click(getElementById("continue"))
   }
 
