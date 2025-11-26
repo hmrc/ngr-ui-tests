@@ -31,7 +31,7 @@ object MoneyYouPaidInAdvanceToLandlordPage extends BasePage {
     dateInput(day, month, year)
 
   private def dateInput(day: String, month: String, year: String): Unit = {
-    sendKeys(By.id("date.month"), day)
+    sendKeys(By.id("date.day"), day)
     sendKeys(By.id("date.month"), month)
     sendKeys(By.id("date.year"), year)
   }

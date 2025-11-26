@@ -17,6 +17,7 @@
 package uk.gov.hmrc.ui.pages.RALD
 
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.RALD.AdditionalRentPeriodPage.periodSequence
 
 object RentPeriods extends BasePage {
 
@@ -64,5 +65,24 @@ object RentPeriods extends BasePage {
   def verifySecondPeriodRentValue(expectedValue: String): Unit = {
     val actual = getElementByCssSelector("#second-period-rent-value-id")
     assert(actual == expectedValue, "Second period rent value doesn't match")
+  }
+
+  def verifyAdditionalPeriodStartDate(expectedDate: String, sequance: Int): Unit = {
+    val actual = getElementByCssSelector(
+      s"#${periodSequence.getOrElse(sequance, "").toLowerCase()}-period-start-date-id"
+    )
+    assert(actual == expectedDate, s"${periodSequence.getOrElse(sequance, "")} period start date doesn't match")
+  }
+
+  def verifyAdditionalPeriodEndDate(expectedDate: String, sequance: Int): Unit = {
+    val actual = getElementByCssSelector(s"#${periodSequence.getOrElse(sequance, "").toLowerCase()}-period-end-date-id")
+    assert(actual == expectedDate, s"${periodSequence.getOrElse(sequance, "")} period end date doesn't match")
+  }
+
+  def verifyAdditionalPeriodRentValue(expectedValue: String, sequance: Int): Unit = {
+    val actual = getElementByCssSelector(
+      s"#${periodSequence.getOrElse(sequance, "").toLowerCase()}-period-rent-value-id"
+    )
+    assert(actual == expectedValue, s"${periodSequence.getOrElse(sequance, "")} period rent value doesn't match")
   }
 }

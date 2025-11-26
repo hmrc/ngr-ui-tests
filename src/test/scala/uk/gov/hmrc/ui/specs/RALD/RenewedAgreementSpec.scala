@@ -233,6 +233,28 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
 
       When("The user check rent period details on rent periods page")
       RentPeriods.rentPeriods()
+
+      Then("The user selects 'Yes' for adding rent period")
+      RentPeriods.addAnotherPeriod("Yes")
+      continueButtonClick()
+
+      AddingAdditionalRentPeriodScenario.addingRentPeriod("31", "1", "2024", "1000.45", 3, "Yes")
+      AddingAdditionalRentPeriodScenario.addingRentPeriod("31", "3", "2024", "1500", 4, "Yes")
+      AddingAdditionalRentPeriodScenario.addingRentPeriod("31", "5", "2024", "2000.89", 5, "Yes")
+      AddingAdditionalRentPeriodScenario.addingRentPeriod("31", "7", "2024", "3000.00", 6, "Yes")
+      AddingAdditionalRentPeriodScenario.addingRentPeriod("31", "10", "2024", "4000.458765", 7, "Yes")
+      AddingAdditionalRentPeriodScenario.addingRentPeriod("31", "12", "2024", "123000", 8, "Yes")
+      AddingAdditionalRentPeriodScenario.addingRentPeriod("31", "3", "2025", "1763000", 9, "Yes")
+
+      When("The user provides the end date for the tenth rent period")
+      AdditionalRentPeriodPage.additionalRentPeriod(10)
+      AdditionalRentPeriodPage.additionalRentPeriodEndDate("31", "5", "2025")
+      AdditionalRentPeriodPage.additionalRentPeriodRent("£9,999,999.99")
+      continueButtonClick()
+
+      When("The user check rent period details on rent periods page")
+      RentPeriods.rentPeriods()
+      /*These dates should be similar to the dates entered in the previous steps(first and second rent period) */
       RentPeriods.verifyFirstPeriodStartDate("2 January 2011")
       RentPeriods.verifyFirstPeriodEndDate("2 March 2022")
       RentPeriods.verifyFirstPeriodDoYouPay("Yes")
@@ -240,9 +262,30 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       RentPeriods.verifySecondPeriodStartDate("3 March 2022")
       RentPeriods.verifySecondPeriodEndDate("2 December 2023")
       RentPeriods.verifySecondPeriodRentValue("£9,999,999.99")
-
-      Then("The user selects 'No' for adding rent period")
-      RentPeriods.addAnotherPeriod("No")
+      RentPeriods.verifyAdditionalPeriodStartDate("3 December 2023", 3)
+      RentPeriods.verifyAdditionalPeriodEndDate("31 January 2024", 3)
+      RentPeriods.verifyAdditionalPeriodRentValue("£1,000.45", 3)
+      RentPeriods.verifyAdditionalPeriodStartDate("1 February 2024", 4)
+      RentPeriods.verifyAdditionalPeriodEndDate("31 March 2024", 4)
+      RentPeriods.verifyAdditionalPeriodRentValue("£1,500", 4)
+      RentPeriods.verifyAdditionalPeriodStartDate("1 April 2024", 5)
+      RentPeriods.verifyAdditionalPeriodEndDate("31 May 2024", 5)
+      RentPeriods.verifyAdditionalPeriodRentValue("£2,000.89", 5)
+      RentPeriods.verifyAdditionalPeriodStartDate("1 June 2024", 6)
+      RentPeriods.verifyAdditionalPeriodEndDate("31 July 2024", 6)
+      RentPeriods.verifyAdditionalPeriodRentValue("£3,000", 6)
+      RentPeriods.verifyAdditionalPeriodStartDate("1 August 2024", 7)
+      RentPeriods.verifyAdditionalPeriodEndDate("31 October 2024", 7)
+      RentPeriods.verifyAdditionalPeriodRentValue("£4,000.46", 7)
+      RentPeriods.verifyAdditionalPeriodStartDate("1 November 2024", 8)
+      RentPeriods.verifyAdditionalPeriodEndDate("31 December 2024", 8)
+      RentPeriods.verifyAdditionalPeriodRentValue("£123,000", 8)
+      RentPeriods.verifyAdditionalPeriodStartDate("1 January 2025", 9)
+      RentPeriods.verifyAdditionalPeriodEndDate("31 March 2025", 9)
+      RentPeriods.verifyAdditionalPeriodRentValue("£1,763,000", 9)
+      RentPeriods.verifyAdditionalPeriodStartDate("1 April 2025", 10)
+      RentPeriods.verifyAdditionalPeriodEndDate("31 May 2025", 10)
+      RentPeriods.verifyAdditionalPeriodRentValue("£9,999,999.99", 10)
       continueButtonClick()
 
       When("The user enters yes to agree rent with the landlord")
@@ -295,6 +338,12 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       Then("The user select yes for money in advance to landlord")
       DidYouPayAnyMoneyToLandlordPage.didYouPayAnyMoneyToLandlord()
       DidYouPayAnyMoneyToLandlordPage.yesRadio()
+
+      Then("Money you paid in advance to the landlord")
+      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlord()
+      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordAmountInput("500")
+      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordDateInput("12", "11", "2025")
+      continueButtonClick()
     }
 
     Scenario(
@@ -433,6 +482,24 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       Then("The user selects yes they got money from the previous landlord or tenant to taking on the lease")
       DidYouGetMoneyFromLandlordPage.didYouGetMoneyFromLandlord()
       DidYouGetMoneyFromLandlordPage.yesRadio()
+      continueButtonClick()
+
+      Then("Money you got from the landlord or previous tenant to take on the lease")
+
+      MoneyToTakeOnTheLeasePage.moneyToTakeOnTheLease()
+      MoneyToTakeOnTheLeasePage.moneyToTakeOnTheLeaseAmountInput("500")
+      MoneyToTakeOnTheLeasePage.moneyToTakeOnTheLeaseDateInput("12", "11", "2025")
+      continueButtonClick()
+
+      Then("The user select yes for money in advance to landlord")
+      DidYouPayAnyMoneyToLandlordPage.didYouPayAnyMoneyToLandlord()
+      DidYouPayAnyMoneyToLandlordPage.yesRadio()
+      continueButtonClick()
+
+      Then("Money you paid in advance to the landlord")
+      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlord()
+      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordAmountInput("500")
+      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordDateInput("12", "11", "2025")
       continueButtonClick()
     }
 
