@@ -21,7 +21,7 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 object AboutRepairsAndFittingOutPage extends BasePage {
 
-  def verifyPageHeader(): Unit =
+  def aboutRepairsAndFittingOut(): Unit =
     headerCheck("About repairs and fitting out")
 
   def enterRepairCost(amount: String): Unit =

@@ -140,4 +140,10 @@ trait BasePage extends PageObject {
     selectElement.selectByValue(value)
   }
 
+  def changedCheck(expected: String, locator: By, message: String): Unit = {
+    waitForElementVisibility(locator)
+    val actual = Driver.instance.findElement(locator).getText.trim
+    assert(expected == actual, s"$message. Expected: '$expected', Found: '$actual'")
+  }
+
 }

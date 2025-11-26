@@ -26,8 +26,8 @@ object HasAnythingElseAffectedTheRent extends BasePage {
   def yesRadio(): Unit =
     click(getElementById("hasAnythingElseAffectedTheRent"))
 
-  def whatElseHasAffectedTheRentInput(): Unit =
-    sendKeys(getElementById("reason"), "Test input")
+  def whatElseHasAffectedTheRentInput(Desc: String): Unit =
+    sendKeys(getElementById("reason"), Desc)
 
   def noRadio(): Unit =
     click(getElementById("hasAnythingElseAffectedTheRent-2"))
