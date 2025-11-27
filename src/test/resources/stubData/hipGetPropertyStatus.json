@@ -1,5 +1,5 @@
 {
-  "_id": "/ngr-stub/ratepayer-status/testCred123",
+  "_id": "/ngr-stub/hip-ratepayer-status/testCred123",
   "method": "GET",
   "status": 200,
   "response": {
