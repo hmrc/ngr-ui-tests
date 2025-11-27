@@ -115,10 +115,9 @@ trait StubPage extends BasePage {
     click(continue)
   }
 
-  def stubOlAuthentication(env: String): Unit = {
+  def stubOlAuthentication(): Unit = {
     loginStub()
-    if (env == "staging")
-      signedInWithOnelogin()
+    signedInWithOnelogin()
     // This page will be added in the future time.
 //    proveYourIdentity()
     IvStub()
