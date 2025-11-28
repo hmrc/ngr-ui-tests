@@ -18,17 +18,9 @@ package uk.gov.hmrc.ui.pages.RALD
 
 import uk.gov.hmrc.ui.pages.BasePage
 
-object SubmissionConfirmationPage extends BasePage {
+object WeAreCheckingYourDetailsPage extends BasePage {
 
-  def declarationHeader(): Unit =
-    headerCheck("Renewed agreement details sent")
-
-  def checkReferenceNumber(expectedRef: String): Unit = {
-    val actualRef = getElementByCssSelector("#main-content > div > div.govuk-grid-column-two-thirds > form > div > div")
-    assert(
-      actualRef == expectedRef,
-      "Reference number is not correct"
-    )
-  }
+  def weAreCheckingYourDetails(): Unit =
+    headerCheck("We are checking your details")
 
 }

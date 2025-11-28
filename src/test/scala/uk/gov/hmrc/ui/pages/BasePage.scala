@@ -146,4 +146,7 @@ trait BasePage extends PageObject {
     assert(expected == actual, s"$message. Expected: '$expected', Found: '$actual'")
   }
 
+  def clickBrowserBack(): Unit =
+    Driver.instance.navigate().back()
+
 }
