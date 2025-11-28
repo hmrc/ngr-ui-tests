@@ -148,6 +148,7 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       Then("The user select yes for money in advance to landlord")
       DidYouPayAnyMoneyToLandlordPage.didYouPayAnyMoneyToLandlord()
       DidYouPayAnyMoneyToLandlordPage.yesRadio()
+      continueButtonClick()
 
       Then("Money you paid in advance to the landlord")
       MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlord()
@@ -161,6 +162,17 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       HasAnythingElsePage.reasonDescription("test")
       continueButtonClick()
 
+      Then("The user click continue on check your answers")
+      CheckYourAnswersRald.checkYourAnswersHeader()
+      continueButtonClick()
+
+      Then("The user accepts and sends the declaration")
+      DeclarationPage.declaration()
+      continueButtonClick()
+
+      Then("The user see their submission reference")
+      SubmissionConfirmationPage.submissionConfirmationHeader()
+      SubmissionConfirmationPage.checkReferenceNumber
     }
 
     Scenario(
@@ -321,13 +333,6 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       DoYouPayExtraForParkingSpaces.selectPayExtraRadio("no")
       continueButtonClick()
 
-      Then("The user selects you to who pays for internal, external and building insurance repairs")
-      RepairsAndInsurancePage.repairsAndInsurance()
-      RepairsAndInsurancePage.whoPaysForInternalRepairsRadio("You and the landlord")
-      RepairsAndInsurancePage.whoPaysForExternalRepairsRadio("You and the landlord")
-      RepairsAndInsurancePage.WhoPaysForBuildingInsuranceRepairs("You and the landlord")
-      continueButtonClick()
-
       Then("The user select yes for rent review and no for rent go down")
       RentReviewPage.rentReview()
       RentReviewPage.hasIncludeRentReview("yes")
@@ -343,6 +348,7 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       Then("The user select yes for money in advance to landlord")
       DidYouPayAnyMoneyToLandlordPage.didYouPayAnyMoneyToLandlord()
       DidYouPayAnyMoneyToLandlordPage.yesRadio()
+      continueButtonClick()
 
       Then("Money you paid in advance to the landlord")
       MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlord()
@@ -356,6 +362,17 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       HasAnythingElsePage.reasonDescription("test")
       continueButtonClick()
 
+      Then("The user click continue on check your answers")
+      CheckYourAnswersRald.checkYourAnswersHeader()
+      continueButtonClick()
+
+      Then("The user accepts and sends the declaration")
+      DeclarationPage.declaration()
+      continueButtonClick()
+
+      Then("The user see their submission reference")
+      SubmissionConfirmationPage.submissionConfirmationHeader()
+      SubmissionConfirmationPage.checkReferenceNumber
     }
 
     Scenario(
@@ -519,6 +536,17 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       HasAnythingElsePage.hasAffected("no")
       continueButtonClick()
 
+      Then("The user click continue on check your answers")
+      CheckYourAnswersRald.checkYourAnswersHeader()
+      continueButtonClick()
+
+      Then("The user accepts and sends the declaration")
+      DeclarationPage.declaration()
+      continueButtonClick()
+
+      Then("The user see their submission reference")
+      SubmissionConfirmationPage.submissionConfirmationHeader()
+      SubmissionConfirmationPage.checkReferenceNumber
     }
 
     Scenario(
@@ -636,6 +664,24 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       Then("The user select no for money in advance to landlord")
       DidYouPayAnyMoneyToLandlordPage.didYouPayAnyMoneyToLandlord()
       DidYouPayAnyMoneyToLandlordPage.noRadio()
+      continueButtonClick()
+
+      Then("Has anything else affected the rent")
+      HasAnythingElsePage.hasAnythingElseAffectedTheRent()
+      HasAnythingElsePage.hasAffected("no")
+      continueButtonClick()
+
+      Then("The user click continue on check your answers")
+      CheckYourAnswersRald.checkYourAnswersHeader()
+      continueButtonClick()
+
+      Then("The user accepts and sends the declaration")
+      DeclarationPage.declaration()
+      continueButtonClick()
+
+      Then("The user see their submission reference")
+      SubmissionConfirmationPage.submissionConfirmationHeader()
+      SubmissionConfirmationPage.checkReferenceNumber
     }
   }
 }

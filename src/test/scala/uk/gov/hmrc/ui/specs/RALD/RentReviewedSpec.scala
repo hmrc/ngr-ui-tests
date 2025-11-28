@@ -113,10 +113,27 @@ class RentReviewedSpec extends BaseSpec with StubPage {
       continueButtonClick()
 
       Then("The user selects Yes, I got a lump sum and Yes, I got a rent-free period")
+      AboutTheRentFreePeriodPage.aboutTheRentFreePeriod()
       AboutTheRentFreePeriodPage.aboutTheRentFreePeriodHowManyMonthsInput("1")
       AboutTheRentFreePeriodPage.aboutTheRentFreePeriodDateInput(day = "19", month = "01", year = "1997")
       continueButtonClick()
 
+      Then("Has anything else affected the rent")
+      HasAnythingElsePage.hasAnythingElseAffectedTheRent()
+      HasAnythingElsePage.hasAffected("no")
+      continueButtonClick()
+
+      Then("The user click continue on check your answers")
+      CheckYourAnswersRald.checkYourAnswersHeader()
+      continueButtonClick()
+
+      Then("The user accepts and sends the declaration")
+      DeclarationPage.declaration()
+      continueButtonClick()
+
+      Then("The user see their submission reference")
+      SubmissionConfirmationPage.submissionConfirmationHeader()
+      SubmissionConfirmationPage.checkReferenceNumber
     }
 
     Scenario("The user reviewed their rent, rent based on: Total Occupancy Cost leases (TOCs)") {
@@ -185,13 +202,6 @@ class RentReviewedSpec extends BaseSpec with StubPage {
       ParkingSpacesOrGaragesNotIncludedInYourRentPage.agreementDateInput(day = "19", month = "01", year = "1997")
       continueButtonClick()
 
-      Then("The user selects you to who pays for internal, external and building insurance repairs")
-      RepairsAndInsurancePage.repairsAndInsurance()
-      RepairsAndInsurancePage.whoPaysForInternalRepairsRadio("The landlord")
-      RepairsAndInsurancePage.whoPaysForExternalRepairsRadio("The landlord")
-      RepairsAndInsurancePage.WhoPaysForBuildingInsuranceRepairs("The landlord")
-      continueButtonClick()
-
       Then("The user selects Yes that their agreement allowed them to have a break clause")
       ConfirmBreakClausePage.confirmBreakClause()
       ConfirmBreakClausePage.yesRadio()
@@ -212,6 +222,24 @@ class RentReviewedSpec extends BaseSpec with StubPage {
       AboutTheRentFreePeriodPage.aboutTheRentFreePeriodHowManyMonthsInput("1")
       AboutTheRentFreePeriodPage.aboutTheRentFreePeriodDateInput(day = "19", month = "01", year = "1997")
       continueButtonClick()
+
+      Then("Has anything else affected the rent")
+      HasAnythingElsePage.hasAnythingElseAffectedTheRent()
+      HasAnythingElsePage.hasAffected("yes")
+      HasAnythingElsePage.reasonDescription("test")
+      continueButtonClick()
+
+      Then("The user click continue on check your answers")
+      CheckYourAnswersRald.checkYourAnswersHeader()
+      continueButtonClick()
+
+      Then("The user accepts and sends the declaration")
+      DeclarationPage.declaration()
+      continueButtonClick()
+
+      Then("The user see their submission reference")
+      SubmissionConfirmationPage.submissionConfirmationHeader()
+      SubmissionConfirmationPage.checkReferenceNumber
     }
   }
 }
