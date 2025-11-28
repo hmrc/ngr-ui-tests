@@ -145,15 +145,31 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       DidYouGetMoneyFromLandlordPage.noRadio()
       continueButtonClick()
 
-      Then("The user select yes for money in advance to landlord")
+      Then("The user select 'No' for money in advance to landlord")
       DidYouPayAnyMoneyToLandlordPage.didYouPayAnyMoneyToLandlord()
-      DidYouPayAnyMoneyToLandlordPage.yesRadio()
+      DidYouPayAnyMoneyToLandlordPage.noRadio()
+      continueButtonClick()
 
       Then("The user selects 'Yes' and enters input on 'Has anything else affected the rent?'page")
       HasAnythingElseAffectedTheRent.hasAnythingElseAffectedTheRent()
       HasAnythingElseAffectedTheRent.yesRadio()
       HasAnythingElseAffectedTheRent.whatElseHasAffectedTheRentInput("Test input")
       continueButtonClick()
+
+      Then("The user reaches the Check Your Answers page")
+      CheckYourAnswersRald.checkYourAnswersHeader()
+      continueButtonClick()
+
+      Then("The user reaches the declaration page")
+      DeclarationPage.declaration()
+      continueButtonClick()
+
+      Then("The user land on confirmation page")
+      RenewedAgreementDetailsSentPage.renewedAgreementDetailsSent()
+      clickLink("Go to your account home")
+
+      Then("Clicking on 'Go to your account home' link, User lands on account home")
+      dashboard()
 
     }
 
@@ -287,6 +303,10 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       RentPeriods.verifyAdditionalPeriodRentValue("£9,999,999.99", 10)
       continueButtonClick()
 
+      Then("The user enters their rent date")
+      RentDatesPage.rentDatesPage()
+      continueButtonClick()
+
       When("The user enters yes to agree rent with the landlord")
       DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlord()
       DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlordRadio("Yes")
@@ -317,8 +337,8 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
 
       Then("The user selects you to who pays for internal, external and building insurance repairs")
       RepairsAndInsurancePage.repairsAndInsurance()
-      RepairsAndInsurancePage.whoPaysForInternalRepairsRadio("You and the landlord")
-      RepairsAndInsurancePage.whoPaysForExternalRepairsRadio("You and the landlord")
+      RepairsAndInsurancePage.whoPaysForInternalRepairsRadio("You")
+      RepairsAndInsurancePage.whoPaysForExternalRepairsRadio("the landlord")
       RepairsAndInsurancePage.WhoPaysForBuildingInsuranceRepairs("You and the landlord")
       continueButtonClick()
 
@@ -334,20 +354,30 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       DidYouGetMoneyFromLandlordPage.noRadio()
       continueButtonClick()
 
-      Then("The user select yes for money in advance to landlord")
+      Then("The user select 'No' for money in advance to landlord")
       DidYouPayAnyMoneyToLandlordPage.didYouPayAnyMoneyToLandlord()
-      DidYouPayAnyMoneyToLandlordPage.yesRadio()
-
-      Then("Money you paid in advance to the landlord")
-      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlord()
-      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordAmountInput("500")
-      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordDateInput("12", "11", "2025")
+      DidYouPayAnyMoneyToLandlordPage.noRadio()
       continueButtonClick()
+
+      Then("The user selects 'No' and enters input on 'Has anything else affected the rent?'page")
+      HasAnythingElseAffectedTheRent.hasAnythingElseAffectedTheRent()
+      HasAnythingElseAffectedTheRent.noRadio()
+      continueButtonClick()
+
+      Then("The user reaches the Check Your Answers page")
+      CheckYourAnswersRald.checkYourAnswersHeader()
+      continueButtonClick()
+
+      Then("The user reaches the declaration page")
+      DeclarationPage.declaration()
+      continueButtonClick()
+
+      Then("The user land on confirmation page")
+      RenewedAgreementDetailsSentPage.renewedAgreementDetailsSent()
     }
 
     Scenario(
-      "The user renewed their agreement, agreement type: Lease or tenancy agreement, rent agreed in advance: No " +
-        "Rent free period: Yes"
+      "Lease renewal: 'surrender And renewal' , agreement type: Lease or tenancy agreement, rent agreed in advance: No " + "Rent free period: Yes"
     ) {
       RaldDB.cleanup()
       Given("Ratepayer logins through one login")
@@ -369,14 +399,14 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
 
       Then("The user selects renewed agreement type of lease renewal")
       WhatTypeOfLeaseRenewal.typeOfLeaseRenewal()
-      WhatTypeOfLeaseRenewal.renewedAgreementRadio()
+      WhatTypeOfLeaseRenewal.surrenderAndRenewalRadio()
       continueButtonClick()
 
-      /* relationship With The Landlord = 'family Member'*/
       Then("The user inputs the landlords name and selects family member as type")
       Landlord.landlord()
-      Landlord.landlordNameInput(landlordName = "Bob")
-      Landlord.noRadio()
+      Landlord.landlordNameInput(landlordName = "Tinker Bell")
+      Landlord.yesRadio()
+      Landlord.supplyRelationship("I am the tenant")
       continueButtonClick()
 
       Then("The user selects lease or tenancy agreement as there agreement type")
@@ -497,9 +527,27 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
 
       Then("Money you paid in advance to the landlord")
       MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlord()
-      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordAmountInput("500")
+      MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordAmountInput("5000.54")
       MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordDateInput("12", "11", "2025")
       continueButtonClick()
+
+      Then("The user selects 'Yes' and enters input on 'Has anything else affected the rent?'page")
+      HasAnythingElseAffectedTheRent.hasAnythingElseAffectedTheRent()
+      HasAnythingElseAffectedTheRent.yesRadio()
+      HasAnythingElseAffectedTheRent.whatElseHasAffectedTheRentInput("Test input")
+      continueButtonClick()
+
+      Then("The user reaches the Check Your Answers page")
+      CheckYourAnswersRald.checkYourAnswersHeader()
+      continueButtonClick()
+
+      Then("The user reaches the declaration page")
+      DeclarationPage.declaration()
+      continueButtonClick()
+
+      Then("The user land on confirmation page")
+      RenewedAgreementDetailsSentPage.renewedAgreementDetailsSent()
+
     }
 
     Scenario(
@@ -528,7 +576,6 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       WhatTypeOfLeaseRenewal.renewedAgreementRadio()
       continueButtonClick()
 
-      /* relationship With The Landlord = 'family Member'*/
       Then("The user inputs the landlords name and selects family member as type")
       Landlord.landlord()
       Landlord.landlordNameInput(landlordName = "Bob")
@@ -624,6 +671,30 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordAmountInput("3000")
       MoneyYouPaidInAdvanceToLandlordPage.moneyYouPaidInAdvanceToLandlordDateInput("2", "1", "1988")
       continueButtonClick()
+
+      Then("The user selects 'No' and enters input on 'Has anything else affected the rent?'page")
+      HasAnythingElseAffectedTheRent.hasAnythingElseAffectedTheRent()
+      HasAnythingElseAffectedTheRent.noRadio()
+      continueButtonClick()
+
+      Then("The user reaches the Check Your Answers page")
+      CheckYourAnswersRald.checkYourAnswersHeader()
+      continueButtonClick()
+
+      Then("The user reaches the declaration page")
+      DeclarationPage.declaration()
+      continueButtonClick()
+
+      Then("The user land on confirmation page")
+      RenewedAgreementDetailsSentPage.renewedAgreementDetailsSent()
+
+      Then("User click on browser back and land on 'we are checking your details' page")
+      clickBrowserBack()
+      WeAreCheckingYourDetailsPage.weAreCheckingYourDetails()
+
+      Then("Clicking on 'Return to account home' link, User lands on account home")
+      clickLink("Return to account home")
+      dashboard()
     }
   }
 }

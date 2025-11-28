@@ -44,7 +44,6 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       TellUsAboutYourNewAgreementPage.tellUsAboutYourNewAgreement()
       continueButtonClick()
 
-      /* relationship With The Landlord = 'Landlord and tenant relationship only'*/
       Then("The user inputs the landlords name and selects family member as type")
       Landlord.landlord()
       Landlord.landlordNameInput(landlordName = "Tinker Bell")
