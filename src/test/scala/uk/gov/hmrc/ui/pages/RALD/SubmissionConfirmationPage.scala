@@ -18,16 +18,20 @@ package uk.gov.hmrc.ui.pages.RALD
 
 import uk.gov.hmrc.ui.pages.BasePage
 
+import java.util.regex.Pattern
+
 object SubmissionConfirmationPage extends BasePage {
 
-  def declarationHeader(): Unit =
+  def submissionConfirmationHeader(): Unit =
     headerCheck("Renewed agreement details sent")
 
-  def checkReferenceNumber(expectedRef: String): Unit = {
+  def checkReferenceNumber: Unit = {
     val actualRef = getElementByCssSelector("#main-content > div > div.govuk-grid-column-two-thirds > form > div > div")
+      .replace("Your reference is ", "")
+    val regex     = Pattern.compile("^(([A-Z]|[0-9]){4}-){2}(([A-Z]|[0-9]){4})$")
     assert(
-      actualRef == expectedRef,
-      "Reference number is not correct"
+      actualRef.matches(regex.pattern()),
+      s"Reference number is not correct format $actualRef"
     )
   }
 
