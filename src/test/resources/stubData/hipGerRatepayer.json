@@ -1,15 +1,17 @@
 {
-  "_id": "/ngr-stub/hip/job/ratepayer/123456789123",
+  "_id": "/ngr-stub/hip/voa/v1/job/ratepayers/123456789123",
   "method": "GET",
   "status": 200,
-  "response": {
+  "response":
+  {
+    "$schema": "./SCHEMA.json",
     "job": {
       "id": null,
       "idx": "1",
       "name": "Register Ratepayer",
       "label": "Register LGFA88sch9p4I(a) Ratepayer",
       "description": "Job for creating and updating information about the personas who, for the time being, are or ought to be the ratepayer of a hereditament.",
-      "origination": "20250905T134226Z",
+      "origination": "20251201T145628Z",
       "termination": null,
       "category": {
         "code": "LTX-DOM-JOB",
@@ -21,14 +23,23 @@
       },
       "class": {
         "code": "RPN",
-        "meaning": "Register ratepayer (LGFA88sch9p4I(a))"
+        "meaning": "Register ratepayer"
       },
       "data": {
         "foreign_ids": [],
         "foreign_names": [],
         "foreign_labels": []
       },
-      "protodata": [],
+      "protodata": [
+        {
+          "node": null,
+          "mime_type": "",
+          "label": "",
+          "is_pointer": null,
+          "pointer": "",
+          "data": ""
+        }
+      ],
       "metadata": {
         "sending": {
           "extracting": {
@@ -69,7 +80,7 @@
         "properties": [],
         "persons": [
           {
-            "id": "5",
+            "id": 5,
             "idx": "1.2.1",
             "name": "Person1",
             "label": "Individual",
@@ -86,12 +97,30 @@
             },
             "class": {
               "code": "RPN",
-              "meaning": "Register ratepayer (LGFA88sch9p4I(a))"
+              "meaning": "Register ratepayer"
             },
             "data": {
-              "foreign_ids": [],
-              "foreign_names": [],
-              "foreign_labels": [],
+              "foreign_ids": [
+                {
+                  "system": "SystemX",
+                  "location": "UK",
+                  "value": "123456789123"
+                }
+              ],
+              "foreign_names": [
+                {
+                  "system": "SystemX",
+                  "location": "UK",
+                  "value": "123456789123"
+                }
+              ],
+              "foreign_labels": [
+                {
+                  "system": "SystemX",
+                  "location": "UK",
+                  "value": "123456789123"
+                }
+              ],
               "names": {
                 "title_common": "Mr",
                 "title_uncommon": "test",
@@ -108,7 +137,16 @@
                 "email": "person1@example.com"
               }
             },
-            "protodata": [],
+            "protodata": [
+              {
+                "node": null,
+                "mime_type": "",
+                "label": "",
+                "is_pointer": null,
+                "pointer": "",
+                "data": ""
+              }
+            ],
             "metadata": {
               "sending": {
                 "extracting": {
@@ -145,107 +183,92 @@
                 }
               }
             },
-            "compartments": {
-              "properties": [],
-              "persons": [],
-              "processes": [],
-              "products": [],
-              "relationships": []
-            },
-            "items": [
-              {
-                "id": null,
-                "idx": null,
-                "name": null,
-                "label": null,
-                "description": null,
-                "origination": null,
-                "termination": null,
-                "category": {
-                  "code": null,
-                  "meaning": null
-                },
-                "type": {
-                  "code": null,
-                  "meaning": null
-                },
-                "class": {
-                  "code": null,
-                  "meaning": null
-                },
-                "data": {
-                  "foreign_ids": [],
-                  "foreign_names": [],
-                  "foreign_labels": [],
-                  "names": {
-                    "title_common": null,
-                    "title_uncommon": null,
-                    "forenames": null,
-                    "surname": null,
-                    "post_nominals": null,
-                    "corporate_name": null,
-                    "crown_name": null,
-                    "known_as": null
-                  },
-                  "communications": {
-                    "postal_address": null,
-                    "telephone_number": null,
-                    "email": null
-                  }
-                },
-                "protodata": [],
-                "metadata": {
-                  "sending": {
-                    "extracting": {
-                      "selecting": {}
-                    },
-                    "transforming": {
-                      "filtering": {},
-                      "supplementing": {},
-                      "recontextualising": {}
-                    },
-                    "loading": {
-                      "readying": {},
-                      "assuring": {},
-                      "signing": {},
-                      "encrypting": {},
-                      "sending": {}
-                    }
-                  },
-                  "receiving": {
-                    "unloading": {
-                      "receiving": {},
-                      "decrypting": {},
-                      "verifying": {},
-                      "assuring": {},
-                      "readying": {}
-                    },
-                    "transforming": {
-                      "recontextualising": {},
-                      "dropping": {},
-                      "restoring": {}
-                    },
-                    "storing": {
-                      "inserting": {}
-                    }
-                  }
-                },
-                "compartments": {
-                  "properties": [],
-                  "persons": [],
-                  "processes": [],
-                  "products": [],
-                  "relationships": []
-                },
-                "items": []
-              }
-            ]
+            "compartments": {},
+            "items": []
           }
         ],
-        "processes": [],
+        "processes": [
+          {
+            "id": null,
+            "idx": "1.3.1",
+            "name": "Ratepayer and Agent Registration",
+            "label": "Local Taxation Person-Persona Registration",
+            "description": "A local taxtion domain process producing persisted records about LGFA88shd9para4J person-personas who are obliged to provide LGFA88shd9para4I(1) notofiable information.",
+            "origination": "20251201T145628Z",
+            "termination": null,
+            "category": {
+              "code": "LTX-DOM-PRS",
+              "meaning": "Local taxation domain process"
+            },
+            "type": {
+              "code": "LRL",
+              "meaning": "Local rating list process"
+            },
+            "class": {
+              "code": "SLL",
+              "meaning": "Supply of assisting information to Local Valuation Officers"
+            },
+            "data": {
+              "foreign_ids": [],
+              "foreign_names": [],
+              "foreign_labels": [],
+              "documentation": {
+                "webpage": null
+              }
+            },
+            "protodata": [
+              {
+                "node": null,
+                "mime_type": "",
+                "label": "",
+                "is_pointer": null,
+                "pointer": "",
+                "data": ""
+              }
+            ],
+            "metadata": {
+              "sending": {
+                "extracting": {
+                  "selecting": {}
+                },
+                "transforming": {
+                  "filtering": {},
+                  "supplementing": {},
+                  "recontextualising": {}
+                },
+                "loading": {
+                  "readying": {},
+                  "assuring": {},
+                  "signing": {},
+                  "encrypting": {},
+                  "sending": {}
+                }
+              },
+              "receiving": {
+                "unloading": {
+                  "receiving": {},
+                  "decrypting": {},
+                  "verifying": {},
+                  "assuring": {},
+                  "readying": {}
+                },
+                "transforming": {
+                  "recontextualising": {},
+                  "dropping": {},
+                  "restoring": {}
+                },
+                "storing": {
+                  "inserting": {}
+                }
+              }
+            },
+            "compartments": {},
+            "items": []
+          }
+        ],
         "products": [
           {
-            "id": "5",
+            "id": 5,
             "idx": "1.4.1",
             "name": "Person1",
             "label": "Individual",
@@ -262,12 +285,30 @@
             },
             "class": {
               "code": "RPN",
-              "meaning": "Register ratepayer (LGFA88sch9p4I(a))"
+              "meaning": "Register ratepayer"
             },
             "data": {
-              "foreign_ids": [],
-              "foreign_names": [],
-              "foreign_labels": [],
+              "foreign_ids": [
+                {
+                  "system": "SystemX",
+                  "location": "UK",
+                  "value": "123456789123"
+                }
+              ],
+              "foreign_names": [
+                {
+                  "system": "SystemX",
+                  "location": "UK",
+                  "value": "123456789123"
+                }
+              ],
+              "foreign_labels": [
+                {
+                  "system": "SystemX",
+                  "location": "UK",
+                  "value": "123456789123"
+                }
+              ],
               "names": {
                 "title_common": "Mr",
                 "title_uncommon": "test",
@@ -284,7 +325,16 @@
                 "email": "person1@example.com"
               }
             },
-            "protodata": [],
+            "protodata": [
+              {
+                "node": null,
+                "mime_type": "",
+                "label": "",
+                "is_pointer": null,
+                "pointer": "",
+                "data": ""
+              }
+            ],
             "metadata": {
               "sending": {
                 "extracting": {
@@ -321,101 +371,8 @@
                 }
               }
             },
-            "compartments": {
-              "properties": [],
-              "persons": [],
-              "processes": [],
-              "products": [],
-              "relationships": []
-            },
-            "items": [
-              {
-                "id": null,
-                "idx": "1.4.1.1",
-                "name": "Local Taxation Persona",
-                "label": "Authenticated Local Taxation Persona",
-                "description": "A local taxation domain authenticated persona whose type and class are known or re-confirmed as a LGFA88s43|45 ratepayer, that is assignable to the person.",
-                "origination": null,
-                "termination": null,
-                "category": {
-                  "code": "LTX-DOM-PSA",
-                  "meaning": "Local taxation domain persona"
-                },
-                "type": {
-                  "code": "TXP",
-                  "meaning": "LGFA taxpayer"
-                },
-                "class": {
-                  "code": "",
-                  "meaning": ""
-                },
-                "data": {
-                  "foreign_ids": [],
-                  "foreign_names": [],
-                  "foreign_labels": [],
-                  "names": {
-                    "title_common": null,
-                    "title_uncommon": null,
-                    "forenames": null,
-                    "surname": null,
-                    "post_nominals": null,
-                    "corporate_name": null,
-                    "crown_name": null,
-                    "known_as": null
-                  },
-                  "communications": {
-                    "postal_address": null,
-                    "telephone_number": null,
-                    "email": null
-                  }
-                },
-                "protodata": [],
-                "metadata": {
-                  "sending": {
-                    "extracting": {
-                      "selecting": {}
-                    },
-                    "transforming": {
-                      "filtering": {},
-                      "supplementing": {},
-                      "recontextualising": {}
-                    },
-                    "loading": {
-                      "readying": {},
-                      "assuring": {},
-                      "signing": {},
-                      "encrypting": {},
-                      "sending": {}
-                    }
-                  },
-                  "receiving": {
-                    "unloading": {
-                      "receiving": {},
-                      "decrypting": {},
-                      "verifying": {},
-                      "assuring": {},
-                      "readying": {}
-                    },
-                    "transforming": {
-                      "recontextualising": {},
-                      "dropping": {},
-                      "restoring": {}
-                    },
-                    "storing": {
-                      "inserting": {}
-                    }
-                  }
-                },
-                "compartments": {
-                  "properties": [],
-                  "persons": [],
-                  "processes": [],
-                  "products": [],
-                  "relationships": []
-                },
-                "items": []
-              }
-            ]
+            "compartments": {},
+            "items": []
           }
         ],
         "relationships": []
