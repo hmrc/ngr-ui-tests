@@ -132,8 +132,8 @@ class RentReviewedSpec extends BaseSpec with StubPage {
       continueButtonClick()
 
       Then("The user see their submission reference")
-      SubmissionConfirmationPage.submissionConfirmationHeader()
-      SubmissionConfirmationPage.checkReferenceNumber
+      RenewedAgreementDetailsSentPage.renewedAgreementDetailsSent()
+      RenewedAgreementDetailsSentPage.checkReferenceNumber
     }
 
     Scenario("The user reviewed their rent, rent based on: Total Occupancy Cost leases (TOCs)") {
@@ -238,8 +238,8 @@ class RentReviewedSpec extends BaseSpec with StubPage {
       continueButtonClick()
 
       Then("The user see their submission reference")
-      SubmissionConfirmationPage.submissionConfirmationHeader()
-      SubmissionConfirmationPage.checkReferenceNumber
+      RenewedAgreementDetailsSentPage.renewedAgreementDetailsSent()
+      RenewedAgreementDetailsSentPage.checkReferenceNumber
     }
   }
 }

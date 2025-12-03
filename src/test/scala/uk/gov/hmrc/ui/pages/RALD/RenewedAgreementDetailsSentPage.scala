@@ -20,9 +20,9 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 import java.util.regex.Pattern
 
-object SubmissionConfirmationPage extends BasePage {
+object RenewedAgreementDetailsSentPage extends BasePage {
 
-  def submissionConfirmationHeader(): Unit =
+  def renewedAgreementDetailsSent(): Unit =
     headerCheck("Renewed agreement details sent")
 
   def checkReferenceNumber: Unit = {

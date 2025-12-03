@@ -171,8 +171,8 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       continueButtonClick()
 
       Then("The user see their submission reference")
-      SubmissionConfirmationPage.submissionConfirmationHeader()
-      SubmissionConfirmationPage.checkReferenceNumber
+      RenewedAgreementDetailsSentPage.renewedAgreementDetailsSent()
+      RenewedAgreementDetailsSentPage.checkReferenceNumber
     }
 
     Scenario(
@@ -371,8 +371,8 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       continueButtonClick()
 
       Then("The user see their submission reference")
-      SubmissionConfirmationPage.submissionConfirmationHeader()
-      SubmissionConfirmationPage.checkReferenceNumber
+      RenewedAgreementDetailsSentPage.renewedAgreementDetailsSent()
+      RenewedAgreementDetailsSentPage.checkReferenceNumber
     }
 
     Scenario(
@@ -545,8 +545,8 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       continueButtonClick()
 
       Then("The user see their submission reference")
-      SubmissionConfirmationPage.submissionConfirmationHeader()
-      SubmissionConfirmationPage.checkReferenceNumber
+      RenewedAgreementDetailsSentPage.renewedAgreementDetailsSent()
+      RenewedAgreementDetailsSentPage.checkReferenceNumber
     }
 
     Scenario(
@@ -680,8 +680,8 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       continueButtonClick()
 
       Then("The user see their submission reference")
-      SubmissionConfirmationPage.submissionConfirmationHeader()
-      SubmissionConfirmationPage.checkReferenceNumber
+      RenewedAgreementDetailsSentPage.renewedAgreementDetailsSent()
+      RenewedAgreementDetailsSentPage.checkReferenceNumber
     }
   }
 }

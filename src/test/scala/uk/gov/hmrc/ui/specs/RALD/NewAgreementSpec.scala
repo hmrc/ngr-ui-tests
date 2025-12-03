@@ -176,8 +176,8 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       continueButtonClick()
 
       Then("The user see their submission reference")
-      SubmissionConfirmationPage.submissionConfirmationHeader()
-      SubmissionConfirmationPage.checkReferenceNumber
+      RenewedAgreementDetailsSentPage.renewedAgreementDetailsSent()
+      RenewedAgreementDetailsSentPage.checkReferenceNumber
     }
 
     Scenario("New agreement, agreement type: Licence or other type of written agreement, agreed in advance: 'Yes'") {
@@ -350,7 +350,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       continueButtonClick()
 
       Then("The user is on the About Repairs and Fitting Out page")
-      AboutRepairsAndFittingOutPage.verifyPageHeader()
+      AboutRepairsAndFittingOutPage.aboutRepairsAndFittingOut()
       AboutRepairsAndFittingOutPage.enterRepairCost("1234.56")
       AboutRepairsAndFittingOutPage.enterRepairDate("10", "2025")
       continueButtonClick()
@@ -393,8 +393,8 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       continueButtonClick()
 
       Then("The user see their submission reference")
-      SubmissionConfirmationPage.submissionConfirmationHeader()
-      SubmissionConfirmationPage.checkReferenceNumber
+      RenewedAgreementDetailsSentPage.renewedAgreementDetailsSent()
+      RenewedAgreementDetailsSentPage.checkReferenceNumber
     }
 
     Scenario(
@@ -517,7 +517,7 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       continueButtonClick()
 
       Then("The user is on the About Repairs and Fitting Out page")
-      AboutRepairsAndFittingOutPage.verifyPageHeader()
+      AboutRepairsAndFittingOutPage.aboutRepairsAndFittingOut()
       AboutRepairsAndFittingOutPage.enterRepairCost("1234.56")
       AboutRepairsAndFittingOutPage.enterRepairDate("10", "2025")
       continueButtonClick()
@@ -560,8 +560,8 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       continueButtonClick()
 
       Then("The user see their submission reference")
-      SubmissionConfirmationPage.submissionConfirmationHeader()
-      SubmissionConfirmationPage.checkReferenceNumber
+      RenewedAgreementDetailsSentPage.renewedAgreementDetailsSent()
+      RenewedAgreementDetailsSentPage.checkReferenceNumber
     }
 
     Scenario("New agreement, agreement type: Verbal") {
@@ -691,8 +691,8 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       continueButtonClick()
 
       Then("The user see their submission reference")
-      SubmissionConfirmationPage.submissionConfirmationHeader()
-      SubmissionConfirmationPage.checkReferenceNumber
+      RenewedAgreementDetailsSentPage.renewedAgreementDetailsSent()
+      RenewedAgreementDetailsSentPage.checkReferenceNumber
     }
   }
 }

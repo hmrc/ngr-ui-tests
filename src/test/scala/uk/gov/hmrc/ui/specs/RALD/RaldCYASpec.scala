@@ -161,7 +161,7 @@ class RaldCYASpec extends BaseSpec with StubPage {
     continueButtonClick()
 
     Then("The user is on the About Repairs and Fitting Out page")
-    AboutRepairsAndFittingOutPage.verifyPageHeader()
+    AboutRepairsAndFittingOutPage.aboutRepairsAndFittingOut()
     AboutRepairsAndFittingOutPage.enterRepairCost("1234.56")
     AboutRepairsAndFittingOutPage.enterRepairDate("10", "2025")
     continueButtonClick()
