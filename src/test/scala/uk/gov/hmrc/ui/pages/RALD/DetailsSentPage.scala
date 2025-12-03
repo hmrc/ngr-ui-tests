@@ -20,10 +20,10 @@ import uk.gov.hmrc.ui.pages.BasePage
 
 import java.util.regex.Pattern
 
-object RenewedAgreementDetailsSentPage extends BasePage {
+object DetailsSentPage extends BasePage {
 
-  def renewedAgreementDetailsSent(): Unit =
-    headerCheck("Renewed agreement details sent")
+  def DetailsSent(header: String): Unit =
+    headerCheck(header)
 
   def checkReferenceNumber: Unit = {
     val actualRef = getElementByCssSelector("#main-content > div > div.govuk-grid-column-two-thirds > form > div > div")

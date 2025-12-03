@@ -175,9 +175,16 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       DeclarationPage.declaration()
       continueButtonClick()
 
-      Then("The user see their submission reference")
-      RenewedAgreementDetailsSentPage.renewedAgreementDetailsSent()
-      RenewedAgreementDetailsSentPage.checkReferenceNumber
+      Then("The user navigate to 'New agreement details sent' page")
+      DetailsSentPage.DetailsSent("New agreement details sent")
+
+      Then("User click on browser back and land on 'we are checking your details' page")
+      clickBrowserBack()
+      WeAreCheckingYourDetailsPage.weAreCheckingYourDetails()
+
+      Then("Clicking on 'Return to account home' link, User lands on account home")
+      clickLink("Return to account home")
+      dashboard()
     }
 
     Scenario("New agreement, agreement type: Licence or other type of written agreement, agreed in advance: 'Yes'") {
@@ -392,9 +399,9 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       DeclarationPage.declaration()
       continueButtonClick()
 
-      Then("The user see their submission reference")
-      RenewedAgreementDetailsSentPage.renewedAgreementDetailsSent()
-      RenewedAgreementDetailsSentPage.checkReferenceNumber
+      Then("The user navigate 'New agreement details sent' page")
+      DetailsSentPage.DetailsSent("New agreement details sent")
+      DetailsSentPage.checkReferenceNumber
     }
 
     Scenario(
@@ -559,9 +566,9 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       DeclarationPage.declaration()
       continueButtonClick()
 
-      Then("The user see their submission reference")
-      RenewedAgreementDetailsSentPage.renewedAgreementDetailsSent()
-      RenewedAgreementDetailsSentPage.checkReferenceNumber
+      Then("The user navigate to 'New agreement details sent' page")
+      DetailsSentPage.DetailsSent("New agreement details sent")
+      DetailsSentPage.checkReferenceNumber
     }
 
     Scenario("New agreement, agreement type: Verbal") {
@@ -690,9 +697,9 @@ class NewAgreementSpec extends BaseSpec with StubPage {
       DeclarationPage.declaration()
       continueButtonClick()
 
-      Then("The user see their submission reference")
-      RenewedAgreementDetailsSentPage.renewedAgreementDetailsSent()
-      RenewedAgreementDetailsSentPage.checkReferenceNumber
+      Then("The user navigate to 'New agreement details sent' page")
+      DetailsSentPage.DetailsSent("New agreement details sent")
+      DetailsSentPage.checkReferenceNumber
     }
   }
 }

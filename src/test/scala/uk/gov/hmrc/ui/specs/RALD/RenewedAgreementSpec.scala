@@ -170,9 +170,9 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       DeclarationPage.declaration()
       continueButtonClick()
 
-      Then("The user see their submission reference")
-      RenewedAgreementDetailsSentPage.renewedAgreementDetailsSent()
-      RenewedAgreementDetailsSentPage.checkReferenceNumber
+      Then("The user navigate to 'Renewed agreement details sent' page")
+      DetailsSentPage.DetailsSent("Renewed agreement details sent")
+      DetailsSentPage.checkReferenceNumber
     }
 
     Scenario(
@@ -370,9 +370,16 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       DeclarationPage.declaration()
       continueButtonClick()
 
-      Then("The user see their submission reference")
-      RenewedAgreementDetailsSentPage.renewedAgreementDetailsSent()
-      RenewedAgreementDetailsSentPage.checkReferenceNumber
+      Then("The user navigate to 'Renewed agreement details sent' page")
+      DetailsSentPage.DetailsSent("Renewed agreement details sent")
+
+      Then("User click on browser back and land on 'we are checking your details' page")
+      clickBrowserBack()
+      WeAreCheckingYourDetailsPage.weAreCheckingYourDetails()
+
+      Then("Clicking on 'Return to account home' link, User lands on account home")
+      clickLink("Return to account home")
+      dashboard()
     }
 
     Scenario(
@@ -544,9 +551,9 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       DeclarationPage.declaration()
       continueButtonClick()
 
-      Then("The user see their submission reference")
-      RenewedAgreementDetailsSentPage.renewedAgreementDetailsSent()
-      RenewedAgreementDetailsSentPage.checkReferenceNumber
+      Then("The user navigate to 'Renewed agreement details sent' page")
+      DetailsSentPage.DetailsSent("Renewed agreement details sent")
+      DetailsSentPage.checkReferenceNumber
     }
 
     Scenario(
@@ -679,9 +686,9 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
       DeclarationPage.declaration()
       continueButtonClick()
 
-      Then("The user see their submission reference")
-      RenewedAgreementDetailsSentPage.renewedAgreementDetailsSent()
-      RenewedAgreementDetailsSentPage.checkReferenceNumber
+      Then("The user navigate to 'Renewed agreement details sent' page")
+      DetailsSentPage.DetailsSent("Renewed agreement details sent")
+      DetailsSentPage.checkReferenceNumber
     }
   }
 }
