@@ -688,7 +688,10 @@ class RenewedAgreementSpec extends BaseSpec with StubPage {
 
       Then("The user navigate to 'Renewed agreement details sent' page")
       DetailsSentPage.DetailsSent("Renewed agreement details sent")
-      DetailsSentPage.checkReferenceNumber
+      clickLink("Go to your account home")
+
+      Then("Clicking on 'Go to your account home' link, User lands on account home")
+      dashboard()
     }
   }
 }

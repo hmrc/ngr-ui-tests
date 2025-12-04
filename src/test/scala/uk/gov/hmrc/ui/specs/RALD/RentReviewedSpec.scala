@@ -246,7 +246,10 @@ class RentReviewedSpec extends BaseSpec with StubPage {
 
       Then("The user navigate on 'Rent review details sent' page")
       DetailsSentPage.DetailsSent("Rent review details sent")
-      DetailsSentPage.checkReferenceNumber
+      clickLink("Go to your account home")
+
+      Then("Clicking on 'Go to your account home' link, User lands on account home")
+      dashboard()
     }
   }
 }
