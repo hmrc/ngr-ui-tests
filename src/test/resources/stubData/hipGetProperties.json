@@ -1,0 +1,1273 @@
+{
+"_id": "/ngr-stub/hip/voa/v1/job/properties*",
+"method": "GET",
+"status": 200,
+"response":
+{
+  "$schema":"./SCHEMA.json",
+  "job":{
+    "id":null,
+    "idx":"1",
+    "name":"Notify Valuation Officer",
+    "label":"Register Property Link",
+    "description":"Job for creating and updating information about the relationship between the current persona_ratepayer of a hereditament and the hereditaments list entry they are the current ratepayer of.",
+    "origination":"20251205T093830Z",
+    "termination":null,
+    "category":{
+      "code":"LTX-DOM-JOB",
+      "meaning":"Local taxation domain job"
+    },
+    "type":{
+      "code":"INF",
+      "meaning":"Assisting information"
+    },
+    "class":{
+      "code":"LPP",
+      "meaning":"Link ratepayer and property"
+    },
+    "data":{
+      "foreign_ids":[
+
+      ],
+      "foreign_names":[
+
+      ],
+      "foreign_labels":[
+
+      ]
+    },
+    "protodata":[
+      {
+        "node":null,
+        "mime_type":"",
+        "label":"",
+        "is_pointer":null,
+        "pointer":"",
+        "data":""
+      }
+    ],
+    "metadata":{
+      "sending":{
+        "extracting":{
+          "selecting":{
+
+          }
+        },
+        "transforming":{
+          "filtering":{
+
+          },
+          "supplementing":{
+
+          },
+          "recontextualising":{
+
+          }
+        },
+        "loading":{
+          "readying":{
+
+          },
+          "assuring":{
+
+          },
+          "signing":{
+
+          },
+          "encrypting":{
+
+          },
+          "sending":{
+
+          }
+        }
+      },
+      "receiving":{
+        "unloading":{
+          "receiving":{
+
+          },
+          "decrypting":{
+
+          },
+          "verifying":{
+
+          },
+          "assuring":{
+
+          },
+          "readying":{
+
+          }
+        },
+        "transforming":{
+          "recontextualising":{
+
+          },
+          "dropping":{
+
+          },
+          "restoring":{
+
+          }
+        },
+        "storing":{
+          "inserting":{
+
+          }
+        }
+      }
+    },
+    "compartments":{
+      "properties":[
+        {
+          "id":2,
+          "idx":"1.1.1",
+          "name":null,
+          "label":null,
+          "description":null,
+          "origination":"20000101T000000Z",
+          "termination":null,
+          "category":{
+            "code":"LTX-DOM-PRP",
+            "meaning":"Local taxation domain property"
+          },
+          "type":{
+            "code":"OCC",
+            "meaning":"Constituted by reference to actual occupation"
+          },
+          "class":{
+            "code":"HDT",
+            "meaning":"Statutory NDR hereditament"
+          },
+          "data":{
+            "foreign_ids":[
+
+            ],
+            "foreign_names":[
+
+            ],
+            "foreign_labels":[
+
+            ],
+            "addresses":{
+              "property_full_address":null,
+              "address_line_1":null,
+              "address_postcode":null,
+              "address_known_as":null
+            },
+            "location":{
+              "local_authority_sudo_area_code":null,
+              "ordanace_survey_coordinates":null,
+              "google_maps_coordinates":null
+            },
+            "assessments":{
+              "id":9,
+              "idx":null,
+              "name":null,
+              "label":null,
+              "description":null,
+              "origination":null,
+              "termination":null,
+              "category":{
+                "code":"LTX-DOM-AST",
+                "meaning":"Local taxation domain assessment"
+              },
+              "type":{
+                "code":"CHG",
+                "meaning":"To be determined"
+              },
+              "class":{
+                "code":"RLE",
+                "meaning":"Register list entry"
+              },
+              "data":{
+                "foreign_ids":[
+                  {
+                    "system":"CDB",
+                    "location":"hmrc/voa/cdb/ndr_assessments",
+                    "value":"27399688000"
+                  }
+                ],
+                "foreign_names":[
+
+                ],
+                "foreign_labels":[
+
+                ],
+                "property":{
+                  "id":null,
+                  "cdb_id":null
+                },
+                "use":{
+                  "is_composite":null,
+                  "is_part_exempt":null,
+                  "description":null
+                },
+                "valuation_survey":{
+                  "system":null,
+                  "id":null
+                },
+                "valuation":{
+                  "system":null,
+                  "id":null,
+                  "method_code":null,
+                  "rateable_value":null,
+                  "effective_date":null
+                },
+                "list":{
+                  "category":null,
+                  "function":null,
+                  "year":null,
+                  "authority_code":null
+                },
+                "workflow":{
+                  "cdb_job_id":null
+                }
+              },
+              "protodata":[
+                {
+                  "node":null,
+                  "mime_type":"",
+                  "label":"",
+                  "is_pointer":null,
+                  "pointer":"",
+                  "data":""
+                }
+              ],
+              "metadata":{
+                "sending":{
+                  "extracting":{
+                    "selecting":{
+
+                    }
+                  },
+                  "transforming":{
+                    "filtering":{
+
+                    },
+                    "supplementing":{
+
+                    },
+                    "recontextualising":{
+
+                    }
+                  },
+                  "loading":{
+                    "readying":{
+
+                    },
+                    "assuring":{
+
+                    },
+                    "signing":{
+
+                    },
+                    "encrypting":{
+
+                    },
+                    "sending":{
+
+                    }
+                  }
+                },
+                "receiving":{
+                  "unloading":{
+                    "receiving":{
+
+                    },
+                    "decrypting":{
+
+                    },
+                    "verifying":{
+
+                    },
+                    "assuring":{
+
+                    },
+                    "readying":{
+
+                    }
+                  },
+                  "transforming":{
+                    "recontextualising":{
+
+                    },
+                    "dropping":{
+
+                    },
+                    "restoring":{
+
+                    }
+                  },
+                  "storing":{
+                    "inserting":{
+
+                    }
+                  }
+                }
+              },
+              "compartments":{
+
+              },
+              "items":[
+
+              ]
+            }
+          },
+          "protodata":[
+            {
+              "node":null,
+              "mime_type":"",
+              "label":"",
+              "is_pointer":null,
+              "pointer":"",
+              "data":""
+            }
+          ],
+          "metadata":{
+            "sending":{
+              "extracting":{
+                "selecting":{
+
+                }
+              },
+              "transforming":{
+                "filtering":{
+
+                },
+                "supplementing":{
+
+                },
+                "recontextualising":{
+
+                }
+              },
+              "loading":{
+                "readying":{
+
+                },
+                "assuring":{
+
+                },
+                "signing":{
+
+                },
+                "encrypting":{
+
+                },
+                "sending":{
+
+                }
+              }
+            },
+            "receiving":{
+              "unloading":{
+                "receiving":{
+
+                },
+                "decrypting":{
+
+                },
+                "verifying":{
+
+                },
+                "assuring":{
+
+                },
+                "readying":{
+
+                }
+              },
+              "transforming":{
+                "recontextualising":{
+
+                },
+                "dropping":{
+
+                },
+                "restoring":{
+
+                }
+              },
+              "storing":{
+                "inserting":{
+
+                }
+              }
+            }
+          },
+          "compartments":{
+
+          },
+          "items":[
+
+          ]
+        }
+      ],
+      "persons":[
+        {
+          "id":7,
+          "idx":"1.2.1",
+          "name":"Person2",
+          "label":"Individual",
+          "description":"Test Person2 Description",
+          "origination":"20250101T000000Z",
+          "termination":null,
+          "category":{
+            "code":"LTX-DOM-PSN",
+            "meaning":"Local taxation domain person"
+          },
+          "type":{
+            "code":"INF",
+            "meaning":"Assisting information"
+          },
+          "class":{
+            "code":"RPN",
+            "meaning":"Register ratepayer"
+          },
+          "data":{
+            "foreign_ids":[
+              {
+                "system":"SystemX",
+                "location":"UK",
+                "value":"john.doe2@gov.uk"
+              }
+            ],
+            "foreign_names":[
+              {
+                "system":"SystemX",
+                "location":"UK",
+                "value":"john.doe2@gov.uk"
+              }
+            ],
+            "foreign_labels":[
+              {
+                "system":"SystemX",
+                "location":"UK",
+                "value":"john.doe2@gov.uk"
+              }
+            ],
+            "names":{
+              "title_common":"Mr",
+              "title_uncommon":null,
+              "forenames":"John2",
+              "surname":"Doe2",
+              "post_nominals":null,
+              "corporate_name":null,
+              "crown_name":null,
+              "known_as":"Johnny2"
+            },
+            "communications":{
+              "postal_address":"p2456 abc Street, Manchester",
+              "telephone_number":"0161 1234567",
+              "email":"person2@example.com"
+            }
+          },
+          "protodata":[
+            {
+              "node":null,
+              "mime_type":"",
+              "label":"",
+              "is_pointer":null,
+              "pointer":"",
+              "data":""
+            }
+          ],
+          "metadata":{
+            "sending":{
+              "extracting":{
+                "selecting":{
+
+                }
+              },
+              "transforming":{
+                "filtering":{
+
+                },
+                "supplementing":{
+
+                },
+                "recontextualising":{
+
+                }
+              },
+              "loading":{
+                "readying":{
+
+                },
+                "assuring":{
+
+                },
+                "signing":{
+
+                },
+                "encrypting":{
+
+                },
+                "sending":{
+
+                }
+              }
+            },
+            "receiving":{
+              "unloading":{
+                "receiving":{
+
+                },
+                "decrypting":{
+
+                },
+                "verifying":{
+
+                },
+                "assuring":{
+
+                },
+                "readying":{
+
+                }
+              },
+              "transforming":{
+                "recontextualising":{
+
+                },
+                "dropping":{
+
+                },
+                "restoring":{
+
+                }
+              },
+              "storing":{
+                "inserting":{
+
+                }
+              }
+            }
+          },
+          "compartments":{
+
+          },
+          "items":[
+            {
+              "id":3,
+              "idx":"1.2.1.1",
+              "name":"Persona1",
+              "label":"Individual",
+              "description":"Test Desc",
+              "origination":"20250101T000000Z",
+              "termination":null,
+              "category":{
+                "code":"LTX-DOM-PSA",
+                "meaning":"Local taxation domain persona"
+              },
+              "type":{
+                "code":"COL",
+                "meaning":"LGFA Controller of lands"
+              },
+              "class":{
+                "code":"AOC",
+                "meaning":"Actual occupier"
+              },
+              "data":{
+                "foreign_ids":[
+                  {
+                    "system":"PSNAFID",
+                    "location":"UK",
+                    "value":"john.doe2@gov.uk"
+                  }
+                ],
+                "foreign_names":[
+                  {
+                    "system":"PSNAFN",
+                    "location":"UK",
+                    "value":"john.doe2@gov.uk"
+                  }
+                ],
+                "foreign_labels":[
+                  {
+                    "system":"SystemX",
+                    "location":"UK",
+                    "value":"john.doe2@gov.uk"
+                  }
+                ],
+                "names":{
+                  "title_common":"Mr",
+                  "title_uncommon":null,
+                  "forenames":"PSNAJohn",
+                  "surname":"Doe",
+                  "post_nominals":null,
+                  "corporate_name":null,
+                  "crown_name":null,
+                  "known_as":"Johnny"
+                },
+                "communications":{
+                  "postal_address":"PSNA123 Main Street, London",
+                  "telephone_number":"01234 567890",
+                  "email":"persona1@example.com"
+                }
+              },
+              "protodata":[
+                {
+                  "node":null,
+                  "mime_type":"",
+                  "label":"",
+                  "is_pointer":null,
+                  "pointer":"",
+                  "data":""
+                }
+              ],
+              "metadata":{
+                "sending":{
+                  "extracting":{
+                    "selecting":{
+
+                    }
+                  },
+                  "transforming":{
+                    "filtering":{
+
+                    },
+                    "supplementing":{
+
+                    },
+                    "recontextualising":{
+
+                    }
+                  },
+                  "loading":{
+                    "readying":{
+
+                    },
+                    "assuring":{
+
+                    },
+                    "signing":{
+
+                    },
+                    "encrypting":{
+
+                    },
+                    "sending":{
+
+                    }
+                  }
+                },
+                "receiving":{
+                  "unloading":{
+                    "receiving":{
+
+                    },
+                    "decrypting":{
+
+                    },
+                    "verifying":{
+
+                    },
+                    "assuring":{
+
+                    },
+                    "readying":{
+
+                    }
+                  },
+                  "transforming":{
+                    "recontextualising":{
+
+                    },
+                    "dropping":{
+
+                    },
+                    "restoring":{
+
+                    }
+                  },
+                  "storing":{
+                    "inserting":{
+
+                    }
+                  }
+                }
+              },
+              "compartments":{
+
+              },
+              "items":[
+
+              ]
+            }
+          ]
+        }
+      ],
+      "processes":[
+        {
+          "id":null,
+          "idx":"1.3.1",
+          "name":"Persona-Property Linking",
+          "label":"Ratepayer-ListEntry and Ratepayer-Agent Linking",
+          "description":"A local taxtion domain process producing persisted records about relationships between LGFA88shd9para4J person-personas and LGFA88 hereditaments for which such personas are obliged to provide LGFA88shd9para4I(1) notofiable information.",
+          "origination":"20251205T093830Z",
+          "termination":null,
+          "category":{
+            "code":"LTX-DOM-PRS",
+            "meaning":"Local taxation domain process"
+          },
+          "type":{
+            "code":"LRL",
+            "meaning":"Local rating list process"
+          },
+          "class":{
+            "code":"SLL",
+            "meaning":"Supply of assisting information to Local Valuation Officers"
+          },
+          "data":{
+            "foreign_ids":[
+
+            ],
+            "foreign_names":[
+
+            ],
+            "foreign_labels":[
+
+            ],
+            "documentation":{
+              "webpage":null
+            }
+          },
+          "protodata":[
+            {
+              "node":null,
+              "mime_type":"",
+              "label":"",
+              "is_pointer":null,
+              "pointer":"",
+              "data":""
+            }
+          ],
+          "metadata":{
+            "sending":{
+              "extracting":{
+                "selecting":{
+
+                }
+              },
+              "transforming":{
+                "filtering":{
+
+                },
+                "supplementing":{
+
+                },
+                "recontextualising":{
+
+                }
+              },
+              "loading":{
+                "readying":{
+
+                },
+                "assuring":{
+
+                },
+                "signing":{
+
+                },
+                "encrypting":{
+
+                },
+                "sending":{
+
+                }
+              }
+            },
+            "receiving":{
+              "unloading":{
+                "receiving":{
+
+                },
+                "decrypting":{
+
+                },
+                "verifying":{
+
+                },
+                "assuring":{
+
+                },
+                "readying":{
+
+                }
+              },
+              "transforming":{
+                "recontextualising":{
+
+                },
+                "dropping":{
+
+                },
+                "restoring":{
+
+                }
+              },
+              "storing":{
+                "inserting":{
+
+                }
+              }
+            }
+          },
+          "compartments":{
+
+          },
+          "items":[
+
+          ]
+        }
+      ],
+      "products":[
+        {
+          "id":2,
+          "idx":"1.4.1",
+          "name":null,
+          "label":null,
+          "description":null,
+          "origination":"20000101T000000Z",
+          "termination":null,
+          "category":{
+            "code":"LTX-DOM-PRP",
+            "meaning":"Local taxation domain property"
+          },
+          "type":{
+            "code":"OCC",
+            "meaning":"Constituted by reference to actual occupation"
+          },
+          "class":{
+            "code":"HDT",
+            "meaning":"Statutory NDR hereditament"
+          },
+          "data":{
+            "foreign_ids":[
+
+            ],
+            "foreign_names":[
+
+            ],
+            "foreign_labels":[
+
+            ],
+            "addresses":{
+              "property_full_address":null,
+              "address_line_1":null,
+              "address_postcode":null,
+              "address_known_as":null
+            },
+            "location":{
+              "local_authority_sudo_area_code":null,
+              "ordanace_survey_coordinates":null,
+              "google_maps_coordinates":null
+            },
+            "assessments":{
+              "id":9,
+              "idx":null,
+              "name":null,
+              "label":null,
+              "description":null,
+              "origination":null,
+              "termination":null,
+              "category":"LTX-DOM-AST",
+              "type":"CHG",
+              "class":{
+                "code":null,
+                "meaning":null
+              },
+              "data":{
+                "foreign_ids":[
+                  {
+                    "system":"CDB",
+                    "location":"hmrc/voa/cdb/ndr_assessments",
+                    "value":"27399688000"
+                  }
+                ],
+                "foreign_names":[
+
+                ],
+                "foreign_labels":[
+
+                ],
+                "property":{
+                  "id":null,
+                  "cdb_id":null
+                },
+                "use":{
+                  "is_composite":null,
+                  "is_part_exempt":null,
+                  "description":null
+                },
+                "valuation_survey":{
+                  "system":null,
+                  "id":null
+                },
+                "valuation":{
+                  "system":null,
+                  "id":null,
+                  "method_code":null,
+                  "rateable_value":null,
+                  "effective_date":null
+                },
+                "list":{
+                  "category":null,
+                  "function":null,
+                  "year":null,
+                  "authority_code":null
+                },
+                "workflow":{
+                  "cdb_job_id":null
+                }
+              },
+              "protodata":[
+                {
+                  "node":null,
+                  "mime_type":"",
+                  "label":"",
+                  "is_pointer":null,
+                  "pointer":"",
+                  "data":""
+                }
+              ],
+              "metadata":{
+                "sending":{
+                  "extracting":{
+                    "selecting":{
+
+                    }
+                  },
+                  "transforming":{
+                    "filtering":{
+
+                    },
+                    "supplementing":{
+
+                    },
+                    "recontextualising":{
+
+                    }
+                  },
+                  "loading":{
+                    "readying":{
+
+                    },
+                    "assuring":{
+
+                    },
+                    "signing":{
+
+                    },
+                    "encrypting":{
+
+                    },
+                    "sending":{
+
+                    }
+                  }
+                },
+                "receiving":{
+                  "unloading":{
+                    "receiving":{
+
+                    },
+                    "decrypting":{
+
+                    },
+                    "verifying":{
+
+                    },
+                    "assuring":{
+
+                    },
+                    "readying":{
+
+                    }
+                  },
+                  "transforming":{
+                    "recontextualising":{
+
+                    },
+                    "dropping":{
+
+                    },
+                    "restoring":{
+
+                    }
+                  },
+                  "storing":{
+                    "inserting":{
+
+                    }
+                  }
+                }
+              },
+              "compartments":{
+
+              },
+              "items":[
+
+              ]
+            }
+          },
+          "protodata":[
+            {
+              "node":null,
+              "mime_type":"",
+              "label":"",
+              "is_pointer":null,
+              "pointer":"",
+              "data":""
+            }
+          ],
+          "metadata":{
+            "sending":{
+              "extracting":{
+                "selecting":{
+
+                }
+              },
+              "transforming":{
+                "filtering":{
+
+                },
+                "supplementing":{
+
+                },
+                "recontextualising":{
+
+                }
+              },
+              "loading":{
+                "readying":{
+
+                },
+                "assuring":{
+
+                },
+                "signing":{
+
+                },
+                "encrypting":{
+
+                },
+                "sending":{
+
+                }
+              }
+            },
+            "receiving":{
+              "unloading":{
+                "receiving":{
+
+                },
+                "decrypting":{
+
+                },
+                "verifying":{
+
+                },
+                "assuring":{
+
+                },
+                "readying":{
+
+                }
+              },
+              "transforming":{
+                "recontextualising":{
+
+                },
+                "dropping":{
+
+                },
+                "restoring":{
+
+                }
+              },
+              "storing":{
+                "inserting":{
+
+                }
+              }
+            }
+          },
+          "compartments":{
+
+          },
+          "items":[
+
+          ]
+        }
+      ],
+      "relationships":[
+        {
+          "id":1,
+          "idx":"1.2.1",
+          "name":"PerRelationship",
+          "label":"Ratepayer-ListEntry-Property Link",
+          "description":"A relationships between LGFA88shd9para4J person-personas and LGFA88 hereditaments for which such personas are obliged to provide LGFA88shd9para4I(1) notofiable information.",
+          "origination":"20250101T000000Z",
+          "termination":null,
+          "category":{
+            "code":"LTX-DOM-REL",
+            "meaning":"Local taxation domain relationship"
+          },
+          "type":{
+            "code":"LIB",
+            "meaning":"Liability | One entity is liable for other entity(s) and the other entity(s) are the basis for the liabilities extent"
+          },
+          "class":{
+            "code":"LOC",
+            "meaning":"Local Non Domestic Rating Occupied Hereditament Charge"
+          },
+          "data":{
+            "foreign_ids":[
+              {
+                "system":"SystemX",
+                "location":"UK",
+                "value":"123"
+              }
+            ],
+            "foreign_names":[
+
+            ],
+            "foreign_labels":[
+
+            ],
+            "manifestations":[
+              {
+                "artifact_reference":null,
+                "artifact_code":null,
+                "artifact_description":null,
+                "issued_date":null,
+                "withdrawn_date":null,
+                "effective_from_date":null,
+                "effective_to_date":null,
+                "observed_date":null,
+                "operative_area_code":null,
+                "operative_area_name":null,
+                "protodata_ptr":null,
+                "notes":null
+              }
+            ]
+          },
+          "protodata":[
+            {
+              "node":null,
+              "mime_type":"",
+              "label":"",
+              "is_pointer":null,
+              "pointer":"",
+              "data":""
+            }
+          ],
+          "metadata":{
+            "sending":{
+              "extracting":{
+                "selecting":{
+
+                }
+              },
+              "transforming":{
+                "filtering":{
+
+                },
+                "supplementing":{
+
+                },
+                "recontextualising":{
+
+                }
+              },
+              "loading":{
+                "readying":{
+
+                },
+                "assuring":{
+
+                },
+                "signing":{
+
+                },
+                "encrypting":{
+
+                },
+                "sending":{
+
+                }
+              }
+            },
+            "receiving":{
+              "unloading":{
+                "receiving":{
+
+                },
+                "decrypting":{
+
+                },
+                "verifying":{
+
+                },
+                "assuring":{
+
+                },
+                "readying":{
+
+                }
+              },
+              "transforming":{
+                "recontextualising":{
+
+                },
+                "dropping":{
+
+                },
+                "restoring":{
+
+                }
+              },
+              "storing":{
+                "inserting":{
+
+                }
+              }
+            }
+          },
+          "compartments":{
+
+          },
+          "items":[
+            {
+              "transportation":{
+                "path":"/job/compartments/properties/@id=2/items/@id=9"
+              },
+              "persistence":{
+                "place":"LTX-DOM-AST",
+                "identifier":"9"
+              }
+            },
+            {
+              "transportation":{
+                "path":"/job/compartments/persons/@id=7/items/@id=3"
+              },
+              "persistence":{
+                "place":"LTX-DOM-PSA",
+                "identifier":"3"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "items":[
+
+    ]
+  }
+}
+}
