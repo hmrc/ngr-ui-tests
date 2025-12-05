@@ -1,5 +1,5 @@
 {
-  "_id": "/ngr-stub/hip/voa/v1/job/properties?assessmentId=29775650000&personForeignId=9900000000000101",
+  "_id": "/ngr-stub/hip/voa/v1/job/properties?assessmentId=*&personForeignId=*",
   "method": "GET",
   "status": 200,
   "response": {
