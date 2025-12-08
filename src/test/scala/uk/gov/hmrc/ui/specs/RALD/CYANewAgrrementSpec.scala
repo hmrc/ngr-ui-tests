@@ -24,7 +24,7 @@ import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.RaldDB
 
-class RaldCYASpec extends BaseSpec with StubPage {
+class CYANewAgrrementSpec extends BaseSpec with StubPage {
   def completeRaldJourney(): Unit = {
 
     RaldDB.cleanup()
@@ -200,7 +200,7 @@ class RaldCYASpec extends BaseSpec with StubPage {
     CheckYourAnswersRald.checkSectionHeadings()
   }
 
-  Feature("Change details on RALD Check Your Answers page") {
+  Feature("New agreement : Change details on Check Your Answers page") {
     Scenario("Change multiple details after completing RALD journey") {
       completeRaldJourney()
 
@@ -210,7 +210,7 @@ class RaldCYASpec extends BaseSpec with StubPage {
       Landlord.landlord()
       Landlord.landlordNameInput("test-2")
       continueButtonClick()
-      CheckYourAnswersRald.verifySummaryRow("Landlords full name", "test-2")
+      CheckYourAnswersRald.verifySummaryRow("Landlord's full name", "test-2")
 
       // Check changing relationship with landlord
       CheckYourAnswersRald.clickChangeLink("landlord-relationship")

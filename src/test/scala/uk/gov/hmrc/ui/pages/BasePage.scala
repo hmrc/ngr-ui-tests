@@ -72,6 +72,11 @@ trait BasePage extends PageObject {
     element.getText
   }
 
+  def AssertTextCheckById(id: String, expectedText: String): Unit = {
+    val text = findElementById(id).getText
+    assert(text == expectedText, s"$expectedText not matching with $text")
+  }
+
   def getElementByXpath(xpath: String): String     = {
     waitForElementVisibility(By.xpath(xpath))
     val element = Driver.instance.findElement(By.xpath(xpath))

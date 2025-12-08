@@ -70,4 +70,7 @@ object CheckYourAnswersRald extends BasePage {
         throw new NoSuchElementException(s"Could not find summary row with key '$keyText'")
     }
   }
+
+  def verifyLandlordName(Name: String): Unit =
+    AssertTextCheckById("checkanswers.landlord.fullname-id", Name)
 }

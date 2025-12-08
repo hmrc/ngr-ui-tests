@@ -24,8 +24,7 @@ object Landlord extends BasePage {
   def landlord(): Unit =
     headerCheck("Landlord")
 
-  val landlordNameLocation: By       = By.id("landlord-name-value")
-  val landlordOtherInputLocation: By = By.id("landlord-radio-other")
+  val landlordNameLocation: By = By.id("landlord-name-value")
 
   def landlordNameInput(landlordName: String): Unit =
     sendKeys(landlordNameLocation, landlordName)
@@ -38,8 +37,5 @@ object Landlord extends BasePage {
 
   def supplyRelationship(description: String): Unit =
     sendKeys(By.id("landlord-relationship"), description)
-
-  def otherRelationshipInput(landlordRelationship: String): Unit =
-    sendKeys(landlordOtherInputLocation, landlordRelationship)
 
 }
