@@ -20,6 +20,9 @@ import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.{BeforeAndAfterEach, GivenWhenThen}
 import uk.gov.hmrc.selenium.webdriver.{Browser, Driver, ScreenshotOnFailure}
+import uk.gov.hmrc.uitestrunner.config.TestRunnerConfig
+
+import java.util.concurrent.TimeUnit
 
 trait BaseSpec
     extends AnyFeatureSpec
@@ -34,5 +37,6 @@ trait BaseSpec
     Driver.instance.manage().deleteAllCookies()
   }
   override def afterEach(): Unit  =
+    TimeUnit.MILLISECONDS.sleep(TestRunnerConfig.accessibilityTimeout.toMillis)
     quitBrowser()
 }
