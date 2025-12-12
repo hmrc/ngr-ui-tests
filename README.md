@@ -1,40 +1,66 @@
 # ngr-ui-tests
 
-### Pre-requisites (for running tests on local)
+## Pre-requisites (for running tests locally)
 
-### Services to run locally:
+### Services to run locally
 
-Start Mongo Docker container as follows:
+1. **Start Mongo Docker container:**
+    ```bash
+    docker run --rm -d -p 27017:27017 --name mongo percona/percona-server-mongodb:5.0
+    ```
 
-```bash
-docker run --rm -d -p 27017:27017 --name mongo percona/percona-server-mongodb:5.0
-```
-Update the service manager config as follows:
+2. **Update the service manager config:**
+    ```bash
+    sm2 --update-config
+    ```
 
-```bash
-sm2 --update-config
-```
-Start NGR services as follows:
-```bash
-sm2 --start NGR_ALL --appendArgs '{"NGR_DASHBOARD_FRONTEND":["-Dcentralised-authorisation-resource-client.filter.enabled=false"]}'
-```
+3. **Start NGR services:**
+    ```bash
+    sm2 --start NGR_ALL --appendArgs '{"NGR_DASHBOARD_FRONTEND":["-Dcentralised-authorisation-resource-client.filter.enabled=false"]}'
+    ```
+
+---
 
 ## Setting up test data
+
 ### Pre-requisites
 
-Run the following command to get the stub running:
+- **Start the stub:**
+    ```bash
+    sm2 --start NGR_STUB
+    ```
 
-`sm2 --start NGR_STUB`
+### Populating the Stub
 
-### Populating the stub
+#### Manually Populate Stubs
 
-- **To populate the stubs with data and run the bash script:**
-    1. **Local environment:**
-       Load the URL `http://localhost:1503/ngr-dashboard-frontend/test-only/populate-stub-data` which will clear all existing stub data and repopulate it.
-    2. **Staging environments:**
-       Load the URL `https://staging.tax.service.gov.uk/ngr-dashboard-frontend/test-only/populate-stub-data` which will clear all existing stub data and repopulate it.
-    3. Complete one login/GG authentication flow when redirected to and visiting the above URL will clear all existing stub data and repopulate it.
-            
+- **Local environment:**  
+  Visit [http://localhost:1503/ngr-dashboard-frontend/test-only/populate-stub-data](http://localhost:1503/ngr-dashboard-frontend/test-only/populate-stub-data) to clear and repopulate stub data.
+
+- **Staging environments:**  
+  Visit [https://staging.tax.service.gov.uk/ngr-dashboard-frontend/test-only/populate-stub-data](https://staging.tax.service.gov.uk/ngr-dashboard-frontend/test-only/populate-stub-data) to clear and repopulate stub data.
+
+- **Note:**  
+  Completing one login/GG authentication flow when redirected to the above URL will clear and repopulate stub data.
+
+#### Populate Stubs Using Bash Script
+
+1. **Start all NGR services with custom arguments:**
+    ```bash
+    sm2 --start NGR_ALL --appendArgs '{"NGR_DASHBOARD_FRONTEND":["-Dcentralised-authorisation-resource-client.filter.enabled=false"]}'
+    ```
+
+2. **When running ngr-dashboard-frontend locally:**
+    ```bash
+    sbt run -Dapplication.router=testOnlyDoNotUseInAppConf.Routes \
+            -Dcentralised-authorisation-resource-client.filter.enabled=false
+    ```
+3. Run the script ./run_journey_tests.sh `<JourneyFolder>` `<Environment>` as mentioned in the Running Tests.
+
+---
+
+## Running Tests
+
 ### To run the journey tests
 
 ```bash
