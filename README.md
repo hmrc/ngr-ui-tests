@@ -16,9 +16,27 @@ sm2 --update-config
 ```
 Start NGR services as follows:
 ```bash
-sm2 --start NGR_ALL
+sm2 --start NGR_ALL --appendArgs '{"NGR_DASHBOARD_FRONTEND":["-Dcentralised-authorisation-resource-client.filter.enabled=false"]}'
 ```
+
+## Setting up test data
+### Pre-requisites
+
+Run the following command to get the stub running:
+
+`sm2 --start NGR_STUB`
+
+### Populating the stub
+
+- **To populate the stubs with data and run the bash script:**
+    1. **Local environment:**
+       Load the URL `http://localhost:1503/ngr-dashboard-frontend/test-only/populate-stub-data` which will clear all existing stub data and repopulate it.
+    2. **Staging environments:**
+       Load the URL `https://staging.tax.service.gov.uk/ngr-dashboard-frontend/test-only/populate-stub-data` which will clear all existing stub data and repopulate it.
+    3. Complete one login/GG authentication flow when redirected to and visiting the above URL will clear all existing stub data and repopulate it.
+            
 ### To run the journey tests
+
 ```bash
 ./run_journey_tests.sh `<JourneyFolder>` `<Environment>` 
 ```
@@ -55,26 +73,6 @@ Format all project files as follows:
 ```bash
 sbt scalafmtAll
 ```
-
-## Setting up test data
-### Pre-requisites
-
-Run the following command to get the stub running:
-
-`sm2 --start NGR_STUB`
-### Populating the stub
-To populate the stubs with data, run the following:
-`./populate_stub.sh`
-It accepts the following parameter:
-
-`$1` the Environment to run against. Valid Options: `local` & `staging` Default: `local`
-#### Test Data Available
-CredId     | Code | Description      
-:-------   |:-----|:-----------------
-1237891256 | 200  | RatePayerWithAllData
-12378912   | 200  | EmailNotSupplied
-12378912678| 200  | No Phone Number 
-1237891267812  | 200  | RatePayer with no data
 
 ## License
 
