@@ -1,24 +1,68 @@
 # ngr-ui-tests
 
-### Pre-requisites (for running tests on local)
+## Pre-requisites (for running tests locally)
 
-### Services to run locally:
+### Services to run locally
 
-Start Mongo Docker container as follows:
+1. **Start Mongo Docker container:**
+    ```bash
+    docker run --rm -d -p 27017:27017 --name mongo percona/percona-server-mongodb:5.0
+    ```
 
-```bash
-docker run --rm -d -p 27017:27017 --name mongo percona/percona-server-mongodb:5.0
-```
-Update the service manager config as follows:
+2. **Update the service manager config:**
+    ```bash
+    sm2 --update-config
+    ```
 
-```bash
-sm2 --update-config
-```
-Start NGR services as follows:
-```bash
-sm2 --start NGR_ALL
-```
+3. **Start NGR services:**
+    ```bash
+    sm2 --start NGR_ALL --appendArgs '{"NGR_DASHBOARD_FRONTEND":["-Dcentralised-authorisation-resource-client.filter.enabled=false"]}'
+    ```
+
+---
+
+## Setting up test data
+
+### Pre-requisites
+
+- **Start the stub:**
+    ```bash
+    sm2 --start NGR_STUB
+    ```
+
+### Populating the Stub
+
+#### Manually Populate Stubs
+
+- **Local environment:**  
+  Visit [http://localhost:1503/ngr-dashboard-frontend/test-only/populate-stub-data](http://localhost:1503/ngr-dashboard-frontend/test-only/populate-stub-data) to clear and repopulate stub data.
+
+- **Staging environments:**  
+  Visit [https://staging.tax.service.gov.uk/ngr-dashboard-frontend/test-only/populate-stub-data](https://staging.tax.service.gov.uk/ngr-dashboard-frontend/test-only/populate-stub-data) to clear and repopulate stub data.
+
+- **Note:**  
+  Completing one login/GG authentication flow when redirected to the above URL will clear and repopulate stub data.
+
+#### Populate Stubs Using Bash Script
+
+1. **Start all NGR services with custom arguments:**
+    ```bash
+    sm2 --start NGR_ALL --appendArgs '{"NGR_DASHBOARD_FRONTEND":["-Dcentralised-authorisation-resource-client.filter.enabled=false"]}'
+    ```
+
+2. **When running ngr-dashboard-frontend locally:**
+    ```bash
+    sbt run -Dapplication.router=testOnlyDoNotUseInAppConf.Routes \
+            -Dcentralised-authorisation-resource-client.filter.enabled=false
+    ```
+3. Run the script ./run_journey_tests.sh `<JourneyFolder>` `<Environment>` as mentioned in the Running Tests.
+
+---
+
+## Running Tests
+
 ### To run the journey tests
+
 ```bash
 ./run_journey_tests.sh `<JourneyFolder>` `<Environment>` 
 ```
@@ -55,26 +99,6 @@ Format all project files as follows:
 ```bash
 sbt scalafmtAll
 ```
-
-## Setting up test data
-### Pre-requisites
-
-Run the following command to get the stub running:
-
-`sm2 --start NGR_STUB`
-### Populating the stub
-To populate the stubs with data, run the following:
-`./populate_stub.sh`
-It accepts the following parameter:
-
-`$1` the Environment to run against. Valid Options: `local` & `staging` Default: `local`
-#### Test Data Available
-CredId     | Code | Description      
-:-------   |:-----|:-----------------
-1237891256 | 200  | RatePayerWithAllData
-12378912   | 200  | EmailNotSupplied
-12378912678| 200  | No Phone Number 
-1237891267812  | 200  | RatePayer with no data
 
 ## License
 
