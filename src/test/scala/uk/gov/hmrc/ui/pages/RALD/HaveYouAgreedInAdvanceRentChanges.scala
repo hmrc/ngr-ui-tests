@@ -22,8 +22,8 @@ object HaveYouAgreedInAdvanceRentChanges extends BasePage {
     headerCheck("Have you agreed in advance with the landlord when and by how much rent goes up?")
 
   def yesRadio(): Unit =
-    click(getElementById("agreed-rent-change-radio"))
+    click(getByCssSelector("#agreed-rent-change-radio"))
 
   def noRadio(): Unit =
-    click(getElementById("agreed-rent-change-radio-2"))
+    click(getByCssSelector("#agreed-rent-change-radio-2"))
 }
