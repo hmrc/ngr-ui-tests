@@ -27,14 +27,28 @@ object CheckYourAnswersRald extends BasePage {
   def checkYourAnswersHeader(): Unit =
     headerCheck("Check your answers")
 
-  def checkSectionHeadings(): Unit = {
+  def checkSectionHeadings(isRentBasedOnTOC: Boolean): Unit = {
     headerCheck2("Landlord details")
     headerCheck2("Agreement details")
     headerCheck2("Rent details")
     headerCheck2("What your rent includes details")
-    headerCheck2("Repairs and insurance details")
+    if (!isRentBasedOnTOC)
+      headerCheck2("Repairs and insurance details")
     headerCheck2("Rent review details")
     headerCheck2("Repairs and fitting out")
+    headerCheck2("Payments")
+    headerCheck2("Other details")
+  }
+
+  def checkSectionHeadingsForRenewed(isRentBasedOnTOC: Boolean): Unit = {
+    headerCheck2("Lease renewal details")
+    headerCheck2("Landlord details")
+    headerCheck2("Agreement details")
+    headerCheck2("Rent details")
+    headerCheck2("What your rent includes details")
+    if (!isRentBasedOnTOC)
+      headerCheck2("Repairs and insurance details")
+    headerCheck2("Rent review details")
     headerCheck2("Payments")
     headerCheck2("Other details")
   }

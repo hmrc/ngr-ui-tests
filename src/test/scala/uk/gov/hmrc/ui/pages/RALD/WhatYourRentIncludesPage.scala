@@ -16,7 +16,6 @@
 
 package uk.gov.hmrc.ui.pages.RALD
 
-import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
 object WhatYourRentIncludesPage extends BasePage {
@@ -26,47 +25,47 @@ object WhatYourRentIncludesPage extends BasePage {
 
   def livingAccommodationRadio(select: String): Unit =
     if (select == "Yes") {
-      click(By.id("livingAccommodationRadio"))
+      click(getByCssSelector("#livingAccommodationRadio"))
     } else {
-      click(By.id("livingAccommodationRadio-2"))
+      click(getByCssSelector("#livingAccommodationRadio-2"))
     }
 
   def bedroomNumbers(numbers: String): Unit =
-    sendKeys(By.id("bedroomNumbers"), numbers)
+    sendKeys(getByCssSelector("#bedroomNumbers"), numbers)
 
   def rentPartAddressRadio(select: String): Unit =
     if (select == "Yes") {
-      click(By.id("rentPartAddressRadio")) /*Used in NewedAgreement scenario 3*/
+      click(getByCssSelector("#rentPartAddressRadio")) /*Used in NewedAgreement scenario 3*/
     } else {
-      click(By.id("rentPartAddressRadio-2")) /*Used in renewedAgreement scenario 1*/
+      click(getByCssSelector("#rentPartAddressRadio-2")) /*Used in renewedAgreement scenario 1*/
     }
 
   def rentEmptyShellRadio(select: String): Unit =
     if (select == "Yes") {
-      click(By.id("rentEmptyShellRadio"))
+      click(getByCssSelector("#rentEmptyShellRadio"))
     } else {
-      click(By.id("rentEmptyShellRadio-2")) /*Used in renewedAgreement scenario 1*/
+      click(getByCssSelector("#rentEmptyShellRadio-2")) /*Used in renewedAgreement scenario 1*/
     }
 
   def rentIncBusinessRatesRadio(select: String): Unit =
     if (select == "Yes") {
-      click(By.id("rentIncBusinessRatesRadio"))
+      click(getByCssSelector("#rentIncBusinessRatesRadio"))
     } else {
-      click(By.id("rentIncBusinessRatesRadio-2"))
+      click(getByCssSelector("#rentIncBusinessRatesRadio-2"))
     }
 
   def rentIncWaterChargesRadio(select: String): Unit =
     if (select == "Yes") {
-      click(By.id("rentIncWaterChargesRadio"))
+      click(getByCssSelector("#rentIncWaterChargesRadio"))
     } else {
-      click(By.id("rentIncWaterChargesRadio-2"))
+      click(getByCssSelector("#rentIncWaterChargesRadio-2"))
     }
 
   def rentIncServiceRadio(select: String): Unit =
     if (select == "Yes") {
-      click(By.id("rentIncServiceRadio"))
+      click(getByCssSelector("#rentIncServiceRadio"))
     } else {
-      click(By.id("rentIncServiceRadio-2"))
+      click(getByCssSelector("#rentIncServiceRadio-2"))
     }
 
 }

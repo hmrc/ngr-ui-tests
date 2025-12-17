@@ -25,28 +25,29 @@ object RepairsAndInsurancePage extends BasePage {
 
   def whoPaysForInternalRepairsRadio(person: String): Unit = {
     val radioId = person.toLowerCase match {
-      case "you"          => "repairsAndInsurance-internalRepairs-radio-value"
-      case "the landlord" => "repairsAndInsurance-internalRepairs-radio-value-2"
-      case _              => "repairsAndInsurance-internalRepairs-radio-value-3"
+      case "you"          =>
+        "#repairsAndInsurance-internalRepairs-radio-value"
+      case "the landlord" => "#repairsAndInsurance-internalRepairs-radio-value-2"
+      case _              => "#repairsAndInsurance-internalRepairs-radio-value-3"
     }
-    click(getElementById(radioId))
+    click(getByCssSelector(radioId))
   }
 
   def whoPaysForExternalRepairsRadio(person: String): Unit = {
     val radioId = person.toLowerCase match {
-      case "you"          => "repairsAndInsurance-externalRepairs-radio-value"
-      case "the landlord" => "repairsAndInsurance-externalRepairs-radio-value-2"
-      case _              => "repairsAndInsurance-externalRepairs-radio-value-3"
+      case "you"          => "#repairsAndInsurance-externalRepairs-radio-value"
+      case "the landlord" => "#repairsAndInsurance-externalRepairs-radio-value-2"
+      case _              => "#repairsAndInsurance-externalRepairs-radio-value-3"
     }
-    click(getElementById(radioId))
+    click(getByCssSelector(radioId))
   }
 
   def WhoPaysForBuildingInsuranceRepairs(person: String): Unit = {
     val radioId = person.toLowerCase match {
-      case "you"          => "repairsAndInsurance-buildingInsurance-radio-value"
-      case "the landlord" => "repairsAndInsurance-buildingInsurance-radio-value-2"
-      case _              => "repairsAndInsurance-buildingInsurance-radio-value-3"
+      case "you"          => "#repairsAndInsurance-buildingInsurance-radio-value"
+      case "the landlord" => "#repairsAndInsurance-buildingInsurance-radio-value-2"
+      case _              => "#repairsAndInsurance-buildingInsurance-radio-value-3"
     }
-    click(getElementById(radioId))
+    click(getByCssSelector(radioId))
   }
 }

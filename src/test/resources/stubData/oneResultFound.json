@@ -51,7 +51,7 @@
             "listType": "current"
           },
           {
-            "assessmentStatus": "DONE",
+            "assessmentStatus": "CURRENT",
             "assessmentRef": 29775650001,
             "rateableValue": 509300,
             "scatCode": "109",
@@ -185,7 +185,7 @@
             "listType": "current"
           },
           {
-            "assessmentStatus": "DONE",
+            "assessmentStatus": "CURRENT",
             "assessmentRef": 29775650001,
             "rateableValue": 159300,
             "scatCode": "409",
@@ -319,7 +319,7 @@
             "listType": "current"
           },
           {
-            "assessmentStatus": "DONE",
+            "assessmentStatus": "CURRENT",
             "assessmentRef": 29775650001,
             "rateableValue": 1509300,
             "scatCode": "401",
@@ -453,7 +453,7 @@
             "listType": "current"
           },
           {
-            "assessmentStatus": "DONE",
+            "assessmentStatus": "CURRENT",
             "assessmentRef": 29775650001,
             "rateableValue": 999300,
             "scatCode": "209",
@@ -587,7 +587,7 @@
             "listType": "current"
           },
           {
-            "assessmentStatus": "DONE",
+            "assessmentStatus": "CURRENT",
             "assessmentRef": 29775650001,
             "rateableValue": 1899300,
             "scatCode": "235",
@@ -721,7 +721,7 @@
             "listType": "current"
           },
           {
-            "assessmentStatus": "DONE",
+            "assessmentStatus": "CURRENT",
             "assessmentRef": 29775650001,
             "rateableValue": 99009300,
             "scatCode": "240",
@@ -855,7 +855,7 @@
             "listType": "current"
           },
           {
-            "assessmentStatus": "DONE",
+            "assessmentStatus": "CURRENT",
             "assessmentRef": 29775650001,
             "rateableValue": 209300,
             "scatCode": "730",
@@ -989,7 +989,7 @@
             "listType": "current"
           },
           {
-            "assessmentStatus": "DONE",
+            "assessmentStatus": "CURRENT",
             "assessmentRef": 29775650001,
             "rateableValue": 359300,
             "scatCode": "1006",
@@ -1123,7 +1123,7 @@
             "listType": "current"
           },
           {
-            "assessmentStatus": "DONE",
+            "assessmentStatus": "CURRENT",
             "assessmentRef": 29775650001,
             "rateableValue": 69300,
             "scatCode": "246",
