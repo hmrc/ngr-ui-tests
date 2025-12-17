@@ -17,13 +17,11 @@
 package uk.gov.hmrc.ui.specs.PropertyLinking
 
 import uk.gov.hmrc.ui.pages.Dashboard.DashboardHome
-import uk.gov.hmrc.ui.pages.PropertyLinking.RegisterComplete.printLinkDisplay
 import uk.gov.hmrc.ui.pages.PropertyLinking._
-import uk.gov.hmrc.ui.pages.Registration.{CheckYourAnswer, ConfirmUTRPage, NinoPage, PhoneNumberPage, ProvideTRNPage}
 import uk.gov.hmrc.ui.pages.StubPage
 import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
-import uk.gov.hmrc.ui.utils.mongo.{PropertyLinkingDB, RegistrationDB}
+import uk.gov.hmrc.ui.utils.mongo.PropertyLinkingDB
 
 class AddAPropertySpec extends BaseSpec with StubPage {
 
@@ -33,34 +31,10 @@ class AddAPropertySpec extends BaseSpec with StubPage {
   Feature("Testing the 'Add Property' functionality") {
 
     Scenario("The user completes registration and adds a property") {
-      RegistrationDB.cleanup()
       PropertyLinkingDB.cleanup()
 
       Given("Ratepayer logins through one login")
       loginOl()
-
-      Then("User provide phone number")
-      PhoneNumberPage.userProvidesPhoneNumber()
-
-      Then("Ratepayer is taken to Provide TRN Page")
-      ProvideTRNPage.provideYourTRN()
-      continueButtonClick()
-      Then("User selects 'NO, I want to provide this NINO' and submit")
-      ConfirmUTRPage.confirmYourSAUTR()
-      ConfirmUTRPage.selectNoProvideNI()
-      Then("The ratepayer is taken to the 'Provide your National Insurance number'")
-      NinoPage.NinoDetails()
-      NinoPage.InputNino("AA000003D")
-
-      Then("The ratepayer is taken to the 'Check your answers' where NINO is masked")
-      CheckYourAnswer.checkYourAnswer()
-      CheckYourAnswer.confirmMAskedNINO("******03D")
-      click(continueButton)
-
-      Then("Ratepayer is taken to the Registration complete page")
-      RegisterComplete.RegisterComplete()
-      printLinkDisplay("Print this page")
-      continueButtonClick()
 
       Then("Ratepayer is now fully registered and is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
@@ -143,34 +117,10 @@ class AddAPropertySpec extends BaseSpec with StubPage {
 
     Scenario("Ratepayer navigates to the add a property page and clicks the account home link") {
 
-      RegistrationDB.cleanup()
       PropertyLinkingDB.cleanup()
 
       Given("Ratepayer logins through one login")
       loginOl()
-
-      Then("User provide phone number")
-      PhoneNumberPage.userProvidesPhoneNumber()
-
-      Then("Ratepayer is taken to Provide TRN Page")
-      ProvideTRNPage.provideYourTRN()
-      continueButtonClick()
-      Then("User selects 'NO, I want to provide this NINO' and submit")
-      ConfirmUTRPage.confirmYourSAUTR()
-      ConfirmUTRPage.selectNoProvideNI()
-      Then("The ratepayer is taken to the 'Provide your National Insurance number'")
-      NinoPage.NinoDetails()
-      NinoPage.InputNino("AA000003D")
-
-      Then("The ratepayer is taken to the 'Check your answers' where NINO is masked")
-      CheckYourAnswer.checkYourAnswer()
-      CheckYourAnswer.confirmMAskedNINO("******03D")
-      click(continueButton)
-
-      Then("Ratepayer is taken to the Registration complete page")
-      RegisterComplete.RegisterComplete()
-      printLinkDisplay("Print this page")
-      continueButtonClick()
 
       Then("Ratepayer is now fully registered and is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
@@ -186,34 +136,10 @@ class AddAPropertySpec extends BaseSpec with StubPage {
     }
 
     Scenario("Testing 'no Results Found' feature for property search") {
-      RegistrationDB.cleanup()
       PropertyLinkingDB.cleanup()
 
       Given("Ratepayer logins through one login")
       loginOl()
-
-      Then("User provide phone number")
-      PhoneNumberPage.userProvidesPhoneNumber()
-
-      Then("Ratepayer is taken to Provide TRN Page")
-      ProvideTRNPage.provideYourTRN()
-      continueButtonClick()
-      Then("User selects 'NO, I want to provide this NINO' and submit")
-      ConfirmUTRPage.confirmYourSAUTR()
-      ConfirmUTRPage.selectNoProvideNI()
-      Then("The ratepayer is taken to the 'Provide your National Insurance number'")
-      NinoPage.NinoDetails()
-      NinoPage.InputNino("AA000003D")
-
-      Then("The ratepayer is taken to the 'Check your answers' where NINO is masked")
-      CheckYourAnswer.checkYourAnswer()
-      CheckYourAnswer.confirmMAskedNINO("******03D")
-      click(continueButton)
-
-      Then("Ratepayer is taken to the Registration complete page")
-      RegisterComplete.RegisterComplete()
-      printLinkDisplay("Print this page")
-      continueButtonClick()
 
       Then("Ratepayer is now fully registered and is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
@@ -234,34 +160,10 @@ class AddAPropertySpec extends BaseSpec with StubPage {
     }
 
     Scenario("Testing manual address search feature for property search") {
-      RegistrationDB.cleanup()
       PropertyLinkingDB.cleanup()
 
       Given("Ratepayer logins through one login")
       loginOl()
-
-      Then("User provide phone number")
-      PhoneNumberPage.userProvidesPhoneNumber()
-
-      Then("Ratepayer is taken to Provide TRN Page")
-      ProvideTRNPage.provideYourTRN()
-      continueButtonClick()
-      Then("User selects 'NO, I want to provide this NINO' and submit")
-      ConfirmUTRPage.confirmYourSAUTR()
-      ConfirmUTRPage.selectNoProvideNI()
-      Then("The ratepayer is taken to the 'Provide your National Insurance number'")
-      NinoPage.NinoDetails()
-      NinoPage.InputNino("AA000003D")
-
-      Then("The ratepayer is taken to the 'Check your answers' where NINO is masked")
-      CheckYourAnswer.checkYourAnswer()
-      CheckYourAnswer.confirmMAskedNINO("******03D")
-      click(continueButton)
-
-      Then("Ratepayer is taken to the Registration complete page")
-      RegisterComplete.RegisterComplete()
-      printLinkDisplay("Print this page")
-      continueButtonClick()
 
       Then("Ratepayer is now fully registered and is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
