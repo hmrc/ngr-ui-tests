@@ -39,29 +39,6 @@ class AddAPropertySpec extends BaseSpec with StubPage {
       Given("Ratepayer logins through one login")
       loginOl()
 
-      Then("User provide phone number")
-      PhoneNumberPage.userProvidesPhoneNumber()
-
-      Then("Ratepayer is taken to Provide TRN Page")
-      ProvideTRNPage.provideYourTRN()
-      continueButtonClick()
-      Then("User selects 'NO, I want to provide this NINO' and submit")
-      ConfirmUTRPage.confirmYourSAUTR()
-      ConfirmUTRPage.selectNoProvideNI()
-      Then("The ratepayer is taken to the 'Provide your National Insurance number'")
-      NinoPage.NinoDetails()
-      NinoPage.InputNino("AA000003D")
-
-      Then("The ratepayer is taken to the 'Check your answers' where NINO is masked")
-      CheckYourAnswer.checkYourAnswer()
-      CheckYourAnswer.confirmMAskedNINO("******03D")
-      click(continueButton)
-
-      Then("Ratepayer is taken to the Registration complete page")
-      RegisterComplete.RegisterComplete()
-      printLinkDisplay("Print this page")
-      continueButtonClick()
-
       Then("Ratepayer is now fully registered and is taken to the dashboard")
       DashboardHome.DashboardHome(contactName)
 
