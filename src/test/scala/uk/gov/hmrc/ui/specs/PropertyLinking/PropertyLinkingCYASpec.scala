@@ -29,7 +29,7 @@ class PropertyLinkingCYASpec extends BaseSpec with StubPage {
 
   var contactName: String = "BOB JONES"
   val postCode            = "BH1 1HU"
-  val fixedClock          = Clock.fixed(Instant.parse("2026-06-05T12:00:00Z"), ZoneId.of("UTC"))
+  val fixedClock: Clock   = Clock.fixed(Instant.parse("2026-06-05T12:00:00Z"), ZoneId.of("UTC"))
 
   def reachCheckYourAnswers(): Unit = {
 

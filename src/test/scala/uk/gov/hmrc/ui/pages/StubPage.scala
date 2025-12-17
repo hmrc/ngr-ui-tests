@@ -131,6 +131,16 @@ trait StubPage extends BasePage {
       complete()
     }
 
+    Wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("h1")))
+    def getRegistrationCurrentPageUrl: String = Driver.instance.getCurrentUrl
+    if (getRegistrationCurrentPageUrl.contains("provide-your-tax-reference-number")) {
+      provideTaxReference()
+      confirmSAReference()
+      provideNino()
+      checkYourAnswer()
+      registrationSuccessful()
+    }
+
   }
 
   def stubGgAuthentication(): Unit = {
