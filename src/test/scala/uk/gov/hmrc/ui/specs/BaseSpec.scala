@@ -38,5 +38,5 @@ trait BaseSpec
   }
   override def afterEach(): Unit  =
     TimeUnit.MILLISECONDS.sleep(TestRunnerConfig.accessibilityTimeout.toMillis)
-  quitBrowser()
+//    quitBrowser()
 }

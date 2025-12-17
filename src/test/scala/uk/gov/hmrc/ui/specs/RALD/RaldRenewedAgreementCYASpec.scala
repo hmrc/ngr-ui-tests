@@ -23,16 +23,16 @@ import uk.gov.hmrc.ui.specs.BaseSpec
 import uk.gov.hmrc.ui.utils.login.loginOl
 import uk.gov.hmrc.ui.utils.mongo.RaldDB
 
-class RaldNewAgreementCYASpec extends BaseSpec with StubPage {
+class RaldRenewedAgreementCYASpec extends BaseSpec with StubPage {
   def completeRaldJourney(
     typeOfAgreement: String,
     rentBasedOn: String,
     hasRentAgreedInAdvance: String,
+    didYouAgreeRentWithLandlord: String,
     hasRentPeriod: String,
     hasRentIncludeParking: String,
     hasPayExtraForParkingSpaces: String,
     hasIncludeRentReview: String,
-    hasRepairsAndFittingOut: String,
     didYouGetMoneyFromLandlord: String,
     didYouPayAnyMoneyToLandlord: String,
     hasAnythingElseAffectedTheRent: String
@@ -50,11 +50,11 @@ class RaldNewAgreementCYASpec extends BaseSpec with StubPage {
     YourProperty.yourProperty()
     clickLink("Select property")
 
-    Then("The user selects new agreement link to create their new agreement")
-    WhatDoYouWantToTellUs.whatDoYouWantToTellUs()
+    Then("The user selects renewed agreement link to renew their agreement")
+    clickLink("You renewed your agreement")
+    continueButtonClick()
 
-    clickLink("You have a new agreement")
-    TellUsAboutYourNewAgreementPage.tellUsAboutYourNewAgreement()
+    WhatTypeOfLeaseRenewal.renewedAgreementRadio()
     continueButtonClick()
 
     Then("The user inputs the landlords name and selects family member as type")
@@ -120,23 +120,6 @@ class RaldNewAgreementCYASpec extends BaseSpec with StubPage {
       HowMuchIsTotalAnnualRent.howMuchIsTotalAnnualRent()
       HowMuchIsTotalAnnualRent.inputTotalAnnualRent("7000")
       continueButtonClick()
-
-      Then("The user enters 'Yes' to having a rent period")
-      DoYouHaveRentFreePeriod.doYouHaveRentFreePeriod()
-      DoYouHaveRentFreePeriod.selectRentFreePeriodRadio("Yes")
-      continueButtonClick()
-
-      Then("The user enter how many months of rent free and reasons")
-      RentFreePeriod.rentFreePeriod()
-      RentFreePeriod.enterRentFreePeriodMonths("5")
-      RentFreePeriod.enterReasons("Any reasons")
-      continueButtonClick()
-
-      Then("The user enters their agreement date and start date")
-      RentDatesAgreeStartPage.rentDatesAgreeStartPage()
-      RentDatesAgreeStartPage.agreeDateInput(day = "12", month = "12", year = "2020")
-      RentDatesAgreeStartPage.startDateInput(day = "10", month = "01", year = "2021")
-      continueButtonClick()
     } else {
       When("The user provides the start and end date for the first rent period")
       ProvideDetailsOfFirstRentPeriodPage.provideDetailsOfFirstRentPeriodHeader()
@@ -163,10 +146,46 @@ class RaldNewAgreementCYASpec extends BaseSpec with StubPage {
 
       AddingAdditionalRentPeriodScenario.addingRentPeriod("31", "1", "2024", "1000.45", 3, "Yes")
       AddingAdditionalRentPeriodScenario.addingRentPeriod("31", "3", "2024", "1500", 4, "No")
+    }
 
+    if (didYouAgreeRentWithLandlord == "No") {
+      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlordRadio("No")
+      continueButtonClick()
+
+      DidTheCourtSetTheInterimRent.yesRadio()
+      continueButtonClick()
+
+      InterimRentSetByTheCourtPage.interimHowMuchInput("1111111.11")
+      InterimRentSetByTheCourtPage.interimRentSetByTheCourtDateInput("3", "2019")
+      continueButtonClick()
+    } else {
+      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlordRadio("Yes")
+      continueButtonClick()
+    }
+
+    if (
+      hasRentAgreedInAdvance == "Yes" && rentBasedOn != "A percentage of expected turnover" && typeOfAgreement != "verbal"
+    ) {
       Then("The user enters their rent date")
       RentDatesPage.rentDatesPage()
       RentDatesPage.agreeDateInput("19", "01", "2020")
+      continueButtonClick()
+    } else {
+      Then("The user enters 'Yes' to having a rent period")
+      DoYouHaveRentFreePeriod.doYouHaveRentFreePeriod()
+      DoYouHaveRentFreePeriod.selectRentFreePeriodRadio("Yes")
+      continueButtonClick()
+
+      Then("The user enter how many months of rent free and reasons")
+      RentFreePeriod.rentFreePeriod()
+      RentFreePeriod.enterRentFreePeriodMonths("5")
+      RentFreePeriod.enterReasons("Any reasons")
+      continueButtonClick()
+
+      Then("The user enters their agreement date and start date")
+      RentDatesAgreeStartPage.rentDatesAgreeStartPage()
+      RentDatesAgreeStartPage.agreeDateInput(day = "12", month = "12", year = "2020")
+      RentDatesAgreeStartPage.startDateInput(day = "10", month = "01", year = "2021")
       continueButtonClick()
     }
 
@@ -242,22 +261,6 @@ class RaldNewAgreementCYASpec extends BaseSpec with StubPage {
     RentReviewPage.canRentGoDown("yes")
     continueButtonClick()
 
-    Then("The user select no on repairs and fitting out")
-    RepairsAndFittingOutPage.repairsAndFittingOut()
-    if (hasRepairsAndFittingOut == "Yes")
-      RepairsAndFittingOutPage.yesRadio()
-    else
-      RepairsAndFittingOutPage.noRadio()
-    continueButtonClick()
-
-    if (hasRepairsAndFittingOut == "Yes") {
-      Then("The user is on the About Repairs and Fitting Out page")
-      AboutRepairsAndFittingOutPage.aboutRepairsAndFittingOut()
-      AboutRepairsAndFittingOutPage.enterRepairCost("1234.56")
-      AboutRepairsAndFittingOutPage.enterRepairDate("10", "2025")
-      continueButtonClick()
-    }
-
     Then("Did you get any money from the landlord or previous tenant to take on the lease?")
     DidYouGetMoneyFromLandlordPage.didYouGetMoneyFromLandlord()
     if (didYouGetMoneyFromLandlord == "Yes")
@@ -302,7 +305,7 @@ class RaldNewAgreementCYASpec extends BaseSpec with StubPage {
 
     Then("The user reaches the Check Your Answers page")
     CheckYourAnswersRald.checkYourAnswersHeader()
-    CheckYourAnswersRald.checkSectionHeadings(rentBasedOn == "Total Occupancy Cost leases (TOCs)")
+    CheckYourAnswersRald.checkSectionHeadingsForRenewed(rentBasedOn == "Total Occupancy Cost leases (TOCs)")
   }
 
   Feature("Change details on RALD Check Your Answers page") {
@@ -312,15 +315,21 @@ class RaldNewAgreementCYASpec extends BaseSpec with StubPage {
         typeOfAgreement = "leaseOrTenancy",
         rentBasedOn = "Other",
         hasRentAgreedInAdvance = "No",
+        didYouAgreeRentWithLandlord = "No",
         hasRentPeriod = "No",
         hasRentIncludeParking = "Yes",
         hasPayExtraForParkingSpaces = "Yes",
         hasIncludeRentReview = "No",
-        hasRepairsAndFittingOut = "Yes",
         didYouGetMoneyFromLandlord = "Yes",
         didYouPayAnyMoneyToLandlord = "Yes",
         hasAnythingElseAffectedTheRent = "Yes"
       )
+
+      // Lease renewal details
+      // Check changing lease renewal type
+      CheckYourAnswersRald.clickChangeLink("property-address")
+      WhatTypeOfLeaseRenewal.surrenderAndRenewalRadio()
+      CheckYourAnswersRald.verifySummaryRow("What type of lease renewal is it?", "A surrender and renewal")
 
       // Landlord details
       // Check changing landlord full name
@@ -363,6 +372,42 @@ class RaldNewAgreementCYASpec extends BaseSpec with StubPage {
       continueButtonClick()
       CheckYourAnswersRald.verifySummaryRow("Total annual rent", "£15,000")
 
+      // Check changing rent interim amount
+      CheckYourAnswersRald.clickChangeLink("rent-interim-amount")
+      InterimRentSetByTheCourtPage.interimHowMuchInput("5555.55")
+      continueButtonClick()
+      CheckYourAnswersRald.verifySummaryRow("How much was the interim rent?", "£5,555.55")
+
+      // Check changing rent interim date
+      CheckYourAnswersRald.clickChangeLink("rent-interim-date")
+      InterimRentSetByTheCourtPage.interimRentSetByTheCourtDateInput("4", "2019")
+      continueButtonClick()
+      CheckYourAnswersRald.verifySummaryRow("When did you start paying the interim rent?", "April 2019")
+
+      // Check changing the court set an interim rent
+      CheckYourAnswersRald.clickChangeLink("rent-interim")
+      DidTheCourtSetTheInterimRent.noRadio()
+      continueButtonClick()
+      CheckYourAnswersRald.verifySummaryRow("Did the court also set an interim rent?", "No")
+
+      // Check changing agree the rent with your landlord
+      CheckYourAnswersRald.clickChangeLink("did-you-agree-rent-with-landlord")
+      DidYouAgreeRentWithLandlordPage.didYouAgreeRentWithLandlordRadio("Yes")
+      continueButtonClick()
+      CheckYourAnswersRald.verifySummaryRow("Did you agree the rent with your landlord or their agent?", "Yes")
+
+      // Check changng rent free period months
+      CheckYourAnswersRald.clickChangeLink("rent-free-period-months")
+      RentFreePeriod.enterRentFreePeriodMonths("12")
+      continueButtonClick()
+      CheckYourAnswersRald.verifySummaryRow("How many months is your rent-free period?", "12 months")
+
+      // Check changing rent free period reason
+      CheckYourAnswersRald.clickChangeLink("rent-free-period-reason")
+      RentFreePeriod.enterReasons("Was out the country")
+      continueButtonClick()
+      CheckYourAnswersRald.verifySummaryRow("Why do you have a rent-free period?", "Was out the country")
+
       // Check changing rent-free period
       CheckYourAnswersRald.clickChangeLink("check-rent-free-period")
       DoYouHaveRentFreePeriod.selectRentFreePeriodRadio("no")
@@ -373,7 +418,7 @@ class RaldNewAgreementCYASpec extends BaseSpec with StubPage {
       CheckYourAnswersRald.clickChangeLink("when-did-you-agree")
       RentDatesAgreeStartPage.agreeDateInput(day = "30", month = "12", year = "2020")
       continueButtonClick()
-      CheckYourAnswersRald.verifySummaryRow("When did you agree your rent?", "30 December 2020")
+      CheckYourAnswersRald.verifySummaryRow("New rent start date", "30 December 2020")
 
       CheckYourAnswersRald.clickChangeLink("start-paying-date")
       RentDatesAgreeStartPage.startDateInput(day = "15", month = "01", year = "2021")
@@ -507,38 +552,16 @@ class RaldNewAgreementCYASpec extends BaseSpec with StubPage {
       // Check changing rent review inclusion
       CheckYourAnswersRald.clickChangeLink("has-include-rent-review")
       RentReviewPage.hasIncludeRentReview("Yes")
-      RentReviewPage.enterRentReviewMonths("12")
+      RentReviewPage.enterRentReviewYears("2")
       continueButtonClick()
       CheckYourAnswersRald.verifySummaryRow("Does your agreement include a rent review?", "Yes")
-      CheckYourAnswersRald.verifySummaryRow("How often is your rent reviewed?", "Every 12 months")
+      CheckYourAnswersRald.verifySummaryRow("How often is your rent reviewed?", "Every 2 years")
 
       // Check changing rent review can go down
       CheckYourAnswersRald.clickChangeLink("can-rent-go-down")
       RentReviewPage.canRentGoDown("No")
       continueButtonClick()
       CheckYourAnswersRald.verifySummaryRow("Can the rent go down when it is reviewed?", "No")
-
-      // Repairs and fitting out
-      // Check changing repairs and fitting out date
-      CheckYourAnswersRald.clickChangeLink("repairs-and-fitting-out-date")
-      AboutRepairsAndFittingOutPage.enterRepairDate("12", "2025")
-      continueButtonClick()
-      CheckYourAnswersRald.verifySummaryRow("When did you do the repairs or fitting out?", "December 2025")
-
-      // Check changing repairs and fitting out cost
-      CheckYourAnswersRald.clickChangeLink("repairs-and-fitting-out-cost")
-      AboutRepairsAndFittingOutPage.enterRepairCost("15234.56")
-      continueButtonClick()
-      CheckYourAnswersRald.verifySummaryRow(
-        "How much did the repairs or fitting out cost (excluding VAT)?",
-        "£15,234.56"
-      )
-
-      // Check changing repairs/fitting out done by tenant
-      CheckYourAnswersRald.clickChangeLink("repairs-and-fitting-out")
-      RepairsAndFittingOutPage.noRadio()
-      continueButtonClick()
-      CheckYourAnswersRald.verifySummaryRow("Have you done any repairs or fitting out in the property?", "No")
 
       // Payments
       // Check changing money received from landlord for the amount
@@ -605,11 +628,11 @@ class RaldNewAgreementCYASpec extends BaseSpec with StubPage {
         typeOfAgreement = "leaseOrTenancy",
         rentBasedOn = "Total Occupancy Cost leases (TOCs)",
         hasRentAgreedInAdvance = "Yes",
+        didYouAgreeRentWithLandlord = "Yes",
         hasRentPeriod = "No",
         hasRentIncludeParking = "Yes",
         hasPayExtraForParkingSpaces = "Yes",
         hasIncludeRentReview = "No",
-        hasRepairsAndFittingOut = "No",
         didYouGetMoneyFromLandlord = "No",
         didYouPayAnyMoneyToLandlord = "No",
         hasAnythingElseAffectedTheRent = "No"
@@ -653,11 +676,11 @@ class RaldNewAgreementCYASpec extends BaseSpec with StubPage {
         typeOfAgreement = "leaseOrTenancy",
         rentBasedOn = "Total Occupancy Cost leases (TOCs)",
         hasRentAgreedInAdvance = "Yes",
+        didYouAgreeRentWithLandlord = "Yes",
         hasRentPeriod = "No",
         hasRentIncludeParking = "Yes",
         hasPayExtraForParkingSpaces = "Yes",
         hasIncludeRentReview = "No",
-        hasRepairsAndFittingOut = "No",
         didYouGetMoneyFromLandlord = "No",
         didYouPayAnyMoneyToLandlord = "No",
         hasAnythingElseAffectedTheRent = "No"
@@ -696,11 +719,11 @@ class RaldNewAgreementCYASpec extends BaseSpec with StubPage {
         typeOfAgreement = "leaseOrTenancy",
         rentBasedOn = "Total Occupancy Cost leases (TOCs)",
         hasRentAgreedInAdvance = "Yes",
+        didYouAgreeRentWithLandlord = "Yes",
         hasRentPeriod = "No",
         hasRentIncludeParking = "Yes",
         hasPayExtraForParkingSpaces = "Yes",
         hasIncludeRentReview = "No",
-        hasRepairsAndFittingOut = "No",
         didYouGetMoneyFromLandlord = "No",
         didYouPayAnyMoneyToLandlord = "No",
         hasAnythingElseAffectedTheRent = "No"
@@ -740,7 +763,7 @@ class RaldNewAgreementCYASpec extends BaseSpec with StubPage {
       CheckYourAnswersRald.verifySummaryRow("Do you have a rent-free period at the start of your agreement?", "Yes")
       CheckYourAnswersRald.verifySummaryRow("How many months is your rent-free period?", "7 months")
       CheckYourAnswersRald.verifySummaryRow("Why do you have a rent-free period?", "Any reasons 2")
-      CheckYourAnswersRald.verifySummaryRow("When did you agree your rent?", "12 October 2020")
+      CheckYourAnswersRald.verifySummaryRow("New rent start date", "12 October 2020")
       CheckYourAnswersRald.verifySummaryRow("When will you start paying rent?", "10 March 2021")
       CheckYourAnswersRald.verifySummaryRow("What is your rent based on?", "A percentage of expected turnover")
       CheckYourAnswersRald.verifySummaryRow("Does your rent include business rates?", "Yes")
@@ -758,11 +781,11 @@ class RaldNewAgreementCYASpec extends BaseSpec with StubPage {
         typeOfAgreement = "leaseOrTenancy",
         rentBasedOn = "A percentage of expected turnover",
         hasRentAgreedInAdvance = "Yes",
+        didYouAgreeRentWithLandlord = "Yes",
         hasRentPeriod = "No",
         hasRentIncludeParking = "Yes",
         hasPayExtraForParkingSpaces = "Yes",
         hasIncludeRentReview = "No",
-        hasRepairsAndFittingOut = "No",
         didYouGetMoneyFromLandlord = "No",
         didYouPayAnyMoneyToLandlord = "No",
         hasAnythingElseAffectedTheRent = "No"
@@ -799,11 +822,11 @@ class RaldNewAgreementCYASpec extends BaseSpec with StubPage {
         typeOfAgreement = "leaseOrTenancy",
         rentBasedOn = "Total Occupancy Cost leases (TOCs)",
         hasRentAgreedInAdvance = "Yes",
+        didYouAgreeRentWithLandlord = "Yes",
         hasRentPeriod = "No",
         hasRentIncludeParking = "Yes",
         hasPayExtraForParkingSpaces = "Yes",
         hasIncludeRentReview = "No",
-        hasRepairsAndFittingOut = "No",
         didYouGetMoneyFromLandlord = "No",
         didYouPayAnyMoneyToLandlord = "No",
         hasAnythingElseAffectedTheRent = "No"
@@ -859,7 +882,7 @@ class RaldNewAgreementCYASpec extends BaseSpec with StubPage {
       CheckYourAnswersRald.verifySummaryRow("Do you have a rent-free period at the start of your agreement?", "Yes")
       CheckYourAnswersRald.verifySummaryRow("How many months is your rent-free period?", "5 months")
       CheckYourAnswersRald.verifySummaryRow("Why do you have a rent-free period?", "Any reasons")
-      CheckYourAnswersRald.verifySummaryRow("When did you agree your rent?", "12 December 2020")
+      CheckYourAnswersRald.verifySummaryRow("New rent start date", "12 December 2020")
       CheckYourAnswersRald.verifySummaryRow("When will you start paying rent?", "10 January 2021")
       CheckYourAnswersRald.verifySummaryRow("Who pays for internal repairs?", "The landlord")
       CheckYourAnswersRald.verifySummaryRow("Who pays for external repairs?", "The landlord")
@@ -871,11 +894,11 @@ class RaldNewAgreementCYASpec extends BaseSpec with StubPage {
         typeOfAgreement = "verbal",
         rentBasedOn = "Indexation",
         hasRentAgreedInAdvance = "Yes",
+        didYouAgreeRentWithLandlord = "Yes",
         hasRentPeriod = "No",
         hasRentIncludeParking = "Yes",
         hasPayExtraForParkingSpaces = "Yes",
         hasIncludeRentReview = "No",
-        hasRepairsAndFittingOut = "No",
         didYouGetMoneyFromLandlord = "No",
         didYouPayAnyMoneyToLandlord = "No",
         hasAnythingElseAffectedTheRent = "No"
@@ -928,7 +951,7 @@ class RaldNewAgreementCYASpec extends BaseSpec with StubPage {
       CheckYourAnswersRald.verifySummaryRow("Do you have a rent-free period at the start of your agreement?", "Yes")
       CheckYourAnswersRald.verifySummaryRow("How many months is your rent-free period?", "5 months")
       CheckYourAnswersRald.verifySummaryRow("Why do you have a rent-free period?", "Any reasons")
-      CheckYourAnswersRald.verifySummaryRow("When did you agree your rent?", "12 December 2020")
+      CheckYourAnswersRald.verifySummaryRow("New rent start date", "12 December 2020")
       CheckYourAnswersRald.verifySummaryRow("When will you start paying rent?", "10 January 2021")
     }
   }

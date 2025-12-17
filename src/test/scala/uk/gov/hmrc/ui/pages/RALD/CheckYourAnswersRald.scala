@@ -40,6 +40,19 @@ object CheckYourAnswersRald extends BasePage {
     headerCheck2("Other details")
   }
 
+  def checkSectionHeadingsForRenewed(isRentBasedOnTOC: Boolean): Unit = {
+    headerCheck2("Lease renewal details")
+    headerCheck2("Landlord details")
+    headerCheck2("Agreement details")
+    headerCheck2("Rent details")
+    headerCheck2("What your rent includes details")
+    if (!isRentBasedOnTOC)
+      headerCheck2("Repairs and insurance details")
+    headerCheck2("Rent review details")
+    headerCheck2("Payments")
+    headerCheck2("Other details")
+  }
+
   def clickChangeLink(linkId: String): Unit = {
     val locator = By.id(linkId)
     try {
