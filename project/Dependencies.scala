@@ -6,8 +6,6 @@ object Dependencies {
     "uk.gov.hmrc"            %% "ui-test-runner"     % "0.52.0"   % Test,
     "org.scalatest"          %% "scalatest"          % "3.2.19"   % Test,
     "ch.qos.logback"          % "logback-classic"    % "1.5.22"   % Test,
-    "io.cucumber"             % "cucumber-junit"     % "7.33.0"   % Test,
-    "io.cucumber"            %% "cucumber-scala"     % "8.38.0",
     "org.playframework"      %% "play-test"          % "3.0.9",
     "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.2",
     "org.scalaj"             %% "scalaj-http"        % "2.4.2",
