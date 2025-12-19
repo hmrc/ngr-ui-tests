@@ -1,5 +1,5 @@
 {
-  "_id": "/ngr-stub/hip/voa/v1/job/ratepayers/*/dashboard",
+  "_id": "/ngr-stub/hip/voa/v1/ratepayers/*/dashboard",
   "method": "GET",
   "status": 200,
   "response": {
