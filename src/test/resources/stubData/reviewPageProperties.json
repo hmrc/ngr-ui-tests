@@ -363,74 +363,7 @@
                                       "foreign_labels": [],
                                       "uses": [],
                                       "constructions": [],
-                                      "facilities": [
-                                        {
-                                          "activity": {
-                                            "source": null,
-                                            "value": null
-                                          },
-                                          "code": {
-                                            "source": null,
-                                            "value": null
-                                          },
-                                          "description": {
-                                            "source": null,
-                                            "value": "Passenger Lift"
-                                          },
-                                          "quantity": {
-                                            "source": "tom:sql/cdb:ndr/survey_unit/os_refno:24104677000/passenger_lift",
-                                            "value": 2
-                                          },
-                                          "units": {
-                                            "source": null,
-                                            "value": "Option"
-                                          }
-                                        },
-                                        {
-                                          "activity": {
-                                            "source": null,
-                                            "value": null
-                                          },
-                                          "code": {
-                                            "source": null,
-                                            "value": null
-                                          },
-                                          "description": {
-                                            "source": null,
-                                            "value": "Passenger Lift To All Floors"
-                                          },
-                                          "quantity": {
-                                            "source": "tom:sql/cdb:ndr/survey_unit/os_refno:24104677000/passenger_lift_all_floors",
-                                            "value": 3
-                                          },
-                                          "units": {
-                                            "source": null,
-                                            "value": "Option"
-                                          }
-                                        },
-                                        {
-                                          "activity": {
-                                            "source": null,
-                                            "value": null
-                                          },
-                                          "code": {
-                                            "source": null,
-                                            "value": null
-                                          },
-                                          "description": {
-                                            "source": null,
-                                            "value": "Solar Panels"
-                                          },
-                                          "quantity": {
-                                            "source": "tom:sql/cdb:ndr/survey_unit/os_refno:24104677000/goods_lift",
-                                            "value": 1
-                                          },
-                                          "units": {
-                                            "source": null,
-                                            "value": "Option"
-                                          }
-                                        }
-                                      ],
+                                      "facilities": [],
                                       "artifacts": [],
                                       "uninheritances": [],
                                       "attributions": []
@@ -668,7 +601,7 @@
                                     "id": 16,
                                     "idx": "1.1.1.3",
                                     "name": null,
-                                    "label": "Floor Level 2F to 2F",
+                                    "label": "Floor Level FF to FF",
                                     "description": null,
                                     "origination": "19490610T000000Z",
                                     "termination": null,
@@ -690,74 +623,7 @@
                                       "foreign_labels": [],
                                       "uses": [],
                                       "constructions": [],
-                                      "facilities": [
-                                        {
-                                          "activity": {
-                                            "source": null,
-                                            "value": null
-                                          },
-                                          "code": {
-                                            "source": null,
-                                            "value": null
-                                          },
-                                          "description": {
-                                            "source": null,
-                                            "value": "Air conditioning"
-                                          },
-                                          "quantity": {
-                                            "source": "tom:sql/cdb:ndr/survey_unit/os_refno:24104677000/goods_lift",
-                                            "value": 20
-                                          },
-                                          "units": {
-                                            "source": null,
-                                            "value": "Option"
-                                          }
-                                        },
-                                        {
-                                          "activity": {
-                                            "source": null,
-                                            "value": null
-                                          },
-                                          "code": {
-                                            "source": null,
-                                            "value": null
-                                          },
-                                          "description": {
-                                            "source": null,
-                                            "value": "Security cameras"
-                                          },
-                                          "quantity": {
-                                            "source": "tom:sql/cdb:ndr/survey_unit/os_refno:24104677000/security_cameras",
-                                            "value": 6
-                                          },
-                                          "units": {
-                                            "source": null,
-                                            "value": "Option"
-                                          }
-                                        },
-                                        {
-                                          "activity": {
-                                            "source": null,
-                                            "value": null
-                                          },
-                                          "code": {
-                                            "source": null,
-                                            "value": null
-                                          },
-                                          "description": {
-                                            "source": null,
-                                            "value": "Passenger lifts"
-                                          },
-                                          "quantity": {
-                                            "source": "tom:sql/cdb:ndr/survey_unit/os_refno:24104677000/passenger_lifts",
-                                            "value": 1
-                                          },
-                                          "units": {
-                                            "source": null,
-                                            "value": "Option"
-                                          }
-                                        }
-                                      ],
+                                      "facilities": [],
                                       "artifacts": [],
                                       "uninheritances": [],
                                       "attributions": []
@@ -1124,6 +990,338 @@
                                               "quantity": {
                                                 "source": "accomarea",
                                                 "value": 20
+                                              },
+                                              "units": {
+                                                "source": null,
+                                                "value": "m2"
+                                              }
+                                            }
+                                          ],
+                                          "constructions": [],
+                                          "facilities": [],
+                                          "artifacts": [],
+                                          "uninheritances": [],
+                                          "attributions": []
+                                        },
+                                        "protodata": [],
+                                        "metadata": {
+                                          "sending": {
+                                            "extracting": {
+                                              "selecting": {}
+                                            },
+                                            "transforming": {
+                                              "filtering": {},
+                                              "supplementing": {},
+                                              "recontextualising": {}
+                                            },
+                                            "loading": {
+                                              "readying": {},
+                                              "assuring": {},
+                                              "signing": {},
+                                              "encrypting": {},
+                                              "sending": {}
+                                            }
+                                          },
+                                          "receiving": {
+                                            "unloading": {
+                                              "receiving": {},
+                                              "decrypting": {},
+                                              "verifying": {},
+                                              "assuring": {},
+                                              "readying": {}
+                                            },
+                                            "transforming": {
+                                              "recontextualising": {},
+                                              "dropping": {},
+                                              "restoring": {}
+                                            },
+                                            "storing": {
+                                              "inserting": {}
+                                            }
+                                          }
+                                        },
+                                        "compartments": {},
+                                        "items": []
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "id": 30,
+                                "idx": "1.1.3",
+                                "name": null,
+                                "label": "Additional Survey Items 1",
+                                "description": null,
+                                "origination": "19481126T000000Z",
+                                "termination": null,
+                                "category": {
+                                  "code": "LTX-DOM-CON",
+                                  "meaning": null
+                                },
+                                "type": {
+                                  "code": "HOR",
+                                  "meaning": "A two dimensional horizontal unit of space"
+                                },
+                                "class": {
+                                  "code": "ASU",
+                                  "meaning": "Additional Survey Unit"
+                                },
+                                "data": {
+                                  "foreign_ids": [],
+                                  "foreign_names": [],
+                                  "foreign_labels": [],
+                                  "uses": [],
+                                  "constructions": [],
+                                  "facilities": [],
+                                  "artifacts": [],
+                                  "uninheritances": [],
+                                  "attributions": []
+                                },
+                                "protodata": [],
+                                "metadata": {
+                                  "sending": {
+                                    "extracting": {
+                                      "selecting": {}
+                                    },
+                                    "transforming": {
+                                      "filtering": {},
+                                      "supplementing": {},
+                                      "recontextualising": {}
+                                    },
+                                    "loading": {
+                                      "readying": {},
+                                      "assuring": {},
+                                      "signing": {},
+                                      "encrypting": {},
+                                      "sending": {}
+                                    }
+                                  },
+                                  "receiving": {
+                                    "unloading": {
+                                      "receiving": {},
+                                      "decrypting": {},
+                                      "verifying": {},
+                                      "assuring": {},
+                                      "readying": {}
+                                    },
+                                    "transforming": {
+                                      "recontextualising": {},
+                                      "dropping": {},
+                                      "restoring": {}
+                                    },
+                                    "storing": {
+                                      "inserting": {}
+                                    }
+                                  }
+                                },
+                                "compartments": {},
+                                "items": [
+                                  {
+                                    "id": 31,
+                                    "idx": "1.1.3.1",
+                                    "name": null,
+                                    "label": "All Levels",
+                                    "description": null,
+                                    "origination": "19490610T000000Z",
+                                    "termination": null,
+                                    "category": {
+                                      "code": "LTX-DOM-CON",
+                                      "meaning": null
+                                    },
+                                    "type": {
+                                      "code": "VER",
+                                      "meaning": "The vertical (3rd) dimension of the parent two dimensional horizontal unit of space"
+                                    },
+                                    "class": {
+                                      "code": "ALV",
+                                      "meaning": "Every Additional Survey Unit Level"
+                                    },
+                                    "data": {
+                                      "foreign_ids": [],
+                                      "foreign_names": [],
+                                      "foreign_labels": [],
+                                      "uses": [],
+                                      "constructions": [],
+                                      "facilities": [],
+                                      "artifacts": [],
+                                      "uninheritances": [],
+                                      "attributions": []
+                                    },
+                                    "protodata": [],
+                                    "metadata": {
+                                      "sending": {
+                                        "extracting": {
+                                          "selecting": {}
+                                        },
+                                        "transforming": {
+                                          "filtering": {},
+                                          "supplementing": {},
+                                          "recontextualising": {}
+                                        },
+                                        "loading": {
+                                          "readying": {},
+                                          "assuring": {},
+                                          "signing": {},
+                                          "encrypting": {},
+                                          "sending": {}
+                                        }
+                                      },
+                                      "receiving": {
+                                        "unloading": {
+                                          "receiving": {},
+                                          "decrypting": {},
+                                          "verifying": {},
+                                          "assuring": {},
+                                          "readying": {}
+                                        },
+                                        "transforming": {
+                                          "recontextualising": {},
+                                          "dropping": {},
+                                          "restoring": {}
+                                        },
+                                        "storing": {
+                                          "inserting": {}
+                                        }
+                                      }
+                                    },
+                                    "compartments": {},
+                                    "items": [
+                                      {
+                                        "id": 32,
+                                        "idx": "1.1.3.1.1",
+                                        "name": null,
+                                        "label": "Unit of Valuation 1",
+                                        "description": null,
+                                        "origination": "20030513T000000Z",
+                                        "termination": null,
+                                        "category": {
+                                          "code": "LTX-DOM-CON",
+                                          "meaning": null
+                                        },
+                                        "type": {
+                                          "code": "HOR",
+                                          "meaning": "A two dimensional horizontal unit of space"
+                                        },
+                                        "class": {
+                                          "code": "AUV",
+                                          "meaning": "Unit Of Valuation (Additional Areas And Items)"
+                                        },
+                                        "data": {
+                                          "foreign_ids": [],
+                                          "foreign_names": [],
+                                          "foreign_labels": [],
+                                          "uses": [
+                                            {
+                                              "activity": {
+                                                "source": null,
+                                                "value": null
+                                              },
+                                              "code": {
+                                                "source": "oacode",
+                                                "value": "AIR"
+                                              },
+                                              "description": {
+                                                "source": "ns_oa_desc",
+                                                "value": "Air conditioning system"
+                                              },
+                                              "quantity": {
+                                                "source": "oa_quant",
+                                                "value": 142.52
+                                              },
+                                              "units": {
+                                                "source": null,
+                                                "value": "m2"
+                                              }
+                                            }
+                                          ],
+                                          "constructions": [],
+                                          "facilities": [],
+                                          "artifacts": [],
+                                          "uninheritances": [],
+                                          "attributions": []
+                                        },
+                                        "protodata": [],
+                                        "metadata": {
+                                          "sending": {
+                                            "extracting": {
+                                              "selecting": {}
+                                            },
+                                            "transforming": {
+                                              "filtering": {},
+                                              "supplementing": {},
+                                              "recontextualising": {}
+                                            },
+                                            "loading": {
+                                              "readying": {},
+                                              "assuring": {},
+                                              "signing": {},
+                                              "encrypting": {},
+                                              "sending": {}
+                                            }
+                                          },
+                                          "receiving": {
+                                            "unloading": {
+                                              "receiving": {},
+                                              "decrypting": {},
+                                              "verifying": {},
+                                              "assuring": {},
+                                              "readying": {}
+                                            },
+                                            "transforming": {
+                                              "recontextualising": {},
+                                              "dropping": {},
+                                              "restoring": {}
+                                            },
+                                            "storing": {
+                                              "inserting": {}
+                                            }
+                                          }
+                                        },
+                                        "compartments": {},
+                                        "items": []
+                                      },
+                                      {
+                                        "id": 33,
+                                        "idx": "1.1.3.1.2",
+                                        "name": null,
+                                        "label": "Unit of Valuation 2",
+                                        "description": null,
+                                        "origination": "19490610T000000Z",
+                                        "termination": null,
+                                        "category": {
+                                          "code": "LTX-DOM-CON",
+                                          "meaning": null
+                                        },
+                                        "type": {
+                                          "code": "HOR",
+                                          "meaning": "A two dimensional horizontal unit of space"
+                                        },
+                                        "class": {
+                                          "code": "AUV",
+                                          "meaning": "Unit Of Valuation (Additional Areas And Items)"
+                                        },
+                                        "data": {
+                                          "foreign_ids": [],
+                                          "foreign_names": [],
+                                          "foreign_labels": [],
+                                          "uses": [
+                                            {
+                                              "activity": {
+                                                "source": null,
+                                                "value": null
+                                              },
+                                              "code": {
+                                                "source": "oacode",
+                                                "value": "STL"
+                                              },
+                                              "description": {
+                                                "source": "ns_oa_desc",
+                                                "value": "Land used for storage"
+                                              },
+                                              "quantity": {
+                                                "source": "oa_quant",
+                                                "value": 10.23
                                               },
                                               "units": {
                                                 "source": null,
