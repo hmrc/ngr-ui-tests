@@ -107,7 +107,7 @@
                 "address_postcode": "PL22 8DE"
               },
               "location": {
-                "ordanace_survey_coordinates": "SX25432765",
+                "ordnance_survey": "SX25432765",
                 "google_maps_coordinates": "52.8765 43.8888"
               }
             },
