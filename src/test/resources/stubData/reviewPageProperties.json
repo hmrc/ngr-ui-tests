@@ -985,7 +985,7 @@
                                               },
                                               "description": {
                                                 "source": "ns_au_desc",
-                                                "value": "staff toilets"
+                                                "value": "Staff toilets"
                                               },
                                               "quantity": {
                                                 "source": "accomarea",
