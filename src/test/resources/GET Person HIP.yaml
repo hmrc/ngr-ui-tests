@@ -1,0 +1,816 @@
+openapi: 3.0.0
+info:
+  title: Local Taxation Non-Domestic Rating Notifiable Information
+  description: HMRC Online notifiable information service.
+  version: 1.0.1
+  x-integration-catalogue:
+    reviewed-date: 2025-06-06T12:00:00Z
+    short-description: Returns Job Template containing Person and Persona details for a given government ID
+    status: ALPHA
+    platform: HIP
+    api-type: SIMPLE
+    backends:
+        - Valuation Bridge
+    domain: 4
+    sub-domain: 4.3
+servers:
+  - url: https://api.ipaas.prod.eis.ns2p.corp.hmrc.gov.uk/local-taxation
+    description: Corporate - Production
+  - url: https://api.ipaas.preprod.eis.ns2p.corp.hmrc.gov.uk/local-taxation
+    description: Corporate – Pre-Production
+  - url: https://api.ipaas.test.eis.ns2n.corp.hmrc.gov.uk/local-taxation
+    description: Corporate - Test
+  - url: https://api.ipaas.dev.eis.ns2n.corp.hmrc.gov.uk/local-taxation
+    description: Corporate - Dev
+  - url: https://hip.ws.hmrc.gov.uk/local-taxation
+    description: MDTP - Production
+  - url: https://hip.ws.ibt.hmrc.gov.uk/local-taxation
+    description: MDTP - QA
+paths:
+  /v1/person/{id}:
+    get:
+      tags:
+        - HMRC Local Taxation - NDR 
+      parameters:
+        - name: id
+          in: path
+          description: ID of ratepayer to use
+          required: true
+          schema:
+            type: array
+            items: {}
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/job'
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
+        "503":
+          description: Service Unavailable
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
+      security:
+        - oAuth2:
+          - read:local-taxation
+components:
+  schemas:
+    job:
+      $ref: '#/components/schemas/ENTITIES_JOBS_JOB_ENTITY'
+    COMMON_INSTANT:
+      type: string
+      pattern: ^\d{4}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])T([01]\d|2[0-3])([0-5]\d)([0-5]\d)Z$
+    COMMON_ENUMERATION:
+      type: object
+      properties:
+        description:
+          type: string
+          maxLength: 63
+      required:
+        - code
+        - meaning
+      maxProperties: 2
+    COMMON_PROTODATA_MIMES:
+      enum:
+        - image/jpeg
+        - image/png
+        - image/bmp
+        - application/zip
+    COMMON_PROTODATA_ITEMS:
+      type: object
+      properties:
+        mime_type:
+          $ref: '#/components/schemas/COMMON_PROTODATA_MIMES'
+        label:
+          type: string
+        is_pointer:
+          type: boolean
+        pointer:
+          type: string
+        data:
+          type: string
+      required:
+        - mime_type
+        - label
+        - is_pointer
+        - pointer
+        - data
+      maxProperties: 5
+    FOREIGN:
+      type: object
+      properties:
+        foreign_ids:
+          type: array
+          items:
+            type: object
+            properties:
+              system:
+                type: string
+              location:
+                type: string
+              value:
+                type: string
+            required:
+              - system
+              - location
+              - value
+        foreign_labels:
+          type: array
+          items:
+            type: object
+            properties:
+              system:
+                type: string
+              location:
+                type: string
+              value:
+                type: string
+            required:
+              - system
+              - location
+              - value
+        foreign_names:
+          type: array
+          items:
+            type: object
+            properties:
+              system:
+                type: string
+              location:
+                type: string
+              value:
+                type: string
+            required:
+              - system
+              - location
+              - value
+      required:
+        - foreign_ids
+        - foreign_labels
+        - foreign_names
+    ENTITIES_STANDARD:
+      title: STANDARD
+      description: JSON schema for assuring that transported data about a STANDARD is fit for intended consumption
+      type: object
+      properties:
+        id:
+          oneOf:
+            - type: string
+              minLength: 1
+              maxLength: 11
+            - type: string
+              minLength: 36
+              maxLength: 36
+        idx:
+          type: string
+          minLength: 1
+          maxLength: 31
+        name:
+          type: string
+          minLength: 0
+          maxLength: 255
+        label:
+          type: string
+          minLength: 1
+          maxLength: 255
+        description:
+          type: string
+          minLength: 0
+          maxLength: 2047
+        origination:
+          oneOf:
+            - $ref: '#/components/schemas/COMMON_INSTANT'
+            - type: string
+              maxLength: 0
+        termination:
+          anyOf:
+            - type: string
+              maxLength: 0
+            - $ref: '#/components/schemas/COMMON_INSTANT'
+        metadata:
+          type: object
+          properties:
+            sending:
+              type: object
+              properties:
+                extracting:
+                  type: object
+                  properties:
+                    selecting: {}
+                  required:
+                    - selecting
+                  maxProperties: 1
+                transforming:
+                  type: object
+                  properties:
+                    filtering: {}
+                    supplementing: {}
+                    recontextualising: {}
+                  required:
+                    - filtering
+                    - supplementing
+                    - recontextualising
+                  maxProperties: 3
+                loading:
+                  type: object
+                  properties:
+                    readying: {}
+                    assuring: {}
+                    signing: {}
+                    encrypting: {}
+                    sending: {}
+                  required:
+                    - readying
+                    - assuring
+                    - signing
+                    - encrypting
+                    - sending
+                  maxProperties: 5
+              required:
+                - extracting
+                - transforming
+                - loading
+              maxProperties: 3
+            receiving:
+              type: object
+              properties:
+                unloading:
+                  type: object
+                  properties:
+                    receiving: {}
+                    decrypting: {}
+                    verifying: {}
+                    assuring: {}
+                    readying: {}
+                  required:
+                    - receiving
+                    - decrypting
+                    - verifying
+                    - assuring
+                    - readying
+                  maxProperties: 5
+                transforming:
+                  type: object
+                  properties:
+                    recontextualising: {}
+                    dropping: {}
+                    restoring: {}
+                  required:
+                    - recontextualising
+                    - dropping
+                    - restoring
+                  maxProperties: 3
+                storing:
+                  type: object
+                  properties:
+                    inserting: {}
+                  required:
+                    - inserting
+                  maxProperties: 1
+              required:
+                - unloading
+                - transforming
+                - storing
+              maxProperties: 3
+          required:
+            - sending
+            - receiving
+          maxProperties: 2
+        protodata:
+          type: array
+          items:
+            $ref: '#/components/schemas/COMMON_PROTODATA_ITEMS'
+      required:
+        - id
+        - idx
+        - name
+        - label
+        - description
+        - origination
+        - termination
+        - metadata
+        - protodata
+    ENTITIES_JOBS_JOB_ENTITY:
+      title: JOB
+      description: JSON schema for assuring that transported data about a JOB is fit for intended consumption
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/ENTITIES_STANDARD'
+      properties:
+        category:
+          $ref: '#/components/schemas/COMMON_ENUMERATION'
+          properties:
+            code:
+              $ref: '#/components/schemas/ENTITIES_JOBS_JOB_KINDS_CAT'
+        type:
+          $ref: '#/components/schemas/COMMON_ENUMERATION'
+          properties:
+            code: {}
+        class:
+          $ref: '#/components/schemas/COMMON_ENUMERATION'
+          properties:
+            code: {}
+        data:
+          $ref: '#/components/schemas/ENTITIES_JOBS_JOB_DATA'
+        compartments:
+          type: object
+          properties:
+            persons:
+              type: array
+              items:
+                $ref: '#/components/schemas/ENTITIES_PERSONS_PERSON_ENTITY'
+            properties:
+              type: array
+              items: {}
+            processes:
+              type: array
+              items: {}
+            products:
+              type: array
+              items:
+                $ref: '#/components/schemas/ENTITIES_PRODUCTS_PERSONS'
+            relationships:
+              type: array
+              items: {}
+          required:
+            - persons
+            - properties
+            - processes
+            - products
+            - relationships
+          maxProperties: 5
+        items:
+          type: array
+          maxItems: 0
+          items: {}
+      required:
+        - category
+        - type
+        - class
+        - data
+        - compartments
+        - items
+      maxProperties: 15
+    ENTITIES_JOBS_JOB_KINDS_CAT:
+      enum:
+        - LTX-DOM-JOB
+    ENTITIES_JOBS_JOB_KINDS_LTX-DOM-JOB_TYP:
+      enum:
+        - INF
+        - RVL
+        - MTN
+        - SMT
+    ENTITIES_JOBS_JOB_KINDS_LTX-DOM-JOB_INF_CLS:
+      enum:
+        - TBD
+    ENTITIES_JOBS_JOB_KINDS_LTX-DOM-JOB_RVL_CLS:
+      enum:
+        - TBD
+    ENTITIES_JOBS_JOB_KINDS_LTX-DOM-JOB_MTN_CLS:
+      enum:
+        - RLE
+        - RPN
+        - RRP
+        - LPN
+        - LPP
+        - RPT
+    ENTITIES_JOBS_JOB_KINDS_LTX-DOM-JOB_SMT_CLS:
+      enum:
+        - TBD
+    ENTITIES_JOBS_JOB_DATA: {}
+    ENTITIES_PERSONS_PERSON_ENTITY:
+      title: PERSON
+      description: JSON schema for assuring that transported data about a PERSON is fit for intended consumption
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/ENTITIES_STANDARD'
+      properties:
+        category:
+          $ref: '#/components/schemas/COMMON_ENUMERATION'
+          properties:
+            code:
+              $ref: '#/components/schemas/ENTITIES_PERSONS_PERSON_KINDS_CAT'
+        type:
+          $ref: '#/components/schemas/COMMON_ENUMERATION'
+          properties:
+            code: {}
+        class:
+          $ref: '#/components/schemas/COMMON_ENUMERATION'
+          properties:
+            code: {}
+        data:
+          $ref: '#/components/schemas/ENTITIES_PERSONS_PERSON_DATA'
+        compartments: {}
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ENTITIES_PERSONS_PERSONA_ENTITY'
+      required:
+        - category
+        - type
+        - class
+        - data
+        - compartments
+        - items
+      maxProperties: 15
+    ENTITIES_PERSONS_PERSON_KINDS_CAT:
+      enum:
+        - LTX-DOM-PSN
+    ENTITIES_PERSONS_PERSON_KINDS_LTX-DOM-PSN_TYP:
+      enum:
+        - NAT
+        - COR
+        - CWN
+    ENTITIES_PERSONS_PERSON_KINDS_LTX-DOM-PSN_NAT_CLS:
+      enum:
+        - GGY
+        - UNH
+        - CON
+        - UCN
+    ENTITIES_PERSONS_PERSON_KINDS_LTX-DOM-PSN_COR_CLS:
+      enum:
+        - GGY
+        - REG
+        - STA
+        - CHT
+    ENTITIES_PERSONS_PERSON_KINDS_LTX-DOM-PSN_CWN_CLS:
+      enum:
+        - MON
+        - MIN
+        - SOS
+        - CEC
+    ENTITIES_PERSONS_PERSON_DATA:
+      type: object
+      $ref: '#/components/schemas/FOREIGN'
+      properties:
+        details:
+          type: object
+          properties:
+            title_common:
+              $comment: Generally accepted prefixes denoting marital status.
+              description: ''
+              examples: []
+              enum:
+                - null
+                - Mr
+                - Ms
+                - Mrs
+                - Miss
+            title_uncommon:
+              $comment: All other prefixes avered by person concerned. (https://www.gov.uk/government/publications/titles-included-in-passports/titles-accessible)
+              description: ''
+              examples: []
+              type: string
+              maxLength: 63
+            forenames:
+              $comment: Registered name and/or given name plus any middle names (if any).
+              description: ''
+              examples: []
+              type: string
+              maxLength: 127
+            surname:
+              $comment: Registered surname.
+              description: ''
+              examples: []
+              type: string
+              maxLength: 127
+            post_nominals:
+              $comment: Any characters dentoting state hounors, professional titles or professional qualifications to be shown after surname.
+              description: ''
+              examples: []
+              type: string
+              maxLength: 127
+            corporate_name:
+              $comment: The proclaimed name of a legally registered, statutorily constituted or royally chartered body corporate.
+              description: ''
+              examples: []
+              type: string
+              maxLength: 255
+            crown_name:
+              $comment: The pronounced name of a royally appointed, commisioned or otherwise devised state office or officer. Including the monarch, government, judicial or armed forces role.
+              description: ''
+              examples: []
+              type: string
+              maxLength: 255
+            known_as:
+              $comment: Any accepted abbreviation, conflation, representation of or alternative to the authorative naming feilds; Including in the case of legally recognosed partners, the legally proclaimed firm name; And in the case of a company any trading name.
+              description: ''
+              examples: []
+              type: string
+              maxLength: 127
+          required:
+            - title_common
+            - title_uncommon
+            - forenames
+            - surname
+            - post_nominals
+            - corporate_name
+            - crown_name
+            - known_as
+          maxProperties: 8
+        communications:
+          type: object
+          properties:
+            postal_address:
+              $comment: ''
+              description: ''
+              examples: []
+              type: string
+              maxLength: 255
+            telephone_number:
+              $comment: ''
+              description: ''
+              examples: []
+              type: string
+              maxLength: 31
+            email:
+              $comment: ''
+              description: ''
+              examples: []
+              type: string
+              maxLength: 63
+          required:
+            - postal_address
+            - telephone_number
+            - email
+          maxProperties: 3
+      required:
+        - details
+        - communications
+      maxProperties: 5
+    ENTITIES_PERSONS_PERSONA_ENTITY:
+      title: PERSON
+      description: JSON schema for assuring that transported data about a PERSON is fit for intended consumption
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/ENTITIES_STANDARD'
+      properties:
+        category:
+          $ref: '#/components/schemas/COMMON_ENUMERATION'
+          properties:
+            code:
+              $ref: '#/components/schemas/ENTITIES_PERSONS_PERSONA_KINDS_CAT'
+        type:
+          $ref: '#/components/schemas/COMMON_ENUMERATION'
+          properties:
+            code: {}
+        class:
+          $ref: '#/components/schemas/COMMON_ENUMERATION'
+          properties:
+            code: {}
+        data:
+          $ref: '#/components/schemas/ENTITIES_PERSONS_PERSONA_DATA'
+        compartments: {}
+        items:
+          type: array
+          maxItems: 0
+          items: {}
+      required:
+        - category
+        - type
+        - class
+        - data
+        - compartments
+        - items
+      maxProperties: 15
+    ENTITIES_PERSONS_PERSONA_KINDS_CAT:
+      enum:
+        - LTX-DOM-PSA
+    ENTITIES_PERSONS_PERSONA_KINDS_LTX-DOM-PSA_TYP:
+      enum:
+        - COL
+        - 'OFF'
+        - ATH
+        - TXP
+        - REP
+        - REC
+    ENTITIES_PERSONS_PERSONA_KINDS_LTX-DOM-PSA_COL_CLS:
+      enum:
+        - AOC
+        - POC
+        - DOC
+        - DOW
+        - POW
+    ENTITIES_PERSONS_PERSONA_KINDS_LTX-DOM-PSA_OFF_CLS:
+      enum:
+        - LOV
+        - CVO
+        - LLO
+    ENTITIES_PERSONS_PERSONA_KINDS_LTX-DOM-PSA_ATH_CLS:
+      enum:
+        - NBA
+        - CBA
+        - ANA
+    ENTITIES_PERSONS_PERSONA_KINDS_LTX-DOM-PSA_TXP_CLS:
+      enum:
+        - RPO
+        - RPW
+        - CTP
+        - CTX
+    ENTITIES_PERSONS_PERSONA_KINDS_LTX-DOM-PSA_REP_CLS:
+      enum:
+        - COM
+        - ATY
+        - PRP
+        - TST
+        - VIC
+        - ACP
+    ENTITIES_PERSONS_PERSONA_KINDS_LTX-DOM-PSA_REC_CLS:
+      enum:
+        - ADM
+        - LPA
+        - CRT
+    ENTITIES_PERSONS_PERSONA_DATA:
+      type: object
+      $ref: '#/components/schemas/FOREIGN'
+      properties:
+        details:
+          type: object
+          properties:
+            title_common:
+              $comment: Generally accepted prefixes denoting marital status.
+              description: ''
+              examples: []
+              enum:
+                - null
+                - Mr
+                - Ms
+                - Mrs
+                - Miss
+            title_uncommon:
+              $comment: All other prefixes avered by person concerned. (https://www.gov.uk/government/publications/titles-included-in-passports/titles-accessible)
+              description: ''
+              examples: []
+              type: string
+              maxLength: 63
+            forenames:
+              $comment: Registered name and/or given name plus any middle names (if any).
+              description: ''
+              examples: []
+              type: string
+              maxLength: 127
+            surname:
+              $comment: Registered surname.
+              description: ''
+              examples: []
+              type: string
+              maxLength: 127
+            post_nominals:
+              $comment: Any characters dentoting state hounors, professional titles or professional qualifications to be shown after surname.
+              description: ''
+              examples: []
+              type: string
+              maxLength: 127
+            corporate_name:
+              $comment: The proclaimed name of a legally registered, statutorily constituted or royally chartered body corporate.
+              description: ''
+              examples: []
+              type: string
+              maxLength: 255
+            crown_name:
+              $comment: The pronounced name of a royally appointed, commisioned or otherwise devised state office or officer. Including the monarch, government, judicial or armed forces role.
+              description: ''
+              examples: []
+              type: string
+              maxLength: 255
+            known_as:
+              $comment: Any accepted abbreviation, conflation, representation of or alternative to the authorative naming feilds; Including in the case of legally recognosed partners, the legally proclaimed firm name; And in the case of a company any trading name.
+              description: ''
+              examples: []
+              type: string
+              maxLength: 127
+          required:
+            - title_common
+            - title_uncommon
+            - forenames
+            - surname
+            - post_nominals
+            - corporate_name
+            - crown_name
+            - known_as
+          maxProperties: 8
+        communications:
+          type: object
+          properties:
+            postal_address:
+              $comment: ''
+              description: ''
+              examples: []
+              type: string
+              maxLength: 255
+            telephone_number:
+              $comment: ''
+              description: ''
+              examples: []
+              type: string
+              maxLength: 31
+            email:
+              $comment: ''
+              description: ''
+              examples: []
+              type: string
+              maxLength: 63
+          required:
+            - postal_address
+            - telephone_number
+            - email
+          maxProperties: 3
+      required:
+        - details
+        - communications
+      maxProperties: 5
+    ENTITIES_PRODUCTS_PERSONS:
+      $ref: '#/components/schemas/ENTITIES_PERSONS_PERSON_ENTITY'
+    Error:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: object
+          required:
+            - code
+            - message
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            target:
+              type: string
+            details:
+              type: array
+              items:
+                type: object
+                required:
+                  - code
+                  - message
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  target:
+                    type: string
+            innererror:
+              type: object
+              description: The structure of this object is service-specifi
+    HIP-originEnum:
+      enum:
+      - HIP
+      - HoD
+      type: string
+    HIP-failureResponse:
+      required:
+      - failures
+      type: object
+      properties:
+        failures:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - type
+            - reason
+            type: object
+            properties:
+              type:
+                type: string
+              reason:
+                type: string
+            additionalProperties: false
+    HIP-originResponse:
+      required:
+      - origin
+      - response
+      type: object
+      properties:
+        origin:
+          $ref: '#/components/schemas/HIP-originEnum'
+        response:
+          $ref: '#/components/schemas/HIP-failureResponse'
+      additionalProperties: false
+  securitySchemes:
+    oAuth2:
+      type: oauth2
+      description: OAuth2 Client Credentials Flow
+      flows:
+        clientCredentials:
+          tokenUrl: /token-url/not-required
+          scopes:
+            read:local-taxation: This is for reading local taxation data
